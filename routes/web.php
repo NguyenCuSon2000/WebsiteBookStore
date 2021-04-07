@@ -24,7 +24,10 @@ Route::get('/logout', "Admin\LoginController@logout")->name('/logout');
 Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index');
 
 Route::resource('/category', 'Admin\CategoryProductController');
+Route::get('/search', 'Admin\CategoryProductController@search')->name('search');
 Route::resource('/product', 'Admin\ProductsController');
+Route::get('/search', 'Admin\ProductsController@search')->name('search');
+
 
 
 //USER PAGE

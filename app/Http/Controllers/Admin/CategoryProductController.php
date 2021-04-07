@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryProducts;
+
 class CategoryProductController extends Controller
 {
     /**
@@ -108,6 +109,16 @@ class CategoryProductController extends Controller
         $db->delete();
        
         return redirect()->route('category.index');
+    }
+
+
+    public function search(Request $request)
+    {
+        //
+        $text = $request->input("txtSearch");
+        $db = CategoryProducts::where('CategoryName','LIKE','%'.$text.'%')->get();
+
+        return view('admin.category', ['db'=>$db]);
     }
 }
 

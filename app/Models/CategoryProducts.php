@@ -14,6 +14,7 @@ class CategoryProducts extends Model
         'Status'
     ];
     protected $primaryKey = "id";
+    
     public function products()
     {
         return $this->hasMany("App\Models\Products","Cate_Id");

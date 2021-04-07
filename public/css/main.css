@@ -800,6 +800,26 @@ body {
   font-size: 14px;
 }
 
+.right__search {
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+.right__search input {
+  padding: 10px;
+}
+
+.right__search input.button {
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+}
+
+.right__search input.button:hover {
+   background-color: orange;
+   opacity: 1;
+}
+
 .right__cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

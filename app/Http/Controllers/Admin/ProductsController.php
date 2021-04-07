@@ -157,4 +157,14 @@ class ProductsController extends Controller
         $db->delete();
         return redirect()->route("product.index");
     }
+
+    
+    public function search(Request $request)
+    {
+        //
+        $text = $request->input("txtSearch");
+        $db = Products::where('ProductName','LIKE','%'.$text.'%')->get();
+
+        return view('admin.product', ['db'=>$db]);
+    }
 }

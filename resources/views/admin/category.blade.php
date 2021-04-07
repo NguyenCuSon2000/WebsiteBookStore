@@ -2,6 +2,12 @@
 @section('admin_content')
 <div class="right__title">Bảng điều khiển</div>
 <p class="right__desc">Xem thể loại</p>
+<div class="right__search">
+    <form role="form" action="/search" method="get">
+        <input type="search" class="search" name="txtSearch" id="" placeholder="Tìm kiếm" >
+        <input type="submit" class="button" value="Search">
+    </form>
+</div>      
 <div class="right__table">
     <div class="right__tableWrapper">
         <table>
