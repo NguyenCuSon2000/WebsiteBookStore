@@ -22,7 +22,7 @@ class ProductsController extends Controller
         // dd($db);
         // $db = Products::find(2)->category;
         // dd($db);
-        $db = Products::with('category')->get();
+        $db = Products::paginate(6);
         return view('admin.product', compact('db'));
     }
 
@@ -67,17 +67,17 @@ class ProductsController extends Controller
             $filename = time() . '.' . $extension;
             $file->move('img', $filename);
             $product->Picture = $filename;
-
         }
         else {
             return $request;
             $product->Picture = "";
         }
 
+        $product->Price = $request->txtprice;
         $product->Status = $request->sl_stt;
         $product->save();
 
-        return redirect()->route('product.index')->with('msg', 'Đăng bài thành công');
+        return redirect()->route('product.index')->with('message', 'Thêm sản phẩm thành công');
 
     }
 
@@ -138,9 +138,10 @@ class ProductsController extends Controller
             $db->Picture = "";
         }
 
+        $db->Price = $request->input('txtprice');
         $db->Status = $request->input('sl_stt');
         $db->save();
-        return redirect()->route("product.index", [$id]);
+        return redirect()->route("product.index", [$id])->with('message', 'Cập nhật sản phẩm thành công');
 
     }
 
@@ -155,7 +156,7 @@ class ProductsController extends Controller
         //
         $db = Products::findOrFail($id);
         $db->delete();
-        return redirect()->route("product.index");
+        return redirect()->route("product.index")->with('message', 'Xóa sản phẩm thành công');
     }
 
     
@@ -163,8 +164,12 @@ class ProductsController extends Controller
     {
         //
         $text = $request->input("txtSearch");
-        $db = Products::where('ProductName','LIKE','%'.$text.'%')->get();
-
+        if ($text == "") {
+            $db = Products::paginate(6);
+        }
+        else {
+            $db = Products::where('ProductName','LIKE','%'.$text.'%')->paginate(50);
+        }
         return view('admin.product', ['db'=>$db]);
     }
 }

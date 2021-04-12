@@ -24,7 +24,10 @@
             <label for="image">Hình ảnh 1</label>
             <input type="file" value="" name="fileImg">
         </div>
-
+        <div class="right__inputWrapper">
+            <label for="price">Đơn giá</label>
+            <input type="text" value="{{ $db->Price }}" name="txtprice" >
+        </div>
         <div class="right__inputWrapper">
             <label for="p_category">Trạng thái</label>
             <select name="sl_stt">
@@ -33,7 +36,7 @@
                 <option value="1" {{ $db->Status==0?"":"selected"}}>Hiển thị</option>
             </select>
         </div>
-        <button class="btn" type="submit">Cập nhật</button>
+        <button class="btn btn-info" type="submit">Cập nhật</button>
     </form>
 </div>
 @endsection

@@ -12,6 +12,7 @@ class Products extends Model
         'ProductName',
         'Description',
         'Picture',
+        'Price',
         'Status'
     ];
     protected $primaryKey = 'id';

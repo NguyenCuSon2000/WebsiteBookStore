@@ -23,15 +23,26 @@ Route::post('/login', "Admin\LoginController@login")->name('/login');
 Route::get('/logout', "Admin\LoginController@logout")->name('/logout');
 Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index');
 
+// CATEGORY
 Route::resource('/category', 'Admin\CategoryProductController');
-Route::get('/search', 'Admin\CategoryProductController@search')->name('search');
+Route::get('/search_category', 'Admin\CategoryProductController@search')->name('search_category');
+
+// PRODUCT
 Route::resource('/product', 'Admin\ProductsController');
-Route::get('/search', 'Admin\ProductsController@search')->name('search');
+Route::get('/search_product', 'Admin\ProductsController@search')->name('search_product');
+
+// CUSTOMER
+Route::resource('/customer', 'Admin\CustomersController');
+Route::get('/search_customer', 'Admin\CustomersController@search')->name('search_customer');
 
 
 
 //USER PAGE
-Route::get('/', 'User\HomeController@index')->name('home');
+Route::get('/', 'User\HomeController@index')->name('index');
+Route::get('/listproduct/{id?}', 'User\ProductController@index')->name('listproduct');
+Route::get('/product_detail/{id?}', 'User\ProductDetailController@index')->name('product_detail');
+
+
 
 
 

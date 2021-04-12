@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\CategoryProducts;
 use App\Models\Products;
 
-class HomeController extends Controller
+class ProductDetailController extends Controller
 {
-    public function index()
+    //
+    public function index($id)
     {
         $categories = CategoryProducts::all();
-        $products = Products::limit(6)->get();
-        return view("user.index", compact("categories", "products"));
+        $product = Products::find($id);
+        return view("user.product_detail", compact("categories", "product"));
     }
 }

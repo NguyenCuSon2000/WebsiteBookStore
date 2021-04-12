@@ -35,7 +35,7 @@
                 <option value="1">Hiển thị</option>
             </select>
         </div>
-        <button class="btn" name="add_categogy_product" type="submit">Add</button>
+        <button class="btn btn-info" name="add_categogy_product" type="submit">Add</button>
     </form>
 </div>
 @endsection

@@ -110,25 +110,25 @@
             <!-- START PORTFOLIO IMAGES -->
             <div class="col-12">
                 <div id="js-grid-blog-posts" class="cbp">
-
+                 @foreach($products as $product)
                     <div class="cbp-item Classic Fantasy">
                         <a class="portfolio-circle-cart" href="book-shop/shop-cart.html">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                         <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
-                            <div class="item"> <a href="{{asset('img/book-1.jpg')}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img/book-1.jpg')}}" alt="Book 1"></a></div>
-                            <div class="item"> <a href="{{asset('img/book-1-1.jpg')}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img/book-1-1.jpg')}}" alt="Book 1"></a></div>
+                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
+                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture1)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture1)}}" alt="Book 1"></a></div>
                         </div>
                         <div class="row">
                             <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-title"><a href="#" target="_blank" class="portfolio-title">So Sad Today</a></div>
+                                <div class="cbp-l-grid-blog-title"><a href="#" target="_blank" class="portfolio-title">{{$product->ProductName}}</a></div>
                             </div>
                             <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-desc portfolio-des">$750.00</div>
+                                <div class="cbp-l-grid-blog-desc portfolio-des"> {{ number_format($product->Price) }} VNĐ</div>
                             </div>
                         </div>
                     </div>
-
+                  @endforeach
                       <!-- <div class="cbp-item Classic Fantasy">
                         <a class="portfolio-circle-cart" href="book-shop/shop-cart.html">
                             <i class="fa fa-shopping-cart"></i>

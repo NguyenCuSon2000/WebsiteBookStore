@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\CategoryProducts;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\Customers;
+use Carbon\Carbon;
 
-class CategoryProductController extends Controller
+class CustomersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,9 @@ class CategoryProductController extends Controller
      */
     public function index()
     {
-        $db = CategoryProducts::paginate(10);
-        return view("admin.category",['db'=>$db]);
+        //
+        $db = Customers::paginate(10);
+        return view("admin.customer",['db'=>$db]);
     }
 
     /**
@@ -28,7 +29,7 @@ class CategoryProductController extends Controller
     public function create()
     {
         //
-        return view("admin.add_category");
+        return view("admin.add_customer");
     }
 
     /**
@@ -40,13 +41,15 @@ class CategoryProductController extends Controller
     public function store(Request $request)
     {
         //
-        $category = new CategoryProducts();
-        $category->CategoryName = $request->txtName;
-        $category->Description = $request->txtdes;
-        $category->Status = $request->sl_stt;
-        $category->save();
+        $customer = new Customers();
+        $customer->CustomerName = $request->txtName;
+        $customer->DateOfBirth = $request->txtDate;
+        $customer->Address = $request->txtAd;
+        $customer->Phone = $request->txtsdt;
+        $customer->Email = $request->txtemail;
+        $customer->save();
 
-        return redirect()->route('category.index')->with('message','Thêm loại sách thành công');
+        return redirect()->route('customer.index')->with("message","Thêm khách hàng thành công");
     }
 
     /**
@@ -69,12 +72,12 @@ class CategoryProductController extends Controller
     public function edit($id=null)
     {
         //
-        if ($id==null) {
-            return redirect()->route('category.index');
+        if ($id == null) {
+            return redirect()->route("customer.index");
         }
         else {
-            $db = CategoryProducts::find($id);
-            return view("admin.edit_category",['db'=>$db]);
+            $db = Customers::find($id);
+            return view("admin.edit_customer",['db'=>$db]);
         }
     }
 
@@ -88,12 +91,14 @@ class CategoryProductController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $db = CategoryProducts::find($id);
-        $db->CategoryName = $request->input('txtName');
-        $db->Description= $request->input('txtdes');
-        $db->Status = $request->input('sl_stt');
+        $db = Customers::find($id);
+        $db->CustomerName = $request->input('txtName');
+        $db->DateOfBirth = $request->input('txtDate');
+        $db->Address = $request->input('txtAd');
+        $db->Phone = $request->input('txtsdt');
+        $db->Email = $request->input('txtemail');
         $db->save();
-        return redirect()->route("category.index", [$id])->with("message","Cập nhật thành công");
+        return redirect()->route('customer.index',[$id])->with("message","Cập nhật thành công");
     }
 
     /**
@@ -105,25 +110,21 @@ class CategoryProductController extends Controller
     public function destroy($id)
     {
         //
-        $db = CategoryProducts::findOrFail($id);
-
+        $db = Customers::findOrFail($id);
         $db->delete();
-       
-        return redirect()->route('category.index')->with("message","Xóa thành công");
+        return redirect()->route("customer.index")->with("Xóa thành công");
     }
-
 
     public function search(Request $request)
     {
         //
         $text = $request->input("txtSearch");
         if ($text == "") {
-            $db = CategoryProducts::paginate(10);
+            $db = Customers::paginate(10);
         }
         else {
-            $db = CategoryProducts::where('CategoryName','LIKE','%'.$text.'%')->paginate(50);
+            $db = Customers::where('CustomerName','LIKE','%'.$text.'%')->paginate(50);
         }
-        return view('admin.category', ['db'=>$db]);
+        return view('admin.customer', ['db'=>$db]);
     }
 }
-

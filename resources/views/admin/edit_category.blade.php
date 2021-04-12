@@ -25,7 +25,7 @@
                 <option value="1" {{ $db->Status==0?"":"selected"}}>Hiển thị</option>
             </select>
         </div>
-        <button class="btn" name="update_categogy_product" type="submit">Update</button>
+        <button class="btn btn-info" name="update_categogy_product" type="submit">Cập nhật</button>
     </form>
 </div>
 @endsection

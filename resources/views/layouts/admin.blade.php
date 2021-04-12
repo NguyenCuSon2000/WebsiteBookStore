@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ asset('css/main.css')}} ">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div class="wrapper">
@@ -20,7 +22,15 @@
                         <div class="left__logo">LOGO</div>
                         <div class="left__profile">
                             <div class="left__image"><img src="{{asset('assets/profile.jpg')}}" alt=""></div>
-                            <p class="left__name">Hello</p>
+                            <p class="left__name">
+                                <?php
+                                    use Illuminate\Support\Facades\Session;
+                                    $name = Session::get('username');
+                                    if($name){
+                                        echo $name;
+                                    }
+                                ?>   
+                            </p>
                         </div>
                         <ul class="left__menu">
                             <li class="left__menuItem">
@@ -62,7 +72,11 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <a href="view_customers.html" class="left__title"><img src="{{asset('assets/icon-users.svg')}}" alt="">Khách Hàng</a>
+                                <div class="left__title"><img src="{{asset('assets/icon-users.svg')}}" alt="">Khách hàng<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="{{ route('customer.create') }}">Thêm khách hàng</a>
+                                    <a class="left__link" href="{{ route('customer.index') }}">Xem khách hàng</a>
+                                </div>
                             </li>
                             <li class="left__menuItem">
                                 <a href="view_orders.html" class="left__title"><img src="{{asset('assets/icon-book.svg')}}" alt="">Đơn Đặt Hàng</a>

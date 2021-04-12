@@ -25,7 +25,10 @@
             <label for="image">Hình ảnh 1</label>
             <input type="file" name="fileImg">
         </div>
-
+        <div class="right__inputWrapper">
+            <label for="price">Đơn giá</label>
+            <input type="text" name="txtprice" placeholder="Đơn giá">
+        </div>
         <div class="right__inputWrapper">
             <label for="p_category">Trạng thái</label>
             <select name="sl_stt">
@@ -34,7 +37,7 @@
                 <option value="1">Hiển thị</option>
             </select>
         </div>
-        <button class="btn" type="submit">Thêm</button>
+        <button class="btn btn-info" type="submit">Thêm</button>
     </form>
 </div>
 @endsection
