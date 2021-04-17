@@ -67,9 +67,9 @@
         <div class="container">
             <div class="row footer-container">
                 <div class="col-sm-12 col-lg-4 f-sec1  text-center text-lg-left">
-                    <h4 class="high-lighted-heading">About Us</h4>
-                    <p>We take our mission of increasing our global access to quality education seriously. </p>
-                    <a href="#">Read more</a>
+                    <h4 class="high-lighted-heading">Về chúng tôi</h4>
+                    <p>Chúng tôi coi trọng sứ mệnh của mình là tăng cường khả năng tiếp cận toàn cầu với nền giáo dục chất lượng.</p>
+                    <a href="#">Đọc thêm</a>
                     <h4>Social Network</h4>
                     <div class="s-icons">
                         <ul class="social-icons-simple">
@@ -373,6 +373,19 @@
     
     <!-- Custom Script -->
     <script src="{{asset('js/script.js')}}"></script>
-
+    <script src="{{asset('js/ajax.js')}}"></script>
+    <!-- <script>
+        function AddCart(id) { 
+            $.ajax({
+                type: "GET",
+                url: "Add-Cart/"+id,
+              
+            }).done(function (response) { 
+                console.log(response);
+                $("#change-item-cart").empty();
+                $("#change-item-cart").html(response);
+             });
+         }
+    </script> -->
 </body>
 </html>

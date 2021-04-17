@@ -1305,6 +1305,22 @@ END scroll-top-arrow
     font-weight: 400;
 }
 
+.product-sale {position: absolute;z-index: 1;}
+.product-sale span {
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 19px;
+    text-align: center;
+    background: #28b241;
+    border-width: thin;
+    border-style: solid;
+    border-color:#28b241;
+    left:0;
+    top:0;
+}
+
 .lastest_arrival_items .lastest-addto-cart{
     position: absolute;
     z-index: 100;

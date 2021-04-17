@@ -16,4 +16,11 @@ class Customers extends Model
         "Email"
     ];
     protected $primaryKey = "id";
+
+    public function orders()
+    {
+        return $this->hasMany("App\Models\Orders", "CustomerId");
+    }
+
+   
 }

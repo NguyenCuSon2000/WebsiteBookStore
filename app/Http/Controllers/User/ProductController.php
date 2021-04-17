@@ -14,6 +14,7 @@ class ProductController extends Controller
     {
         $categories = CategoryProducts::all();
         $products = Products::where("Cate_Id", $id)->paginate(9);
+        // dd($products);
         return view("user.product", compact("categories","products"));
     }
 }

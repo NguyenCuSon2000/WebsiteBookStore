@@ -20,7 +20,7 @@
             ?>
             <header>Login Form</header>
             <form action="{{ route('/login') }}" method="post">
-                {{ csrf_field() }}
+                @csrf
                 <div class="field">
                     <span class="fa fa-user"></span>
                     <input type="text" required="" name="username" placeholder="Username">
@@ -54,7 +54,7 @@
             </div>
             <div class="signup">
                 Don't have account?
-                <a href="SignUp.html">Signup Now</a>
+                <a href="{{ route('/register/index')  }}">Signup Now</a>
             </div>
         </div>
     </div> 

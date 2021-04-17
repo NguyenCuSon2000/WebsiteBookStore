@@ -14,6 +14,7 @@ class ProductDetailController extends Controller
     {
         $categories = CategoryProducts::all();
         $product = Products::find($id);
-        return view("user.product_detail", compact("categories", "product"));
+        $products_new = Products::limit(6)->get();
+        return view("user.product_detail", compact("categories", "product", "products_new"));
     }
 }

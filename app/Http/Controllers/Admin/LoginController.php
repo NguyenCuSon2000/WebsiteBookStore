@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Session;
 use App\Models\Users;
+use Hash;
 session_start();
 
 class LoginController extends Controller
@@ -24,6 +25,7 @@ class LoginController extends Controller
           //
           $us = $req->username;
           $pw = $req->password;
+        //   Hash::check($request->newPasswordAtLogin, $hashedPassword)
   
         //   $result = DB::table('users')->where('username', $us)->where('password', $pw)->first();
            $result = Users::where('username', $us)->where('password', $pw)->first();

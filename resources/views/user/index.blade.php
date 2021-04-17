@@ -10,7 +10,7 @@
                 <div class="banner-description">
                     <span class="small-heading animated fadeInRight delay-1s">BEST AVAILABLE</span>
                     <h1 class="w-sm-100 w-md-100 w-lg-25 animated fadeInLeft delay-1s">BOOKS <span>COLLECTION</span></h1>
-                    <a href="book-shop/product-listing.html" class="btn animated fadeInLeft delay-1s">SHOP NOW </a>
+                    <a href="book-shop/product-listing.html" class="btn animated fadeInLeft delay-1s">MUA NGAY</a>
                 </div>
             </div>
         </div>
@@ -88,8 +88,8 @@
             <!-- START PORTFOLIO HEADING -->
             <div class="col-12">
                 <div class="portfolioHeading text-center">
-                    <h1 class="high-lighted-heading">Our Popular Product</h1>
-                    <p>Aenean imperdiet. Etiam ultricies nisi vel augue men tuhi spectrum alle me.</p>
+                    <h1 class="high-lighted-heading">Sản Phẩm Nổi Bật</h1>
+                    <p>Việc đọc rất quan trọng. Nếu bạn biết cách đọc, cả thế giới sẽ mở ra cho bạn.</p>
                 </div>
             </div>
             <!-- END PORTFOLIO HEADING -->
@@ -98,10 +98,10 @@
             <div class="col-12">
                 <div class="clearfix d-flex justify-content-center">
                     <div id="js-filters-blog-posts" class="cbp-l-filters-button cbp-1-filters-alignCenter">
-                        <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All </div>
-                        <div data-filter=".Classic" class="cbp-filter-item">Classics</div>
-                        <div data-filter=".Fantasy" class="cbp-filter-item">Fantasy</div>
-                        <div data-filter=".motion" class="cbp-filter-item">Historical Fiction</div>
+                        <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">Tất cả </div>
+                        <div data-filter=".Classic" class="cbp-filter-item">Kinh tế</div>
+                        <div data-filter=".Fantasy" class="cbp-filter-item">Kỹ năng mềm</div>
+                        <div data-filter=".motion" class="cbp-filter-item">Ngoại ngữ</div>
                     </div>
                 </div>
             </div>
@@ -111,8 +111,9 @@
             <div class="col-12">
                 <div id="js-grid-blog-posts" class="cbp">
                  @foreach($products as $product)
+
                     <div class="cbp-item Classic Fantasy">
-                        <a class="portfolio-circle-cart" href="book-shop/shop-cart.html">
+                        <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                         <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
@@ -121,13 +122,14 @@
                         </div>
                         <div class="row">
                             <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-title"><a href="#" target="_blank" class="portfolio-title">{{$product->ProductName}}</a></div>
+                                <div class="cbp-l-grid-blog-title"><a href="{{ route('product_detail').'/'.$product->id }}" target="_blank" class="portfolio-title">{{$product->ProductName}}</a></div>
                             </div>
                             <div class="col-12 text-center">
                                 <div class="cbp-l-grid-blog-desc portfolio-des"> {{ number_format($product->Price) }} VNĐ</div>
                             </div>
                         </div>
                     </div>
+
                   @endforeach
                       <!-- <div class="cbp-item Classic Fantasy">
                         <a class="portfolio-circle-cart" href="book-shop/shop-cart.html">
@@ -261,34 +263,41 @@
     <div class="container">
         <div class="row">
             <div class="col-12 mb-4">
-                <h1>Published Books</h1>
+                <h1>SÁCH KHUYỄN MÃI</h1>
             </div>
-
             <div class="col-12">
                 <div class="lastest_featured_products owl-carousel owl-theme">
 
+                @foreach($products_sale as $product)
                     <div class="lastest_arrival_items item">
                         <a href="book-shop/product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
+                        <div class="product-sale">
+                                <span><label class="sale-lb">- </label> {{ $product->Percent }}%</span>
+                            </div>
                         <div class="card">
-                            <span class="product-type">NEW</span>
+                            <span class="product-type">MỚI</span>
                             <div class="image-holder">
-                                <a href="{{asset('img/l1.jpg')}}" data-fancybox="lastest_product" data-title="Shirt Name">
-                                    <img src="{{asset('img/l1.jpg')}}" class="card-img-top" alt="Lastest Arrivals 1">
+                                <a href="{{asset('img'.'/'.$product->product->Picture)}}" data-fancybox="lastest_product" data-title="Shirt Name">
+                                    <img src="{{asset('img'.'/'.$product->product->Picture)}}" class="card-img-top" alt="Lastest Arrivals 1">
                                 </a>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-12 text-center">
-                                        <h5 class="card-title">Love In The Time</h5>
+                                        <h5 class="card-title">{{ $product->product->ProductName }}</h5>
                                     </div>
                                     <div class="col-12 text-center">
-                                        <p class="card-text"> $750.00</p>
+                                        <p class="card-text"> {{ number_format($product->Promotion_price) }} VND</p>
+                                        <del class="card-text"> {{ number_format($product->product->Price) }} VND</del>
+                                    </div>
+                                    <div class="col-12 text-right">
+                                       
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                @endforeach
                     <!-- <div class="lastest_arrival_items item">
                         <a href="book-shop/product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
                         <div class="card">  <span class="product-type">NEW</span>

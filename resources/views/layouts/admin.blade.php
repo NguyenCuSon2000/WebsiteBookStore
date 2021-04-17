@@ -24,11 +24,11 @@
                             <div class="left__image"><img src="{{asset('assets/profile.jpg')}}" alt=""></div>
                             <p class="left__name">
                                 <?php
-                                    use Illuminate\Support\Facades\Session;
-                                    $name = Session::get('username');
-                                    if($name){
-                                        echo $name;
-                                    }
+                                use Illuminate\Support\Facades\Session;
+                                $name = Session::get('username');
+                                if($name){
+                                    echo $name;
+                                }
                                 ?>   
                             </p>
                         </div>
@@ -44,10 +44,10 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/icon-edit.svg')}}" alt="">Danh Mục Sản Phẩm<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__title"><img src="{{asset('assets/icon-edit.svg')}}" alt="">Đơn hàng<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
-                                    <a class="left__link" href="">Thêm danh mục</a>
-                                    <a class="left__link" href="">Liệt kê danh mục</a>
+                                    <a class="left__link" href="">Thêm đơn hàng</a>
+                                    <a class="left__link" href="{{ route('order.index') }}">Liệt kê đơn hàng</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">

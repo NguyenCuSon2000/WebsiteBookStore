@@ -98,7 +98,7 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id=nul)
+    public function edit($id=null)
     {
         //
         if ($id==null) {
@@ -106,7 +106,9 @@ class ProductsController extends Controller
         }
         else {
             $db = Products::find($id);
-            return view("admin.edit_product",['db'=>$db]);
+            $categories = CategoryProducts::all();
+            // dd($db, $categories);
+            return view("admin.edit_product",compact("db","categories"));
         }
     }
 

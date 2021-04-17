@@ -13,11 +13,18 @@ class Products extends Model
         'Description',
         'Picture',
         'Price',
+        'Quantity',
         'Status'
     ];
     protected $primaryKey = 'id';
+    
     public function category()
     {
         return $this->belongsTo("App\Models\CategoryProducts", 'Cate_Id');
+    }
+
+    public function discounts()
+    {
+        return $this->hasMany("App\Models\Discount", "Product_Id");
     }
 }

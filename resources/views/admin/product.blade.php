@@ -29,7 +29,7 @@
                     <th>Mã sách</th>
                     <th>Tên sách</th>
                     <th>Tên loại</th>
-                    <th>Mô tả</th>
+                    <!-- <th>Mô tả</th> -->
                     <th>Hình ảnh</th>
                     <th>Đơn giá</th>
                     <th>Hiển thị</th>
@@ -44,7 +44,7 @@
                         <td data-label="id">{{$r->id}}</td>
                         <td data-label="Tiêu đề">{{$r->ProductName}}</td>
                         <td data-label="Tên loại">{{ $r->category->CategoryName }}</td>
-                        <td data-label="Mô tả">{{$r->Description}}</td>
+                        <!-- <td data-label="Mô tả">{{$r->Description}}</td> -->
                         <td data-label="Hình ảnh"> <img src="{{asset('img'.'/'.$r->Picture)}}" alt="" > </td>
                         <td data-label="Đơn giá"> {{ number_format($r->Price) }} VNĐ</td>
                         <td data-label="Hiển thị"><input type="checkbox" name="cbtt" value="{{ $r->Status }}" {{ $r->Status==0?'':'checked'}}  ></td>

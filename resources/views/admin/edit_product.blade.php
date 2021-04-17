@@ -11,18 +11,21 @@
             <input type="text" value="{{ $db->ProductName }}" name="txtName" >
         </div>
         <div class="right__inputWrapper">
-            <label for="p_category">Danh mục</label>
+            <label for="p_category">Loại sách</label>
             <select name="txtCate">
-                <option value="{{ $db->category->id }}">{{ $db->category->CategoryName }}</option>
+                <option value="{{ $db->category->id }}" selected>{{ $db->category->CategoryName }}</option>
+                @foreach($categories as $r)
+                     <option value="{{ $r->id }}">{{ $r->CategoryName }}</option>
+                @endforeach
             </select>
         </div>
         <div class="right__inputWrapper">
             <label for="desc">Mô tả</label>
-            <textarea name="txtDes" id="" cols="30" rows="10" placeholder="Mô tả">{{ $db->Description}}</textarea>
+            <textarea name="txtDes" id="editor" cols="30" rows="10" placeholder="Mô tả">{{ $db->Description}}</textarea>
         </div>
         <div class="right__inputWrapper">
             <label for="image">Hình ảnh 1</label>
-            <input type="file" value="" name="fileImg">
+            <input type="file" value="{{ $db->Picture }}" name="fileImg">
         </div>
         <div class="right__inputWrapper">
             <label for="price">Đơn giá</label>

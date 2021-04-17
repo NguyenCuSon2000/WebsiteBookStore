@@ -10,16 +10,16 @@
             <input type="text" name="txtName" placeholder="Tiêu đề">
         </div>
         <div class="right__inputWrapper">
-            <label for="p_category">Danh mục</label>
+            <label for="p_category">Loại sách</label>
             <select name="txtCate">
                 @foreach($db as $r)
-                     <option value="{{ $r->id }}">{{ $r->CategoryName }}</option>
+                    <option value="{{ $r->id }}">{{ $r->CategoryName }}</option>
                 @endforeach
             </select>
         </div>
         <div class="right__inputWrapper">
             <label for="desc">Mô tả</label>
-            <textarea name="txtDes" id="" cols="30" rows="10" placeholder="Mô tả"></textarea>
+            <textarea name="txtDes" id="editor" cols="30" rows="10" placeholder="Mô tả"></textarea>
         </div>
         <div class="right__inputWrapper">
             <label for="image">Hình ảnh 1</label>

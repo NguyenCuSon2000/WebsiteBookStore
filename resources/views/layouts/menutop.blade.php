@@ -8,16 +8,16 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('index') }}">HOME</a>
+                            <a class="nav-link" href="{{ route('index') }}">TRANG CHỦ</a>
                         </li>
                         <li class="nav-item dropdown static">
-                            <a class="nav-link dropdown-toggle active" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> BOOKS </a>
+                            <a class="nav-link dropdown-toggle active" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SÁCH </a>
                             <ul class="dropdown-menu megamenu flexable-megamenu">
                                 <li>
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
-                                                <h5 class="dropdown-title"> Most Wanted </h5>
+                                                <h5 class="dropdown-title"> Truyện - Tiểu thuyết </h5>
                                                 <ul>
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Love Does</a></li>
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">No One Belongs</a></li>
@@ -26,7 +26,7 @@
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">The Road</a></li>
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Why Me?</a></li>
                                                 </ul>
-                                                <h5 class="dropdown-title"> Classic </h5>
+                                                <h5 class="dropdown-title"> Sách giáo trình </h5>
                                                 <ul>
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Lorna Doone</a></li>
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Lord of Flies</a></li>
@@ -35,7 +35,7 @@
                                                 </ul>
                                             </div>
                                             <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
-                                                <h5 class="dropdown-title"> NOVEL's </h5>
+                                                <h5 class="dropdown-title"> Khoa học công nghệ </h5>
                                                 <ul>
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Romance</a></li>
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Fantasy</a></li>
@@ -45,7 +45,7 @@
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Others</a></li>
                                                 </ul>
                                                 
-                                                <h5 class="dropdown-title"> HISTORY </h5>
+                                                <h5 class="dropdown-title"> Văn học nghệ thuật</h5>
                                                 <ul>
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Creative Thinking</a></li>
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Historical Fiction</a></li>
@@ -59,10 +59,10 @@
                                                 <div class="carousel-menu mt-4">
                                                     <div class="featured-megamenu-carousel owl-carousel owl-theme">
                                                         <div class="item ">
-                                                            <img src="book-shop/img/shop1.jpg" alt="shop-image">
+                                                            <img src="{{ asset('img/shop1.jpg') }}" alt="shop-image">
                                                         </div>
                                                         <div class="item">
-                                                            <img src="book-shop/img/shop2.jpg" alt="shop-image">
+                                                            <img src="{{ asset('img/shop2.jpg') }}" alt="shop-image">
                                                         </div>
                                                     </div>
                                                     <i class="lni-chevron-left ini-customPrevBtn"></i>
@@ -77,14 +77,13 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown static">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> E-BOOKS </a>
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SÁCH ĐIỆN TỬ </a>
                             <ul class="dropdown-menu megamenu flexable-megamenu">
                                 <li>
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
-                                                <h5 class="dropdown-title bottom10"> Categories </h5>
-                                                
+                                                <h5 class="dropdown-title bottom10"> Chủ đề </h5>                                                
                                                 <ul id="menu">
                                                 @foreach($categories as $category)
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="{{ route('listproduct').'/'.$category->id }}">{{$category->CategoryName}}</a></li>
@@ -101,62 +100,61 @@
                                                 
                                             </div>
                                             <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
-                                                <h5 class="dropdown-title opacity-10"> Others </h5>
+                                                <h5 class="dropdown-title opacity-10"> Khác </h5>
                                                 <ul>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Crime</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i> <a class="dropdown-item" href="book-shop/product-listing.html">Dictionary</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i> <a class="dropdown-item" href="book-shop/product-listing.html">Health</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">History</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Journal
-                                                    </a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Horror</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Poetry</a></li>
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Trinh thám</a></li>
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Từ điển</a></li>
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Sức khỏe</a></li>
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Lịch sử</a></li>
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Tạp chí</a></li>
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Kinh dị</a></li>
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Thơ</a></li>
                                                 </ul>
                                                 
                                             </div>
                                             <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
-                                                <h5 class="dropdown-title bottom10"> Author's </h5>
+                                                <h5 class="dropdown-title bottom10"> Tác giả </h5>
                                                 
                                                 <div class="media outlet-media mt-3">
                                                     <div class="box">
-                                                        <img class="align-self-start" src="book-shop/img/author1.jpg" alt="Generic placeholder image">
+                                                        <img class="align-self-start" src="{{ asset('img/author5.jpg') }}" alt="Generic placeholder image">
                                                     </div>
                                                     <div class="media-body">
-                                                        <h6 class="mt-3 ml-3"><a href="#">Eva Smith</a></h6>
+                                                        <h6 class="mt-3 ml-3"><a href="#">Nguyễn Nhật Ánh</a></h6>
                                                     </div>
                                                 </div>
                                                 
                                                 <div class="media outlet-media">
                                                     <div class="box">
-                                                        <img class="align-self-start" src="book-shop/img/author2.jpg" alt="Generic placeholder image">
+                                                        <img class="align-self-start" src="{{ asset('img/author6.jpg') }}" alt="Generic placeholder image">
                                                     </div>
                                                     <div class="media-body">
-                                                        <h6 class="mt-3 ml-3"><a href="#">Rosa Parks</a></h6>
+                                                        <h6 class="mt-3 ml-3"><a href="#">Trần Đăng Khoa</a></h6>
                                                     </div>
                                                 </div>
                                                 
                                                 <div class="media outlet-media">
                                                     <div class="box">
-                                                        <img class="align-self-start" src="book-shop/img/author3.jpg" alt="Generic placeholder image">
+                                                        <img class="align-self-start" src="{{ asset('img/author7.jpg') }}" alt="Generic placeholder image">
                                                     </div>
                                                     <div class="media-body">
-                                                        <h6 class="mt-3 ml-3"><a href="#">Alan Yang</a></h6>
+                                                        <h6 class="mt-3 ml-3"><a href="#">Nhà thơ Nguyễn Khoa Điềm</a></h6>
                                                     </div>
                                                 </div>
                                                 
                                                 
                                                 <div class="media outlet-media">
                                                     <div class="box">
-                                                        <img class="align-self-start" src="book-shop/img/author4.jpg" alt="Generic placeholder image">
+                                                        <img class="align-self-start" src="{{ asset('img/author8.jpg') }}" alt="Generic placeholder image">
                                                     </div>
                                                     <div class="media-body">
-                                                        <h6 class="mt-3 ml-3"><a href="#">Kam John</a></h6>
+                                                        <h6 class="mt-3 ml-3"><a href="#">Nhà văn Tô Hoài</a></h6>
                                                     </div>
                                                 </div>
                                                 
                                             </div>
                                             <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
-                                                <a href="javascript:void(0);"><img src="book-shop/img/featured-product.jpg" alt="image"></a>
+                                                <a href="javascript:void(0);"><img src="{{ asset('img/featured-product.jpg') }}" alt="image"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -164,17 +162,17 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown position-relative">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PAGES</a>
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TIN TỨC</a>
                             <div class="dropdown-menu">
                                 <ul>
-                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Listing One</a></li>
-                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-detail.html">Detail Page</a></li>
-                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/shop-cart.html.html">ShopCart Page</a></li>
+                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">TIN NỔI BẬT</a></li>
+                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-detail.html">TIN SÁCH MỚI</a></li>
+                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/shop-cart.html.html">TIN SÁCH XUẤT BẢN</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="book-shop/contact.html">CONTACT</a>
+                            <a class="nav-link" href="book-shop/contact.html">LIÊN HỆ</a>
                         </li>
                         
                     </ul>
@@ -190,14 +188,14 @@
                     <ul class="navbar-nav">
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="book-shop/product-listing.html"> HOME</a>
+                            <a class="nav-link" href="book-shop/product-listing.html"> TRANG CHỦ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages1">
-                                BOOKS <i class="fas fa-chevron-down"></i>
+                                SÁCH <i class="fas fa-chevron-down"></i>
                             </a>
                             <div id="sideNavPages1" class="collapse sideNavPages">
-                                
+                                <h5 class="sub-title">1. Truyện - Tiểu thuyết</h5>
                                 <ul class="navbar-nav mt-2">
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Love Does</a></li>
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">No One Belongs</a></li>
@@ -206,7 +204,7 @@
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">The Road</a></li>
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Why Me?</a></li>
                                 </ul>
-                                <h5 class="sub-title">1. Classic</h5>
+                                <h5 class="sub-title">2. Khoa học - Công nghệ</h5>
                                 <ul class="navbar-nav mt-2">
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Lorna Doone</a></li>
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Lord of Flies</a></li>
@@ -214,7 +212,7 @@
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">End World</a></li>
                                 </ul>
                                 
-                                <h5 class="sub-title">2. Novel's</h5>
+                                <h5 class="sub-title">3. Sách giáo trình</h5>
                                 <ul class="navbar-nav mt-2">
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Romance</a></li>
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Fantasy</a></li>
@@ -223,7 +221,7 @@
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Others</a></li>
                                 </ul>
                                 
-                                <h5 class="sub-title">3. History</h5>
+                                <h5 class="sub-title">4. Văn học nghệ thuật</h5>
                                 <ul class="navbar-nav mt-2">
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Creative Thinking</a></li>
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Historical Fiction</a></li>
@@ -234,19 +232,21 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages3">
-                                E-BOOKS <i class="fas fa-chevron-down"></i>
+                                SÁCH ĐIỆN TỬ <i class="fas fa-chevron-down"></i>
                             </a>
                             <div id="sideNavPages3" class="collapse sideNavPages">
                                 <ul class="navbar-nav mt-2">
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Art</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Autobiography</a></li>
+                                @foreach($categories as $category)
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('listproduct').'/'.$category->id }}">{{$category->CategoryName}}</a></li>
+                                @endforeach
+                                    <!-- <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Autobiography</a></li>
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Biography</a></li>
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Chick lit</a></li>
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Coming-of-age</a></li>
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Anthology</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Drama</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Drama</a></li> -->
                                 </ul>
-                                <h5 class="sub-title">1. Others</h5>
+                                <h5 class="sub-title">1. Khác</h5>
                                 <ul class="navbar-nav mt-2">
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Crime</a></li>
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html"> Dictionary</a></li>
@@ -259,24 +259,24 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages2">
-                                PAGES <i class="fas fa-chevron-down"></i>
+                                TIN TỨC <i class="fas fa-chevron-down"></i>
                             </a>
                             <div id="sideNavPages2" class="collapse sideNavPages">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="book-shop/product-listing.html">Listing One</a>
+                                        <a class="nav-link" href="book-shop/product-listing.html">TIN NỔI BẬT</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="book-shop/product-detail.html">Detail Page</a>
+                                        <a class="nav-link" href="book-shop/product-detail.html">TIN SÁCH MỚI</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="book-shop/shop-cart.html">ShopCart Page</a>
+                                        <a class="nav-link" href="book-shop/shop-cart.html">TIN SÁCH XUẤT BẢN</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="book-shop/contact.html">Contact</a>
+                            <a class="nav-link" href="book-shop/contact.html">LIÊN HỆ</a>
                         </li>
                     </ul>
                 </nav>
