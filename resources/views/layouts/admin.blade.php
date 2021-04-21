@@ -19,9 +19,9 @@
                         <span></span>
                     </span>
                     <div class="left__content">
-                        <div class="left__logo">LOGO</div>
+                        <div class="left__logo">BOOK STORE</div>
                         <div class="left__profile">
-                            <div class="left__image"><img src="{{asset('assets/profile.jpg')}}" alt=""></div>
+                            <div class="left__image"><img src="{{asset('assets/nguyencuson.jpg')}}" alt=""></div>
                             <p class="left__name">
                                 <?php
                                 use Illuminate\Support\Facades\Session;
@@ -58,17 +58,17 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/icon-settings.svg')}}" alt="">Slide<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__title"><img src="{{asset('assets/icon-settings.svg')}}" alt="">Tin tức<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
-                                    <a class="left__link" href="insert_slide.html">Chèn Slide</a>
-                                    <a class="left__link" href="view_slides.html">Xem Slide</a>
+                                    <a class="left__link" href="insert_slide.html">Chèn Tin tức</a>
+                                    <a class="left__link" href="view_slides.html">Xem Tin tức</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/icon-book.svg')}}" alt="">Coupons<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__title"><img src="{{asset('assets/icon-book.svg')}}" alt="">Nhà cung cấp<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
-                                    <a class="left__link" href="insert_coupon.html">Chèn Coupon</a>
-                                    <a class="left__link" href="view_coupons.html">Xem Coupons</a>
+                                    <a class="left__link" href="insert_coupon.html">Thêm nhà cung cấp</a>
+                                    <a class="left__link" href="view_coupons.html">Xem nhà cung cấp</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">
@@ -85,10 +85,10 @@
                                 <a href="edit_css.html" class="left__title"><img src="{{asset('assets/icon-pencil.svg')}}" alt="">Chỉnh CSS</a>
                             </li>
                             <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/icon-user.svg')}}" alt="">Admin<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__title"><img src="{{asset('assets/icon-user.svg')}}" alt="">Người dùng<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
-                                    <a class="left__link" href="insert_admin.html">Chèn Admin</a>
-                                    <a class="left__link" href="view_admins.html">Xem Admins</a>
+                                    <a class="left__link" href="insert_admin.html">Chèn người dùng</a>
+                                    <a class="left__link" href="view_admins.html">Xem người dùng</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">

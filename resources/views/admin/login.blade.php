@@ -34,7 +34,7 @@
                     
                 </div>
                 <div class="pass">
-                    <span><input type="checkbox" name="" value="" id="">Remember password</span> 
+                    <span style="color: white;"><input type="checkbox" name="" value="" id="">Remember password</span> 
                     <a href="#">Forgot Password?</a>
                 </div>
                 <div class="field">

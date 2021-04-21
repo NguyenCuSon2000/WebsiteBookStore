@@ -172,7 +172,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="book-shop/contact.html">LIÊN HỆ</a>
+                            <a class="nav-link" href="{{ route('contact') }}">LIÊN HỆ</a>
                         </li>
                         
                     </ul>
@@ -276,7 +276,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="book-shop/contact.html">LIÊN HỆ</a>
+                            <a class="nav-link" href="{{ route('contact') }}">LIÊN HỆ</a>
                         </li>
                     </ul>
                 </nav>

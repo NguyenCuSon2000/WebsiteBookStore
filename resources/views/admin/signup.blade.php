@@ -41,12 +41,12 @@
                
 
                 <div class="field space">
-                    <span class="fa fa-user"></span>
+                    <span class="fas fa-map-marker-alt"></span>
                     <input type="text" required="" placeholder="Địa chỉ" id="txtsd" name="txtad" require>
                 </div>
              
                 <div class="field space">
-                    <span class="fa fa-user"></span>
+                    <span class="fas fa-phone-alt"></span>
                     <input type="text" required="" placeholder="Số điện thoại" id="txtsdt" name="txtsdt" require>
                 </div>
                 

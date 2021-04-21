@@ -15,7 +15,7 @@
             <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
         </a>
         <a class="right__card" href="view_p_category.html">
-            <div class="right__cardTitle">Danh Mục</div>
+            <div class="right__cardTitle">Loại sách</div>
             <div class="right__cardNumber">4</div>
             <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
         </a>
@@ -34,7 +34,7 @@
                         <th>STT</th>
                         <th style="text-align: left;">Email</th>
                         <th>Số Hoá Đơn</th>
-                        <th>ID Sản Phẩm</th>
+                        <th>Mã Sản Phẩm</th>
                         <th>Số Lượng</th>
                         <th>Kích thước</th>
                         <th>Trạng Thái</th>
@@ -44,7 +44,7 @@
                 <tbody>
                     <tr>
                         <td data-label="STT">1</td>
-                        <td data-label="Email" style="text-align: left;">chibaosinger@gmail.com</td>
+                        <td data-label="Email" style="text-align: left;">nguyencuson@gmail.com</td>
                         <td data-label="Số Hoá Đơn">6577544</td>
                         <td data-label="ID Sản Phẩm">2</td>
                         <td data-label="Số Lượng">1</td>
@@ -55,7 +55,7 @@
                     </tr>
                     <tr>
                         <td data-label="STT">2</td>
-                        <td data-label="Email" style="text-align: left;">midu@gmail.com</td>
+                        <td data-label="Email" style="text-align: left;">caothaison@gmail.com</td>
                         <td data-label="Số Hoá Đơn">4578644</td>
                         <td data-label="ID Sản Phẩm">4</td>
                         <td data-label="Số Lượng">2</td>
@@ -66,7 +66,7 @@
                     </tr>
                     <tr>
                         <td data-label="STT">3</td>
-                        <td data-label="Email" style="text-align: left;">miku@gmail.com</td>
+                        <td data-label="Email" style="text-align: left;">tranmanhthai@gmail.com</td>
                         <td data-label="Số Hoá Đơn">2657544</td>
                         <td data-label="ID Sản Phẩm">3</td>
                         <td data-label="Số Lượng">5</td>
@@ -77,7 +77,7 @@
                     </tr>
                     <tr>
                         <td data-label="STT">4</td>
-                        <td data-label="Email" style="text-align: left;">dangthimydung@gmail.com</td>
+                        <td data-label="Email" style="text-align: left;">nguyenthihang@gmail.com</td>
                         <td data-label="Số Hoá Đơn">9659544</td>
                         <td data-label="ID Sản Phẩm">8</td>
                         <td data-label="Số Lượng">12</td>

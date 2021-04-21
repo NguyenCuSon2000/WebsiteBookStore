@@ -54,6 +54,9 @@ Route::get('/product_detail/{id?}', 'User\ProductDetailController@index')->name(
 
 Route::resource('cart', "User\CartController");
 Route::get('addcart/{id}', "User\CartController@addCart")->name("addcart");
+// Route::post('/deletecart/{rowId}', "User\CartController@deleteCart")->name("deletecart");
+
+Route::get('/contact', "User\ContactController@index")->name("contact");
 
 
 

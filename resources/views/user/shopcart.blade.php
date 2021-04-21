@@ -12,13 +12,13 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-10  text-center text-lg-left wow slideInUp" data-wow-duration="2s">
-                <h1 class="heading">Get Ready For Checkout?</h1>
-                <p class="para_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolores explicabo laudantium, omnis provident consectetur adipisicing elit quam reiciendis voluptatum?</p>
+                <h1 class="heading">Giỏ hàng</h1>
+                <p class="para_text">"Việc đọc rất quan trọng. Nếu bạn biết cách đọc, cả thế giới sẽ mở ra cho bạn.” <b>- Barack Obama -</b></p>
             </div>
         </div>
     </div>
-
-
+    
+    
     <!-- START SHOP CART SECTION -->
     <div class="shop-cart wow slideInUp" data-wow-duration="2s">
         <div class="container">
@@ -41,7 +41,6 @@
                                 <tr>
                                     <td>
                                         <div class="d-table product-detail-cart">
-                                            
                                             <div class="media">
                                                 <div class="row no-gutters">
                                                     
@@ -51,8 +50,8 @@
                                                     
                                                     <div class="col-12 col-lg-10 mt-auto product-detail-cart-data">
                                                         <div class="media-body ml-lg-3">
-                                                            <h4 class="product-name"><a href="product-detail.html">{{ $key->name }}</a></h4>
-                                                            <p class="product-des">We offer the most complete in the country</p>
+                                                            <h4 class="product-name"><a href="{{ route('product_detail').'/'.$key->id }}">{{ $key->name }}</a></h4>
+                                                            <!-- <p class="product-des">We offer the most complete in the country</p> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -64,15 +63,30 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="quote text-center mt-1">
-                                            <div class="form-group">
-                                                <input type="number" name="qty" id="qty" value="{{ $key->qty }}" data-id="{{ $key->rowId }}" placeholder="1" class="quote" min="1" max="100">
-                                            </div>
+                                            <!-- <div class="form-group"> -->
+                                                <form action="{{ route('cart.update', $key->rowId) }}" method="post">
+                                                    @csrf
+                                                    @method("PUT")
+                                                    <input type="hidden" value="{{ $key->rowId }}" name="rowId_cart" class="form-control">
+                                                    <input type="number" name="qty" id="qty" value="{{ $key->qty }}" placeholder="1" class="quote" min="1" max="100">
+                                                    <input type="submit" value="Cập nhật">
+                                                </form>
+                                                
+                                            <!-- </div> -->
                                         </div>
                                     </td>
                                     <td>
                                         <h4 class="text-center amount">{{ number_format($key->price * $key->qty) }} VND</h4>
                                     </td>
-                                    <td class="text-center"><a class="btn-close" name="close1" href="javascript:void(0)"><i class="lni-trash"></i></a></td>
+                                    <td class="text-center">
+                                        <form action="{{ route('cart.destroy', $key->rowId) }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><i class="lni-trash"></i></button>   
+                                        </form>
+                                        <!-- <a class="btn-close" name="close1" href=""><i class="lni-trash"></i></a> -->
+                                    </td>
                                 </tr>
                                 @endforeach
                                 <tr>
@@ -85,7 +99,7 @@
                                         Tổng cộng
                                     </td>
                                     <td>
-                                        <h4 class="text-center amount">{{ Cart::total() }} VND</h4>
+                                        <h4 class="text-center amount">{{ Cart::total().' '.'VND' }}</h4>
                                     </td>
                                     <td class="text-center"></td>
                                 </tr>
@@ -95,8 +109,8 @@
                     <div class="apply_coupon">
                         <div class="row">
                             <div class="col-12 text-left">
-                                <a href="shop-cart.html" class="btn yellow-color-green-gradient-btn">UPDATE</a>
-                                <a href="shop-cart.html" class="btn green-color-yellow-gradient-btn ">CHECKOUT</a>
+                                <a href="shop-cart.html" class="btn yellow-color-green-gradient-btn">CẬP NHẬT</a>
+                                <a href="shop-cart.html" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
                             </div>
                             <!--                            <div class="col-6  coupon text-left">-->
                                 <!--                                <a href="shop-cart.html" class="btn pink-color-black-gradient-btn ">CHECKOUT</a>-->
@@ -111,7 +125,7 @@
                 <div class="row pt-5">
                     <div class="col-12 col-lg-6 wow slideInLeft" data-wow-duration="2s">
                         <div class="calculate-shipping">
-                            <h4 class="heading">Calculate Shipping</h4>
+                            <h4 class="heading">Tính toán vận chuyển</h4>
                             <form>
                                 <div class="form-group">
                                     <label class="select form-control">
@@ -136,46 +150,50 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Postal/Zip Code">
                                 </div>
-                                <a href="#" class="btn yellow-color-green-gradient-btn">Calculate</a>
+                                <a href="#" class="btn yellow-color-green-gradient-btn">Tính toán</a>
                             </form>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 wow slideInRight" data-wow-duration="2s">
                         <div class="card-total">
-                            <h4 class="heading">Card Total</h4>
+                            <h4 class="heading">Thẻ tổng tiền</h4>
                             <table>
                                 <tr>
-                                    <td>Subtotal</td>
-                                    <td>$251.00</td>
+                                    <td>Tổng phụ</td>
+                                    <td>{{ Cart::subtotal() }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Shipping</td>
+                                    <td>Thuế</td>
+                                    <td>{{ Cart::tax().' '.'VND' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Giao hàng</td>
                                     <td>
                                         <ul class="color-grey">
                                             <li>
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" id="flat-rate" name="shipping" class="custom-control-input" checked="">
-                                                    <label class="custom-control-label" for="flat-rate">Flat Rate : $49.00</label>
+                                                    <label class="custom-control-label" for="flat-rate">Giá cố định : 50,000đ</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
-                                                    <label class="custom-control-label" for="free-shipping">Free Shipping</label>
+                                                    <label class="custom-control-label" for="free-shipping">Miễn phí giao hàng</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" id="cod-shipping" name="shipping" class="custom-control-input">
-                                                    <label class="custom-control-label" for="cod-shipping">Cash on Delivery</label>
+                                                    <label class="custom-control-label" for="cod-shipping">Thanh toán khi giao hàng</label>
                                                 </div>
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Total</td>
-                                    <td>$300.00</td>
+                                    <td>Tổng cộng</td>
+                                    <td>{{ Cart::total().' '.'VND' }}</td>
                                 </tr>
                             </table>
                         </div>

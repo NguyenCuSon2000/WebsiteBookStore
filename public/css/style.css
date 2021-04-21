@@ -53,6 +53,10 @@ body {
     overflow-x: hidden;
 }
 
+.map-load {
+    margin-top: 5%;
+}
+
 table,
 tr,
 td,

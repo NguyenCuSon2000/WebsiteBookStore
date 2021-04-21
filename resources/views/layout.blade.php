@@ -82,40 +82,40 @@
                 <div class="col-sm-12 col-lg-5 f-sec2 ">
                     <div class="row">
                         <div class="col-12 col-md-6">
-                            <h4 class="text-center text-md-left">Information</h4>
+                            <h4 class="text-center text-md-left">Thông tin</h4>
                             <ul class="text-center text-md-left">
-                                <li><a href="javascript:void(0)">About Us</a></li>
-                                <li><a href="javascript:void(0)">Delivery Information</a></li>
-                                <li><a href="javascript:void(0)">Privacy Policy</a></li>
-                                <li><a href="javascript:void(0)">Terms & Condition</a></li>
+                                <li><a href="javascript:void(0)">Về chúng tôi</a></li>
+                                <li><a href="javascript:void(0)">Thông tin giao hàng</a></li>
+                                <li><a href="javascript:void(0)">Chính sách bảo mật</a></li>
+                                <li><a href="javascript:void(0)">Điều khoản & Điều kiện</a></li>
                                 <li><a href="javascript:void(0)">FAQ</a></li>
-                                <li><a href="book-shop/contact.html">Contact Us</a></li>
-                                <li><a href="book-shop/product-listing.html">Products</a></li>
+                                <li><a href="book-shop/contact.html">Liên hệ chúng tôi</a></li>
+                                <li><a href="book-shop/product-listing.html">Các sản phẩm</a></li>
                             </ul>
                         </div>
                         <div class="col-12 col-md-6">
-                            <h4 class="text-center text-md-left">Account Info</h4>
+                            <h4 class="text-center text-md-left">Thông tin tài khoản</h4>
                             <ul class="text-center text-md-left">
-                                <li><a href="javascript:void(0)">Login & Register</a></li>
-                                <li><a href="book-shop/shop-cart.html">Order History</a></li>
-                                <li><a href="javascript:void(0)">Shipping Info</a></li>
-                                <li><a href="javascript:void(0)">Refund Policy</a></li>
-                                <li><a href="javascript:void(0)">Responsive Website</a></li>
-                                <li><a href="javascript:void(0)">Subscription</a></li>
+                                <li><a href="{{ route('/login/index') }}">Đăng nhập</a></li>
+                                <li><a href="{{ route('/register/index') }}">Đăng ký</a></li>
+                                <li><a href="book-shop/shop-cart.html">Lịch sử đặt hàng</a></li>
+                                <li><a href="javascript:void(0)">Thông tin giao hàng</a></li>
+                                <li><a href="javascript:void(0)">Chính sách hoàn lại tiền</a></li>
+                                <li><a href="javascript:void(0)">Trang web đáp ứng</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-3 f-sec3  text-center text-lg-left">
-                    <h4>Our Portfolio</h4>
+                    <h4>Danh mục sản phẩm</h4>
                     <div class="foot-tag-list">
-                        <span>Classic</span>
-                        <span>Journal</span>
-                        <span>History</span>
-                        <span>Poetry</span>
-                        <span>Dictionary</span>
-                        <span>Shopping</span>
-                        <span>Fantasy</span>
+                        <span>Truyện tranh</span>
+                        <span>Tiểu thuyết</span>
+                        <span>Lịch sử</span>
+                        <span>Tư điển</span>
+                        <span>Cẩm nang</span>
+                        <span>Báo chí</span>
+                        <span>Sức khỏe</span>
                     </div>
                 </div>
             </div>
@@ -146,11 +146,11 @@
                 </div>
                 <div class="search-listing row">
                     <div class="col-12 mb-4">
-                        <h4 class="">Filtered Items</h4>
+                        <h4 class="">Các sản phẩm đã chọn</h4>
                     </div>
                     <div class="col-12">
                         <div class="listing-search-scroll">
-                            <div class="media row">
+                            <!-- <div class="media row">
                                 <div class="img-holder ml-1 mr-2 col-4">
                                     <a href="javascript:void(0)"><img src="book-shop/img/book-1.jpg" class="align-self-center" alt="cartitem"></a>
                                 </div>
@@ -193,7 +193,7 @@
                                     <a class="btn black-sm-btn" href="book-shop/shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
                                     <a class="btn black-sm-btn" href="javascript:void(0)"><i class="fas fa-eye"></i></a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -202,7 +202,7 @@
                 </div>
                 
                 <div class="col-12">
-                    <h4 class="outlet-title text-center"> - Author - </h4>
+                    <h4 class="outlet-title text-center"> - Tác giả - </h4>
                 </div>
                 
                 <div class="col-12">
@@ -212,10 +212,38 @@
                             <div class="brand-search-box ml-auto mr-auto">
                                 <div class="media">
                                     <div class="brand-box-holder">
-                                        <a href="javascript:void(0)"> <img class="mr-3" src="book-shop/img/author1.jpg" alt="Generic placeholder image"></a>
+                                        <a href="javascript:void(0)"> <img class="mr-3" src="{{ asset('img/author5.jpg') }}" alt="Generic placeholder image"></a>
                                     </div>
                                     <div class="media-body">
-                                        <h5 class="mt-0"><a href="javascript:void(0)"> Eva Smith</a></h5>
+                                        <h5 class="mt-0"><a href="javascript:void(0)"> Nguyễn Nhật Ánh</a></h5>
+                                        <!-- <p> Cras sit amet nibh libero.</p> -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="item">
+                            <div class="brand-search-box ml-auto mr-auto">
+                                <div class="media">
+                                    <div class="brand-box-holder">
+                                        <a href="javascript:void(0)"> <img class="mr-3" src="{{ asset('img/author6.jpg') }}" alt="Generic placeholder image"></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="mt-0"><a href="javascript:void(0)">Trần Đăng Khoa</a></h5>
+                                        <!-- <p> Cras sit amet nibh libero.</p> -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="item">
+                            <div class="brand-search-box ml-auto mr-auto">
+                                <div class="media">
+                                    <div class="brand-box-holder">
+                                        <a href="javascript:void(0)"> <img class="mr-3" src="{{ asset('img/author7.jpg') }}" alt="Generic placeholder image"></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="mt-0"><a href="javascript:void(0)">Nhà thơ Nguyễn Khoa Điềm</a></h5>
                                         <p> Cras sit amet nibh libero.</p>
                                     </div>
                                 </div>
@@ -226,39 +254,11 @@
                             <div class="brand-search-box ml-auto mr-auto">
                                 <div class="media">
                                     <div class="brand-box-holder">
-                                        <a href="javascript:void(0)"> <img class="mr-3" src="book-shop/img/author2.jpg" alt="Generic placeholder image"></a>
+                                        <a href="javascript:void(0)"><img class="mr-3" src="{{ asset('img/author8.jpg') }}" alt="Generic placeholder image"></a>
                                     </div>
                                     <div class="media-body">
-                                        <h5 class="mt-0"><a href="javascript:void(0)">Rosa Parks</a></h5>
-                                        <p> Cras sit amet nibh libero.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="item">
-                            <div class="brand-search-box ml-auto mr-auto">
-                                <div class="media">
-                                    <div class="brand-box-holder">
-                                        <a href="javascript:void(0)"> <img class="mr-3" src="book-shop/img/author3.jpg" alt="Generic placeholder image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0"><a href="javascript:void(0)">Alan Yang</a></h5>
-                                        <p> Cras sit amet nibh libero.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="item">
-                            <div class="brand-search-box ml-auto mr-auto">
-                                <div class="media">
-                                    <div class="brand-box-holder">
-                                        <a href="javascript:void(0)"><img class="mr-3" src="book-shop/img/author4.jpg" alt="Generic placeholder image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0"><a href="javascript:void(0)">Kam John</a></h5>
-                                        <p> Cras sit amet nibh libero.</p>
+                                        <h5 class="mt-0"><a href="javascript:void(0)">Nhà thơ Tô Hoài</a></h5>
+                                        <!-- <p> Cras sit amet nibh libero.</p> -->
                                     </div>
                                 </div>
                             </div>
@@ -274,76 +274,8 @@
     </div>
     <!--END SEARCH AREA -->
     
-    <!--START Cart Box-->
-    <div class="cart-box-overlay">
-        <a><i class="fas fa-times cross-sign" id="close-window1"></i></a>
+    @include('layouts.cartbox')
         
-        <div class="container">
-            <div class="row">
-                <div class="search-listing row">
-                    <div class="col-12 mb-4">
-                        <h4 class="">Shop Cart</h4>
-                    </div>
-                    <div class="col-12">
-                        <div class="listing-search-scroll">
-                            <div class="media row">
-                                <div class="img-holder ml-1 mr-2 col-4">
-                                    <a href="javascript:void(0)"><img src="book-shop/img/book-1.jpg" class="align-self-center" alt="cartitem"></a>
-                                </div>
-                                <div class="media-body mt-auto mb-auto col-8">
-                                    <h5 class="name"><a href="javascript:void(0)">So Sad Today</a></h5>
-                                    <p class="category">light wear Lastest</p>
-                                    <a class="btn black-sm-btn" href="book-shop/shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
-                                    <a class="btn black-sm-btn"><i class="fas fa-eye"></i></a>
-                                </div>
-                            </div>
-                            <div class="media row">
-                                <div class="img-holder ml-1 mr-2 col-4">
-                                    <a href="javascript:void(0)"><img src="book-shop/img/book-2.jpg" class="align-self-center" alt="cartitem"></a>
-                                </div>
-                                <div class="media-body mt-auto mb-auto col-8">
-                                    <h5 class="name"><a href="javascript:void(0)">As I Lay Dying</a></h5>
-                                    <p class="category">light wear Lastest</p>
-                                    <a class="btn black-sm-btn" href="book-shop/shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
-                                    <a class="btn black-sm-btn" href="javascript:void(0)"><i class="fas fa-eye"></i></a>
-                                </div>
-                            </div>
-                            <div class="media row">
-                                <div class="img-holder ml-1 mr-2 col-4">
-                                    <a href="javascript:void(0)"><img src="book-shop/img/book-3.jpg" class="align-self-center" alt="cartitem"></a>
-                                </div>
-                                <div class="media-body mt-auto mb-auto col-8">
-                                    <h5 class="name"><a href="javascript:void(0)">Love Does</a></h5>
-                                    <p class="category">light wear Lastest</p>
-                                    <a class="btn black-sm-btn" href="book-shop/shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
-                                    <a class="btn black-sm-btn" href="javascript:void(0)"><i class="fas fa-eye"></i></a>
-                                </div>
-                            </div>
-                            <div class="media row">
-                                <div class="img-holder ml-1 mr-2 col-4">
-                                    <a href="javascript:void(0)"><img src="book-shop/img/book-2-1.jpg" class="align-self-center" alt="cartitem"></a>
-                                </div>
-                                <div class="media-body mt-auto mb-auto col-8">
-                                    <h5 class="name"><a href="javascript:void(0)">The Last Stand</a></h5>
-                                    <p class="category">light wear Lastest</p>
-                                    <a class="btn black-sm-btn" href="book-shop/shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
-                                    <a class="btn black-sm-btn" href="javascript:void(0)"><i class="fas fa-eye"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bag-btn">
-                <h4 class="total"><span>Total: </span>100$</h4>
-                <a href="javascript:void(0)" class="btn green-color-yellow-gradient-btn">View Bag </a>
-                <a href="javascript:void(0)" class="btn yellow-color-green-gradient-btn">Checkout </a>
-            </div>
-            
-        </div>
-        
-    </div>
-    <!--END Cart Box -->
     
     <!-- JavaScript -->
     <script src="{{asset('vendor/js/bundle.min.js')}}"></script>

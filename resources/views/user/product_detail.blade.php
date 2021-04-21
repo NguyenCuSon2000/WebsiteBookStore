@@ -15,10 +15,10 @@
                 <div class="product-body">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb text-center text-lg-left">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Categories</a></li>
-                            <li class="breadcrumb-item" aria-current="page"><a href="javascript:void(0)">Books</a></li>
-                            <li class="breadcrumb-item"><a class="active" href="javascript:void(0)">The Road</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Loại sách</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="javascript:void(0)">Sách</a></li>
+                            <li class="breadcrumb-item"><a class="active" href="javascript:void(0)">{{ $product->ProductName }}</a></li>
                         </ol>
                     </nav>
                     <div class="pro-detail-sec row">
@@ -34,29 +34,29 @@
                                 <div class="Gallery swiper-container img-magnifier-container" id="gallery">
                                     <div class="swiper-wrapper myimgs">
                                         <div class="swiper-slide"> <a href="{{asset('img'.'/'.$product->Picture)}}" data-fancybox="1" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$product->Picture)}}" alt="gallery"></a></div>
-                                        <div class="swiper-slide"> <a href="img\book-1.jpg" data-fancybox="2" title="Zoom In"><img class="myimage" src="img\book-1.jpg" alt="thumnails"></a></div>
-                                        <div class="swiper-slide"> <a href="img\book-1-2.jpg" data-fancybox="3" title="Zoom In"><img class="myimage" src="img\book-1-2.jpg" alt="thumnails"></a></div>
+                                        <div class="swiper-slide"> <a href="{{asset('img'.'/'.$product->Picture)}}" data-fancybox="2" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></a></div>
+                                        <div class="swiper-slide"> <a href="{{asset('img'.'/'.$product->Picture)}}" data-fancybox="3" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></a></div>
                                     </div>
                                 </div>
-                                <!-- <div class="Thumbs swiper-container" id="thumbs">
+                                <div class="Thumbs swiper-container" id="thumbs">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide"> <img src="img\book-1-1.jpg" alt="thumnails"></div>
-                                        <div class="swiper-slide"> <img src="img\book-1.jpg" alt="thumnails"></div>
-                                        <div class="swiper-slide"> <img src="img\book-1-2.jpg" alt="thumnails"></div>
+                                        <div class="swiper-slide"> <img src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></div>
+                                        <div class="swiper-slide"> <img src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></div>
+                                        <div class="swiper-slide"> <img src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></div>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                         
                         <div class="col-12 col-lg-6 text-center text-lg-left">
                             <div class="product-single-price">
-                                <h4><span class="real-price">{{ number_format($product->Price) }} VNĐ</span> <span><del>20,000 VNĐ</del></span></h4>
+                                <h4><span class="real-price">{{ number_format($product->Price) }} VND</span> <span><del>  </del></span></h4>
                                 <p class="pro-description"> </p>
                             </div>
                             
                             <div class="product-checklist">
                                 <ul>
-                                    <li><i class="fas fa-check"></i> Nguyễn Cư Sơn</li>
+                                    <li><i class="fas fa-check"></i> Đảm bảo 100% sự hài lòng</li>
                                     <li><i class="fas fa-check"></i> Miễn phí giao hàng với các đơn hàng giá 100,000 VNĐ</li>
                                     <li><i class="fas fa-check"></i> Giao hàng 14 ngày giao hàng</li>
                                 </ul>
@@ -69,7 +69,9 @@
                                     <span class="plus bg-dark"><i class="lni-plus"></i></span>
                                 </div>
                                 <div class="col-12 col-lg-9">
-                                    <button class="btn green-color-yellow-gradient-btn">THÊM GIỎ HÀNG</button>
+                                    <a href="{{ route('addcart', ['id' => $product->id]) }}">
+                                        <button class="btn green-color-yellow-gradient-btn">THÊM GIỎ HÀNG</button>
+                                    </a>
                                 </div>
                             </div>
                             
@@ -102,13 +104,13 @@
                                 
                                 <ul class="col-12 nav nav-tabs" id="myTab" role="tablist">
                                     <li class="col-4 nav-item">
-                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Project Description</a>
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mô tả</a>
                                     </li>
                                     <li class="col-4 nav-item">
-                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Additional Information</a>
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Các thông tin khác</a>
                                     </li>
                                     <li class="col-4 nav-item">
-                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Customer Reviews  (2)</a>
+                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Khách hàng đánh giá</a>
                                     </li>
                                 </ul>
                                 <div class="col-12 tab-content" id="myTabContent">
@@ -299,18 +301,18 @@
                         
                         @foreach($products_new as $product)
                         <div class="lastest_arrival_items item">
-                            <a href="product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
+                            <a href="{{ route('addcart', ['id' => $product->id]) }}" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
                             <div class="card">
                                 <span class="product-type">NEW</span>
                                 <div class="image-holder">
                                     <a href="{{asset('img'.'/'.$product->Picture)}}" data-fancybox="lastest_product" data-title="Shirt Name">
-                                        <img src="{{asset('img'.'/'.$product->Picture)}}" class="card-img-top" alt="Lastest Arrivals 1">
+                                        <img src="{{asset('img'.'/'.$product->Picture)}}" class="card-img-top" title="{{ $product->ProductName }}" alt="{{ $product->ProductName }}">
                                     </a>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12 text-center">
-                                            <h5 class="card-title">{{ $product->ProductName }}</h5>
+                                           <a href="{{ route('product_detail').'/'.$product->id }}"><h5 class="card-title">{{ $product->ProductName }}</h5></a> 
                                         </div>
                                         <div class="col-12 text-center">
                                             <p class="card-text">{{ number_format($product->Price) }} VND</p>

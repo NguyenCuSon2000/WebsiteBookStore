@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryProducts;
 use App\Models\Products;
+use Cart;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,8 @@ class ProductController extends Controller
     {
         $categories = CategoryProducts::all();
         $products = Products::where("Cate_Id", $id)->paginate(9);
+        $cart = Cart::content();
         // dd($products);
-        return view("user.product", compact("categories","products"));
+        return view("user.product", compact("categories","products","cart"));
     }
 }

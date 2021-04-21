@@ -2,6 +2,17 @@
 
 @section('content')
 
+<?php
+    $message = Session::get('message');
+    if($message){
+        echo '
+        <script>
+            alert("Đã mua sản phẩm thành công");
+        </script>';
+    }
+
+?>
+
 <!--BANNER START-->
 <div class="homer-banner">
     <div class="container">
@@ -29,8 +40,8 @@
                         <div class="service-card">
                             <i class="fas fa-truck mr-3"></i>
                             <div class="media-body">
-                                <h5 class="mt-0">Free Shipping Item</h5>
-                                <span>Order over $500</span>
+                                <h5 class="mt-0">Miễn phí giao hàng</h5>
+                                <span>Đặt hàng hơn 50,000đ</span>
                             </div>
                         </div>
                     </div>
@@ -42,8 +53,8 @@
                         <div class="service-card">
                             <i class="fas fa-undo mr-3"></i>
                             <div class="media-body">
-                                <h5 class="mt-0">Money Back Guarantee</h5>
-                                <span>100% money back</span>
+                                <h5 class="mt-0">Đảm bảo hoàn tiền</h5>
+                                <span>Hoàn tiền 100%</span>
                             </div>
                         </div>
                     </div>
@@ -55,8 +66,8 @@
                         <div class="service-card">
                             <i class="fas fa-piggy-bank mr-3"></i>
                             <div class="media-body">
-                                <h5 class="mt-0">Cash On Delivery</h5>
-                                <span>Lorem ipsum dolor amet</span>
+                                <h5 class="mt-0">Thanh toán giao hàng</h5>
+                                <span>Cam kết an toàn</span>
                             </div>
                         </div>
                     </div>
@@ -68,8 +79,8 @@
                         <div class="service-card">
                             <i class="fas fa-hands-helping mr-3"></i>
                             <div class="media-body">
-                                <h5 class="mt-0">Help & Support</h5>
-                                <span>Call us: +0123,4567.89</span>
+                                <h5 class="mt-0">Trợ giúp & Hỗ trợ</h5>
+                                <span>Số điện thoại: 0963104800</span>
                             </div>
                         </div>
                     </div>
@@ -118,7 +129,7 @@
                         </a>
                         <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
                             <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
-                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture1)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture1)}}" alt="Book 1"></a></div>
+                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
                         </div>
                         <div class="row">
                             <div class="col-12 text-center">
@@ -131,106 +142,6 @@
                     </div>
 
                   @endforeach
-                      <!-- <div class="cbp-item Classic Fantasy">
-                        <a class="portfolio-circle-cart" href="book-shop/shop-cart.html">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                        <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
-                            <div class="item"> <a href="book-shop/img/book-2.jpg" class="cbp-caption" data-fancybox="gallery2" data-title="Book2"> <img src="book-shop/img/book-2.jpg" alt=""></a></div>
-                            <div class="item"> <a href="book-shop/img/book-2-1.jpg" class="cbp-caption" data-fancybox="gallery2" data-title="Book2"><img src="book-shop/img/book-2-1.jpg" alt=""></a></div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 text-center">
-                               <div class="cbp-l-grid-blog-title"><a href="#" target="_blank" class="portfolio-title">The Last Stand</a></div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-desc portfolio-des">$550.00</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cbp-item Classic">
-                        <a class="portfolio-circle-cart" href="book-shop/shop-cart.html">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                        <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
-                            <div class="item"> <a href="book-shop/img/book-3.jpg" class="cbp-caption" data-fancybox="gallery3" data-title="Shirt Name"> <img src="book-shop/img/book-3.jpg" alt=""></a></div>
-                            <div class="item"> <a href="book-shop/img/book-3-1.jpg" class="cbp-caption" data-fancybox="gallery3" data-title="Shirt Name"><img src="book-shop/img/book-3-1.jpg" alt=""></a></div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-title"><a href="#" target="_blank" class="portfolio-title">Love Does</a></div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-desc portfolio-des">$450.00</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cbp-item Fantasy motion">
-
-                        <a class="portfolio-circle-cart" href="book-shop/shop-cart.html">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-
-                        <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
-                            <div class="item"> <a href="book-shop/img/book-4.jpg" class="cbp-caption" data-fancybox="gallery4" data-title="Shirt Name"> <img src="book-shop/img/book-4.jpg" alt=""></a></div>
-                            <div class="item"> <a href="book-shop/img/book-4-1.jpg" class="cbp-caption" data-fancybox="gallery4" data-title="Shirt Name"><img src="book-shop/img/book-4-1.jpg" alt=""></a></div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-title"><a href="#" target="_blank" class="portfolio-title">The Imortal Rules</a></div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-desc portfolio-des">$750.00</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cbp-item Fantasy motion">
-                        <a class="portfolio-circle-cart" href="book-shop/shop-cart.html">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-
-                        <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
-                            <div class="item"> <a href="book-shop/img/book-5.jpg" class="cbp-caption" data-fancybox="gallery5" data-title="Shirt Name"> <img src="book-shop/img/book-5.jpg" alt=""></a></div>
-                            <div class="item"> <a href="book-shop/img/book-5-1.jpg" class="cbp-caption" data-fancybox="gallery5" data-title="Shirt Name"><img src="book-shop/img/book-5-1.jpg" alt=""></a></div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-title"><a href="#" target="_blank" class="portfolio-title">As I Lay Dying</a></div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-desc portfolio-des">$450.00</div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="cbp-item Fantasy motion">
-                        <a class="portfolio-circle-cart" href="book-shop/shop-cart.html">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-
-                        <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
-                            <div class="item"> <a href="book-shop/img/book-6.jpg" class="cbp-caption" data-fancybox="gallery6" data-title="Shirt Name"> <img src="book-shop/img/book-6.jpg" alt=""></a></div>
-                            <div class="item"> <a href="book-shop/img/book-6-1.jpg" class="cbp-caption" data-fancybox="gallery6" data-title="Shirt Name"><img src="book-shop/img/book-6-1.jpg" alt=""></a></div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-title"><a href="#" target="_blank" class="portfolio-title">No One Belongs</a></div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <div class="cbp-l-grid-blog-desc portfolio-des">$999.00</div>
-                            </div>
-                        </div>
-
-                    </div>   -->
 
                 </div>
             </div>
@@ -270,7 +181,7 @@
 
                 @foreach($products_sale as $product)
                     <div class="lastest_arrival_items item">
-                        <a href="book-shop/product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
+                        <a href="{{ route('addcart', ['id' => $product->id]) }}" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
                         <div class="product-sale">
                                 <span><label class="sale-lb">- </label> {{ $product->Percent }}%</span>
                             </div>
@@ -284,7 +195,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-12 text-center">
-                                        <h5 class="card-title">{{ $product->product->ProductName }}</h5>
+                                     <a href="{{ route('product_detail').'/'.$product->id }}"><h5 class="card-title">{{ $product->product->ProductName }}</h5></a>   
                                     </div>
                                     <div class="col-12 text-center">
                                         <p class="card-text"> {{ number_format($product->Promotion_price) }} VND</p>
@@ -298,158 +209,6 @@
                         </div>
                     </div>
                 @endforeach
-                    <!-- <div class="lastest_arrival_items item">
-                        <a href="book-shop/product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                        <div class="card">  <span class="product-type">NEW</span>
-                            <div class="image-holder">
-                                <a href="book-shop/img/l7.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                    <img src="book-shop/img/l7.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <h5 class="card-title">The Joke</h5>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <p class="card-text text-center"> $850.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lastest_arrival_items item">
-                        <a href="book-shop/product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                        <div class="card">
-                            <span class="product-type">NEW</span>
-                            <div class="image-holder">
-                                <a href="book-shop/img/l8.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                    <img src="book-shop/img/l8.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <h5 class="card-title">Never Let Me Go </h5>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <p class="card-text text-center"> $650.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lastest_arrival_items item">
-                        <a href="book-shop/product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                        <div class="card">
-                            <span class="product-type">NEW</span>
-                            <div class="image-holder">
-                                <a href="book-shop/img/l9.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                    <img src="book-shop/img/l9.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <h5 class="card-title"> The Last World</h5>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <p class="card-text text-center"> $680.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lastest_arrival_items item">
-                        <a href="book-shop/product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                        <div class="card">
-                            <span class="product-type">NEW</span>
-                            <div class="image-holder">
-                                <a href="book-shop/img/l10.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                    <img src="book-shop/img/l10.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <h5 class="card-title">Brave New World</h5>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <p class="card-text text-center"> $250.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lastest_arrival_items item">
-                        <a href="book-shop/product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                        <div class="card">
-                            <span class="product-type">NEW</span>
-                            <div class="image-holder">
-                                <a href="book-shop/img/l11.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                    <img src="book-shop/img/l11.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <h5 class="card-title">Life Without Money</h5>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <p class="card-text text-center"> $850.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lastest_arrival_items item">
-                        <a href="book-shop/product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                        <div class="card">
-                            <span class="product-type">NEW</span>
-                            <div class="image-holder">
-                                <a href="book-shop/img/l12.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                    <img src="book-shop/img/l12.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <h5 class="card-title">Life Is Elsewhere</h5>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <p class="card-text text-center"> $950.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lastest_arrival_items item">
-                        <a href="book-shop/product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                        <div class="card">
-                            <span class="product-type">NEW</span>
-                            <div class="image-holder">
-                                <a href="book-shop/img/l7.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                    <img src="book-shop/img/l13.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <h5 class="card-title">The Road</h5>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <p class="card-text text-center"> $550.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div>
             </div>

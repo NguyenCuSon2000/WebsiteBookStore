@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\CategoryProducts;
 use App\Models\Products;
 use Cart;
+use Section;
+session_start();
 
 class CartController extends Controller
 {
@@ -19,9 +21,7 @@ class CartController extends Controller
     {
         //
         $categories = CategoryProducts::all();
-
         $cart = Cart::content();
-
         return view("user.shopcart", compact("categories", "cart"));
     }
 
@@ -75,17 +75,21 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $rowId)
     {
         //
-        if($request->ajax()){
-            if($request->qty == 0){
-                return response()->json(['error' => 'Số lượng tối thiểu là 1 sản phẩm'],200);
-            }else{
-                Cart::update($id,$request->qty);
-                return response()->json(['result' => 'Đã cập số lượng sản phẩm thành công']);
-            }
-        }
+        $rowId = $request->rowId_cart;
+        $qty = $request->qty;
+        Cart::update($rowId,$qty);
+        return redirect()->route("cart.index");
+        // if($request->ajax()){
+        //     if($request->qty == 0){
+        //         return response()->json(['error' => 'Số lượng tối thiểu là 1 sản phẩm'],200);
+        //     }else{
+        //         Cart::update($id,$request->qty);
+        //         return response()->json(['result' => 'Đã cập số lượng sản phẩm thành công']);
+        //     }
+        // }
     }
 
     /**
@@ -94,12 +98,13 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($rowId)
     {
         //
-        Cart::remove($id);
-        return response()->json(['result' => 'Đã xóa sản phẩm thành công']);
+        Cart::remove($rowId);
+        return redirect()->route("cart.index")->with("message","Đã xóa sản phẩm trong giỏ hàng thành công");
     }
+
     public function addCart($id, Request $request){
         $product = Products::find($id);
         if($request->qty){
@@ -111,6 +116,6 @@ class CartController extends Controller
         $cart = ['id' => $id, 'name' => $product->ProductName,"qty"=>$qty , "weight"=>10, 'price' => $price, 'options' => ['img' => $product->Picture]];
         Cart::add($cart);
         // dd(Cart::content());
-        return redirect()->route('cart.index')->with('thongbao','Đã mua hàng '.$product->ProductName.' thành công');
+        return redirect()->route('index')->with('message','Đã mua '.$product->ProductName.' thành công');
     }
 }

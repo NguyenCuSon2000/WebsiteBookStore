@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Orders;
+use App\Models\Order_Details;
 
 class OrdersController extends Controller
 {
@@ -41,11 +42,17 @@ class OrdersController extends Controller
     {
         //
         $order = new Orders();
+        $order_detail = new Order_Details;
         $order->CustomerId = $request->txtCus;
+        $order_detail->ProductId = $request->txtProId;
+        $order_detail->Quantity = $request->txtQuan;
+        $order_detail->UnitPrice = $request->txtPrice;
+        
         $order->OrderDate = $request->OrDate;
         $order->ShippedDate = $request->ShDate;
-        $order->ShipPhone = $request->
-
+        $order->ShipPhone = $request->ShPhone;
+        $order->ShipAddress = $request->ShAddress;
+        $order->Status = $request->slstt;
     }
 
     /**
