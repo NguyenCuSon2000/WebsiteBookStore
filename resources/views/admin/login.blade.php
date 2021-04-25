@@ -19,7 +19,7 @@
                 }
             ?>
             <header>Login Form</header>
-            <form action="{{ route('/login') }}" method="post">
+            <form action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="field">
                     <span class="fa fa-user"></span>

@@ -17,55 +17,33 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $categories = CategoryProducts::all();
         $cart = Cart::content();
-        return view("user.shopcart", compact("categories", "cart"));
+        $keywords = $request->txtSearch;
+        if ($keywords == "") {
+            $search_product = Products::limit(0)->get();
+        }
+        else {
+            $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
+        }
+        return view("user.shopcart", compact("categories", "cart","search_product"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function addCart($id, Request $request){
+        $product = Products::find($id);
+        if($request->qty){
+            $qty = $request->qty;
+        }else{
+            $qty = 1;
+        }
+        $price = $product->Price;
+        $cart = ['id' => $id, 'name' => $product->ProductName,"qty"=>$qty , "weight"=>10, 'price' => $price, 'options' => ['img' => $product->Picture,"category"=>$product->category->CategoryName]];
+        Cart::add($cart);
+        // dd(Cart::content());
+        return redirect()->route('index')->with('message','Đã mua '.$product->ProductName.' thành công');
     }
 
     /**
@@ -82,14 +60,6 @@ class CartController extends Controller
         $qty = $request->qty;
         Cart::update($rowId,$qty);
         return redirect()->route("cart.index");
-        // if($request->ajax()){
-        //     if($request->qty == 0){
-        //         return response()->json(['error' => 'Số lượng tối thiểu là 1 sản phẩm'],200);
-        //     }else{
-        //         Cart::update($id,$request->qty);
-        //         return response()->json(['result' => 'Đã cập số lượng sản phẩm thành công']);
-        //     }
-        // }
     }
 
     /**
@@ -105,17 +75,18 @@ class CartController extends Controller
         return redirect()->route("cart.index")->with("message","Đã xóa sản phẩm trong giỏ hàng thành công");
     }
 
-    public function addCart($id, Request $request){
-        $product = Products::find($id);
-        if($request->qty){
-            $qty = $request->qty;
-        }else{
-            $qty = 1;
+    public function getFormPay(Request $request)
+    {
+        $categories = CategoryProducts::all();
+        $cart = Cart::content();
+        $keywords = $request->txtSearch;
+        if ($keywords == "") {
+            $search_product = Products::limit(0)->get();
         }
-        $price = $product->Price;
-        $cart = ['id' => $id, 'name' => $product->ProductName,"qty"=>$qty , "weight"=>10, 'price' => $price, 'options' => ['img' => $product->Picture]];
-        Cart::add($cart);
-        // dd(Cart::content());
-        return redirect()->route('index')->with('message','Đã mua '.$product->ProductName.' thành công');
+        else {
+            $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
+        }
+        return view("user.pay", compact("categories", "cart","search_product"));
+
     }
 }

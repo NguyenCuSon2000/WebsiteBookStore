@@ -107,5 +107,13 @@
     </div>
     
     <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+    <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("ckeditor");
+        CKEDITOR.replace("ckeditor1");
+        CKEDITOR.replace("ckeditor2");
+        CKEDITOR.replace("ckeditor3");
+    </script>
 </body>
 </html>

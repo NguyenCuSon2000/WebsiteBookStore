@@ -18,7 +18,7 @@
         </div>
         <div class="right__inputWrapper">
             <label for="desc">Mô tả</label>
-            <textarea id="editor" name="txtdes" cols="30" rows="10" placeholder="Mô tả"></textarea>
+            <textarea id="ckeditor" name="txtdes" cols="30" rows="10" placeholder="Mô tả"></textarea>
             <div>
                 @error('description')
                     <span class="invalid-feedback" role="alert">

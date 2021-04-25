@@ -12,12 +12,21 @@ use Cart;
 class ProductDetailController extends Controller
 {
     //
-    public function index($id)
+    public function index(Request $request,$id)
     {
         $categories = CategoryProducts::all();
         $product = Products::find($id);
         $products_new = Products::limit(6)->get();
         $cart = Cart::content();
-        return view("user.product_detail", compact("categories", "product", "products_new", "cart"));
+
+        $keywords = $request->txtSearch;
+        if ($keywords == "") {
+            $search_product = Products::limit(0)->get();
+        }
+        else {
+            $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
+        }
+
+        return view("user.product_detail", compact("categories", "product", "products_new", "cart", "search_product"));
     }
 }

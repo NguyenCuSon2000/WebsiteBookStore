@@ -14,13 +14,13 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-// Auth::routes();
+Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // ADMIN
 // LOGIN
 Route::get('/login/index', 'Admin\LoginController@index')->name('/login/index');
-Route::post('/login', "Admin\LoginController@login")->name('/login');
+Route::post('/login', "Admin\LoginController@login")->name('login');
 
 //REGISTER
 Route::get("/register/index", 'Admin\RegisterController@index')->name('/register/index');
@@ -28,7 +28,6 @@ Route::post('/register', "Admin\RegisterController@register")->name('/register')
 
 // LOGOUT
 Route::get('/logout', "Admin\LoginController@logout")->name('/logout');
-
 Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index');
 
 // CATEGORY
@@ -47,16 +46,24 @@ Route::get('/search_customer', 'Admin\CustomersController@search')->name('search
 Route::resource("/order", "Admin\OrdersController");
 
 
+
 //USER PAGE
 Route::get('/', 'User\HomeController@index')->name('index');
+Route::get('/search', 'User\HomeController@index')->name("search");
 Route::get('/listproduct/{id?}', 'User\ProductController@index')->name('listproduct');
 Route::get('/product_detail/{id?}', 'User\ProductDetailController@index')->name('product_detail');
 
+
+// SHOPPING CART
 Route::resource('cart', "User\CartController");
 Route::get('addcart/{id}', "User\CartController@addCart")->name("addcart");
-// Route::post('/deletecart/{rowId}', "User\CartController@deleteCart")->name("deletecart");
+Route::get('pay', "User\CartController@getFormPay")->name("pay");
 
+// CONTACT
 Route::get('/contact', "User\ContactController@index")->name("contact");
+
+
+
 
 
 

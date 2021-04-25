@@ -15,7 +15,7 @@
         </div>
         <div class="right__inputWrapper">
             <label for="desc">Mô tả</label>
-            <textarea style="resize: none" id="editor" name="txtdes" cols="30" rows="10">{{ $db->Description }}</textarea>
+            <textarea style="resize: none" id="ckeditor2" name="txtdes" cols="30" rows="10">{{ $db->Description }}</textarea>
         </div>
         <div class="right__inputWrapper">
             <label for="p_category">Trạng thái</label>

@@ -50,7 +50,7 @@
         <div class="container">
             <div class="row upper-nav">
                 <div class=" text-left nav-logo">
-                    <a href="index-book-shop.html" class="navbar-brand"><img src="{{asset('img/logo.png')}}" alt="img"></a>
+                    <a href="{{ route('index') }}" class="navbar-brand"><img src="{{asset('img/logo.png')}}" alt="img"></a>
                 </div>
                 
                 @include('layouts.menutop')
@@ -96,12 +96,15 @@
                         <div class="col-12 col-md-6">
                             <h4 class="text-center text-md-left">Thông tin tài khoản</h4>
                             <ul class="text-center text-md-left">
-                                <li><a href="{{ route('/login/index') }}">Đăng nhập</a></li>
-                                <li><a href="{{ route('/register/index') }}">Đăng ký</a></li>
-                                <li><a href="book-shop/shop-cart.html">Lịch sử đặt hàng</a></li>
-                                <li><a href="javascript:void(0)">Thông tin giao hàng</a></li>
-                                <li><a href="javascript:void(0)">Chính sách hoàn lại tiền</a></li>
-                                <li><a href="javascript:void(0)">Trang web đáp ứng</a></li>
+                                @if(Auth::check())
+                                    <li><a href="book-shop/shop-cart.html">Lịch sử đặt hàng</a></li>
+                                    <li><a href="javascript:void(0)">Thông tin giao hàng</a></li>
+                                    <li><a href="javascript:void(0)">Chính sách hoàn lại tiền</a></li>
+                                    <li><a href="javascript:void(0)">Trang web đáp ứng</a></li>
+                                @else
+                                    <li><a href="{{ route('/login/index') }}">Đăng nhập</a></li>
+                                    <li><a href="{{ route('/register/index') }}">Đăng ký</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -129,152 +132,12 @@
     <!--foo0ter1 sec end-->
     
     <!--START SEARCH AREA-->
-    <div class="search-box-overlay">
-        <a><i class="fas fa-times cross-sign" id="close-window"></i></a>
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-12 search-col">
-                    <form action="javascript:void(0)">
-                        <div class="input-group search-box-form">
-                            <input type="text" class="form-control" placeholder="Search Here" aria-label="Search Here">
-                            <div class="input-group-prepend">
-                                <button class="input-group-text" type="submit" id="basic-addon1"><i class="fas fa-search"></i></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="search-listing row">
-                    <div class="col-12 mb-4">
-                        <h4 class="">Các sản phẩm đã chọn</h4>
-                    </div>
-                    <div class="col-12">
-                        <div class="listing-search-scroll">
-                            <!-- <div class="media row">
-                                <div class="img-holder ml-1 mr-2 col-4">
-                                    <a href="javascript:void(0)"><img src="book-shop/img/book-1.jpg" class="align-self-center" alt="cartitem"></a>
-                                </div>
-                                <div class="media-body mt-auto mb-auto col-8">
-                                    <h5 class="name"><a href="javascript:void(0)">So Sad Today</a></h5>
-                                    <p class="category">Award Winning Book</p>
-                                    <a class="btn black-sm-btn" href="book-shop/shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
-                                    <a class="btn black-sm-btn" href="javascript:void(0)"><i class="fas fa-eye"></i></a>
-                                </div>
-                            </div>
-                            <div class="media row">
-                                <div class="img-holder ml-1 mr-2 col-4">
-                                    <a href="javascript:void(0)"><img src="book-shop/img/book-2.jpg" class="align-self-center" alt="cartitem"></a>
-                                </div>
-                                <div class="media-body mt-auto mb-auto col-8">
-                                    <h5 class="name"><a href="javascript:void(0)">As I Lay Dying</a></h5>
-                                    <p class="category">Award Winning Book</p>
-                                    <a class="btn black-sm-btn" href="book-shop/shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
-                                    <a class="btn black-sm-btn" href="javascript:void(0)"><i class="fas fa-eye"></i></a>
-                                </div>
-                            </div>
-                            <div class="media row">
-                                <div class="img-holder ml-1 mr-2 col-4">
-                                    <a href="javascript:void(0)"><img src="book-shop/img/book-3.jpg" class="align-self-center" alt="cartitem"></a>
-                                </div>
-                                <div class="media-body mt-auto mb-auto col-8">
-                                    <h5 class="name"><a href="javascript:void(0)">Love Does</a></h5>
-                                    <p class="category">Award Winning Book</p>
-                                    <a class="btn black-sm-btn" href="book-shop/shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
-                                    <a class="btn black-sm-btn" href="javascript:void(0)"><i class="fas fa-eye"></i></a>
-                                </div>
-                            </div>
-                            <div class="media row">
-                                <div class="img-holder ml-1 mr-2 col-4">
-                                    <a href="javascript:void(0)"><img src="book-shop/img/book-2-1.jpg" class="align-self-center" alt="cartitem"></a>
-                                </div>
-                                <div class="media-body mt-auto mb-auto col-8">
-                                    <h5 class="name"><a href="javascript:void(0)">The Last Stand</a></h5>
-                                    <p class="category">Award Winning Book</p>
-                                    <a class="btn black-sm-btn" href="book-shop/shop-cart.html"><i class="fas fa-shopping-bag"></i></a>
-                                    <a class="btn black-sm-btn" href="javascript:void(0)"><i class="fas fa-eye"></i></a>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <hr>
-                </div>
-                
-                <div class="col-12">
-                    <h4 class="outlet-title text-center"> - Tác giả - </h4>
-                </div>
-                
-                <div class="col-12">
-                    <div class="search-box-meida-items owl-carousel owl-theme">
-                        
-                        <div class="item">
-                            <div class="brand-search-box ml-auto mr-auto">
-                                <div class="media">
-                                    <div class="brand-box-holder">
-                                        <a href="javascript:void(0)"> <img class="mr-3" src="{{ asset('img/author5.jpg') }}" alt="Generic placeholder image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0"><a href="javascript:void(0)"> Nguyễn Nhật Ánh</a></h5>
-                                        <!-- <p> Cras sit amet nibh libero.</p> -->
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="item">
-                            <div class="brand-search-box ml-auto mr-auto">
-                                <div class="media">
-                                    <div class="brand-box-holder">
-                                        <a href="javascript:void(0)"> <img class="mr-3" src="{{ asset('img/author6.jpg') }}" alt="Generic placeholder image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0"><a href="javascript:void(0)">Trần Đăng Khoa</a></h5>
-                                        <!-- <p> Cras sit amet nibh libero.</p> -->
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="item">
-                            <div class="brand-search-box ml-auto mr-auto">
-                                <div class="media">
-                                    <div class="brand-box-holder">
-                                        <a href="javascript:void(0)"> <img class="mr-3" src="{{ asset('img/author7.jpg') }}" alt="Generic placeholder image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0"><a href="javascript:void(0)">Nhà thơ Nguyễn Khoa Điềm</a></h5>
-                                        <p> Cras sit amet nibh libero.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="item">
-                            <div class="brand-search-box ml-auto mr-auto">
-                                <div class="media">
-                                    <div class="brand-box-holder">
-                                        <a href="javascript:void(0)"><img class="mr-3" src="{{ asset('img/author8.jpg') }}" alt="Generic placeholder image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5 class="mt-0"><a href="javascript:void(0)">Nhà thơ Tô Hoài</a></h5>
-                                        <!-- <p> Cras sit amet nibh libero.</p> -->
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
+   @include('layouts.search')
     <!--END SEARCH AREA -->
     
+    <!--START Cart Box-->
     @include('layouts.cartbox')
+    <!--END Cart Box -->   
         
     
     <!-- JavaScript -->

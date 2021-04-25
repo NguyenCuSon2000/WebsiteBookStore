@@ -51,7 +51,7 @@
                                                     <div class="col-12 col-lg-10 mt-auto product-detail-cart-data">
                                                         <div class="media-body ml-lg-3">
                                                             <h4 class="product-name"><a href="{{ route('product_detail').'/'.$key->id }}">{{ $key->name }}</a></h4>
-                                                            <!-- <p class="product-des">We offer the most complete in the country</p> -->
+                                                            <p class="product-des">{{ $key->options->category }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -110,7 +110,7 @@
                         <div class="row">
                             <div class="col-12 text-left">
                                 <a href="shop-cart.html" class="btn yellow-color-green-gradient-btn">CẬP NHẬT</a>
-                                <a href="shop-cart.html" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
+                                <a href="{{ route('pay') }}" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
                             </div>
                             <!--                            <div class="col-6  coupon text-left">-->
                                 <!--                                <a href="shop-cart.html" class="btn pink-color-black-gradient-btn ">CHECKOUT</a>-->

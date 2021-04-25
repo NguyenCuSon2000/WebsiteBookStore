@@ -19,7 +19,7 @@
         </div>
         <div class="right__inputWrapper">
             <label for="desc">Mô tả</label>
-            <textarea name="txtDes" id="editor" cols="30" rows="10" placeholder="Mô tả"></textarea>
+            <textarea name="txtDes" id="ckeditor1" cols="30" rows="10" placeholder="Mô tả"></textarea>
         </div>
         <div class="right__inputWrapper">
             <label for="image">Hình ảnh 1</label>

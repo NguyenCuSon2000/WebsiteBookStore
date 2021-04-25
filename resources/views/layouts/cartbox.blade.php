@@ -1,4 +1,4 @@
-     <!--START Cart Box-->
+ 
      <div class="cart-box-overlay">
         <a><i class="fas fa-times cross-sign" id="close-window1"></i></a>
         
@@ -38,4 +38,3 @@
         </div>
         
     </div>
-    <!--END Cart Box -->   

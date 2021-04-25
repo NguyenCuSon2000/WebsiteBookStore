@@ -2,7 +2,7 @@
     <header class="site-header" id="header">
         <nav class="navbar navbar-expand-md  static-nav">
             <div class="container position-relative megamenu-custom">
-                <a class="navbar-brand center-brand" href="index-book-shop.html">
+                <a class="navbar-brand center-brand" href="{{ route('index') }}">
                     <img src="{{asset('img/logo.png')}}" alt="logo" class="logo-scrolled">
                 </a>
                 <div class="collapse navbar-collapse">
@@ -19,43 +19,33 @@
                                             <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
                                                 <h5 class="dropdown-title"> Truyện - Tiểu thuyết </h5>
                                                 <ul>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Love Does</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">No One Belongs</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">As I Lay Dying</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Life is Elsewhere</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">The Road</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Why Me?</a></li>
+                                                 
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Sách nổi bật</a></li>
+
                                                 </ul>
                                                 <h5 class="dropdown-title"> Sách giáo trình </h5>
                                                 <ul>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Lorna Doone</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Lord of Flies</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Kidnapped</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">End World</a></li>
+                                          
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Sách nổi bật</a></li>
+
                                                 </ul>
                                             </div>
                                             <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
                                                 <h5 class="dropdown-title"> Khoa học công nghệ </h5>
                                                 <ul>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Romance</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Fantasy</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Thrillers</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Science Fiction</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Historical Fiction</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Others</a></li>
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Sách nổi bật</a></li>
+                                                   
                                                 </ul>
                                                 
                                                 <h5 class="dropdown-title"> Văn học nghệ thuật</h5>
                                                 <ul>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Creative Thinking</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Historical Fiction</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Creative Thinking</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Personal Finance</a></li>
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Sách nổi bật</a></li>
+                                                  
                                                 </ul>
                                                 
                                             </div>
                                             <div class="col-lg-6 col-md-12 col-sm-12">
-                                                <h5 class="dropdown-title text-left">Featured Items </h5>
+                                                <h5 class="dropdown-title text-left">Hình ảnh </h5>
                                                 <div class="carousel-menu mt-4">
                                                     <div class="featured-megamenu-carousel owl-carousel owl-theme">
                                                         <div class="item ">
@@ -68,8 +58,8 @@
                                                     <i class="lni-chevron-left ini-customPrevBtn"></i>
                                                     <i class="lni-chevron-right ini-customNextBtn"></i>
                                                 </div>
-                                                <p class="mt-4 megamenu-slider-para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
-                                                <a href="book-shop/product-listing.html" class="btn black-border-color-yellow-gradient-btn slider-btn text-left">Buy Now</a>
+                                                <p class="mt-4 megamenu-slider-para"></p>
+                                                <a href="book-shop/product-listing.html" class="btn black-border-color-yellow-gradient-btn slider-btn text-left">Mua ngay</a>
                                             </div>
                                         </div>
                                     </div>
@@ -197,36 +187,29 @@
                             <div id="sideNavPages1" class="collapse sideNavPages">
                                 <h5 class="sub-title">1. Truyện - Tiểu thuyết</h5>
                                 <ul class="navbar-nav mt-2">
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Love Does</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">No One Belongs</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">As I Lay Dying</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Life is Elsewhere</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">The Road</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Why Me?</a></li>
+
+                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Sách nổi bật</a></li>
+                                   
                                 </ul>
                                 <h5 class="sub-title">2. Khoa học - Công nghệ</h5>
                                 <ul class="navbar-nav mt-2">
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Lorna Doone</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Lord of Flies</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Kidnapped</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">End World</a></li>
+
+                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Sách nổi bật</a></li>
+                                  
                                 </ul>
                                 
                                 <h5 class="sub-title">3. Sách giáo trình</h5>
                                 <ul class="navbar-nav mt-2">
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Romance</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Fantasy</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Thrillers</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Historical Fiction</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Others</a></li>
+
+                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Sách nổi bật</a></li>
+                                   
                                 </ul>
                                 
                                 <h5 class="sub-title">4. Văn học nghệ thuật</h5>
                                 <ul class="navbar-nav mt-2">
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Creative Thinking</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Historical Fiction</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Creative Thinking</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Personal Finance</a></li>
+
+                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Sách nổi bật</a></li>
+                                  
                                 </ul>
                             </div>
                         </li>
@@ -248,12 +231,12 @@
                                 </ul>
                                 <h5 class="sub-title">1. Khác</h5>
                                 <ul class="navbar-nav mt-2">
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Crime</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html"> Dictionary</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html"> Health</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">History</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Horror</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Poetry</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Tiểu thuyết</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html"> Từ điển </a></li>
+                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html"> Sức khỏe</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Lịch sử</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Kinh dị</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Hài hước</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -286,7 +269,7 @@
                         <li><a class="twitter-bg-hvr" href="javascript:void(0)"><i class="fab fa-twitter"></i> </a> </li>
                         <li><a class="instagram-bg-hvr" href="javascript:void(0)"><i class="fab fa-instagram"></i> </a> </li>
                     </ul>
-                    <p class="whitecolor">&copy; <span id="year"></span> Product Shop. Made With Love by ThemesIndustry</p>
+                    <p class="whitecolor">&copy; <span id="year"></span> </p>
                 </div>
             </div>
         </div>

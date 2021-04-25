@@ -35,6 +35,7 @@ class ProductsController extends Controller
     {
         //
         $db = CategoryProducts::all();
+        // $db = CategoryProducts::where("CategoryName");
         return view("admin.add_product", ['db'=>$db]);
     }
 

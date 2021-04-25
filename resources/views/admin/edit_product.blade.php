@@ -21,7 +21,7 @@
         </div>
         <div class="right__inputWrapper">
             <label for="desc">Mô tả</label>
-            <textarea name="txtDes" id="editor" cols="30" rows="10" placeholder="Mô tả">{{ $db->Description}}</textarea>
+            <textarea name="txtDes" id="ckeditor3" cols="30" rows="10" placeholder="Mô tả">{{ $db->Description}}</textarea>
         </div>
         <div class="right__inputWrapper">
             <label for="image">Hình ảnh 1</label>
