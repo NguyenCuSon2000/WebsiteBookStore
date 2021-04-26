@@ -87,8 +87,8 @@
                             <li class="left__menuItem">
                                 <div class="left__title"><img src="{{asset('assets/icon-user.svg')}}" alt="">Người dùng<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
-                                    <a class="left__link" href="insert_admin.html">Chèn người dùng</a>
-                                    <a class="left__link" href="view_admins.html">Xem người dùng</a>
+                                    <a class="left__link" href="{{ route('user.create') }}">Chèn người dùng</a>
+                                    <a class="left__link" href="{{ route('user.index') }}">Xem người dùng</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">

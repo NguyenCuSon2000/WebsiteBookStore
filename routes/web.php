@@ -42,6 +42,10 @@ Route::get('/search_product', 'Admin\ProductsController@search')->name('search_p
 Route::resource('/customer', 'Admin\CustomersController');
 Route::get('/search_customer', 'Admin\CustomersController@search')->name('search_customer');
 
+// USERS
+Route::resource('/user', 'Admin\UsersController');
+Route::get('/search_user', 'Admin\UsersController@search')->name('search_user');
+
 //ORDER
 Route::resource("/order", "Admin\OrdersController");
 

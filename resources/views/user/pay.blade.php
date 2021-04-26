@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <strong>Subtotal</strong>
-                                    <div class="pull-right">{{ Cart::subtotal()." "."VND" }}</div>
+                                    <div class="pull-right">{{ Cart::subtotal(0,3)." "."VND" }}</div>
                                 </div>
                                 <div class="col-xs-12">
                                     <small>Shipping</small>
@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <strong>Order Total</strong>
-                                    <div class="pull-right">{{ Cart::total()." "."VND" }}</div>
+                                    <div class="pull-right">{{ Cart::total(0,3)." "."VND" }}</div>
                                 </div>
                             </div>
                         </div>

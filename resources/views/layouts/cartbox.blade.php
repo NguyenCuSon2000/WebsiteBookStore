@@ -30,9 +30,9 @@
                 </div>
             </div>
             <div class="bag-btn">
-                <h4 class="total"><span>Tổng cộng: </span>{{ Cart::total() }}</h4>
+                <h4 class="total"><span>Tổng cộng: </span>{{ Cart::total(0,3)." "."VND" }}</h4>
                 <a href="{{ route('cart.index') }}" class="btn green-color-yellow-gradient-btn">Xem giỏ hàng </a>
-                <a href="javascript:void(0)" class="btn yellow-color-green-gradient-btn">Đặt hàng </a>
+                <a href="{{ route('pay') }}" class="btn yellow-color-green-gradient-btn">Đặt hàng </a>
             </div>
             
         </div>

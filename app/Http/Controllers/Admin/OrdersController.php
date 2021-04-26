@@ -53,6 +53,7 @@ class OrdersController extends Controller
         $order->ShipPhone = $request->ShPhone;
         $order->ShipAddress = $request->ShAddress;
         $order->Status = $request->slstt;
+        
     }
 
     /**

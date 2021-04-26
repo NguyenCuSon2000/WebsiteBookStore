@@ -89,4 +89,6 @@ class CartController extends Controller
         return view("user.pay", compact("categories", "cart","search_product"));
 
     }
+
+    
 }

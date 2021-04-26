@@ -99,7 +99,7 @@
                                         Tổng cộng
                                     </td>
                                     <td>
-                                        <h4 class="text-center amount">{{ Cart::total().' '.'VND' }}</h4>
+                                        <h4 class="text-center amount">{{ Cart::total(0,3).' '.'VND' }}</h4>
                                     </td>
                                     <td class="text-center"></td>
                                 </tr>
@@ -160,7 +160,7 @@
                             <table>
                                 <tr>
                                     <td>Tổng phụ</td>
-                                    <td>{{ Cart::subtotal() }}</td>
+                                    <td>{{ Cart::subtotal(0,3) }}</td>
                                 </tr>
                                 <tr>
                                     <td>Thuế</td>
@@ -193,7 +193,7 @@
                                 </tr>
                                 <tr>
                                     <td>Tổng cộng</td>
-                                    <td>{{ Cart::total().' '.'VND' }}</td>
+                                    <td>{{ Cart::total(0,3).' '.'VND' }}</td>
                                 </tr>
                             </table>
                         </div>
