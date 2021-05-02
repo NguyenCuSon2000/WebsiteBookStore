@@ -101,9 +101,10 @@
                                     <li><a href="javascript:void(0)">Thông tin giao hàng</a></li>
                                     <li><a href="javascript:void(0)">Chính sách hoàn lại tiền</a></li>
                                     <li><a href="javascript:void(0)">Trang web đáp ứng</a></li>
+                                    <li><a href="<?php Auth::logout(); ?>">Đăng xuất</a></li>
                                 @else
-                                    <li><a href="{{ route('/login/index') }}">Đăng nhập</a></li>
-                                    <li><a href="{{ route('/register/index') }}">Đăng ký</a></li>
+                                    <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                    <li><a href="{{ route('register') }}">Đăng ký</a></li>
                                 @endif
                             </ul>
                         </div>
@@ -124,7 +125,7 @@
             </div>
             <div class="row">
                 <div class="col-12 footer_notes">
-                    <p class="whitecolor text-center w-100 wow fadeInDown">&copy; 2020 MegaOne. Made With Love by <a class="web-link" href="http://www.themesindustry.com/" target="_blank">Themesindustry</a></p>
+                    <p class="whitecolor text-center w-100 wow fadeInDown">&copy; 2021 - Sản phẩm của Nguyễn Cư Sơn <a class="web-link" href="http://www.themesindustry.com/" target="_blank"></a></p>
                 </div>
             </div>
         </div>

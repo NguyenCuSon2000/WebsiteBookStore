@@ -18,7 +18,7 @@ class CustomersController extends Controller
     {
         //
         $db = Customers::paginate(10);
-        return view("admin.customer",['db'=>$db]);
+        return view("admin.customer.customer",['db'=>$db]);
     }
     
     /**
@@ -29,7 +29,7 @@ class CustomersController extends Controller
     public function create()
     {
         //
-        return view("admin.add_customer");
+        return view("admin.customer.add_customer");
     }
     
     /**
@@ -77,7 +77,7 @@ class CustomersController extends Controller
         }
         else {
             $db = Customers::find($id);
-            return view("admin.edit_customer",['db'=>$db]);
+            return view("admin.customer.edit_customer",['db'=>$db]);
         }
     }
     
@@ -125,6 +125,6 @@ class CustomersController extends Controller
         else {
             $db = Customers::where('CustomerName','LIKE','%'.$text.'%')->paginate(50);
         }
-        return view('admin.customer', ['db'=>$db]);
+        return view('admin.customer.customer', ['db'=>$db]);
     }
 }

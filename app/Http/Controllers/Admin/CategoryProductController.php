@@ -17,7 +17,7 @@ class CategoryProductController extends Controller
     public function index()
     {
         $db = CategoryProducts::paginate(10);
-        return view("admin.category",['db'=>$db]);
+        return view("admin.category.category",['db'=>$db]);
     }
 
     /**
@@ -28,7 +28,7 @@ class CategoryProductController extends Controller
     public function create()
     {
         //
-        return view("admin.add_category");
+        return view("admin.category.add_category");
     }
 
     /**
@@ -74,7 +74,7 @@ class CategoryProductController extends Controller
         }
         else {
             $db = CategoryProducts::find($id);
-            return view("admin.edit_category",['db'=>$db]);
+            return view("admin.category.edit_category",['db'=>$db]);
         }
     }
 
@@ -123,7 +123,7 @@ class CategoryProductController extends Controller
         else {
             $db = CategoryProducts::where('CategoryName','LIKE','%'.$text.'%')->paginate(50);
         }
-        return view('admin.category', ['db'=>$db]);
+        return view('admin.category.category', ['db'=>$db]);
     }
 }
 

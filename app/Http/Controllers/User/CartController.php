@@ -5,7 +5,10 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryProducts;
+use App\Helpers;
 use App\Models\Products;
+use App\Models\OrderDetails;
+use App\Models\Orders;
 use Cart;
 use Section;
 session_start();
@@ -75,20 +78,5 @@ class CartController extends Controller
         return redirect()->route("cart.index")->with("message","Đã xóa sản phẩm trong giỏ hàng thành công");
     }
 
-    public function getFormPay(Request $request)
-    {
-        $categories = CategoryProducts::all();
-        $cart = Cart::content();
-        $keywords = $request->txtSearch;
-        if ($keywords == "") {
-            $search_product = Products::limit(0)->get();
-        }
-        else {
-            $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
-        }
-        return view("user.pay", compact("categories", "cart","search_product"));
-
-    }
-
-    
+   
 }

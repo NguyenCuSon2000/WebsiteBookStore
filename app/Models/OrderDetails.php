@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order_Details extends Model
+class OrderDetails extends Model
 {
     //
     protected $table = "order_details";
@@ -22,4 +22,8 @@ class Order_Details extends Model
         return $this->belongsTo("App\Models\Orders", "OrderId");
     }
 
+    public function product()
+    {
+        return $this->belongsTo("App\Models\Products","ProductId");
+    }
 }

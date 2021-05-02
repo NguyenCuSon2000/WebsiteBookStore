@@ -13,15 +13,15 @@ class CreateOrderDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order__details', function (Blueprint $table) {
+        Schema::create('order_details', function (Blueprint $table) {
             $table->Increments('id');
             $table->integer('OrderId')->unsigned();
             $table->foreign('OrderId')->references('id')->on('Orders')->onDelete('cascade');
             $table->integer('ProductId')->unsigned();
             $table->foreign('ProductId')->references('id')->on('Products')->onDelete('cascade');
-            $table->Integer("Quantity");
-            $table->double("UnitPrice");
-            $table->date("AddDate");
+            $table->Integer("Quantity")->default(0);
+            $table->double("UnitPrice")->default(0);
+            $table->date("AddDate")->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order__details');
+        Schema::dropIfExists('order_details');
     }
 }

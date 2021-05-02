@@ -19,8 +19,8 @@ Auth::routes();
 
 // ADMIN
 // LOGIN
-Route::get('/login/index', 'Admin\LoginController@index')->name('/login/index');
-Route::post('/login', "Admin\LoginController@login")->name('login');
+// Route::get('/login/index', 'Auth\LoginController@getLogin')->name('/login/index');
+// Route::post('/', "Auth\LoginController@postLogin")->name('/register/index');
 
 //REGISTER
 Route::get("/register/index", 'Admin\RegisterController@index')->name('/register/index');
@@ -43,11 +43,12 @@ Route::resource('/customer', 'Admin\CustomersController');
 Route::get('/search_customer', 'Admin\CustomersController@search')->name('search_customer');
 
 // USERS
-Route::resource('/user', 'Admin\UsersController');
+Route::resource('user', 'Admin\UsersController');
 Route::get('/search_user', 'Admin\UsersController@search')->name('search_user');
 
 //ORDER
-Route::resource("/order", "Admin\OrdersController");
+Route::resource('order', "Admin\OrdersController");
+
 
 
 
@@ -61,10 +62,15 @@ Route::get('/product_detail/{id?}', 'User\ProductDetailController@index')->name(
 // SHOPPING CART
 Route::resource('cart', "User\CartController");
 Route::get('addcart/{id}', "User\CartController@addCart")->name("addcart");
-Route::get('pay', "User\CartController@getFormPay")->name("pay");
+
+//CHECK OUT
+Route::get('checkout', "User\CheckoutController@getFormPay")->middleware('checklogin')->name("checkout");
+Route::get('checkout_success', "User\CheckoutController@success")->name("checkout_success");
+Route::post('checkout', "User\CheckoutController@postFormPay")->name("checkout");
 
 // CONTACT
 Route::get('/contact', "User\ContactController@index")->name("contact");
+Route::post('/contact', "User\ContactController@saveContact")->name("contact");
 
 
 
@@ -72,3 +78,19 @@ Route::get('/contact', "User\ContactController@index")->name("contact");
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

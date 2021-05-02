@@ -121,7 +121,7 @@
                                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-12">
-                                                <table class="table table-striped">
+                                                <!-- <table class="table table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">#</th>
@@ -156,11 +156,11 @@
                                                             <td>@mdo</td>
                                                         </tr>
                                                     </tbody>
-                                                </table>
+                                                </table> -->
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade reviews" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    <!-- <div class="tab-pane fade reviews" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                         
                                         <div class="media">
                                             <div class="row no-gutter">
@@ -257,7 +257,7 @@
                                                         </div>
                                                         <div class="col-12">
                                                             <div class="form-group">
-                                                                <!--                                                                            <label for="comment">Your Rating:</label>-->
+                                                                                                                                        <label for="comment">Your Rating:</label>
                                                                 <textarea class="form-control textareaclass" rows="5" id="comment" placeholder="Your Review"></textarea>
                                                             </div>
                                                         </div>
@@ -273,7 +273,7 @@
                                             </div>
                                         </div>
                                         
-                                    </div>
+                                    </div> -->
                                 </div>
                                 
                             </div>

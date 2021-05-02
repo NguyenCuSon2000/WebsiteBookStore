@@ -27,7 +27,6 @@ class LoginController extends Controller
           $pw = $req->password;
         //   Hash::check($request->newPasswordAtLogin, $hashedPassword)
   
-        //   $result = DB::table('users')->where('username', $us)->where('password', $pw)->first();
            $result = Users::where('username', $us)->where('password', $pw)->first();
         //    dd($result);
           if($result == true){

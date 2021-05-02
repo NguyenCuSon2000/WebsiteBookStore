@@ -122,7 +122,6 @@
             <div class="col-12">
                 <div id="js-grid-blog-posts" class="cbp">
                  @foreach($products as $product)
-
                     <div class="cbp-item Classic Fantasy">
                         <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
                             <i class="fa fa-shopping-cart"></i>
@@ -140,7 +139,46 @@
                             </div>
                         </div>
                     </div>
+                  @endforeach
 
+                  @foreach($product_asc as $product)
+                    <div class="cbp-item Classic">
+                        <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                        <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
+                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
+                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <div class="cbp-l-grid-blog-title"><a href="{{ route('product_detail').'/'.$product->id }}" target="_blank" class="portfolio-title">{{$product->ProductName}}</a></div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <div class="cbp-l-grid-blog-desc portfolio-des"> {{ number_format($product->Price) }} VNĐ</div>
+                            </div>
+                        </div>
+                    </div>
+                  @endforeach
+
+                  @foreach($product_bt as $product)
+                    <div class="cbp-item Fantasy motion">
+                        <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                        <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
+                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
+                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <div class="cbp-l-grid-blog-title"><a href="{{ route('product_detail').'/'.$product->id }}" target="_blank" class="portfolio-title">{{$product->ProductName}}</a></div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <div class="cbp-l-grid-blog-desc portfolio-des"> {{ number_format($product->Price) }} VNĐ</div>
+                            </div>
+                        </div>
+                    </div>
                   @endforeach
 
                 </div>
@@ -158,10 +196,10 @@
         <div class="row">
             <div class="col-12 col-lg-6 text-center text-lg-left">
                 <div class="banner-content-wrapper">
-                    <span>TRENDING PRODUCT OF THE WEEK</span>
+                    <span>SẢN PHẨM NỔI BẬT TRONG TUẦN</span>
                     <h1>Books <span>Collections</span></h1>
-                    <p>Aenean imperdiet. Etiam ultricies nisi vel augue men tuhi spectrum alle me</p>
-                    <button type="button" class="btn green-color-yellow-gradient-btn">BUY NOW</button>
+                    <p>"Việc đọc rất quan trọng. Nếu bạn biết cách đọc, cả thế giới sẽ mở ra cho bạn.” <b>- Barack Obama -</b></p>
+                    <button type="button" class="btn green-color-yellow-gradient-btn">MUA NGAY</button>
                 </div>
             </div>
         </div>

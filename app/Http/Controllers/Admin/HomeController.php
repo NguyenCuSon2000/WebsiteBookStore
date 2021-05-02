@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Products;
+use App\Models\CategoryProducts;
+use App\Models\Customers;
+use App\Models\Orders;
 
 class HomeController extends Controller
 {
@@ -15,7 +19,19 @@ class HomeController extends Controller
     public function index()
     {
         //
-        return view("admin.index");
+        $count_category= CategoryProducts::count();
+        $count_product = Products::count();
+        $count_customer = Customers::count();
+        $count_order = Orders::count();
+
+        $order_new = Orders::orderby("id", "desc")->limit(5)->get();
+        return view("admin.index", compact(
+            "count_category",
+            "count_product",
+            "count_customer",
+            "count_order",
+            "order_new"
+        ));
     }
 
     /**

@@ -27,4 +27,9 @@ class Products extends Model
     {
         return $this->hasMany("App\Models\Discount", "Product_Id");
     }
+
+    public function order_details()
+    {
+        return $this->hasMany("App\Models\OrderDetails","ProductId");
+    }
 }

@@ -23,7 +23,7 @@ class ProductsController extends Controller
         // $db = Products::find(2)->category;
         // dd($db);
         $db = Products::paginate(6);
-        return view('admin.product', compact('db'));
+        return view('admin.product.product', compact('db'));
     }
 
     /**
@@ -36,7 +36,7 @@ class ProductsController extends Controller
         //
         $db = CategoryProducts::all();
         // $db = CategoryProducts::where("CategoryName");
-        return view("admin.add_product", ['db'=>$db]);
+        return view("admin.product.add_product", ['db'=>$db]);
     }
 
     // public function doUpload(Request $request)
@@ -109,7 +109,7 @@ class ProductsController extends Controller
             $db = Products::find($id);
             $categories = CategoryProducts::all();
             // dd($db, $categories);
-            return view("admin.edit_product",compact("db","categories"));
+            return view("admin.product.edit_product",compact("db","categories"));
         }
     }
 
@@ -173,6 +173,6 @@ class ProductsController extends Controller
         else {
             $db = Products::where('ProductName','LIKE','%'.$text.'%')->paginate(50);
         }
-        return view('admin.product', ['db'=>$db]);
+        return view('admin.product.product', ['db'=>$db]);
     }
 }

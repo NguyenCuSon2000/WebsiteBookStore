@@ -1,25 +1,48 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Users extends Model
+class Users extends Authenticatable
 {
-    //
+    use Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $table = "users";
+
     protected $fillable = [
-        "email",
-        "username",
-        "address",
-        "phone",
-        "password",
-        "role_id",
-        "remember_token"
+        'username', 'password','status','role_id','remember_token'
     ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
     protected $primaryKey = "id";
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        
+    ];
     public function role()
     {
-        return $this->belongsTo("App\Models\Roles", "role_id");
+        # code...
+        return $this->belongsTo('App\Models\Role','role_id');
     }
 }

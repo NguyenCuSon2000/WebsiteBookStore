@@ -15,8 +15,11 @@ class ProductDetailController extends Controller
     public function index(Request $request,$id)
     {
         $categories = CategoryProducts::all();
+
         $product = Products::find($id);
+
         $products_new = Products::limit(6)->get();
+        
         $cart = Cart::content();
 
         $keywords = $request->txtSearch;

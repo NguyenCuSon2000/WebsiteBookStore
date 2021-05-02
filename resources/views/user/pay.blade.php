@@ -32,8 +32,9 @@
                         <div class="panel-heading">
                             Danh sách sản phẩm <div class="pull-right"><small><a class="afix-1" href="{{ route('cart.index') }}">Cập nhật</a></small></div>
                         </div>
+                        
                         <div class="panel-body">
-                        @foreach($cart as $key)
+                            @foreach($cart as $key)
                             <div class="form-group">
                                 <div class="col-sm-3 col-xs-3">
                                     <img class="img-responsive" src="{{ asset('img'.'/'.$key->options->img) }}" />
@@ -47,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="form-group"><hr /></div>
-                         @endforeach
+                            @endforeach
                             <div class="form-group"><hr /></div>
                             <div class="form-group">
                                 <div class="col-xs-12">
@@ -75,38 +76,48 @@
                     <div class="panel panel-info">
                         <div class="panel-heading">Thông tin thanh toán</div>
                         <div class="panel-body">
-                            <div class="form-group">
-                                <div class="col-md-6 col-xs-12">
-                                    <strong>Tên khách hàng:</strong>
-                                    <input type="text" name="name" class="form-control" value="" />
+                            <form action="{{ route('checkout') }}" method="POST" role="form" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="hidden" name="txtid" class="form-control" value="{{ Auth::id() }}" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Địa chỉ:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="address" class="form-control" value="" />
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Tên khách hàng:</strong></div>
+                                    <div class="col-md-12">
+                                        <input type="text" name="txtName" class="form-control" value="" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Thành phố:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="city" class="form-control" value="" />
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Ngày sinh:</strong></div>
+                                    <div class="col-md-12">
+                                        <input type="date" name="txtDate" class="form-control" value="" />
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Số điện thoại:</strong></div>
-                                <div class="col-md-12"><input type="text" name="phone_number" class="form-control" value="" /></div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12"><strong>Email:</strong></div>
-                                <div class="col-md-12"><input type="text" name="email_address" class="form-control" value="" /></div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <input type="submit" class="form-control btn btn-success" value="Xác nhận thông tin" />
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Địa chỉ nhận:</strong></div>
+                                    <div class="col-md-12">
+                                        <input type="text" name="txtad" class="form-control" value="" />
+                                    </div>
                                 </div>
-                            </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Số điện thoại:</strong></div>
+                                    <div class="col-md-12"><input type="text" name="txtPhone" class="form-control" value="{{ Auth::id() }}" /></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Email:</strong></div>
+                                    <div class="col-md-12"><input type="email" name="txtEmail" class="form-control" value="{{ Auth::user()->username }}" /></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong>Ghi chú:</strong></div>
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" name="txtNote" id="" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="form-control btn btn-success" value="">Đặt hàng</button>
+                            </form>
                         </div>
                     </div>
                     <!--SHIPPING METHOD END-->

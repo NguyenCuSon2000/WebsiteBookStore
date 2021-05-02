@@ -18,37 +18,33 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
+    
     use AuthenticatesUsers;
-
-    public function index()
-    {
-        return view("auth.login");
-    }
-
-    public function login(Request $request)
-    {
-        $credentials = $request->only('username', 'password');
-
-        if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return redirect()->route('/admin/index');
-        }
-    }
-
-    public function logout()
-    {
-        Auth::logout();
-        return redirect()->route("/login");
-    }
-
+    
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    * Where to redirect users after login.
+    *
+    * @var string
+    */
+    protected $redirectTo = RouteServiceProvider::CHECKOUT;
+    
+    /**
+    * Create a new controller instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    
+    /**
+    * Get the login username to be used by the controller.
+    *
+    * @return string
+    */
+    public function username()
+    {
+        return 'username';
     }
 }

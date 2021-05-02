@@ -13,10 +13,18 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = CategoryProducts::all();
-        $products = Products::limit(9)->get();
+        
+        $categories = CategoryProducts::all(); 
+
+        $products = Products::limit(3)->get();
+
+        $product_asc = Products::orderby("ProductName", "asc")->limit(3)->get();
+
+        $product_bt= Products::whereBetween("Price", [25000, 100000])->limit(6)->get();
+
         $products_sale = Discount::all();
-        $cart  = Cart::content();
+
+        $cart = Cart::content();
 
         $keywords = $request->txtSearch;
         if ($keywords == "") {
@@ -25,11 +33,15 @@ class HomeController extends Controller
         else {
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
-    //    dd($search_product);
-        // $products = Products::limit(6)->get();
-        // $products = Products::orderby("ProductName", "asc")->get();
-        // $products = Products::whereBetween("Price", [25000, 100000])->limit(6)->get();
-        return view("user.index", compact("categories", "products", "products_sale", "cart", "search_product"));
+  
+        return view("user.index", compact(
+            "categories", 
+            "products", 
+            "product_asc", 
+            "product_bt", 
+            "products_sale", 
+            "cart", 
+            "search_product"));
     }
 
     public function search(Request $request)

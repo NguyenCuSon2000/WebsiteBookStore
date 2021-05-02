@@ -50,28 +50,29 @@
                 <div class="c-box wow fadeInRight">
                     <h4 class="small-heading">Để lại tin nhắn</h4>
 
-                    <form class="contact-form" id="contact-form-data">
+                    <form class="contact-form" id="contact-form-data" action="" method="post">
+                        @csrf
                         <div class="row my-form">
                             <div class="col-md-12 col-sm-12">
                                 <div id="result"></div>
                             </div>
                             <div class="col-12 col-md-6">
-                                <input type="text" class="form-control" id="candidate_fname" name="firstName" placeholder="Tên của bạn" required="required">
+                                <input type="text" class="form-control" id="candidate_lname" name="name" placeholder="Họ tên" required="required">
                             </div>
                             <div class="col-12 col-md-6">
-                                <input type="text" class="form-control" id="candidate_lname" name="lastName" placeholder="Họ của bạn" required="required">
+                                <input type="email" class="form-control" id="user_email" name="email" placeholder="Email" required="required">
                             </div>
                             <div class="col-12 col-md-6">
-                                <input type="email" class="form-control" id="user_email" name="userEmail" placeholder="Email" required="required">
+                                <input type="text" class="form-control" id="user_subject" name="address" placeholder="Địa chỉ" required="required">
                             </div>
                             <div class="col-12 col-md-6">
-                                <input type="text" class="form-control" id="user_subject" name="userSubject" placeholder="Địa chỉ" required="required">
+                                <input type="text" class="form-control" id="user_subject" name="title" placeholder="Tiêu đề" required="required">
                             </div>
                             <div class="col-12">
-                                <textarea class="form-control" id="user_message" name="userMessage" placeholder="Lời nhắn" rows="7" required="required"></textarea>
+                                <textarea class="form-control" id="user_message" name="content" placeholder="Nội dung" rows="7" required="required"></textarea>
                             </div>
                             <div class="col-12">
-                                <button class="btn green-color-yellow-gradient-btn user-contact contact_btn" type="button">GỬI
+                                <button class="btn green-color-yellow-gradient-btn user-contact contact_btn" type="submit">GỬI
                                 </button>
                             </div>
                         </div>

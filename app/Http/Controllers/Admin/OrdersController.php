@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Orders;
-use App\Models\Order_Details;
+use App\Models\OrderDetails;
 
 class OrdersController extends Controller
 {
@@ -18,86 +18,27 @@ class OrdersController extends Controller
     {
         //
         $db = Orders::paginate(10);
-        return view("admin.order", compact("db"));
+        return view("admin.order.order", compact("db"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function show(Request $request, $id)
     {
-        //
-        return view("admin.add_order");
+        // if ($request->ajax()) {
+        //     $order = OrderDetails::where("OrderId", $id)->get();
+        //     $html = view('admin.order', compact('order'))->render();
+        //    $html = view('admin.components.order', compact('order'))->render();
+        //     return response()->json($html);
+        // }
+        $order_details = OrderDetails::where("OrderId", $id)->get();
+        return view("admin.order.order_details", compact('order_details'));
+       
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-        $order = new Orders();
-        $order_detail = new Order_Details;
-        $order->CustomerId = $request->txtCus;
-        $order_detail->ProductId = $request->txtProId;
-        $order_detail->Quantity = $request->txtQuan;
-        $order_detail->UnitPrice = $request->txtPrice;
-        
-        $order->OrderDate = $request->OrDate;
-        $order->ShippedDate = $request->ShDate;
-        $order->ShipPhone = $request->ShPhone;
-        $order->ShipAddress = $request->ShAddress;
-        $order->Status = $request->slstt;
-        
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+        $db = Orders::findOrFail($id);
+        $db->delete();
+        return redirect()->route("order.index")->with('message', 'Xóa đơn hàng thành công');
     }
 }

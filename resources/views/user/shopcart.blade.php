@@ -110,7 +110,7 @@
                         <div class="row">
                             <div class="col-12 text-left">
                                 <a href="shop-cart.html" class="btn yellow-color-green-gradient-btn">CẬP NHẬT</a>
-                                <a href="{{ route('pay') }}" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
+                                <a href="{{ route('checkout') }}" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
                             </div>
                             <!--                            <div class="col-6  coupon text-left">-->
                                 <!--                                <a href="shop-cart.html" class="btn pink-color-black-gradient-btn ">CHECKOUT</a>-->

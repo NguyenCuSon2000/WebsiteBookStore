@@ -8,7 +8,6 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Users;
 
 class RegisterController extends Controller
 {
@@ -23,22 +22,14 @@ class RegisterController extends Controller
     |
     */
 
-    public function index()
-    {
-        return view("auth.register");
-    }
+    use RegistersUsers;
 
-    public function register(Request $req)
-    {
-        $user = new Users();
-        $user->email = $req->email;
-        $user->username = $req->username;
-        $user->address = $req->txtad;
-        $user->phone = $req->txtsdt;
-        $user->password = bcrypt($req->password);
-        $user->save();
-        return redirect()->back()->with("message","Đã tạo tài khoản thành công");
-    }
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -59,8 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:40'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -73,10 +63,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Users::create([
+        return User::create([
             'username' => $data['username'],
-            'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    /**
+    * Get the login username to be used by the controller.
+    *
+    * @return string
+    */
+    public function username()
+    {
+        return 'username';
     }
 }

@@ -4,18 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Roles extends Model
+class Contact extends Model
 {
     //
-    protected $table = "roles";
+    protected $table = "contacts";
+
     protected $fillable = [
         "name",
+        "email",
+        "address",
+        "title",
+        "content",
         "status"
     ];
+
     protected $primaryKey = "id";
 
-    public function users()
-    {
-        return $this->hasMany("App\User", "role_id");
-    }
+
 }

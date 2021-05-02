@@ -11,7 +11,7 @@
                             <a class="nav-link" href="{{ route('index') }}">TRANG CHỦ</a>
                         </li>
                         <li class="nav-item dropdown static">
-                            <a class="nav-link dropdown-toggle active" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SÁCH </a>
+                            <a class="nav-link dropdown-toggle active" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SÁCH ĐIỆN TỬ</a>
                             <ul class="dropdown-menu megamenu flexable-megamenu">
                                 <li>
                                     <div class="container">
@@ -67,7 +67,7 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown static">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SÁCH ĐIỆN TỬ </a>
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SÁCH </a>
                             <ul class="dropdown-menu megamenu flexable-megamenu">
                                 <li>
                                     <div class="container">
@@ -182,7 +182,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages1">
-                                SÁCH <i class="fas fa-chevron-down"></i>
+                                SÁCH ĐIỆN TỬ <i class="fas fa-chevron-down"></i>
                             </a>
                             <div id="sideNavPages1" class="collapse sideNavPages">
                                 <h5 class="sub-title">1. Truyện - Tiểu thuyết</h5>
@@ -215,7 +215,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages3">
-                                SÁCH ĐIỆN TỬ <i class="fas fa-chevron-down"></i>
+                                SÁCH <i class="fas fa-chevron-down"></i>
                             </a>
                             <div id="sideNavPages3" class="collapse sideNavPages">
                                 <ul class="navbar-nav mt-2">
@@ -286,7 +286,7 @@
                 </li>
                 <li class="d-inline-block mini-menu-card">
                     <a class="nav-link" id="add_cart_box" href="javascript:void(0)">
-                        <i class="lni lni-shopping-basket"></i>
+                        <i class="lni lni-shopping-basket"></i> <sup>{{ Cart::count() }}</sup> 
                     </a>
                 </li>
                 <a href="javascript:void(0)" class="d-inline-block sidemenu_btn d-block" id="sidemenu_toggle">
