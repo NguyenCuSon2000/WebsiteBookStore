@@ -32,4 +32,9 @@ class Products extends Model
     {
         return $this->hasMany("App\Models\OrderDetails","ProductId");
     }
+
+    public function pictures()
+    {
+        return $this->hasMany("App\Models\Picture","ProductId");
+    }
 }

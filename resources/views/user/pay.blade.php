@@ -104,7 +104,7 @@
                                 
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Số điện thoại:</strong></div>
-                                    <div class="col-md-12"><input type="text" name="txtPhone" class="form-control" value="{{ Auth::id() }}" /></div>
+                                    <div class="col-md-12"><input type="text" name="txtPhone" class="form-control" value="" /></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Email:</strong></div>

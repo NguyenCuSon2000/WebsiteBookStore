@@ -14,7 +14,11 @@ class ProductController extends Controller
     public function index($id,Request $request)
     {
         $categories = CategoryProducts::all();
+
+        
+
         $products = Products::where("Cate_Id", $id)->paginate(9);
+
         $cart = Cart::content();
 
         $keywords = $request->txtSearch;

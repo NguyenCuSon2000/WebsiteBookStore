@@ -14,7 +14,8 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Auth::routes();
+
+// Route::get('/admin', 'AdminController@showImportantInfo')->middleware(['auth','role: admin']);
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // ADMIN
@@ -23,12 +24,11 @@ Auth::routes();
 // Route::post('/', "Auth\LoginController@postLogin")->name('/register/index');
 
 //REGISTER
-Route::get("/register/index", 'Admin\RegisterController@index')->name('/register/index');
-Route::post('/register', "Admin\RegisterController@register")->name('/register');
-
+// Route::get("/register/index", 'Admin\RegisterController@index')->name('/register/index');
+// Route::post('/register', "Admin\RegisterController@register")->name('/register');
+Auth::routes();
 // LOGOUT
-Route::get('/logout', "Admin\LoginController@logout")->name('/logout');
-Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index');
+Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index')->middleware(['auth','role:admin']);
 
 // CATEGORY
 Route::resource('/category', 'Admin\CategoryProductController');
@@ -46,8 +46,14 @@ Route::get('/search_customer', 'Admin\CustomersController@search')->name('search
 Route::resource('user', 'Admin\UsersController');
 Route::get('/search_user', 'Admin\UsersController@search')->name('search_user');
 
+// PICTURES
+Route::resource('picture', 'Admin\PictureController');
+Route::get('/search_picture', 'Admin\PictureController@search')->name('search_picture');
+
 //ORDER
 Route::resource('order', "Admin\OrdersController");
+Route::get('/print_order/{checkout_code}', "Admin\OrdersController@print_order")->name("print_order");
+
 
 
 
@@ -73,24 +79,11 @@ Route::get('/contact', "User\ContactController@index")->name("contact");
 Route::post('/contact', "User\ContactController@saveContact")->name("contact");
 
 
+//SEND MAIL
+// Route::get("/send-mail","User\HomeController@send_mail");
 
 
 
 
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

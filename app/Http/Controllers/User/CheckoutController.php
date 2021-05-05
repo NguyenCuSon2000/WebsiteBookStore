@@ -11,8 +11,8 @@ use App\Models\Products;
 use App\Models\Customers;
 use Cart;
 use Illuminate\Support\Facades\Auth;
-use Section;
-session_start();
+// use Section;
+// session_start();
 
 class CheckoutController extends Controller
 {

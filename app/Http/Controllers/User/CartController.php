@@ -9,6 +9,7 @@ use App\Helpers;
 use App\Models\Products;
 use App\Models\OrderDetails;
 use App\Models\Orders;
+use App\Models\Discount;
 use Cart;
 use Section;
 session_start();
@@ -42,8 +43,20 @@ class CartController extends Controller
         }else{
             $qty = 1;
         }
+
         $price = $product->Price;
-        $cart = ['id' => $id, 'name' => $product->ProductName,"qty"=>$qty , "weight"=>10, 'price' => $price, 'options' => ['img' => $product->Picture,"category"=>$product->category->CategoryName]];
+      
+        $cart = [
+            'id' => $id, 
+            'name' => $product->ProductName,
+            "qty"=>$qty , 
+            "weight"=>10, 
+            'price' => $price, 
+            'options' => [
+                'img' => $product->Picture,
+                "category"=>$product->category->CategoryName,
+                ]
+        ];
         Cart::add($cart);
         // dd(Cart::content());
         return redirect()->route('index')->with('message','Đã mua '.$product->ProductName.' thành công');

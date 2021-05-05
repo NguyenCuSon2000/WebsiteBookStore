@@ -8,9 +8,19 @@ use App\Models\Products;
 use App\Models\CategoryProducts;
 use App\Models\Customers;
 use App\Models\Orders;
+use Auth;
 
 class HomeController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

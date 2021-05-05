@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 </head>
 <body>
+                 
     <div class="wrapper">
         <div class="container">
             <div class="dashboard">
@@ -25,14 +26,7 @@
                         <div class="left__profile">
                             <div class="left__image"><img src="{{asset('assets/nguyencuson.jpg')}}" alt=""></div>
                             <p class="left__name">
-                                <?php
-                                use Illuminate\Support\Facades\Session;
-                                $name = Session::get('username');
-                                if($name){
-                                    echo $name;
-                                }
-                                ?>   
-                            </p>
+                        
                         </div>
                         <ul class="left__menu">
                             <li class="left__menuItem">
@@ -81,7 +75,11 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <a href="view_orders.html" class="left__title"><img src="{{asset('assets/icon-book.svg')}}" alt="">Đơn Đặt Hàng</a>
+                                <div class="left__title"><img src="{{asset('assets/icon-picture.svg')}}" alt="">Hình ảnh<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="{{ route('picture.create') }}">Chèn hình ảnh</a>
+                                    <a class="left__link" href="{{ route('picture.index') }}">Xem hình ảnh</a>
+                                </div>
                             </li>
                             <li class="left__menuItem">
                                 <a href="edit_css.html" class="left__title"><img src="{{asset('assets/icon-pencil.svg')}}" alt="">Chỉnh CSS</a>
@@ -94,7 +92,11 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <a href="{{ route('/logout') }}" class="left__title"><img src="{{asset('assets/icon-logout.svg')}}" alt="">Đăng Xuất</a>
+                            <form action="{{ route('index') }}" method="post">
+                                @csrf
+                                <a href="{{ Auth::logout() }}" class="left__title"><img src="{{asset('assets/icon-logout.svg')}}" alt="">Đăng Xuất</a>
+                            </form>
+                               
                             </li>
                         </ul>
                     </div>

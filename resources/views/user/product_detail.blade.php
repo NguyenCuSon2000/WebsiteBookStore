@@ -33,16 +33,16 @@
                             <div class="wrapper">
                                 <div class="Gallery swiper-container img-magnifier-container" id="gallery">
                                     <div class="swiper-wrapper myimgs">
-                                        <div class="swiper-slide"> <a href="{{asset('img'.'/'.$product->Picture)}}" data-fancybox="1" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$product->Picture)}}" alt="gallery"></a></div>
-                                        <div class="swiper-slide"> <a href="{{asset('img'.'/'.$product->Picture)}}" data-fancybox="2" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></a></div>
-                                        <div class="swiper-slide"> <a href="{{asset('img'.'/'.$product->Picture)}}" data-fancybox="3" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></a></div>
+                                        @foreach($pictures as $value)
+                                           <div class="swiper-slide"> <a href="{{asset('img'.'/'.$value->picture)}}" data-fancybox="1" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$value->picture)}}" alt="gallery"></a></div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="Thumbs swiper-container" id="thumbs">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide"> <img src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></div>
-                                        <div class="swiper-slide"> <img src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></div>
-                                        <div class="swiper-slide"> <img src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></div>
+                                        @foreach($pictures as $value)
+                                          <div class="swiper-slide"> <img src="{{asset('img'.'/'.$value->picture)}}" alt="thumnails"></div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

@@ -52,7 +52,7 @@
                         <td data-label="Địa chỉ">{{ $order->ShipAddress }}</td>
                         <td data-label="Số Hoá Đơn">{{ $order->id }}</td>
                         <td data-label="Trạng Thái">
-                             @if( $order->Status == 1)
+                             @if( $order->Status == 0)
                                 <a href="#" class="label-success label">Đã xử lý</a>
                             @else
                                 <a href="#" class="label label-defaul">Chờ xử lý</a>
@@ -60,39 +60,6 @@
                         </td>
                     </tr>
                     @endforeach
-                    <!-- <tr>
-                        <td data-label="STT">2</td>
-                        <td data-label="Email" style="text-align: left;">caothaison@gmail.com</td>
-                        <td data-label="Số Hoá Đơn">4578644</td>
-                        <td data-label="ID Sản Phẩm">4</td>
-                        <td data-label="Số Lượng">2</td>
-                        <td data-label="Kích thước">Nhỏ</td>
-                        <td data-label="Trạng Thái"> 
-                            Đang Xử Lý
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-label="STT">3</td>
-                        <td data-label="Email" style="text-align: left;">tranmanhthai@gmail.com</td>
-                        <td data-label="Số Hoá Đơn">2657544</td>
-                        <td data-label="ID Sản Phẩm">3</td>
-                        <td data-label="Số Lượng">5</td>
-                        <td data-label="Kích thước">Lớn</td>
-                        <td data-label="Trạng Thái"> 
-                            Đang Xử Lý
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-label="STT">4</td>
-                        <td data-label="Email" style="text-align: left;">nguyenthihang@gmail.com</td>
-                        <td data-label="Số Hoá Đơn">9659544</td>
-                        <td data-label="ID Sản Phẩm">8</td>
-                        <td data-label="Số Lượng">12</td>
-                        <td data-label="Kích thước">Trung Bình</td>
-                        <td data-label="Trạng Thái"> 
-                            Đang Xử Lý
-                        </td>
-                    </tr> -->
                 </tbody>
             </table>
         </div>

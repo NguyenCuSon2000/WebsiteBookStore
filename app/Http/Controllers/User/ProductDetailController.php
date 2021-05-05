@@ -18,6 +18,8 @@ class ProductDetailController extends Controller
 
         $product = Products::find($id);
 
+        $pictures = Products::find($id)->pictures;
+
         $products_new = Products::limit(6)->get();
         
         $cart = Cart::content();
@@ -30,6 +32,6 @@ class ProductDetailController extends Controller
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
 
-        return view("user.product_detail", compact("categories", "product", "products_new", "cart", "search_product"));
+        return view("user.product_detail", compact("categories", "product", "pictures", "products_new", "cart", "search_product"));
     }
 }

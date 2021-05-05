@@ -51,7 +51,7 @@
                         <td data-label="Tổng tiền">{{ $r->total }}</td>
                         <td data-label="Ghi chú">{{ $r->Note }}</td>
                         <td data-label="Trạng thái">
-                            @if( $r->Status == 1)
+                            @if( $r->Status == 0)
                                 <a href="#" class="label-success label">Đã xử lý</a>
                             @else
                                 <a href="#" class="label label-defaul">Chờ xử lý</a>
@@ -73,10 +73,12 @@
             </tbody>
         </table>
     </div>
+    <a target="_blank" href="{{ route('print_order', $r->id) }}">In đơn hàng</a>
 </div>
 <div>
     {{ $db->links() }}
 </div>
+
 <!-- 
 <div class="modal fade" id="myModalOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">

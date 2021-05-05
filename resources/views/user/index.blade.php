@@ -3,13 +3,13 @@
 @section('content')
 
 <?php
-    $message = Session::get('message');
-    if($message){
-        echo '
-        <script>
-            alert("Đã mua sản phẩm thành công");
-        </script>';
-    }
+    // $message = Session::get('message');
+    // if($message){
+    //     echo '
+    //     <script>
+    //         alert("Đã mua sản phẩm thành công");
+    //     </script>';
+    // }
 
 ?>
 
@@ -127,8 +127,8 @@
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                         <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
-                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
-                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
+                              <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
+                              <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
                         </div>
                         <div class="row">
                             <div class="col-12 text-center">
@@ -140,15 +140,14 @@
                         </div>
                     </div>
                   @endforeach
-
                   @foreach($product_asc as $product)
                     <div class="cbp-item Classic">
                         <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                         <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
-                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
-                            <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
+                               <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
+                               <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
                         </div>
                         <div class="row">
                             <div class="col-12 text-center">
@@ -180,6 +179,7 @@
                         </div>
                     </div>
                   @endforeach
+                
 
                 </div>
             </div>

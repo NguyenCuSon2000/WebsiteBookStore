@@ -19,7 +19,7 @@ class CreateDiscountsTable extends Migration
             $table->foreign("Product_Id")->references("id")->on("products")->onDelete('cascade');
             $table->integer("Percent");
             $table->double("Promotion_price");
-            $table->integer("Status");
+            $table->integer("Status")->default(1);
             $table->date("BeginDate");
             $table->date("EndDate");
             $table->date("AddDate");

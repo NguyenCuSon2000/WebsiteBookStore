@@ -18,10 +18,6 @@ class ProductsController extends Controller
     public function index()
     {
         //
-        // $db = CategoryProducts::find(1)->products->toArray();
-        // dd($db);
-        // $db = Products::find(2)->category;
-        // dd($db);
         $db = Products::paginate(6);
         return view('admin.product.product', compact('db'));
     }
@@ -91,6 +87,8 @@ class ProductsController extends Controller
     public function show($id)
     {
         //
+        $pictures = Products::find($id)->pictures;
+        return view("admin.product.show_picture", compact("pictures"));
     }
 
     /**
