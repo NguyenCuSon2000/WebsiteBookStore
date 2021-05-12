@@ -70,7 +70,7 @@
                     <h4 class="high-lighted-heading">Về chúng tôi</h4>
                     <p>Chúng tôi coi trọng sứ mệnh của mình là tăng cường khả năng tiếp cận toàn cầu với nền giáo dục chất lượng.</p>
                     <a href="#">Đọc thêm</a>
-                    <h4>Social Network</h4>
+                    <h4>Mạng xã hội</h4>
                     <div class="s-icons">
                         <ul class="social-icons-simple">
                             <li><a href="javascript:void(0)" class="facebook-bg-hvr"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
@@ -89,8 +89,8 @@
                                 <li><a href="javascript:void(0)">Chính sách bảo mật</a></li>
                                 <li><a href="javascript:void(0)">Điều khoản & Điều kiện</a></li>
                                 <li><a href="javascript:void(0)">FAQ</a></li>
-                                <li><a href="book-shop/contact.html">Liên hệ chúng tôi</a></li>
-                                <li><a href="book-shop/product-listing.html">Các sản phẩm</a></li>
+                                <li><a href="{{ route('contact') }}">Liên hệ chúng tôi</a></li>
+                                <li><a href="javascript:void(0)">Các sản phẩm</a></li>
                             </ul>
                         </div>
                         <div class="col-12 col-md-6">
@@ -113,13 +113,9 @@
                 <div class="col-sm-12 col-lg-3 f-sec3  text-center text-lg-left">
                     <h4>Danh mục sản phẩm</h4>
                     <div class="foot-tag-list">
-                        <span>Truyện tranh</span>
-                        <span>Tiểu thuyết</span>
-                        <span>Lịch sử</span>
-                        <span>Tư điển</span>
-                        <span>Cẩm nang</span>
-                        <span>Báo chí</span>
-                        <span>Sức khỏe</span>
+                    @foreach($categories as $category)
+                       <a href="{{ route('listproduct').'/'.$category->id }}"><span>{{$category->CategoryName}}</span></a> 
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -170,18 +166,12 @@
     <!-- Custom Script -->
     <script src="{{asset('js/script.js')}}"></script>
     <script src="{{asset('js/ajax.js')}}"></script>
-    <!-- <script>
-        function AddCart(id) { 
-            $.ajax({
-                type: "GET",
-                url: "Add-Cart/"+id,
-              
-            }).done(function (response) { 
-                console.log(response);
-                $("#change-item-cart").empty();
-                $("#change-item-cart").html(response);
-             });
-         }
-    </script> -->
+    <script>
+        $(function () { 
+            $('.orderby').change(function () { 
+                $('#form_order').submit();
+            });
+        })
+    </script>
 </body>
 </html>

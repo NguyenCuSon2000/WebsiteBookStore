@@ -123,7 +123,12 @@ class CustomersController extends Controller
             $db = Customers::paginate(10);
         }
         else {
-            $db = Customers::where('CustomerName','LIKE','%'.$text.'%')->paginate(50);
+            $db = Customers::where('CustomerName','LIKE','%'.$text.'%')
+                            ->orWhere('id','LIKE','%'.$text.'%')
+                            ->orWhere('DateOfBirth','LIKE','%'.$text.'%')
+                            ->orWhere('Address','LIKE','%'.$text.'%')
+                            ->orWhere('Phone','LIKE','%'.$text.'%')
+                            ->orWhere('Email','LIKE','%'.$text.'%')->paginate(10);
         }
         return view('admin.customer.customer', ['db'=>$db]);
     }

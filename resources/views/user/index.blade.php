@@ -99,7 +99,7 @@
             <!-- START PORTFOLIO HEADING -->
             <div class="col-12">
                 <div class="portfolioHeading text-center">
-                    <h1 class="high-lighted-heading">Sản Phẩm Nổi Bật</h1>
+                    <h1 class="high-lighted-heading">Sản Phẩm Mới</h1>
                     <p>Việc đọc rất quan trọng. Nếu bạn biết cách đọc, cả thế giới sẽ mở ra cho bạn.</p>
                 </div>
             </div>
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                   @endforeach
-
+                  <div class="slide-img bg-img" style="background-image: {{asset('public\front-end\img\core-img\b1.png')}};"></div>
                   @foreach($product_bt as $product)
                     <div class="cbp-item Fantasy motion">
                         <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">

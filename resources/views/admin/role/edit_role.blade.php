@@ -1,0 +1,24 @@
+@extends('layouts.admin')
+@section('admin_content')
+<div class="right__title">Bảng điều khiển</div>
+<p class="right__desc">Cập nhật quyền người dùng</p>
+<div class="right__formWrapper">
+    <form role="form" action="{{ route('role.update', $db->id) }}" method="post" enctype="multipart/form-data">
+        @csrf
+        @method("PUT")
+        <div class="right__inputWrapper">
+            <label for="title">Quyền</label>
+            <input type="text" value="{{ $db->name }}" name="txtName" >
+        </div>
+        <div class="right__inputWrapper">
+            <label for="p_role">Trạng thái</label>
+            <select name="sl_stt">
+                <!-- <option disabled selected>Chọn trạng thái</option> -->
+                <option value="0" {{ $db->status==0?"":"selected"}}>Ẩn</option>
+                <option value="1" {{ $db->status==0?"":"selected"}}>Hiển thị</option>
+            </select>
+        </div>
+        <button class="btn btn-info" type="submit">Cập nhật</button>
+    </form>
+</div>
+@endsection

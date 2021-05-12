@@ -8,6 +8,7 @@ use App\Models\CategoryProducts;
 use App\Models\Products;
 use App\Models\Discount;
 use App\Models\Picture;
+use App\Models\OrderDetails;
 use Cart;
 use Mail;
 
@@ -31,21 +32,24 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         
-        $categories = CategoryProducts::all(); 
+        $categories = CategoryProducts::all(); //LIST CATEGORY
 
-        $products = Products::limit(3)->get();
 
-      
-
+        $products = Products::limit(3)->get();     //LIST PRODUCT
         $product_asc = Products::orderby("ProductName", "asc")->limit(3)->get();
-
         $product_bt= Products::whereBetween("Price", [25000, 100000])->limit(6)->get();
 
-        $products_sale = Discount::all();
+        $products_sale = Discount::all(); // LIST DISCOUNT PRODUCT
 
-        $cart = Cart::content();
 
-        $keywords = $request->txtSearch;
+        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
+                        ->selectRaw('sum(Quantity) as amount, ProductId')
+                        ->orderBy('amount','desc')->limit(10)->get();
+
+        $cart = Cart::content();   // CART
+
+        // SEARCH PRODUCT
+        $keywords = $request->txtSearch;    
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();
         }
@@ -59,6 +63,7 @@ class HomeController extends Controller
             "product_asc", 
             "product_bt", 
             "products_sale", 
+            "product_pay",
             "cart", 
             "search_product"));
     }

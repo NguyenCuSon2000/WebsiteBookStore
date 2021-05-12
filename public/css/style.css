@@ -356,13 +356,13 @@ END scroll-top-arrow
     color: #000000;
 }
 
-.product-listing .product-filter-nav .product-category ul{
+.product-listing .product-filter-nav .product-category ul, .product-listing .product-filter-nav .product-price ul{
     padding-left: 0 !important;
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-.product-listing .product-filter-nav .product-category ul li{
+.product-listing .product-filter-nav .product-category ul li, .product-listing .product-filter-nav .product-price ul li{
     list-style: none;
     margin-bottom: 5px;
     display: -webkit-box;
@@ -373,16 +373,20 @@ END scroll-top-arrow
     justify-content: space-between;
     cursor: pointer;
 }
-.product-listing .product-filter-nav .product-category ul li a{
+.product-listing .product-filter-nav .product-category ul li a, .product-listing .product-filter-nav .product-price ul li a{
     text-decoration: none;
     font-size: 16px;
-    color: #000000;
     opacity: .8;
     font-family: Poppins, sans-serif;
     font-weight: normal;
     -webkit-transition: .8s ease;
     -o-transition: .8s ease;
     transition: .8s ease;
+}
+
+.product-listing .product-filter-nav .product-price ul li a.active {
+    color: red;
+    font-weight: bold;
 }
 .product-listing .product-filter-nav .product-category ul li span{
     -webkit-transition: .8s ease;
@@ -1144,15 +1148,14 @@ END scroll-top-arrow
 }
 
 .portfolio-des{
-    color:#000000 !important;
+    color: red !important;
     font-size: 20px !important;
     font-family: 'Poppins', sans-serif !important;
     margin-top: 6px !important;
     -webkit-transition: .8s ease;
     -o-transition: .8s ease;
     transition: .8s ease;
-
-
+    font-weight: 700;
 }
 
 .portfolio-section .cbp .cbp-item:hover .portfolio-title{
@@ -1837,8 +1840,9 @@ END scroll-top-arrow
 .cart_table .amount{
     font-size: 20px;
     font-family: Poppins, sans-serif;
-    font-weight: normal;
-    color: #000000;
+    font-weight: bold;
+    color: red;
+    text-align: right;
 }
 
 .cart_table .quote input{
@@ -2043,6 +2047,11 @@ form.findus .form-control, form.findus textarea {
     border: solid 1px transparent;
     padding-bottom: 17.5px;
     padding-left: 0;
+}
+
+.shop-cart .card-total table tr td.amount {
+    color: red;
+    font-weight: bold;
 }
 .shop-cart .card-total table tr td:first-child{
     font-size: 14px;

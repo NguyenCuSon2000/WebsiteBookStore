@@ -37,4 +37,9 @@ class Products extends Model
     {
         return $this->hasMany("App\Models\Picture","ProductId");
     }
+
+    public function comments()
+    {
+        return $this->hasMany("App\Models\Comments","ProductId");
+    }
 }

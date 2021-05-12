@@ -17,10 +17,11 @@
         Session::put('message',null);
     }
 ?>
+
 <div class="right__table">
     <div class="right__tableWrapper">
         @php 
-            $tt = 0;
+            $tt = 1;
         @endphp
         <table>
             <thead>
@@ -29,7 +30,7 @@
                     <th>Mã sách</th>
                     <th>Tên sách</th>
                     <th>Tên loại</th>
-                    <th>Đơn giá</th>
+                    <th>Đơn giá (VNĐ)</th>
                     <th>Hình ảnh</th>
                     <th>Hiển thị</th>
                     <th>Sửa</th>
@@ -41,9 +42,9 @@
                     <tr>
                         <td data-label="STT">{{ $tt++}}</td>
                         <td data-label="id">{{$r->id}}</td>
-                        <td data-label="Tiêu đề">{{$r->ProductName}}</td>
-                        <td data-label="Tên loại">{{ $r->category->CategoryName }}</td>
-                        <td data-label="Đơn giá"> {{ number_format($r->Price) }} VNĐ</td>
+                        <td data-label="Tiêu đề" style="text-align:left">{{$r->ProductName}}</td>
+                        <td data-label="Tên loại" style="text-align:left">{{ $r->category->CategoryName }}</td>
+                        <td data-label="Đơn giá" style="color:red; font-weight:bold; text-align:right"> {{ number_format($r->Price) }}</td>
                         <td data-label="Xem hình ảnh" class="right__iconTable">
                               <a  data-id ="{{ $r->id }}" href="{{ route('product.show', $r->id) }}"><img src="{{ asset('assets/icon-eye.svg') }}" alt=""></a>
                         </td>

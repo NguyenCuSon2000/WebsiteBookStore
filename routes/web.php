@@ -15,17 +15,7 @@
 //     return view('welcome');
 // });
 
-// Route::get('/admin', 'AdminController@showImportantInfo')->middleware(['auth','role: admin']);
-// Route::get('/home', 'HomeController@index')->name('home');
 
-// ADMIN
-// LOGIN
-// Route::get('/login/index', 'Auth\LoginController@getLogin')->name('/login/index');
-// Route::post('/', "Auth\LoginController@postLogin")->name('/register/index');
-
-//REGISTER
-// Route::get("/register/index", 'Admin\RegisterController@index')->name('/register/index');
-// Route::post('/register', "Admin\RegisterController@register")->name('/register');
 Auth::routes();
 // LOGOUT
 Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index')->middleware(['auth','role:admin']);
@@ -46,15 +36,28 @@ Route::get('/search_customer', 'Admin\CustomersController@search')->name('search
 Route::resource('user', 'Admin\UsersController');
 Route::get('/search_user', 'Admin\UsersController@search')->name('search_user');
 
+// ROLES
+Route::resource('role', 'Admin\RolesController');
+Route::get('/search_role', 'Admin\RolesController@search')->name('search_role');
+
 // PICTURES
 Route::resource('picture', 'Admin\PictureController');
 Route::get('/search_picture', 'Admin\PictureController@search')->name('search_picture');
 
 //ORDER
 Route::resource('order', "Admin\OrdersController");
+Route::get('/search_order', 'Admin\OrdersController@search')->name('search_order');
 Route::get('/print_order/{checkout_code}', "Admin\OrdersController@print_order")->name("print_order");
 
+//CONTACT
+Route::resource('contact_admin', 'Admin\ContactController');
 
+//STATISTICS
+Route::get('/statistic/index', 'Admin\StatisticsController@index')->name('/statistic/index');
+Route::get('/statistic/order_pay', 'Admin\StatisticsController@getOrder')->name("/statistic/order_pay");
+
+// COMMENT
+Route::resource('comment', 'Admin\CommentsController');
 
 
 
@@ -63,6 +66,7 @@ Route::get('/', 'User\HomeController@index')->name('index');
 Route::get('/search', 'User\HomeController@index')->name("search");
 Route::get('/listproduct/{id?}', 'User\ProductController@index')->name('listproduct');
 Route::get('/product_detail/{id?}', 'User\ProductDetailController@index')->name('product_detail');
+
 
 
 // SHOPPING CART
@@ -78,7 +82,7 @@ Route::post('checkout', "User\CheckoutController@postFormPay")->name("checkout")
 Route::get('/contact', "User\ContactController@index")->name("contact");
 Route::post('/contact', "User\ContactController@saveContact")->name("contact");
 
-
+Route::post('/comment/{id?}', "User\ProductDetailController@saveComment")->name("comment");
 //SEND MAIL
 // Route::get("/send-mail","User\HomeController@send_mail");
 

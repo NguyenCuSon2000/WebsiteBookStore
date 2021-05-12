@@ -8,6 +8,7 @@ use App\Models\Products;
 use App\Models\CategoryProducts;
 use App\Models\Customers;
 use App\Models\Orders;
+use App\Models\OrderDetails;
 use Auth;
 
 class HomeController extends Controller
@@ -34,7 +35,10 @@ class HomeController extends Controller
         $count_customer = Customers::count();
         $count_order = Orders::count();
 
-        $order_new = Orders::orderby("id", "desc")->limit(5)->get();
+
+        $order_new = Orders::orderby("Status", "desc")->limit(5)->get();
+
+        // dd($product_pay);
         return view("admin.index", compact(
             "count_category",
             "count_product",

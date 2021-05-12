@@ -19,6 +19,14 @@
             <label for="image">Hình ảnh</label>
             <input type="file" value="{{ $db->picture }}" name="fileImg">
         </div>
+        <div class="right__inputWrapper">
+            <label for="p_picture">Trạng thái</label>
+            <select name="sl_stt">
+                <!-- <option disabled selected>Chọn trạng thái</option> -->
+                <option value="0" {{ $db->status==0?"":"selected"}}>Ẩn</option>
+                <option value="1" {{ $db->status==0?"":"selected"}}>Hiển thị</option>
+            </select>
+        </div>
         <button class="btn btn-info" type="submit">Cập nhật</button>
     </form>
 </div>

@@ -20,7 +20,7 @@
 <div class="right__table">
     <div class="right__tableWrapper">
     @php
-        $tt = 0;
+        $tt = 1;
     @endphp
         <table>
             <thead>
@@ -40,11 +40,10 @@
                     <tr>
                         <td>{{ $tt++ }}</td>
                         <td data-label="STT">{{$r->id}}</td>
-                        <td data-label="Tiêu đề">{{$r->CategoryName}}</td>
-                        <td data-label="Mô tả">{{$r->Description}}</td>
+                        <td data-label="Tiêu đề" style="text-align:left">{{$r->CategoryName}}</td>
+                        <td data-label="Mô tả" style="text-align:left">{{$r->Description}}</td>
                         <td data-label="Hiển thị"><input type="checkbox" name="cbtt" value="{{ $r->Status }}" {{ $r->Status==0?'':'checked'}}  ></td>
                         <td data-label="Sửa" class="right__iconTable"><a href="{{ route('category.edit', $r->id) }}"><img src="{{asset('assets/icon-edit.svg')}}" alt=""></a></td>
-                       
                         <td data-label="Xoá" class="right__iconTable">
                             <form role="form" action="{{ route('category.destroy', $r->id) }}" method="post">
                                 <input type="hidden" name="_method" value="DELETE">

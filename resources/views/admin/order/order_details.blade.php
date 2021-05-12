@@ -2,13 +2,7 @@
 @section('admin_content')
 <div class="right__title">Bảng điều khiển</div>
 <p class="right__desc">Xem chi tiết đơn hàng</p>
-<!-- <div class="right__search">
-    <form role="form" action="/search_category" method="get">
-        @csrf
-        <input type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm kiếm" >
-        <input type="submit" class="button" value="Search">
-    </form>
-</div>    -->
+  
 <?php
 use Illuminate\Support\Facades\Session;
 $message = Session::get('message');
@@ -20,7 +14,7 @@ if($message){
 <div class="right__table">
     <div class="right__tableWrapper">
         @php
-        $tt = 0;
+         $tt = 1;
         @endphp
         <table>
             <thead>
@@ -28,9 +22,9 @@ if($message){
                     <th>STT</th>
                     <th>Tên sản phẩm</th>
                     <th>Hình ảnh</th>
-                    <th>Đơn giá</th>
+                    <th>Đơn giá (VNĐ)</th>
                     <th>Số lượng</th>
-                    <th>Thành tiền</th>
+                    <th>Thành tiền (VNĐ)</th>
                     <th>Xoá</th>
                 </tr>
             </thead>
@@ -39,11 +33,11 @@ if($message){
                 @foreach($order_details as $r)
                 <tr>
                     <td>{{ $tt++ }}</td>
-                    <td data-label="Tên sản phẩm">{{$r->product->ProductName}}</td>
+                    <td data-label="Tên sản phẩm"  style="text-align:left">{{$r->product->ProductName}}</td>
                     <td data-label="Hình ảnh"> <img src="{{asset('img'.'/'.$r->product->Picture)}}" alt="" > </td>
-                    <td data-label="Đơn giá">{{ $r->product->Price }}</td>
+                    <td data-label="Đơn giá" style="color:red; font-weight:bold; text-align:right">{{ $r->product->Price }}</td>
                     <td data-label="Số lượng">{{ $r->Quantity }}</td>
-                    <td data-label="Thành tiền">{{ $r->UnitPrice }}</td>
+                    <td data-label="Thành tiền" style="color:red; font-weight:bold; text-align:right">{{ $r->UnitPrice*$r->Quantity }}</td>
                     <td data-label="Xoá" class="right__iconTable">
                         <form role="form" action="" method="post">
                             <input type="hidden" name="_method" value="DELETE">
@@ -58,7 +52,7 @@ if($message){
     </div>
 </div>
 <div>
-    
+     {{ $order_details->links() }}
 </div>
 
 @endsection

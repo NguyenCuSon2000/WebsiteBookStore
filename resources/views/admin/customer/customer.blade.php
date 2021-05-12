@@ -20,7 +20,7 @@
 <div class="right__table">
     <div class="right__tableWrapper">
     @php
-        $tt = 0;
+        $tt = 1;
     @endphp
         <table>
             <thead>
@@ -42,13 +42,12 @@
                     <tr>
                         <td>{{ $tt++ }}</td>
                         <td data-label="id">{{$r->id}}</td>
-                        <td data-label="Tên khách hàng">{{$r->CustomerName}}</td>
+                        <td data-label="Tên khách hàng" style="text-align:left">{{$r->CustomerName}}</td>
                         <td data-label="Ngày sinh">{{ \Carbon\Carbon::parse($r->DateOfBirth)->format('d/m/Y') }}</td>
-                        <td data-label="Địa chỉ">{{$r->Address}}</td>
+                        <td data-label="Địa chỉ" style="text-align:left">{{$r->Address}}</td>
                         <td data-label="SDT">{{$r->Phone}}</td>
-                        <td data-label="Email">{{$r->Email}}</td>
+                        <td data-label="Email" style="text-align:left">{{$r->Email}}</td>
                         <td data-label="Sửa" class="right__iconTable"><a href="{{ route('customer.edit', $r->id) }}"><img src="{{asset('assets/icon-edit.svg')}}" alt=""></a></td>
-                       
                         <td data-label="Xoá" class="right__iconTable">
                             <form role="form" action="{{ route('customer.destroy', $r->id) }}" method="post">
                                 @csrf

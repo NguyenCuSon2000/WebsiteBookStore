@@ -18,7 +18,7 @@ class ProductsController extends Controller
     public function index()
     {
         //
-        $db = Products::paginate(6);
+        $db = Products::paginate(10);
         return view('admin.product.product', compact('db'));
     }
 
@@ -169,7 +169,11 @@ class ProductsController extends Controller
             $db = Products::paginate(6);
         }
         else {
-            $db = Products::where('ProductName','LIKE','%'.$text.'%')->paginate(50);
+            $db = Products::join('category_products','products.Cate_Id','=','category_products.id')
+                           ->where('products.ProductName','LIKE','%'.$text.'%')
+                           ->orWhere('products.id','LIKE','%'.$text.'%')
+                           ->orWhere('products.Price','LIKE','%'.$text.'%')
+                           ->orWhere('category_products.CategoryName','LIKE','%'.$text.'%')->paginate(10);
         }
         return view('admin.product.product', ['db'=>$db]);
     }

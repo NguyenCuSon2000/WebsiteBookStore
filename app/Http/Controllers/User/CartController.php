@@ -26,6 +26,9 @@ class CartController extends Controller
         //
         $categories = CategoryProducts::all();
         $cart = Cart::content();
+        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
+                        ->selectRaw('sum(Quantity) as amount, ProductId')
+                        ->orderBy('amount','desc')->limit(10)->get();
         $keywords = $request->txtSearch;
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();
@@ -33,7 +36,7 @@ class CartController extends Controller
         else {
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
-        return view("user.shopcart", compact("categories", "cart","search_product"));
+        return view("user.shopcart", compact("categories", "cart","product_pay","search_product"));
     }
 
     public function addCart($id, Request $request){

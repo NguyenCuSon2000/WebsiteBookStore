@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\CategoryProducts;
 use App\Models\Products;
 use App\Models\Discount;
+use App\Models\OrderDetails;
+use App\Models\Comments;
 use Cart;
 
 class ProductDetailController extends Controller
@@ -20,7 +22,9 @@ class ProductDetailController extends Controller
 
         $pictures = Products::find($id)->pictures;
 
-        $products_new = Products::limit(6)->get();
+        $product_pay = OrderDetails::groupBy('ProductId')
+                                    ->selectRaw('SUM(Quantity) as amount, ProductId')
+                                    ->orderBy('amount','desc')->get();
         
         $cart = Cart::content();
 
@@ -32,6 +36,18 @@ class ProductDetailController extends Controller
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
 
-        return view("user.product_detail", compact("categories", "product", "pictures", "products_new", "cart", "search_product"));
+        $comments = Products::find($id)->comments;
+
+        return view("user.product_detail", compact("categories", "product", "pictures", "product_pay", "cart", "search_product", "comments"));
     }
+
+    public function saveComment(Request $request, $id)
+    {
+        $product = Products::find($id);
+        $data = $request->except('_token');
+        $data['created_at'] = $data['updated_at'] = now();
+        Comments::insert($data);
+        return redirect()->back();
+    }
+
 }

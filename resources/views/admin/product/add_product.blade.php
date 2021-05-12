@@ -19,7 +19,7 @@
         </div>
         <div class="right__inputWrapper">
             <label for="desc">Mô tả</label>
-            <textarea name="txtDes" id="ckeditor1" cols="30" rows="10" placeholder="Mô tả"></textarea>
+            <textarea name="txtDes" id="ckeditor2" cols="30" rows="10" placeholder="Mô tả"></textarea>
         </div>
         <div class="right__inputWrapper">
             <label for="image">Hình ảnh 1</label>
@@ -32,9 +32,9 @@
         <div class="right__inputWrapper">
             <label for="p_category">Trạng thái</label>
             <select name="sl_stt">
-                <option disabled selected>Chọn trạng thái</option>
-                <option value="0">Ẩn</option>
+                <!-- <option disabled selected>Chọn trạng thái</option> -->
                 <option value="1">Hiển thị</option>
+                <option value="0">Ẩn</option>
             </select>
         </div>
         <button class="btn btn-info" type="submit">Thêm</button>

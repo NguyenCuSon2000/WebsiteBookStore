@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CategoryProducts;
 use App\Models\Products;
 use App\Models\Contact;
+use App\Models\OrderDetails;
 use Cart;
 
 class ContactController extends Controller
@@ -16,7 +17,9 @@ class ContactController extends Controller
     {
         $categories = CategoryProducts::all();
         $cart = Cart::content();
-
+        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
+                        ->selectRaw('sum(Quantity) as amount, ProductId')
+                        ->orderBy('amount','desc')->limit(10)->get();
         $keywords = $request->txtSearch;
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();
@@ -25,7 +28,7 @@ class ContactController extends Controller
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
 
-        return view("user.contact", compact("categories","cart","search_product"));
+        return view("user.contact", compact("categories","cart","product_pay","search_product"));
     }
 
     public function saveContact(Request $request)

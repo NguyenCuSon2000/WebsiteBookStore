@@ -10,8 +10,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('index') }}">TRANG CHỦ</a>
                         </li>
-                        <li class="nav-item dropdown static">
-                            <a class="nav-link dropdown-toggle active" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SÁCH ĐIỆN TỬ</a>
+                        <!-- <li class="nav-item dropdown static">
+                            <a class="nav-link dropdown-toggle active" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SÁCH </a>
                             <ul class="dropdown-menu megamenu flexable-megamenu">
                                 <li>
                                     <div class="container">
@@ -65,44 +65,33 @@
                                     </div>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li class="nav-item dropdown static">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SÁCH </a>
                             <ul class="dropdown-menu megamenu flexable-megamenu">
                                 <li>
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
+                                            <div class="col-lg-4 col-md-6 col-sm-12 mengmenu_border">
                                                 <h5 class="dropdown-title bottom10"> Chủ đề </h5>                                                
                                                 <ul id="menu">
                                                 @foreach($categories as $category)
                                                     <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="{{ route('listproduct').'/'.$category->id }}">{{$category->CategoryName}}</a></li>
                                                 @endforeach
-                                                    <!-- 
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Autobiography</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Biography</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Chick lit</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Anthology</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Coming-of-age</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Drama</a></li>
-                                                        -->
+                                                 
                                                 </ul>
                                                 
                                             </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
-                                                <h5 class="dropdown-title opacity-10"> Khác </h5>
+                                            <div class="col-lg-4 col-md-6 col-sm-12 mengmenu_border">
+                                                <h5 class="dropdown-title opacity-10"> Sách nổi bật </h5>
                                                 <ul>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Trinh thám</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Từ điển</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Sức khỏe</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Lịch sử</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Tạp chí</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Kinh dị</a></li>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Thơ</a></li>
+                                                    @foreach($product_pay as $product)
+                                                        <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="{{ route('product_detail').'/'.$product->product->id }}">{{ $product->product->ProductName }}</a></li>
+                                                    @endforeach
                                                 </ul>
                                                 
                                             </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
+                                            <div class="col-lg-4 col-md-6 col-sm-12 mengmenu_border">
                                                 <h5 class="dropdown-title bottom10"> Tác giả </h5>
                                                 
                                                 <div class="media outlet-media mt-3">
@@ -143,9 +132,9 @@
                                                 </div>
                                                 
                                             </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
+                                            <!-- <div class="col-lg-3 col-md-6 col-sm-12 pt-3">
                                                 <a href="javascript:void(0);"><img src="{{ asset('img/featured-product.jpg') }}" alt="image"></a>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </li>
@@ -180,7 +169,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="book-shop/product-listing.html"> TRANG CHỦ</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages1">
                                 SÁCH ĐIỆN TỬ <i class="fas fa-chevron-down"></i>
                             </a>
@@ -212,7 +201,7 @@
                                   
                                 </ul>
                             </div>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages3">
                                 SÁCH <i class="fas fa-chevron-down"></i>
@@ -222,14 +211,8 @@
                                 @foreach($categories as $category)
                                     <li class="nav-item"><a class="nav-link" href="{{ route('listproduct').'/'.$category->id }}">{{$category->CategoryName}}</a></li>
                                 @endforeach
-                                    <!-- <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Autobiography</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Biography</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Chick lit</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Coming-of-age</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Anthology</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Drama</a></li> -->
                                 </ul>
-                                <h5 class="sub-title">1. Khác</h5>
+                                <h5 class="sub-title">Sách nổi bật</h5>
                                 <ul class="navbar-nav mt-2">
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Tiểu thuyết</a></li>
                                     <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html"> Từ điển </a></li>

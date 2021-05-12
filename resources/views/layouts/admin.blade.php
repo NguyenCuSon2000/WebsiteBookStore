@@ -6,7 +6,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ asset('css/main.css')}} ">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 </head>
@@ -54,17 +54,17 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/icon-settings.svg')}}" alt="">Tin tức<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__title"><img src="{{asset('assets/icon-settings.svg')}}" alt="">Thống kê<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
-                                    <a class="left__link" href="insert_slide.html">Chèn Tin tức</a>
-                                    <a class="left__link" href="view_slides.html">Xem Tin tức</a>
+                                    <a class="left__link" href="/statistic/index">Thống kê sản phẩm</a>
+                                    <a class="left__link" href="/statistic/order_pay">Thống kê đơn hàng</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/icon-book.svg')}}" alt="">Nhà cung cấp<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__title"><img src="{{asset('assets/icon-book.svg')}}" alt="">Quản lý quyền<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
-                                    <a class="left__link" href="insert_coupon.html">Thêm nhà cung cấp</a>
-                                    <a class="left__link" href="view_coupons.html">Xem nhà cung cấp</a>
+                                    <a class="left__link" href="{{ route('role.index') }}">Xem quyền</a>
+                                    <a class="left__link" href="{{ route('role.create') }}">Thêm quyền</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">
@@ -82,7 +82,10 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <a href="edit_css.html" class="left__title"><img src="{{asset('assets/icon-pencil.svg')}}" alt="">Chỉnh CSS</a>
+                                <a href="{{ route('contact_admin.index') }}" class="left__title"><img src="{{asset('assets/icon-pencil.svg')}}" alt="">Quản lý liên hệ</a>
+                            </li>
+                            <li class="left__menuItem">
+                                <a href="{{ route('comment.index') }}" class="left__title"><img src="{{asset('assets/icon-pencil.svg')}}" alt="">Quản lý bình luận</a>
                             </li>
                             <li class="left__menuItem">
                                 <div class="left__title"><img src="{{asset('assets/icon-user.svg')}}" alt="">Người dùng<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>

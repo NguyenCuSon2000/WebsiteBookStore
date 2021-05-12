@@ -24,6 +24,9 @@ class CheckoutController extends Controller
        
         $categories = CategoryProducts::all();
         $cart = Cart::content();
+        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
+                        ->selectRaw('sum(Quantity) as amount, ProductId')
+                        ->orderBy('amount','desc')->limit(10)->get();
         $keywords = $request->txtSearch;
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();
@@ -31,43 +34,12 @@ class CheckoutController extends Controller
         else {
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
-        return view("user.pay", compact("categories", "cart","search_product"));
+        return view("user.pay", compact("categories", "cart","product_pay","search_product"));
 
     }
 
     public function postFormPay(Request $request)
     {
-   
-        // if ( $order = Orders::create([
-        //     "CustomerId" => $c_id,
-        //     "OrderDate" => now(),
-        //     // "ShippedDate" => ,
-        //     "ShipPhone" => $request->txtPhone,
-        //     "ShipAddress" => $request->txtad,
-        //     "Status" => 1
-        // ]) ) {
-        //    $orderdetails_id = $order->id;
-        //    foreach ($cart as $id => $item) {
-
-        //        $quantity = $item['qty'];
-        //        $price = $item['price'];
-
-        //        Order_Details::create([
-        //             "OrderId" => $orderdetails_id,
-        //             "ProductId" => $id,
-        //             "Quantity" => $quantity,
-        //             "UnitPrice" => $price,
-        //             "AddDate" => now()
-        //        ]);
-        //    }
-
-        //    session(['cart' => '']);
-
-        //    return redirect()->route("checkout_success")->with("success","Đặt hàng thành công");
-        // }
-        // else{
-        //    return redirect()->back()->with("error","Đặt hàng không thành công");
-        // }
         $c_id = $request->txtid;
         $totalMoney = str_replace(",","",Cart::subtotal(0,3));
 
@@ -90,7 +62,7 @@ class CheckoutController extends Controller
             'OrderDate' => now(),
             'ShipPhone' => $request->txtPhone,
             'ShipAddress' => $request->txtad,
-            'Status' => 1,
+            'Status' => 0,
             'created_at' => now(),
             'updated_at' => now()
 
@@ -123,6 +95,9 @@ class CheckoutController extends Controller
     {
         $categories = CategoryProducts::all();
         $cart = Cart::content();
+        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
+                                    ->selectRaw('sum(Quantity) as amount, ProductId')
+                                    ->orderBy('amount','desc')->limit(10)->get();
         $keywords = $request->txtSearch;
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();
@@ -130,7 +105,7 @@ class CheckoutController extends Controller
         else {
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
-       return view("user.checkout_success", compact("categories", "cart","search_product"));
+       return view("user.checkout_success", compact("categories", "cart","product_pay","search_product"));
     }
    
 }

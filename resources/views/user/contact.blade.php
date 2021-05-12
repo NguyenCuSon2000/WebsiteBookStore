@@ -72,8 +72,7 @@
                                 <textarea class="form-control" id="user_message" name="content" placeholder="Nội dung" rows="7" required="required"></textarea>
                             </div>
                             <div class="col-12">
-                                <button class="btn green-color-yellow-gradient-btn user-contact contact_btn" type="submit">GỬI
-                                </button>
+                                <button class="btn green-color-yellow-gradient-btn user-contact contact_btn" type="submit">GỬI</button>
                             </div>
                         </div>
                     </form>

@@ -30,6 +30,7 @@ class UsersController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -86,5 +87,22 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+        $db = User::findOrFail($id);
+        $db->delete();
+        return redirect()->route("user.index")->with("Xóa thành công");
+    }
+
+    public function search(Request $request)
+    {
+        //
+        $text = $request->input("txtSearch");
+        if ($text == "") {
+            $db = User::paginate(10);
+        }
+        else {
+            $db = User::where('username','LIKE','%'.$text.'%')
+                            ->orWhere('id','LIKE','%'.$text.'%')->paginate(10);
+        }
+        return view('admin.user.users', ['db'=>$db]);
     }
 }

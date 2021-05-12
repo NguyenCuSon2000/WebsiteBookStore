@@ -32,7 +32,7 @@
             <input type="text" value="{{ $db->Price }}" name="txtprice" >
         </div>
         <div class="right__inputWrapper">
-            <label for="p_category">Trạng thái</label>
+            <label for="p_product">Trạng thái</label>
             <select name="sl_stt">
                 <!-- <option disabled selected>Chọn trạng thái</option> -->
                 <option value="0" {{ $db->Status==0?"":"selected"}}>Ẩn</option>

@@ -121,9 +121,13 @@ class CategoryProductController extends Controller
             $db = CategoryProducts::paginate(10);
         }
         else {
-            $db = CategoryProducts::where('CategoryName','LIKE','%'.$text.'%')->paginate(50);
+            $db = CategoryProducts::where('CategoryName','LIKE','%'.$text.'%')
+                                    ->orWhere('id','LIKE','%'.$text.'%')
+                                    ->orWhere('Description','LIKE','%'.$text.'%')->paginate(50);
         }
         return view('admin.category.category', ['db'=>$db]);
     }
+
+  
 }
 

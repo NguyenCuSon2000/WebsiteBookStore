@@ -2,8 +2,20 @@
 @section('admin_content')
 <div class="right__title">Bảng điều khiển</div>
 <p class="right__desc">Xem đơn hàng</p>
+<div class="right__cards">
+    <a class="right__card" href="">
+        <div class="right__cardTitle">Đơn hàng đã xử lý</div>
+        <div class="right__cardNumber">{{ number_format($order_done) }}</div>
+        <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
+    </a>
+    <a class="right__card" href="">
+        <div class="right__cardTitle">Đơn hàng chờ xử lý</div>
+        <div class="right__cardNumber">{{ number_format($order_wait) }}</div>
+        <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
+    </a>
+</div>
 <div class="right__search">
-    <form role="form" action="/search_category" method="get">
+    <form role="form" action="/search_order" method="get">
        @csrf
         <input type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm kiếm" >
         <input type="submit" class="button" value="Search">
@@ -20,7 +32,7 @@
 <div class="right__table">
     <div class="right__tableWrapper">
     @php
-        $tt = 0;
+        $tt = 1;
     @endphp
         <table>
             <thead>
@@ -31,7 +43,7 @@
                     <th>Ngày đặt</th>
                     <th>Số điện thoại nhận</th>
                     <th>Địa chỉ nhận</th>
-                    <th>Tổng tiền</th>
+                    <th>Tổng tiền (VNĐ)</th>
                     <th>Ghi chú</th>
                     <th>Trạng thái</th>
                     <th>Xem</th>
@@ -44,17 +56,17 @@
                     <tr>
                         <td>{{ $tt++ }}</td>
                         <td data-label="Mã đơn hàng">{{$r->id}}</td>
-                        <td data-label="Tên khách hàng">{{ $r->customer->CustomerName }}</td>
-                        <td data-label="Ngày đặt">{{ $r->OrderDate }}</td>
+                        <td data-label="Tên khách hàng" style="text-align:left">{{ $r->customer->CustomerName }}</td>
+                        <td data-label="Ngày đặt">{{ \Carbon\Carbon::parse($r->OrderDate)->format('d/m/Y') }}</td>
                         <td data-label="Số điện thoại nhận">{{ $r->ShipPhone }}</td>
-                        <td data-label="Địa chỉ nhận">{{ $r->ShipAddress }}</td>
-                        <td data-label="Tổng tiền">{{ $r->total }}</td>
-                        <td data-label="Ghi chú">{{ $r->Note }}</td>
+                        <td data-label="Địa chỉ nhận" style="text-align:left">{{ $r->ShipAddress }}</td>
+                        <td data-label="Tổng tiền" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->total ) }}</td>
+                        <td data-label="Ghi chú" style="text-align:left">{{ $r->Note }}</td>
                         <td data-label="Trạng thái">
                             @if( $r->Status == 0)
-                                <a href="#" class="label-success label">Đã xử lý</a>
+                                 <a href="#" class="label label-warning">Chờ xử lý</a>
                             @else
-                                <a href="#" class="label label-defaul">Chờ xử lý</a>
+                                <a href="#" class="label-success label">Đã xử lý</a>
                             @endif
                         </td>
                         <td data-label="Xem" class="right__iconTable">
@@ -79,56 +91,5 @@
     {{ $db->links() }}
 </div>
 
-<!-- 
-<div class="modal fade" id="myModalOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Chi tiết mã đơn hàng # <b class="order_id"></b></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="md_content">
-      
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-<!-- 
-<script>
-    $(function() { 
-        $(".js_order_item").click(function (event) { 
-            event.preventDefault();
-            let $this = $(this);
-            let url = $this.attr('href');
-            $("#md_content").html('');
-            $(".order_id").text('').text($this.attr('data-id'));
-            $("#myModalOrder").modal('show');
-            
 
-            $.ajax({
-                url: $this.attr('href'),
-            }).done(function(result) { 
-                console.log(result);
-                if (result) {
-                    $("#md_content").html('').append(result);
-                }
-             });
-
-             $.ajax({
-                 url: url,
-                 success: function (response) {
-                    console.log(response);
-                    if (response) {
-                        $("#md_content").append(response);
-                    }
-                 }
-             });
-        });
-     });
-</script> -->
 @endsection

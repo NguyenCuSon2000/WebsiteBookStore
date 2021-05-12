@@ -38,8 +38,10 @@
                         <th>Tên khách hàng</th>
                         <th>Số điện thoại</th>
                         <th>Địa chỉ</th>
-                        <th>Số Hoá Đơn</th>
+                        <th>Tổng tiên (VNĐ)</th>
+                        <th>Ngày đặt</th>
                         <th>Trạng Thái</th>
+                        <th>Xem chi tiết</th>
                     </tr>
                 </thead>
         
@@ -47,22 +49,26 @@
                     @foreach($order_new as $order)
                     <tr>
                         <td data-label="STT">{{ $tt++ }}</td>
-                        <td data-label="Tên khách hàng">{{ $order->customer->CustomerName}}</td>
+                        <td data-label="Tên khách hàng" style="text-align:left">{{ $order->customer->CustomerName}}</td>
                         <td data-label="Số điện thoại">{{ $order->ShipPhone }}</td>
-                        <td data-label="Địa chỉ">{{ $order->ShipAddress }}</td>
-                        <td data-label="Số Hoá Đơn">{{ $order->id }}</td>
+                        <td data-label="Địa chỉ" style="text-align:left">{{ $order->ShipAddress }}</td>
+                        <td data-label="Tổng tiền" style="color:red; font-weight:bold; text-align:right">{{ number_format($order->total) }}</td>
+                        <td data-label="Ngày đặt">{{ \Carbon\Carbon::parse($order->OrderDate)->format('d/m/Y') }}</td>
                         <td data-label="Trạng Thái">
                              @if( $order->Status == 0)
-                                <a href="#" class="label-success label">Đã xử lý</a>
+                                <a href="#" class="label label-warning">Chờ xử lý</a>
                             @else
-                                <a href="#" class="label label-defaul">Chờ xử lý</a>
+                                  <a href="#" class="label-success label">Đã xử lý</a>
                             @endif
+                        </td>
+                        <td data-label="Xem chi tiết" class="right__iconTable">
+                              <a  data-id ="{{ $order->id }}" href="{{ route('order.show', $order->id) }}"><img src="{{ asset('assets/icon-eye.svg') }}" alt=""></a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <a href="" class="right__tableMore"><p>Xem tất cả các đơn đặt hàng</p> <img src="{{asset('assets/arrow-right-black.svg')}}" alt=""></a>
+        <a href="{{ route('order.index') }}" class="right__tableMore"><p>Xem tất cả các đơn đặt hàng</p> <img src="{{asset('assets/arrow-right-black.svg')}}" alt=""></a>
     </div>
 @endsection

@@ -160,46 +160,48 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="tab-pane fade reviews" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                        
+                                    
+                                    <div class="tab-pane fade reviews" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                      @foreach($comments as $comment)
                                         <div class="media">
-                                            <div class="row no-gutter">
-                                                <div class="col-12 col-lg-2 p-0">
-                                                    
-                                                    <div class="row no-gutters">
-                                                        <div class="col-12 d-flex  justify-content-center">
-                                                            <img src="img\user.jpg" alt="Generic placeholder image">
+                                                <div class="row no-gutter">
+                                                    <div class="col-12 col-lg-2 p-0">
+                                                        
+                                                        <div class="row no-gutters">
+                                                            <div class="col-12 d-flex  justify-content-center">
+                                                                <img src="{{ asset('img\user.jpg') }}" alt="Generic placeholder image">
+                                                            </div>
+                                                            <div class="col-12 d-flex mt-2 justify-content-center">
+                                                                <ul class="user-rating">
+                                                                    <li><a href="#"><i class="lni-star-filled"></i></a></li>
+                                                                    <li><a href="#"><i class="lni-star-filled"></i></a></li>
+                                                                    <li><a href="#"><i class="lni-star-filled"></i></a></li>
+                                                                    <li><a href="#"><i class="lni-star-filled"></i></a></li>
+                                                                    <li><a href="#"><i class="lni-star"></i></a></li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-12 d-flex mt-2 justify-content-center">
-                                                            <ul class="user-rating">
-                                                                <li><a href="#"><i class="lni-star-filled"></i></a></li>
-                                                                <li><a href="#"><i class="lni-star-filled"></i></a></li>
-                                                                <li><a href="#"><i class="lni-star-filled"></i></a></li>
-                                                                <li><a href="#"><i class="lni-star-filled"></i></a></li>
-                                                                <li><a href="#"><i class="lni-star"></i></a></li>
-                                                            </ul>
+                                                        
+                                                    </div>
+                                                    
+                                                    <div class="col-12 col-lg-10 p-0">
+                                                        <div class="media-body ">
+                                                            <span class="text-center text-lg-left d-block">{{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y') }}</span>
+                                                            <h5 class="mb-2 text-center text-lg-left">{{ $comment->name }}</h5>
+                                                            <p class="text-center text-lg-left">{{ $comment->content }}</p>
                                                         </div>
                                                     </div>
                                                     
                                                 </div>
-                                                
-                                                <div class="col-12 col-lg-10 p-0">
-                                                    <div class="media-body">
-                                                        <span class="text-center text-lg-left d-block">27 Aug 2017</span>
-                                                        <h5 class="mb-2 text-center text-lg-left">Media heading</h5>
-                                                        <p class="text-center text-lg-left">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam.</p>
-                                                    </div>
-                                                </div>
-                                                
                                             </div>
-                                        </div>
-                                        <div class="media">
+                                        @endforeach
+                                        <!-- <div class="media">
                                             <div class="row no-gutter">
                                                 <div class="col-12 col-lg-2 p-0">
                                                     
                                                     <div class="row no-gutters">
                                                         <div class="col-12 d-flex  justify-content-center">
-                                                            <img src="img\user2.jpg" alt="Generic placeholder image">
+                                                            <img src="{{ asset('img\user2.jpg') }}" alt="Generic placeholder image">
                                                         </div>
                                                         <div class="col-12 d-flex mt-2 justify-content-center">
                                                             <ul class="user-rating">
@@ -223,7 +225,7 @@
                                                 </div>
                                                 
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
                                         <div class="row pl-2 pr-2">
                                             <div class="col-12 d-flex mb-4 mt-3">
@@ -231,16 +233,20 @@
                                                 <hr class="w-100 ml-5">
                                             </div>
                                             <div class="col-12">
-                                                <form class="getin_form border-form" id="register">
+
+                                                <form class="getin_form border-form" id="register" class="contact-form" id="contact-form-data" action="{{ route('comment',$product->id) }}" method="post"">
+                                                @csrf
+                                                <input type="hidden" name="ProductId" value="{{ $product->id }}">
                                                     <div class="row">
+                                                      
                                                         <div class="col-md-6 col-sm-12">
                                                             <div class="form-group bottom35">
-                                                                <input type="text" class="form-control" placeholder="Name*" required="" id="registerName">
+                                                                <input type="text" class="form-control" name="name" placeholder="Name*" required="required" id="registerName">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 col-sm-12">
                                                             <div class="form-group bottom35">
-                                                                <input type="email" class="form-control" placeholder="Email*" required="" id="registerEmail">
+                                                                <input type="email" class="form-control" name="email" placeholder="Email*" required="required" id="registerEmail">
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-lg-2 text-center text-lg-left">
@@ -257,23 +263,23 @@
                                                         </div>
                                                         <div class="col-12">
                                                             <div class="form-group">
-                                                                                                                                        <label for="comment">Your Rating:</label>
-                                                                <textarea class="form-control textareaclass" rows="5" id="comment" placeholder="Your Review"></textarea>
+                                                                <label for="comment">Your Rating:</label>
+                                                                <textarea class="form-control textareaclass" name="content" rows="5" id="comment" required="required" placeholder="Your Review"></textarea>
                                                             </div>
                                                         </div>
                                                         
                                                         <div class="col-12 mt-3">
                                                             <div class="form-group d-flex justify-content-center d-lg-block">
-                                                                <button class="text-center btn green-color-yellow-gradient-btn">Add Review</button>
+                                                                <button type="submit" class="text-center btn green-color-yellow-gradient-btn">Add Review</button>
                                                             </div>
                                                         </div>
-                                                        
                                                     </div>
                                                 </form>
+
                                             </div>
                                         </div>
                                         
-                                    </div> -->
+                                    </div>
                                 </div>
                                 
                             </div>
@@ -293,189 +299,36 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 mb-4">
-                    <h1>SÁCH KHÁC</h1>
+                    <h1>Sách Nổi Bật</h1>
                 </div>
                 
                 <div class="col-12">
                     <div class="lastest_featured_products owl-carousel owl-theme">
                         
-                        @foreach($products_new as $product)
+                        @foreach($product_pay as $product)
                         <div class="lastest_arrival_items item">
-                            <a href="{{ route('addcart', ['id' => $product->id]) }}" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
+                            <a href="{{ route('addcart', ['id' => $product->product->id]) }}" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
                             <div class="card">
                                 <span class="product-type">NEW</span>
                                 <div class="image-holder">
-                                    <a href="{{asset('img'.'/'.$product->Picture)}}" data-fancybox="lastest_product" data-title="Shirt Name">
-                                        <img src="{{asset('img'.'/'.$product->Picture)}}" class="card-img-top" title="{{ $product->ProductName }}" alt="{{ $product->ProductName }}">
+                                    <a href="{{asset('img'.'/'.$product->product->Picture)}}" data-fancybox="lastest_product" data-title="Shirt Name">
+                                        <img src="{{asset('img'.'/'.$product->product->Picture)}}" class="card-img-top" title="{{ $product->product->ProductName }}" alt="{{ $product->product->ProductName }}">
                                     </a>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12 text-center">
-                                           <a href="{{ route('product_detail').'/'.$product->id }}"><h5 class="card-title">{{ $product->ProductName }}</h5></a> 
+                                           <a href="{{ route('product_detail').'/'.$product->product->id }}"><h5 class="card-title">{{ $product->product->ProductName }}</h5></a> 
                                         </div>
                                         <div class="col-12 text-center">
-                                            <p class="card-text">{{ number_format($product->Price) }} VND</p>
+                                            <p class="card-text">{{ number_format($product->product->Price) }} VND</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         @endforeach
-<!--                         
-                        <div class="lastest_arrival_items item">
-                            <a href="product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                            <div class="card">  <span class="product-type">NEW</span>
-                                <div class="image-holder">
-                                    <a href="img\l7.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                        <img src="img\l7.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <h5 class="card-title">The Joke</h5>
-                                        </div>
-                                        <div class="col-12 text-center">
-                                            <p class="card-text text-center"> $850.00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="lastest_arrival_items item">
-                            <a href="product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                            <div class="card">
-                                <span class="product-type">NEW</span>
-                                <div class="image-holder">
-                                    <a href="img\l8.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                        <img src="img\l8.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <h5 class="card-title">Never Let Me Go </h5>
-                                        </div>
-                                        <div class="col-12 text-center">
-                                            <p class="card-text text-center"> $650.00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="lastest_arrival_items item">
-                            <a href="product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                            <div class="card">
-                                <span class="product-type">NEW</span>
-                                <div class="image-holder">
-                                    <a href="img\l9.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                        <img src="img\l9.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <h5 class="card-title"> The Last World</h5>
-                                        </div>
-                                        <div class="col-12 text-center">
-                                            <p class="card-text text-center"> $680.00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="lastest_arrival_items item">
-                            <a href="product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                            <div class="card">
-                                <span class="product-type">NEW</span>
-                                <div class="image-holder">
-                                    <a href="img\l10.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                        <img src="img\l10.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <h5 class="card-title">Brave New World</h5>
-                                        </div>
-                                        <div class="col-12 text-center">
-                                            <p class="card-text text-center"> $250.00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="lastest_arrival_items item">
-                            <a href="product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                            <div class="card">
-                                <span class="product-type">NEW</span>
-                                <div class="image-holder">
-                                    <a href="img\l11.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                        <img src="img\l11.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <h5 class="card-title">Life Without Money</h5>
-                                        </div>
-                                        <div class="col-12 text-center">
-                                            <p class="card-text text-center"> $850.00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="lastest_arrival_items item">
-                            <a href="product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                            <div class="card">
-                                <span class="product-type">NEW</span>
-                                <div class="image-holder">
-                                    <a href="img\l12.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                        <img src="img\l12.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <h5 class="card-title">Life Is Elsewhere</h5>
-                                        </div>
-                                        <div class="col-12 text-center">
-                                            <p class="card-text text-center"> $950.00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="lastest_arrival_items item">
-                            <a href="product-detail.html" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
-                            <div class="card">
-                                <span class="product-type">NEW</span>
-                                <div class="image-holder">
-                                    <a href="img\l7.jpg" data-fancybox="lastest_product" data-title="Lastest Arrivals 1">
-                                        <img src="img\l13.jpg" class="card-img-top" alt="Lastest Arrivals 1">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <h5 class="card-title">The Road</h5>
-                                        </div>
-                                        <div class="col-12 text-center">
-                                            <p class="card-text text-center"> $550.00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         -->
+
                     </div>
                 </div>
             </div>

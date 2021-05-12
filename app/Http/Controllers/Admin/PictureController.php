@@ -56,7 +56,8 @@ class PictureController extends Controller
             return $request;
             $pictures->picture = "";
         }
-       
+
+        $pictures->status = $request->sl_stt;
         $pictures->save();
 
         return redirect()->route('picture.index')->with('message', 'Thêm hình ảnh thành công');
@@ -120,7 +121,7 @@ class PictureController extends Controller
             // return $request;
             $db->picture = "";
         }
-
+        $db->status = $request->input('sl_stt');
         $db->save();
         return redirect()->route("picture.index", [$id])->with('message', 'Cập nhật hình ảnh thành công');
     }

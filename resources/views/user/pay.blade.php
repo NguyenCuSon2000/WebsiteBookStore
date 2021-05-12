@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <strong>Order Total</strong>
-                                    <div class="pull-right">{{ Cart::total(0,3)." "."VND" }}</div>
+                                    <div class="pull-right">{{ Cart::subtotal(0,3)." "."VND" }}</div>
                                 </div>
                             </div>
                         </div>
@@ -86,34 +86,34 @@
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Tên khách hàng:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="text" name="txtName" class="form-control" value="" />
+                                        <input type="text" name="txtName" class="form-control" value="" require />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Ngày sinh:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="date" name="txtDate" class="form-control" value="" />
+                                        <input type="date" name="txtDate" class="form-control" value="" require/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Địa chỉ nhận:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="text" name="txtad" class="form-control" value="" />
+                                        <input type="text" name="txtad" class="form-control" value="" require/>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Số điện thoại:</strong></div>
-                                    <div class="col-md-12"><input type="text" name="txtPhone" class="form-control" value="" /></div>
+                                    <div class="col-md-12"><input type="text" name="txtPhone" class="form-control" value="" require/></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Email:</strong></div>
-                                    <div class="col-md-12"><input type="email" name="txtEmail" class="form-control" value="{{ Auth::user()->username }}" /></div>
+                                    <div class="col-md-12"><input type="email" name="txtEmail" class="form-control" value="{{ Auth::user()->username }}" require/></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Ghi chú:</strong></div>
                                     <div class="col-md-12">
-                                        <textarea class="form-control" name="txtNote" id="" rows="3"></textarea>
+                                        <textarea class="form-control" name="txtNote" id="" rows="3" require></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="form-control btn btn-success" value="">Đặt hàng</button>
