@@ -62,7 +62,7 @@ class CartController extends Controller
         ];
         Cart::add($cart);
         // dd(Cart::content());
-        return redirect()->route('index')->with('message','Đã mua '.$product->ProductName.' thành công');
+        return redirect()->back()->with('message','Đã mua '.$product->ProductName.' thành công');
     }
 
     /**

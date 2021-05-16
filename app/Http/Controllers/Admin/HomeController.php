@@ -36,7 +36,7 @@ class HomeController extends Controller
         $count_order = Orders::count();
 
 
-        $order_new = Orders::orderby("Status", "desc")->limit(5)->get();
+        $order_new = Orders::orderby("Status", "asc")->orderBy("id","desc")->limit(5)->get();
 
         // dd($product_pay);
         return view("admin.index", compact(

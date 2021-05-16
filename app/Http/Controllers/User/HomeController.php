@@ -70,7 +70,6 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-      
        return view("user.index", compact("search_product"));
     }
 }

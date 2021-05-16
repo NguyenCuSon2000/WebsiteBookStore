@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-
+//----------------------------------------------     ADMIN PAGE    ----------------------------------------------------//
 Auth::routes();
 // LOGOUT
 Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index')->middleware(['auth','role:admin']);
@@ -59,15 +59,18 @@ Route::get('/statistic/order_pay', 'Admin\StatisticsController@getOrder')->name(
 // COMMENT
 Route::resource('comment', 'Admin\CommentsController');
 
+//NEWS
+Route::resource('news', 'Admin\NewsController');
 
 
-//USER PAGE
+
+
+//----------------------------------------------     USER PAGE    ----------------------------------------------------//
+
 Route::get('/', 'User\HomeController@index')->name('index');
 Route::get('/search', 'User\HomeController@index')->name("search");
 Route::get('/listproduct/{id?}', 'User\ProductController@index')->name('listproduct');
 Route::get('/product_detail/{id?}', 'User\ProductDetailController@index')->name('product_detail');
-
-
 
 // SHOPPING CART
 Route::resource('cart', "User\CartController");
@@ -82,7 +85,17 @@ Route::post('checkout', "User\CheckoutController@postFormPay")->name("checkout")
 Route::get('/contact', "User\ContactController@index")->name("contact");
 Route::post('/contact', "User\ContactController@saveContact")->name("contact");
 
+// COMMENT 
 Route::post('/comment/{id?}', "User\ProductDetailController@saveComment")->name("comment");
+
+
+// NEWS
+Route::get("/new","User\NewsController@index")->name("new");
+Route::get("/new_detail/{id?}","User\NewsController@new_detail")->name("new_detail");
+
+//INTRODUCE
+Route::get("/introduce","User\IntroduceController@index")->name("introduce");
+
 //SEND MAIL
 // Route::get("/send-mail","User\HomeController@send_mail");
 

@@ -116,7 +116,7 @@ class RolesController extends Controller
             $db = Roles::paginate(6);
         }
         else {
-            $db = Roles::where('name','LIKE','%'.$text.'%')->paginate(10);
+            $db = Roles::where('name','LIKE','%'.$text.'%')->get();
         }
         return view('admin.role.role', ['db'=>$db]);
     }

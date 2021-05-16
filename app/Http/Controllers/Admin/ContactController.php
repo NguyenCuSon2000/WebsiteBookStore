@@ -58,9 +58,16 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id=null)
     {
         //
+        if ($id == null) {
+            return redirect()->route("contact_admin.index");
+        }
+        else {
+            $db = Contact::find($id);
+            return view("admin.contact.edit_contact",['db'=>$db]);
+        }
     }
 
     /**
@@ -73,6 +80,15 @@ class ContactController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $db = Contact::find($id);
+        $db->name = $request->input('txtName');
+        $db->email = $request->input('txtDate');
+        $db->dddress = $request->input('txtAd');
+        $db->title = $request->input('txtsdt');
+        $db->content = $request->input('txtemail');
+        $db->save();
+        return redirect()->route('customer.index',[$id])->with("message","Cập nhật thành công");
+
     }
 
     /**

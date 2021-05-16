@@ -128,7 +128,7 @@ class CustomersController extends Controller
                             ->orWhere('DateOfBirth','LIKE','%'.$text.'%')
                             ->orWhere('Address','LIKE','%'.$text.'%')
                             ->orWhere('Phone','LIKE','%'.$text.'%')
-                            ->orWhere('Email','LIKE','%'.$text.'%')->paginate(10);
+                            ->orWhere('Email','LIKE','%'.$text.'%')->paginate(1000);
         }
         return view('admin.customer.customer', ['db'=>$db]);
     }

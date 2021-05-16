@@ -84,20 +84,17 @@
                         <div class="col-12 col-md-6">
                             <h4 class="text-center text-md-left">Thông tin</h4>
                             <ul class="text-center text-md-left">
-                                <li><a href="javascript:void(0)">Về chúng tôi</a></li>
-                                <li><a href="javascript:void(0)">Thông tin giao hàng</a></li>
-                                <li><a href="javascript:void(0)">Chính sách bảo mật</a></li>
-                                <li><a href="javascript:void(0)">Điều khoản & Điều kiện</a></li>
-                                <li><a href="javascript:void(0)">FAQ</a></li>
+                                <li><a href="{{ route('introduce') }}">Về chúng tôi</a></li>
+                                <li><a href="{{ route('new') }}">Tin tức</a></li>
                                 <li><a href="{{ route('contact') }}">Liên hệ chúng tôi</a></li>
-                                <li><a href="javascript:void(0)">Các sản phẩm</a></li>
+                                <li><a href="{{ route('index') }}">Các sản phẩm</a></li>
                             </ul>
                         </div>
                         <div class="col-12 col-md-6">
                             <h4 class="text-center text-md-left">Thông tin tài khoản</h4>
                             <ul class="text-center text-md-left">
                                 @if(Auth::check())
-                                    <li><a href="book-shop/shop-cart.html">Lịch sử đặt hàng</a></li>
+                                    <li><a href="javascript:void(0)">Lịch sử đặt hàng</a></li>
                                     <li><a href="javascript:void(0)">Thông tin giao hàng</a></li>
                                     <li><a href="javascript:void(0)">Chính sách hoàn lại tiền</a></li>
                                     <li><a href="javascript:void(0)">Trang web đáp ứng</a></li>
@@ -170,6 +167,9 @@
         $(function () { 
             $('.orderby').change(function () { 
                 $('#form_order').submit();
+            });
+            $('.display').change(function () { 
+                $('#form_display').submit();
             });
         })
     </script>

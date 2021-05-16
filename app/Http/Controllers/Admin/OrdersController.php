@@ -19,7 +19,7 @@ class OrdersController extends Controller
     public function index()
     {
         //
-        $db = Orders::orderby("Status", "desc")->paginate(10);
+        $db = Orders::orderby("Status", "asc")->orderBy("id","desc")->paginate(5);
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
         return view("admin.order.order", compact("db","order_done","order_wait"));
@@ -44,9 +44,11 @@ class OrdersController extends Controller
     public function search(Request $request)
     {
         //
+        $order_done = Orders::where("Status",1)->count();
+        $order_wait = Orders::where("Status",0)->count();
         $text = $request->input("txtSearch");
         if ($text == "") {
-            $db = Orders::paginate(10);
+            $db = Orders::orderby("Status", "asc")->orderBy("id","desc")->paginate(5);
         }
         else {
             $db = Orders::join('customers','orders.CustomerId','=','customers.id')
@@ -55,9 +57,9 @@ class OrdersController extends Controller
                             ->orWhere('orders.ShipPhone','LIKE','%'.$text.'%')
                             ->orWhere('orders.ShipAddress','LIKE','%'.$text.'%')
                             ->orWhere('orders.Note','LIKE','%'.$text.'%')
-                            ->orWhere('customers.CustomerName','LIKE','%'.$text.'%')->paginate(10);
+                            ->orWhere('customers.CustomerName','LIKE','%'.$text.'%')->get();
         }
-        return view('admin.order.order', ['db'=>$db]);
+        return view('admin.order.order', compact("db","order_done","order_wait"));
     }
     
     public function print_order($checkout_code)

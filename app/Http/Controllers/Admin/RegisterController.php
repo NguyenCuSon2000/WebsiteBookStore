@@ -26,7 +26,7 @@ class RegisterController extends Controller
             ],
             [
                 'email.required'=>'Vui lòng nhập email',
-                'email.email'=>'Không đúng điịnh dạng email',
+                'email.email'=>'Không đúng định dạng email',
                 'email.unique'=>'Email đã sử dụng',
                 'password.required'=>'Vui lòng nhập password',
                 're_password.same'=>"Mật khẩu không giống nhau",

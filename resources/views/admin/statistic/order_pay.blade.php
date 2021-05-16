@@ -21,11 +21,11 @@
                 @csrf
                 <div class="form-group">
                     <label for="">Từ</label>
-                    <input type="date" name="date_form" class="form-control">
+                    <input type="date" name="date_form" value="" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">đến</label>
-                    <input type="date" name="date_to" class="form-control">
+                    <input type="date" name="date_to" value="" class="form-control">
                 </div>
                 <input type="submit" class="btn btn-success" value="THỐNG KÊ">
             </form>

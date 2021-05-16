@@ -53,6 +53,56 @@ body {
     overflow-x: hidden;
 }
 
+.introduce_info.col-12 {
+    z-index: 2;
+    padding: 50px 6% 0 43%;
+    background: url(//theme.hstatic.net/1000373675/1000478598/14/hcontact_bg2_new.jpg?v=1076);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    color: white;
+    font-size: 13px;
+}
+
+img.new_img {
+    padding: 0% 10%;
+    margin: 3%;
+}
+
+
+
+div.new-filter-nav {
+    position: sticky;
+    top: -10px;
+    padding-top: 5%;
+    padding-left: 0;
+    padding-bottom: 0;
+}
+
+p.text-left {
+    font-size: 15px;
+    font-family: 'LineIcons';
+}
+
+h4.text-left.p-item-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+
+time {
+    font-style: italic;
+    font-size: 14px;
+    margin-left: 6px;
+}
+
+li.info-item {
+    padding: 5px 10px;
+}
+
 .map-load {
     margin-top: 5%;
 }
@@ -75,12 +125,46 @@ ul {
     list-style: none;
 }
 
+
+
+ul.info-more {
+    display: inline-flex;
+}
+
 a,
 a:hover,
 a:focus {
     outline: none;
     text-decoration: none;
     color: inherit;
+}
+
+a {}
+
+a.readmore.btn-rb.clear-fix {
+    display: inline-block;
+    padding: 10px 20px;
+    width: auto;
+    margin: 10px 0px;
+    line-height: 1.42;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 0;
+    text-transform: uppercase;
+    background-color:#ffffff;
+    color: #333333;
+    font-size: 11px;
+    border:1px solid #333333;
+}
+
+a.readmore.btn-rb.clear-fix:hover {
+    background-color: #28b241;
+    color:#ffffff;
 }
 
 button:focus,
@@ -109,6 +193,14 @@ h5,
 .button,
 .numbered .tp-bullet .tp-count {
     font-family: 'Poppins', sans-serif;
+}
+
+h1.filter-heading.text-center.text-lg-left {
+    font-size: 32px;
+    line-height: 150%;
+    font-family: "Merriweather",serif;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
 
 /*Center block*/
@@ -476,15 +568,20 @@ END scroll-top-arrow
 }
 
 .product-listing-products .product-list .p-item-detail  .p-item-name{
-    font-size: 18px;
+    font-size: 20px;
     color: #000000;
     font-family: Poppins, sans-serif;
-    font-weight: normal;
+    font-weight: 600;
     margin-bottom: 8px;
     -webkit-transition: .4s ease;
     -o-transition: .4s ease;
     transition: .4s ease;
     margin-top: -10px;
+    line-height: 24px;
+}
+
+h4.text-left.p-item-name a:hover {
+    color: #f7941d;
 }
 .product-listing-products .product-list .p-item-detail .p-item-price{
     font-size: 15px;

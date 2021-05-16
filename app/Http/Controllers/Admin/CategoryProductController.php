@@ -123,7 +123,7 @@ class CategoryProductController extends Controller
         else {
             $db = CategoryProducts::where('CategoryName','LIKE','%'.$text.'%')
                                     ->orWhere('id','LIKE','%'.$text.'%')
-                                    ->orWhere('Description','LIKE','%'.$text.'%')->paginate(50);
+                                    ->orWhere('Description','LIKE','%'.$text.'%')->paginate(1000);
         }
         return view('admin.category.category', ['db'=>$db]);
     }

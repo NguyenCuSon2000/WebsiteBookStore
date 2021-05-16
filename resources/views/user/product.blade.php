@@ -62,24 +62,40 @@
                     <!-- START LISTING HEADING -->
                     <div class="col-12 product-listing-heading">
                         <h1 class="heading text-left">Danh sách sản phẩm</h1>
-                        <p class="para_text text-left">Sách hay, cũng như bạn tốt, ít và được lựa chọn; chọn lựa càng nhiều, thưởng thức càng nhiều.</p>
+                        <p class="para_text text-left">Sách hay, cũng như bạn tốt, ít và được lựa chọn; chọn lựa càng nhiều, thưởng thức càng nhiều. - <b>Louisa May Alcott</b> -</p>
                     </div>
                     <!-- END LISTING HEADING -->
 
-                    <div class="col-12 product-listing-sort">
-                         <form action="" id="form_order" method="get">
-                            <div class="form-group"  style="float: right;">
-                                <label for="">Sắp xếp</label>
-                                <select class="orderby" name="orderby" >
-                                    <option {{ Request::get('orderby') == "md" || !Request::get('orderby') ? "selected='selected'" : "" }} value="md" selected>Mặc định</option>
-                                    <option {{ Request::get('orderby') == "desc" ? "selected='selected'" : "" }} value="desc">Mới nhất</option>
-                                    <option {{ Request::get('orderby') == "asc" ? "selected='selected'" : "" }} value="asc">Sản phẩm cũ</option>
-                                    <option {{ Request::get('orderby') == "price_max" ? "selected='selected'" : "" }} value="price_max">Giá tăng dần</option>
-                                    <option {{ Request::get('orderby') == "price_min" ? "selected='selected'" : "" }} value="price_min">Giá giảm dần</option>
+                    <div class="col-6 mt-3 product-listing-sort">
+                         <form action="" id="form_display" method="get">
+                            <div class="form-group">
+                                <label for="">Hiển thị</label>
+                                <select class="display" name="display" >
+                                    <option {{ Request::get('display') == "md" || !Request::get('display') ? "selected='selected'" : "" }} value="md" selected>Mặc định</option>
+                                    <option {{ Request::get('display') == "3" ? "selected='selected'" : "" }} value="3">3</option>
+                                    <option {{ Request::get('display') == "6" ? "selected='selected'" : "" }} value="6">6</option>
+                                    <option {{ Request::get('display') == "9" ? "selected='selected'" : "" }} value="9">9</option>
+                                    <option {{ Request::get('display') == "12" ? "selected='selected'" : "" }} value="12">12</option>
+                                    <option {{ Request::get('display') == "15" ? "selected='selected'" : "" }} value="15">15</option>
                                 </select>
                             </div>
                          </form>
                     </div>
+
+                    <div class="col-6 mt-3 product-listing-sort">
+                        <form action="" id="form_order" method="get">
+                           <div class="form-group"  style="float: right;">
+                               <label for="">Sắp xếp</label>
+                               <select class="orderby" name="orderby" >
+                                   <option {{ Request::get('orderby') == "md" || !Request::get('orderby') ? "selected='selected'" : "" }} value="md" selected>Mặc định</option>
+                                   <option {{ Request::get('orderby') == "desc" ? "selected='selected'" : "" }} value="desc">Mới nhất</option>
+                                   <option {{ Request::get('orderby') == "asc" ? "selected='selected'" : "" }} value="asc">Sản phẩm cũ</option>
+                                   <option {{ Request::get('orderby') == "price_max" ? "selected='selected'" : "" }} value="price_max">Giá tăng dần</option>
+                                   <option {{ Request::get('orderby') == "price_min" ? "selected='selected'" : "" }} value="price_min">Giá giảm dần</option>
+                               </select>
+                           </div>
+                        </form>
+                   </div>
                     
                     <!-- START PRODUCT LISTING SECTION -->
                     <div class="col-12 product-listing-products">
@@ -112,9 +128,6 @@
                                 </div>
                             </div>
                             @endforeach
-                            
-                            
-                            
                         </div>
                         <!-- END DISPLAY PRODUCT -->
                         
@@ -129,11 +142,6 @@
     </div>
 </div>
 <!--Product Line Up End-->
-<div style="margin-left: 50%; margin-bottom: 50px;">
-    {{ $products->links() }}
-</div>
-
-
 
 @endsection
 

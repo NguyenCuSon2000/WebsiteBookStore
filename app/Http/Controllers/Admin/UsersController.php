@@ -101,7 +101,7 @@ class UsersController extends Controller
         }
         else {
             $db = User::where('username','LIKE','%'.$text.'%')
-                            ->orWhere('id','LIKE','%'.$text.'%')->paginate(10);
+                            ->orWhere('id','LIKE','%'.$text.'%')->paginate(1000);
         }
         return view('admin.user.users', ['db'=>$db]);
     }

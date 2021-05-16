@@ -76,6 +76,13 @@
                     <div class="panel panel-info">
                         <div class="panel-heading">Thông tin thanh toán</div>
                         <div class="panel-body">
+                            @if(count($errors)>0)
+                            <div class="alert alert-danger" style="color: red">
+                                @foreach($errors->all() as $error)
+                                {{$error}}
+                                @endforeach
+                            </div>
+                            @endif
                             <form action="{{ route('checkout') }}" method="POST" role="form" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
@@ -86,34 +93,34 @@
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Tên khách hàng:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="text" name="txtName" class="form-control" value="" require />
+                                        <input type="text" name="txtName" class="form-control" value="" required />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Ngày sinh:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="date" name="txtDate" class="form-control" value="" require/>
+                                        <input type="date" name="txtDate" class="form-control" value="" required />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Địa chỉ nhận:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="text" name="txtad" class="form-control" value="" require/>
+                                        <input type="text" name="txtad" class="form-control" value="" required />
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Số điện thoại:</strong></div>
-                                    <div class="col-md-12"><input type="text" name="txtPhone" class="form-control" value="" require/></div>
+                                    <div class="col-md-12"><input type="text" name="txtPhone" class="form-control" value="" required /></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Email:</strong></div>
-                                    <div class="col-md-12"><input type="email" name="txtEmail" class="form-control" value="{{ Auth::user()->username }}" require/></div>
+                                    <div class="col-md-12"><input type="email" name="txtEmail" class="form-control" value="{{ Auth::user()->username }}" required /></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Ghi chú:</strong></div>
                                     <div class="col-md-12">
-                                        <textarea class="form-control" name="txtNote" id="" rows="3" require></textarea>
+                                        <textarea class="form-control" name="txtNote" id="" rows="3" required ></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="form-control btn btn-success" value="">Đặt hàng</button>

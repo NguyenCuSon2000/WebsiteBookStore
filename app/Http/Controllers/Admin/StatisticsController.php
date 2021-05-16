@@ -32,7 +32,7 @@ class StatisticsController extends Controller
         $date_from = $request->input("date_form");
         $date_to = $request->input("date_to");
         if ($date_from == "" || $date_to == "" || $date_from >= $date_to) {
-            $order_pay = Orders::all();
+            $order_pay = Orders::orderby("Status", "asc")->orderBy("id","desc")->paginate(5);
         }
         else {
             $order_pay = Orders::whereBetween("OrderDate", [$date_from, $date_to])->get();

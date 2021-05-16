@@ -10,62 +10,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('index') }}">TRANG CHỦ</a>
                         </li>
-                        <!-- <li class="nav-item dropdown static">
-                            <a class="nav-link dropdown-toggle active" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SÁCH </a>
-                            <ul class="dropdown-menu megamenu flexable-megamenu">
-                                <li>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
-                                                <h5 class="dropdown-title"> Truyện - Tiểu thuyết </h5>
-                                                <ul>
-                                                 
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Sách nổi bật</a></li>
-
-                                                </ul>
-                                                <h5 class="dropdown-title"> Sách giáo trình </h5>
-                                                <ul>
-                                          
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Sách nổi bật</a></li>
-
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
-                                                <h5 class="dropdown-title"> Khoa học công nghệ </h5>
-                                                <ul>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Sách nổi bật</a></li>
-                                                   
-                                                </ul>
-                                                
-                                                <h5 class="dropdown-title"> Văn học nghệ thuật</h5>
-                                                <ul>
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">Sách nổi bật</a></li>
-                                                  
-                                                </ul>
-                                                
-                                            </div>
-                                            <div class="col-lg-6 col-md-12 col-sm-12">
-                                                <h5 class="dropdown-title text-left">Hình ảnh </h5>
-                                                <div class="carousel-menu mt-4">
-                                                    <div class="featured-megamenu-carousel owl-carousel owl-theme">
-                                                        <div class="item ">
-                                                            <img src="{{ asset('img/shop1.jpg') }}" alt="shop-image">
-                                                        </div>
-                                                        <div class="item">
-                                                            <img src="{{ asset('img/shop2.jpg') }}" alt="shop-image">
-                                                        </div>
-                                                    </div>
-                                                    <i class="lni-chevron-left ini-customPrevBtn"></i>
-                                                    <i class="lni-chevron-right ini-customNextBtn"></i>
-                                                </div>
-                                                <p class="mt-4 megamenu-slider-para"></p>
-                                                <a href="book-shop/product-listing.html" class="btn black-border-color-yellow-gradient-btn slider-btn text-left">Mua ngay</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('introduce') }}">GIỚI THIỆU</a>
+                        </li>
                         <li class="nav-item dropdown static">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SÁCH </a>
                             <ul class="dropdown-menu megamenu flexable-megamenu">
@@ -140,15 +87,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown position-relative">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TIN TỨC</a>
-                            <div class="dropdown-menu">
-                                <ul>
-                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-listing.html">TIN NỔI BẬT</a></li>
-                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/product-detail.html">TIN SÁCH MỚI</a></li>
-                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="book-shop/shop-cart.html.html">TIN SÁCH XUẤT BẢN</a></li>
-                                </ul>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('new') }}">TIN TỨC</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact') }}">LIÊN HỆ</a>
@@ -165,43 +105,12 @@
                 <span class="btn-close btn-close-no-padding" id="btn_sideNavClose"><i></i><i></i></span>
                 <nav class="side-nav w-100">
                     <ul class="navbar-nav">
-                        
                         <li class="nav-item">
                             <a class="nav-link" href="book-shop/product-listing.html"> TRANG CHỦ</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages1">
-                                SÁCH ĐIỆN TỬ <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <div id="sideNavPages1" class="collapse sideNavPages">
-                                <h5 class="sub-title">1. Truyện - Tiểu thuyết</h5>
-                                <ul class="navbar-nav mt-2">
-
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Sách nổi bật</a></li>
-                                   
-                                </ul>
-                                <h5 class="sub-title">2. Khoa học - Công nghệ</h5>
-                                <ul class="navbar-nav mt-2">
-
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Sách nổi bật</a></li>
-                                  
-                                </ul>
-                                
-                                <h5 class="sub-title">3. Sách giáo trình</h5>
-                                <ul class="navbar-nav mt-2">
-
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Sách nổi bật</a></li>
-                                   
-                                </ul>
-                                
-                                <h5 class="sub-title">4. Văn học nghệ thuật</h5>
-                                <ul class="navbar-nav mt-2">
-
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Sách nổi bật</a></li>
-                                  
-                                </ul>
-                            </div>
-                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('introduce') }}">GIỚI THIỆU</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages3">
                                 SÁCH <i class="fas fa-chevron-down"></i>
@@ -224,22 +133,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages2">
-                                TIN TỨC <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <div id="sideNavPages2" class="collapse sideNavPages">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="book-shop/product-listing.html">TIN NỔI BẬT</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="book-shop/product-detail.html">TIN SÁCH MỚI</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="book-shop/shop-cart.html">TIN SÁCH XUẤT BẢN</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <a class="nav-link" href="{{ route('new') }}">TIN TỨC</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact') }}">LIÊN HỆ</a>

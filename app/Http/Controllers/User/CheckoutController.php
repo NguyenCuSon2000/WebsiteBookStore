@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
-    //
-   
-   
     public function getFormPay(Request $request)
     {
        
@@ -40,6 +37,7 @@ class CheckoutController extends Controller
 
     public function postFormPay(Request $request)
     {
+      
         $c_id = $request->txtid;
         $totalMoney = str_replace(",","",Cart::subtotal(0,3));
 

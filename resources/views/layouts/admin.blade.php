@@ -30,7 +30,7 @@
                         </div>
                         <ul class="left__menu">
                             <li class="left__menuItem">
-                                <a href="{{ route('/admin/index') }}" class="left__title"><img src="{{asset('assets/icon-dashboard.svg')}}" alt="">Dashboard</a>
+                                <a href="{{ route('/admin/index') }}" class="left__title"><img src="{{asset('assets/icon-dashboard.svg')}}" alt="">Trang chủ</a>
                             </li>
                             <li class="left__menuItem">
                                 <div class="left__title"><img src="{{asset('assets/icon-tag.svg')}}" alt="">Sản Phẩm<img class="left__iconDown" src="{{asset('')}}assets/arrow-down.svg" alt=""></div>
@@ -77,8 +77,15 @@
                             <li class="left__menuItem">
                                 <div class="left__title"><img src="{{asset('assets/icon-picture.svg')}}" alt="">Hình ảnh<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
-                                    <a class="left__link" href="{{ route('picture.create') }}">Chèn hình ảnh</a>
+                                    <a class="left__link" href="{{ route('picture.create') }}">Thêm hình ảnh</a>
                                     <a class="left__link" href="{{ route('picture.index') }}">Xem hình ảnh</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="{{asset('assets/icon-pencil.svg')}}" alt="">Tin tức<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="{{ route('news.create') }}">Thêm tin </a>
+                                    <a class="left__link" href="{{ route('news.index') }}">Quản lý tin tức</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">
@@ -90,7 +97,7 @@
                             <li class="left__menuItem">
                                 <div class="left__title"><img src="{{asset('assets/icon-user.svg')}}" alt="">Người dùng<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
-                                    <a class="left__link" href="{{ route('user.create') }}">Chèn người dùng</a>
+                                    <a class="left__link" href="{{ route('user.create') }}">Thêm người dùng</a>
                                     <a class="left__link" href="{{ route('user.index') }}">Xem người dùng</a>
                                 </div>
                             </li>
