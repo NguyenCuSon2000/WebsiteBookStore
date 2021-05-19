@@ -122,7 +122,7 @@
             <div class="col-12">
                 <div id="js-grid-blog-posts" class="cbp">
                  @foreach($products as $product)
-                    <div class="cbp-item Classic Fantasy">
+                    <div  style="{{ $product->Status==0?'display:none':'display:block' }}" class="cbp-item Classic Fantasy">
                         <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
@@ -140,7 +140,7 @@
                     </div>
                   @endforeach
                   @foreach($product_asc as $product)
-                    <div class="cbp-item Classic">
+                    <div  style="{{ $product->Status==0?'display:none':'display:block' }}" class="cbp-item Classic">
                         <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
@@ -159,7 +159,7 @@
                   @endforeach
                   <div class="slide-img bg-img" style="background-image: {{asset('public\front-end\img\core-img\b1.png')}};"></div>
                   @foreach($product_bt as $product)
-                    <div class="cbp-item Fantasy motion">
+                    <div  style="{{ $product->Status==0?'display:none':'display:block' }}" class="cbp-item Fantasy motion">
                         <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
@@ -215,7 +215,7 @@
                 <div class="lastest_featured_products owl-carousel owl-theme">
 
                 @foreach($products_sale as $product)
-                    <div class="lastest_arrival_items item">
+                    <div style="{{ $product->Status==0?'display:none':'display:block' }}" class="lastest_arrival_items item">
                         <a href="{{ route('addcart', ['id' => $product->id]) }}" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
                         <div class="product-sale">
                                 <span><label class="sale-lb">- </label> {{ $product->Percent }}%</span>

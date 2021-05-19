@@ -11,11 +11,21 @@
         </div>
         <div class="right__inputWrapper">
             <label for="title">Tiêu đề</label>
-            <input type="text" value="{{ $db->CategoryName }}" name="txtName" placeholder="Tiêu đề">
+            <input type="text" value="{{ $db->CategoryName }}" name="txtName"  class="form-control @error('txtName') is-invalid @enderror" required autocomplete="txtName" autofocus>
+            @error('txtName')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
         <div class="right__inputWrapper">
             <label for="desc">Mô tả</label>
-            <textarea style="resize: none" id="ckeditor2" name="txtdes" cols="30" rows="10">{{ $db->Description }}</textarea>
+            <textarea style="resize: none" id="ckeditor2" name="txtdes" cols="30" rows="10" class="form-control @error('txtdes') is-invalid @enderror" value="{{ old('txtdes') }}" required autocomplete="txtdes" autofocus>{{ $db->Description }}</textarea>
+            @error('txtdes')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
         <div class="right__inputWrapper">
             <label for="p_category">Trạng thái</label>

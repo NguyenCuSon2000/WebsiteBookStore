@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\CategoryProducts;
 use App\Models\Products;
+use App\Http\Requests\ProductRequest;
+use Auth;
 
 class ProductsController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +52,7 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         //
         $product = new Products();
@@ -118,7 +120,7 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         //
         $db = Products::find($id);
@@ -132,13 +134,11 @@ class ProductsController extends Controller
             $filename = time() . '.' . $extension;
             $file->move('img', $filename);
             $db->Picture =  $filename;
-
         }
         else {
-            // return $request;
             $db->Picture = "";
         }
-
+      
         $db->Price = $request->input('txtprice');
         $db->Status = $request->input('sl_stt');
         $db->save();
@@ -169,12 +169,10 @@ class ProductsController extends Controller
             $db = Products::paginate(10);
         }
         else {
-            $db = Products::join('category_products','products.Cate_Id','=','category_products.id')
-                           ->where('products.ProductName','LIKE','%'.$text.'%')
-                           ->orWhere('products.id','LIKE','%'.$text.'%')
-                           ->orWhere('products.Price','LIKE','%'.$text.'%')
-                           ->orWhere('category_products.CategoryName','LIKE','%'.$text.'%')->paginate(1000);
+            $db = Products::where('ProductName','LIKE','%'.$text.'%')
+                           ->orWhere('id','LIKE','%'.$text.'%')
+                           ->orWhere('Price','LIKE','%'.$text.'%')->paginate(1000);
         }
-        return view('admin.product.product', ['db'=>$db]);
+        return view('admin.product.product', compact('db'));
     }
 }

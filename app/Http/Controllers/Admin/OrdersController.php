@@ -46,6 +46,7 @@ class OrdersController extends Controller
         //
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
+        
         $text = $request->input("txtSearch");
         if ($text == "") {
             $db = Orders::orderby("Status", "asc")->orderBy("id","desc")->paginate(5);

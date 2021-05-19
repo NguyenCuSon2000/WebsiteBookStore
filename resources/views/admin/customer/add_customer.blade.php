@@ -7,23 +7,23 @@
         @csrf
         <div class="right__inputWrapper">
             <label for="title">Tên khách hàng</label>
-            <input type="text" name="txtName" placeholder="Tên khách hàng">
+            <input type="text" class="form-control"  name="txtName" placeholder="Tên khách hàng" required>
         </div>
         <div class="right__inputWrapper">
             <label for="date">Ngày sinh</label>
-            <input type="date" name="txtDate" id="">
+            <input type="date" class="form-control" name="txtDate" id="" required>
         </div>
         <div class="right__inputWrapper">
             <label for="txtAd">Địa chỉ</label>
-            <input type="text" name="txtAd">
+            <input type="text" class="form-control" name="txtAd" required>
         </div>
         <div class="right__inputWrapper">
             <label for="txtsdt">Số điện thoại</label>
-            <input type="text" name="txtsdt" placeholder="Số điện thoại">
+            <input type="text" class="form-control" name="txtsdt" placeholder="Số điện thoại" required>
         </div>
         <div class="right__inputWrapper">
             <label for="email">Email</label>
-            <input type="email" name="txtemail" placeholder="Email">
+            <input type="email" class="form-control" name="txtemail" placeholder="Email" required>
         </div>
         <button class="btn btn-info" type="submit">Thêm</button>
     </form>

@@ -44,6 +44,11 @@
   box-sizing: border-box;
 }
 
+span.time {
+    font-weight: bold;
+    color: red;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;

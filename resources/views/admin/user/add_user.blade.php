@@ -7,30 +7,29 @@
         @csrf
         <div class="right__inputWrapper">
             <label for="title">UserName</label>
-            <input type="text" name="txtName" placeholder="UserName">
+            <input type="text" class="form-control" name="txtName" placeholder="UserName" required>
         </div>
         <div class="right__inputWrapper">
             <label for="date">Password</label>
-            <input type="password" name="txtpw" id="">
+            <input type="password" class="form-control" name="txtpw" id="" required>
         </div>
         <div class="right__inputWrapper">
             <label for="email">Email</label>
-            <input type="email" name="txtemail" placeholder="Email">
+            <input type="email" class="form-control" name="txtemail" placeholder="Email" required>
         </div>
         <div class="right__inputWrapper">
             <label for="txtsdt">Số điện thoại</label>
-            <input type="text" name="txtsdt" placeholder="Số điện thoại">
+            <input type="text" class="form-control" name="txtsdt" placeholder="Số điện thoại" required>
         </div>
         <div class="right__inputWrapper">
             <label for="txtsdt">Địa chỉ</label>
-            <input type="text" name="txtad" placeholder="Địa chỉ">
+            <input type="text" class="form-control" name="txtad" placeholder="Địa chỉ" required>
         </div>
         <div class="right__inputWrapper">
             <label for="p_category">Trạng thái</label>
-            <select name="slstt">
-                <option disabled selected>Chọn trạng thái</option>
-                <option value="0">Ẩn</option>
+            <select name="slstt" class="form-control form-control-sm">
                 <option value="1">Hiển thị</option>
+                <option value="0">Ẩn</option>
             </select>
         </div>
         <button class="btn btn-info" type="submit">Thêm</button>

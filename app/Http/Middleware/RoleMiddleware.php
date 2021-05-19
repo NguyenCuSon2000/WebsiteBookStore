@@ -16,9 +16,9 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
-        if (!Auth::user() || Auth::user()->role->name != $role) {
-           return redirect()->route('login');
-        // abort("Không được truy cập", 503);
+        if ( !Auth::user() || Auth::user()->role->name != $role) {
+           return redirect('login');
+            //  abort("Không được truy cập", 503);
         }
         return $next($request);
     }

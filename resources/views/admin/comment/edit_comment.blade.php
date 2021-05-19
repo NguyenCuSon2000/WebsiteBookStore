@@ -7,8 +7,8 @@
         @csrf
         @method("PUT")
         <div class="right__inputWrapper">
-            <label for="p_category">Loại sách</label>
-            <select name="txtProduct">
+            <label for="p_category">Tên sách</label>
+            <select name="txtProduct" class="form-control form-control-sm">
                 <option value="{{ $db->product->id }}" selected>{{ $db->product->ProductName }}</option>
                 @foreach($products as $r)
                      <option value="{{ $r->id }}">{{ $r->ProductName }}</option>
@@ -17,11 +17,11 @@
         </div>
         <div class="right__inputWrapper">
             <label for="title">Người bình luận</label>
-            <input type="text" name="txtName" value="{{ $db->name }}" placeholder="UserName">
+            <input type="text" class="form-control" name="txtName" value="{{ $db->name }}" placeholder="Người bình luận">
         </div>
         <div class="right__inputWrapper">
             <label for="email">Email</label>
-            <input type="email" name="txtEmail" value="{{ $db->email }}" placeholder="Email">
+            <input type="email" class="form-control" name="txtEmail" value="{{ $db->email }}" placeholder="Email">
         </div>
         <div class="right__inputWrapper">
             <label for="date">Nội dung</label>

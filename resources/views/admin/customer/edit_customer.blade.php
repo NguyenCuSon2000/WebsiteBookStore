@@ -11,23 +11,23 @@
         </div>
         <div class="right__inputWrapper">
             <label for="title">Tên khách hàng</label>
-            <input type="text" name="txtName" value="{{ $db->CustomerName }}">
+            <input type="text" class="form-control" name="txtName" value="{{ $db->CustomerName }}" required>
         </div>
         <div class="right__inputWrapper">
             <label for="date">Ngày sinh</label>
-            <input type="date" name="txtDate" id="" value="{{ $db->DateOfBirth }}">
+            <input type="date" class="form-control" name="txtDate" id="" value="{{ $db->DateOfBirth }}" required>
         </div>
         <div class="right__inputWrapper">
             <label for="txtAd">Địa chỉ</label>
-            <input type="text" name="txtAd" value="{{ $db->Address }}">
+            <input type="text" class="form-control" name="txtAd" value="{{ $db->Address }}" required>
         </div>
         <div class="right__inputWrapper">
             <label for="txtsdt">Số điện thoại</label>
-            <input type="text" name="txtsdt" value="{{ $db->Phone }}">
+            <input type="text" class="form-control" name="txtsdt" value="{{ $db->Phone }}" required>
         </div>
         <div class="right__inputWrapper">
             <label for="email">Email</label>
-            <input type="email" name="txtemail" value="{{ $db->Email }}">
+            <input type="email" class="form-control" name="txtemail" value="{{ $db->Email }}" required>
         </div>
         <button class="btn btn-info" type="submit">Cập nhật</button>
     </form>

@@ -4,11 +4,21 @@
 <p class="right__desc">Thống kê đơn hàng</p>
 <div class="container">
     <div class="row">
-        <div class="col-md-9 right__cards">
+        <div class="right__cards">
             <a class="right__card" href="">
-                    <div class="right__cardTitle">Tổng doanh thu</div>
-                    <div class="right__cardNumber">{{ number_format($order_total) }} đ</div>
-                    <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
+                <div class="right__cardTitle">Tổng doanh thu</div>
+                <div class="right__cardNumber">{{ number_format($order_total) }} đ</div>
+                <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
+            </a>
+            <a class="right__card" href="">
+                <div class="right__cardTitle">Đơn hàng đã xử lý</div>
+                <div class="right__cardNumber">{{ number_format($order_done) }} đ</div>
+                <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
+            </a>
+            <a class="right__card" href="">
+                <div class="right__cardTitle">Đơn hàng chờ xử lý</div>
+                <div class="right__cardNumber">{{ number_format($order_wait) }} đ</div>
+                <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
             </a>
             <a class="right__card" href="">
                 <div class="right__cardTitle">Doanh thu theo ngày tháng</div>
@@ -16,15 +26,16 @@
                 <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
             </a>
         </div>
-        <div class="col-md-3 left_date">
+        <div class="col-md-6 left_date">
             <form role="form" action="" method="get">
                 @csrf
                 <div class="form-group">
-                    <label for="">Từ</label>
-                    <input type="date" name="date_form" value="" class="form-control">
+                    <label for="">Từ <span class="time"> {{ \Carbon\Carbon::parse($date_from)->format('d/m/Y') }}</span></label>
+                    <input type="date" name="date_from" value="" class="form-control">
+                   
                 </div>
                 <div class="form-group">
-                    <label for="">đến</label>
+                    <label for="">đến <span class="time">{{ \Carbon\Carbon::parse($date_to)->format('d/m/Y') }}</span></label>
                     <input type="date" name="date_to" value="" class="form-control">
                 </div>
                 <input type="submit" class="btn btn-success" value="THỐNG KÊ">

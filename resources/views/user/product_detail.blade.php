@@ -33,6 +33,7 @@
                             <div class="wrapper">
                                 <div class="Gallery swiper-container img-magnifier-container" id="gallery">
                                     <div class="swiper-wrapper myimgs">
+                                        <div class="swiper-slide"> <a href="{{asset('img'.'/'.$product->Picture)}}" data-fancybox="1" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$product->Picture)}}" alt="gallery"></a></div>
                                         @foreach($pictures as $value)
                                            <div class="swiper-slide"> <a href="{{asset('img'.'/'.$value->picture)}}" data-fancybox="1" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$value->picture)}}" alt="gallery"></a></div>
                                         @endforeach
@@ -40,6 +41,7 @@
                                 </div>
                                 <div class="Thumbs swiper-container" id="thumbs">
                                     <div class="swiper-wrapper">
+                                        <div class="swiper-slide"> <img src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></div>
                                         @foreach($pictures as $value)
                                           <div class="swiper-slide"> <img src="{{asset('img'.'/'.$value->picture)}}" alt="thumnails"></div>
                                         @endforeach
@@ -115,7 +117,7 @@
                                 </ul>
                                 <div class="col-12 tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <p class="product-tab-description text-center text-lg-left">{{ $product->Description }}</p>
+                                        <p class="product-tab-description text-center text-lg-left">{!! $product->Description !!}</p>
                                         <!-- <p class="product-tab-description text-center text-lg-left">If you are a small business and you are interested in small rebranding then this is a perfect plan for you, having Five years experience in Blogging, photographing, Disgning and love to cycling,Writting,Singing and Traveling around the world</p> -->
                                     </div>
                                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

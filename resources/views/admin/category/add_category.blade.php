@@ -6,33 +6,28 @@
     <form role="form" action="{{ route('category.store') }}" method="post">
         @csrf
         <div class="right__inputWrapper">
-            <label for="title">Tiêu đề</label>
-            <input type="text" name="txtName" placeholder="Tiêu đề">
-            <div>
-                @error('title')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
+            <label for="title">Tên loại sách</label>
+            <input type="text" name="txtName" class="form-control @error('txtName') is-invalid @enderror"  placeholder="Tên loại sách" value="{{ old('txtName') }}" required autocomplete="txtName" autofocus>
+            @error('txtName')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
         <div class="right__inputWrapper">
-            <label for="desc">Mô tả</label>
-            <textarea id="ckeditor" name="txtdes" cols="30" rows="10" placeholder="Mô tả"></textarea>
-            <div>
-                @error('description')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
+            <label for="txtdes">Mô tả</label>
+            <textarea id="ckeditor" name="txtdes" cols="30" rows="10" placeholder="Mô tả" class="form-control @error('txtdes') is-invalid @enderror" value="{{ old('txtdes') }}" required autocomplete="txtdes" autofocus></textarea>
+            @error('txtdes')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
         <div class="right__inputWrapper">
             <label for="p_category">Trạng thái</label>
-            <select name="sl_stt">
-                <option disabled selected>Chọn trạng thái</option>
-                <option value="0">Ẩn</option>
+            <select class="form-control form-control-sm" name="sl_stt">
                 <option value="1">Hiển thị</option>
+                <option value="0">Ẩn</option>
             </select>
         </div>
         <button class="btn btn-info" name="add_categogy_product" type="submit">Add</button>

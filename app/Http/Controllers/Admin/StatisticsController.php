@@ -29,20 +29,27 @@ class StatisticsController extends Controller
 
     public function getOrder(Request $request)
     {
-        $date_from = $request->input("date_form");
+        $order_done = Orders::where("Status",1)->count();
+        $order_wait = Orders::where("Status",0)->count();
+
+        $date_from = $request->input("date_from");
         $date_to = $request->input("date_to");
+        
         if ($date_from == "" || $date_to == "" || $date_from >= $date_to) {
             $order_pay = Orders::orderby("Status", "asc")->orderBy("id","desc")->paginate(5);
         }
         else {
-            $order_pay = Orders::whereBetween("OrderDate", [$date_from, $date_to])->get();
+            $order_pay = Orders::orderby("Status", "asc")->orderBy("id","desc")->whereBetween("OrderDate", [$date_from, $date_to])->get();
         }
 
         $order_total = Orders::sum('total');
 
         $order_total_date = Orders::whereBetween("OrderDate", [$date_from, $date_to])->sum('total');
         
-        return view("admin.statistic.order_pay", compact("order_pay","order_total","order_total_date"));
+        return view("admin.statistic.order_pay", 
+               compact("order_done","order_wait",
+                       "date_from","date_to",
+                       "order_pay","order_total","order_total_date"));
     }
 
 

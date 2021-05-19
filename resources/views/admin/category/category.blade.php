@@ -41,8 +41,15 @@
                         <td>{{ $tt++ }}</td>
                         <td data-label="STT">{{$r->id}}</td>
                         <td data-label="Tiêu đề" style="text-align:left">{{$r->CategoryName}}</td>
-                        <td data-label="Mô tả" style="text-align:left">{{$r->Description}}</td>
-                        <td data-label="Hiển thị"><input type="checkbox" name="cbtt" value="{{ $r->Status }}" {{ $r->Status==0?'':'checked'}}  ></td>
+                        <td data-label="Mô tả" style="text-align:left">{!!$r->Description!!}</td>
+                        <td data-label="Hiển thị">
+                            <!-- <input type="checkbox" name="cbtt" value="{{ $r->Status }}" {{ $r->Status==0?'':'checked'}}  > -->
+                            @if( $r->Status == 0)
+                                 <a href="#" class="label label-warning">Ẩn</a>
+                            @else
+                                <a href="#" class="label-success label">Hiển Thị</a>
+                            @endif
+                        </td>
                         <td data-label="Sửa" class="right__iconTable"><a href="{{ route('category.edit', $r->id) }}"><img src="{{asset('assets/icon-edit.svg')}}" alt=""></a></td>
                         <td data-label="Xoá" class="right__iconTable">
                             <form role="form" action="{{ route('category.destroy', $r->id) }}" method="post">

@@ -42,9 +42,22 @@
                         <td>{{ $tt++ }}</td>
                         <td data-label="Mã">{{ $r->id }}</td>
                         <td data-label="Username" style="text-align:left">{{ $r->username }}</td>
-                        <td data-label="Quyền">{{ $r->role->name}}</td>
+                        <td data-label="Quyền"> 
+                            @if( $r->role->name == 'user')
+                                 <a href="#" class="label label-warning">User</a>
+                            @else
+                                <a href="#" class="label-success label">Admin</a>
+                            @endif
+                        </td>
                         <td data-label="Ngày tạo">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y') }}</td>
-                        <td data-label="Trạng thái"><input type="checkbox" name="cbtt" value="{{ $r->status }}" {{ $r->status==0?'':'checked'}}  ></td>
+                        <td data-label="Trạng thái">
+                            <!-- <input type="checkbox" name="cbtt" value="{{ $r->status }}" {{ $r->status==0?'':'checked'}}  > -->
+                            @if( $r->status == 0)
+                                 <a href="#" class="label label-warning">Ngừng</a>
+                            @else
+                                <a href="#" class="label-success label">Hoạt Động</a>
+                            @endif
+                        </td>
                         <td data-label="Sửa" class="right__iconTable"><a href="{{ route('user.edit', $r->id) }}"><img src="{{asset('assets/icon-edit.svg')}}" alt=""></a></td>
                         <td data-label="Xoá" class="right__iconTable">
                             <form role="form" action="{{ route('user.destroy', $r->id) }}" method="post">

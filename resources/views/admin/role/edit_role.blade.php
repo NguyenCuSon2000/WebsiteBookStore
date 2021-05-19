@@ -8,11 +8,11 @@
         @method("PUT")
         <div class="right__inputWrapper">
             <label for="title">Quyền</label>
-            <input type="text" value="{{ $db->name }}" name="txtName" >
+            <input type="text"  class="form-control" value="{{ $db->name }}" name="txtName" required>
         </div>
         <div class="right__inputWrapper">
             <label for="p_role">Trạng thái</label>
-            <select name="sl_stt">
+            <select name="sl_stt"  class="form-control form-control-sm">
                 <!-- <option disabled selected>Chọn trạng thái</option> -->
                 <option value="0" {{ $db->status==0?"":"selected"}}>Ẩn</option>
                 <option value="1" {{ $db->status==0?"":"selected"}}>Hiển thị</option>

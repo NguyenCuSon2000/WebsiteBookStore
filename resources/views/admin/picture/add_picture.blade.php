@@ -7,7 +7,7 @@
         @csrf
         <div class="right__inputWrapper">
             <label for="p_category">Tên sách</label>
-            <select name="txtName">
+            <select name="txtName"  class="form-control form-control-sm">
                 @foreach($product_name as $r)
                     <option value="{{ $r->id}}">{{ $r->ProductName }}</option>
                 @endforeach
@@ -15,11 +15,11 @@
         </div>
         <div class="right__inputWrapper">
             <label for="image">Hình ảnh</label>
-            <input type="file" name="fileImg">
+            <input type="file" class="form-control" name="fileImg" required>
         </div>
         <div class="right__inputWrapper">
             <label for="p_picture">Trạng thái</label>
-            <select name="sl_stt">
+            <select name="sl_stt" class="form-control form-control-sm">
                 <option disabled selected>Chọn trạng thái</option>
                 <option value="0">Ẩn</option>
                 <option value="1">Hiển thị</option>

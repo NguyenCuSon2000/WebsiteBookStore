@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryProducts;
 use Illuminate\Database\Eloquent\Collection;
+use Auth;
+
+use App\Http\Requests\StoreCategoryRequest;
 
 class CategoryProductController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +41,7 @@ class CategoryProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
         //
         $category = new CategoryProducts();
@@ -85,7 +89,7 @@ class CategoryProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCategoryRequest $request, $id)
     {
         //
         $db = CategoryProducts::find($id);

@@ -8,30 +8,26 @@
         @method("PUT")
         <div class="right__inputWrapper">
             <label for="title">UserName</label>
-            <input type="text" name="txtName" value="{{ $db->username }}" placeholder="UserName">
+            <input type="text" class="form-control" name="txtName" value="{{ $db->username }}" placeholder="UserName" required>
         </div>
         <div class="right__inputWrapper">
             <label for="date">Password</label>
-            <input type="password" value="{{ $db->password }}" name="txtpw" id="">
+            <input type="password" class="form-control" value="{{ $db->password }}" name="txtpw" id="" required>
         </div>
         <div class="right__inputWrapper">
-            <label for="email">Email</label>
-            <input type="email" name="txtemail" value="{{ $db->email }}" placeholder="Email">
-        </div>
-        <div class="right__inputWrapper">
-            <label for="txtsdt">Số điện thoại</label>
-            <input type="text" name="txtsdt" value="{{ $db->phone }}">
-        </div>
-        <div class="right__inputWrapper">
-            <label for="txtsdt">Địa chỉ</label>
-            <input type="text" name="txtad" value="{{ $db->address }}">
+            <label for="p_category">Quyền</label>
+            <select name="sl_role" class="form-control form-control-sm">
+                <option value="{{ $db->role->id }}" selected>{{ $db->role->name }}</option>
+                @foreach($role as $r)
+                     <option value="{{ $r->id }}">{{ $r->name }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="right__inputWrapper">
             <label for="p_category">Trạng thái</label>
-            <select name="slstt">
-                <!-- <option disabled selected>Chọn trạng thái</option> -->
-                <option value="0" {{ $db->Status==0?"":"selected"}}>Ẩn</option>
-                <option value="1" {{ $db->Status==0?"":"selected"}}>Hiển thị</option>
+            <select name="slstt" class="form-control form-control-sm">
+                <option value="0" {{ $db->status==0?"":"selected"}}>Ẩn</option>
+                <option value="1" {{ $db->status==0?"":"selected"}}>Hiển thị</option>
             </select>
         </div>
         <button class="btn btn-info" type="submit">Cập nhật</button>

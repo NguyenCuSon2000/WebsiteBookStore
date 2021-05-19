@@ -25,9 +25,9 @@
                         <div class="left__logo">BOOK STORE</div>
                         <div class="left__profile">
                             <div class="left__image"><img src="{{asset('assets/nguyencuson.jpg')}}" alt=""></div>
-                            <p class="left__name">
-                        
+                            <p class="left__name"> </p>
                         </div>
+                     
                         <ul class="left__menu">
                             <li class="left__menuItem">
                                 <a href="{{ route('/admin/index') }}" class="left__title"><img src="{{asset('assets/icon-dashboard.svg')}}" alt="">Trang chủ</a>
@@ -102,7 +102,7 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                            <form action="{{ route('index') }}" method="post">
+                            <form action="{{ route('login') }}" method="post">
                                 @csrf
                                 <a href="{{ Auth::logout() }}" class="left__title"><img src="{{asset('assets/icon-logout.svg')}}" alt="">Đăng Xuất</a>
                             </form>

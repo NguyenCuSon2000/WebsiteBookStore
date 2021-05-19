@@ -82,12 +82,13 @@ class ContactController extends Controller
         //
         $db = Contact::find($id);
         $db->name = $request->input('txtName');
-        $db->email = $request->input('txtDate');
-        $db->dddress = $request->input('txtAd');
-        $db->title = $request->input('txtsdt');
-        $db->content = $request->input('txtemail');
+        $db->email = $request->input('txtEmail');
+        $db->address = $request->input('txtAd');
+        $db->title = $request->input('txtTitle');
+        $db->content = $request->input('txtContent');
+        $db->status = $request->input('sl_stt');
         $db->save();
-        return redirect()->route('customer.index',[$id])->with("message","Cập nhật thành công");
+        return redirect()->route('contact_admin.index',[$id])->with("message","Cập nhật thành công");
 
     }
 
@@ -103,5 +104,22 @@ class ContactController extends Controller
         $db = Contact::findOrFail($id);
         $db->delete();
         return redirect()->route("contact_admin.index")->with('message', 'Xóa thông tin thành công');
+    }
+
+    public function search(Request $request)
+    {
+        //
+        $text = $request->input("txtSearch");
+        if ($text == "") {
+            $db = Contact::paginate(10);
+        }
+        else {
+            $db = Contact::where('name','LIKE','%'.$text.'%')
+                           ->orWhere('email','LIKE','%'.$text.'%')
+                           ->orWhere('content','LIKE','%'.$text.'%')
+                           ->orWhere('address','LIKE','%'.$text.'%')
+                           ->orWhere('title','LIKE','%'.$text.'%')->paginate(1000);
+        }
+        return view('admin.contact.contact', ['db'=>$db]);
     }
 }

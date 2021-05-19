@@ -104,4 +104,21 @@ class CommentsController extends Controller
         $db->delete();
         return redirect()->route("comment.index")->with('message', 'Xóa bình luận thành công');
     }
+
+    public function search(Request $request)
+    {
+        //
+        $text = $request->input("txtSearch");
+        if ($text == "") {
+            $db = Comments::paginate(10);
+        }
+        else {
+            $db = Comments::join('products','comments.ProductId','=','products.id')
+                           ->where('comments.name','LIKE','%'.$text.'%')
+                           ->orWhere('comments.email','LIKE','%'.$text.'%')
+                           ->orWhere('comments.content','LIKE','%'.$text.'%')
+                           ->orWhere('products.ProductName','LIKE','%'.$text.'%')->paginate(1000);
+        }
+        return view('admin.comment.comment', ['db'=>$db]);
+    }
 }

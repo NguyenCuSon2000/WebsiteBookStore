@@ -3,7 +3,7 @@
 <div class="right__title">Bảng điều khiển</div>
 <p class="right__desc">Xem thông tin liên hệ</p>
 <div class="right__search">
-    <form role="form" action="/search_category" method="get">
+    <form role="form" action="/search_contact" method="get">
        @csrf
         <input type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm kiếm" >
         <input type="submit" class="button" value="Search">
@@ -33,6 +33,7 @@
                     <th>Nội dung</th>
                     <th>Ngày liên hệ</th>
                     <th>Trạng thái</th>
+                    <th>Sửa</th>
                     <th>Xoá</th>
                 </tr>
             </thead>
@@ -49,11 +50,12 @@
                         <td data-label="Ngày liên hệ">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y') }}</td>
                         <td data-label="Trạng thái">
                             @if( $r->status == 0)
-                                <a href="#" class="label-success label">Chờ xử lý</a>
+                                <a href="#" class="label-warning label">Chờ xử lý</a>
                             @else
-                                <a href="#" class="label label-defaul">Đã xử lý</a>
+                                <a href="#" class="label label-success">Đã xử lý</a>
                             @endif
                         </td>
+                        <td data-label="Sửa" class="right__iconTable"><a href="{{ route('contact_admin.edit', $r->id) }}"><img src="{{asset('assets/icon-edit.svg')}}" alt=""></a></td>
                         <td data-label="Xoá" class="right__iconTable">
                             <form role="form" action="{{ route('contact_admin.destroy', $r->id) }}" method="post">
                                 @csrf

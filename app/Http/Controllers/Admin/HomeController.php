@@ -9,19 +9,15 @@ use App\Models\CategoryProducts;
 use App\Models\Customers;
 use App\Models\Orders;
 use App\Models\OrderDetails;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
+    public function __construct() {
+		$this->middleware('auth');
+	}
+
     /**
      * Display a listing of the resource.
      *
@@ -30,6 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         //
+        // var_dump(Auth::user());
+        // $name = Auth::user()->username;
         $count_category= CategoryProducts::count();
         $count_product = Products::count();
         $count_customer = Customers::count();
@@ -38,7 +36,7 @@ class HomeController extends Controller
 
         $order_new = Orders::orderby("Status", "asc")->orderBy("id","desc")->limit(5)->get();
 
-        // dd($product_pay);
+     
         return view("admin.index", compact(
             "count_category",
             "count_product",
@@ -46,6 +44,7 @@ class HomeController extends Controller
             "count_order",
             "order_new"
         ));
+        // return "Hello everyone >> ".Auth::user()->username;
     }
 
     /**

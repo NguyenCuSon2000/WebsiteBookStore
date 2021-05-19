@@ -16,11 +16,14 @@
 // });
 
 //----------------------------------------------     ADMIN PAGE    ----------------------------------------------------//
+
 Auth::routes();
 // LOGOUT
+
 Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index')->middleware(['auth','role:admin']);
 
 // CATEGORY
+// Route::resource('/category', 'Admin\CategoryProductController')->middleware(['auth','role:admin']);
 Route::resource('/category', 'Admin\CategoryProductController');
 Route::get('/search_category', 'Admin\CategoryProductController@search')->name('search_category');
 
@@ -46,11 +49,12 @@ Route::get('/search_picture', 'Admin\PictureController@search')->name('search_pi
 
 //ORDER
 Route::resource('order', "Admin\OrdersController");
-Route::get('/search_order', 'Admin\OrdersController@search')->name('search_order');
+Route::get('/search_order', 'Admin\OrdersController@search');
 Route::get('/print_order/{checkout_code}', "Admin\OrdersController@print_order")->name("print_order");
 
 //CONTACT
 Route::resource('contact_admin', 'Admin\ContactController');
+Route::get('/search_contact', 'Admin\ContactController@search')->name('search_contact');
 
 //STATISTICS
 Route::get('/statistic/index', 'Admin\StatisticsController@index')->name('/statistic/index');
@@ -58,6 +62,7 @@ Route::get('/statistic/order_pay', 'Admin\StatisticsController@getOrder')->name(
 
 // COMMENT
 Route::resource('comment', 'Admin\CommentsController');
+Route::get('/search_comment', 'Admin\CommentsController@search')->name('search_comment');
 
 //NEWS
 Route::resource('news', 'Admin\NewsController');

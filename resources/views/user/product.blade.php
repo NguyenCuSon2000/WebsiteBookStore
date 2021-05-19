@@ -22,7 +22,7 @@
                         <ul>
                             @foreach($product_count as $product)
                             <li>
-                                <a href="{{ route('listproduct').'/'.$product->category->id }}">{{ $product->category->CategoryName }} </a>
+                                <a class="active" href="{{ route('listproduct').'/'.$product->category->id }}">{{ $product->category->CategoryName }} </a>
                                 <span>({{ $product->count }})</span>
                             </li>
                             @endforeach
@@ -77,6 +77,7 @@
                                     <option {{ Request::get('display') == "9" ? "selected='selected'" : "" }} value="9">9</option>
                                     <option {{ Request::get('display') == "12" ? "selected='selected'" : "" }} value="12">12</option>
                                     <option {{ Request::get('display') == "15" ? "selected='selected'" : "" }} value="15">15</option>
+                                    <option {{ Request::get('display') == "all" ? "selected='selected'" : "" }} value="all">Tất cả</option>
                                 </select>
                             </div>
                          </form>
@@ -103,7 +104,7 @@
                         <!-- START DISPLAY PRODUCT -->
                         <div class="product-list row">
                             @foreach($products as $product)
-                            <div class="col-12 col-md-6 col-lg-4 manage-color-hover wow slideInUp" data-wow-delay=".2s">
+                            <div style="{{ $product->Status==0?'display:none':'display:block' }}" class="col-12 col-md-6 col-lg-4 manage-color-hover wow slideInUp" data-wow-delay=".2s">
                                 <div class="product-item owl-theme product-listing-carousel owl-carousel">
                                     <div class="item p-item-img">
                                         <img src="{{asset('img'.'/'.$product->Picture)}}" alt="images">

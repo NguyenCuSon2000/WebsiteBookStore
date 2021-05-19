@@ -22,10 +22,10 @@ class ProductDetailController extends Controller
 
         $pictures = Products::find($id)->pictures;
 
-        $product_pay = OrderDetails::groupBy('ProductId')
-                                    ->selectRaw('SUM(Quantity) as amount, ProductId')
-                                    ->orderBy('amount','desc')->get();
-        
+        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
+                        ->selectRaw('sum(Quantity) as amount, ProductId')
+                        ->orderBy('amount','desc')->limit(10)->get();
+                        
         $cart = Cart::content();
 
         $keywords = $request->txtSearch;

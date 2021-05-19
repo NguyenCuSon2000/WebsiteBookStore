@@ -16,12 +16,11 @@ class ProductController extends Controller
     {
         $categories = CategoryProducts::all();
         
-        $products = Products::where("Cate_Id", $id)->get();
+        $products = Products::where("Cate_Id", $id)->orderBy('id','DESC')->limit(6)->get();
         
         $product_count = Products::groupBy('Cate_Id')                             // COUNT PRODUCT
                                     ->selectRaw('count(id) as count, Cate_Id')
                                     ->get();
-        
         
         $cart = Cart::content();
         
@@ -57,6 +56,9 @@ class ProductController extends Controller
                     break;
                 case '15':
                     $products = Products::where("Cate_Id", $id)->limit(15)->get();
+                    break;
+                case 'all':
+                    $products = Products::where("Cate_Id", $id)->get();
                     break;
                 default:
                      $products = Products::where("Cate_Id", $id)->limit(9)->get();

@@ -111,7 +111,7 @@
                     <h4>Danh mục sản phẩm</h4>
                     <div class="foot-tag-list">
                     @foreach($categories as $category)
-                       <a href="{{ route('listproduct').'/'.$category->id }}"><span>{{$category->CategoryName}}</span></a> 
+                       <a href="{{ route('listproduct').'/'.$category->id }}" style="{{ $category->Status==0?'display:none':'display:block' }} "><span>{{$category->CategoryName}}</span></a> 
                         @endforeach
                     </div>
                 </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
-// 
+use App\Models\Roles;
 use Auth;
 
 class UsersController extends Controller
@@ -61,9 +61,17 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id=null)
     {
         //
+        if ($id == null) {
+            return redirect()->route("user.index");
+        }
+        else {
+            $db = User::find($id);
+            $role = Roles::all();
+            return view("admin.user.edit_user",['db'=>$db,'role'=>$role]);
+        }
     }
 
     /**
@@ -76,6 +84,13 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $db = User::find($id);
+        $db->username = $request->input('txtName');
+        $db->password = $request->input('txtpw');
+        $db->role_id = $request->input('sl_role');
+        $db->status = $request->input('slstt');
+        $db->save();
+        return redirect()->route('user.index',[$id])->with("message","Cập nhật thành công");
     }
 
     /**

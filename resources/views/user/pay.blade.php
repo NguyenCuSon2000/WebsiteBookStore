@@ -52,18 +52,18 @@
                             <div class="form-group"><hr /></div>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <strong>Subtotal</strong>
+                                    <strong>Tổng phụ</strong>
                                     <div class="pull-right">{{ Cart::subtotal(0,3)." "."VND" }}</div>
                                 </div>
                                 <div class="col-xs-12">
-                                    <small>Shipping</small>
+                                    <small>Giao hàng</small>
                                     <div class="pull-right"><span>-</span></div>
                                 </div>
                             </div>
                             <div class="form-group"><hr /></div>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <strong>Order Total</strong>
+                                    <strong>Tổng Tiền</strong>
                                     <div class="pull-right">{{ Cart::subtotal(0,3)." "."VND" }}</div>
                                 </div>
                             </div>

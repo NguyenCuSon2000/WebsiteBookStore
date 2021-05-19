@@ -8,7 +8,7 @@
         @method("PUT")
         <div class="right__inputWrapper">
             <label for="p_category">Tên sách</label>
-            <select name="txtName">
+            <select name="txtName"  class="form-control form-control-sm">
                 <option value="{{ $db->product->id }}" selected>{{ $db->product->ProductName }}</option>
                 @foreach($products as $r)
                      <option value="{{ $r->id }}">{{ $r->ProductName }}</option>
@@ -17,11 +17,11 @@
         </div>
         <div class="right__inputWrapper">
             <label for="image">Hình ảnh</label>
-            <input type="file" value="{{ $db->picture }}" name="fileImg">
+            <input type="file" class="form-control" value="{{ $db->picture }}" name="fileImg" required>
         </div>
         <div class="right__inputWrapper">
             <label for="p_picture">Trạng thái</label>
-            <select name="sl_stt">
+            <select name="sl_stt" class="form-control form-control-sm">
                 <!-- <option disabled selected>Chọn trạng thái</option> -->
                 <option value="0" {{ $db->status==0?"":"selected"}}>Ẩn</option>
                 <option value="1" {{ $db->status==0?"":"selected"}}>Hiển thị</option>

@@ -22,10 +22,13 @@
                                             <div class="col-lg-4 col-md-6 col-sm-12 mengmenu_border">
                                                 <h5 class="dropdown-title bottom10"> Chủ đề </h5>                                                
                                                 <ul id="menu">
-                                                @foreach($categories as $category)
-                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="{{ route('listproduct').'/'.$category->id }}">{{$category->CategoryName}}</a></li>
-                                                @endforeach
-                                                 
+                                                    @foreach($categories as $category)
+                                                    <li style=" {{ $category->Status==0?'display:none':'display:block' }}">
+                                                        <i class="lni-angle-double-right right-arrow"></i>
+                                                        <a class="dropdown-item" href="{{ route('listproduct').'/'.$category->id }}">{{$category->CategoryName}}</a>
+                                                    </li>
+                                                    @endforeach
+                                                    
                                                 </ul>
                                                 
                                             </div>
@@ -33,7 +36,7 @@
                                                 <h5 class="dropdown-title opacity-10"> Sách nổi bật </h5>
                                                 <ul>
                                                     @foreach($product_pay as $product)
-                                                        <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="{{ route('product_detail').'/'.$product->product->id }}">{{ $product->product->ProductName }}</a></li>
+                                                    <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="{{ route('product_detail').'/'.$product->product->id }}">{{ $product->product->ProductName }}</a></li>
                                                     @endforeach
                                                 </ul>
                                                 
@@ -117,18 +120,17 @@
                             </a>
                             <div id="sideNavPages3" class="collapse sideNavPages">
                                 <ul class="navbar-nav mt-2">
-                                @foreach($categories as $category)
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('listproduct').'/'.$category->id }}">{{$category->CategoryName}}</a></li>
-                                @endforeach
+                                    @foreach($categories as $category)
+                                    <li class="nav-item" style=" {{ $category->Status==0?'display:none':'display:block' }}">
+                                        <a class="nav-link" href="{{ route('listproduct').'/'.$category->id }}">{{$category->CategoryName}}</a>
+                                    </li>
+                                    @endforeach
                                 </ul>
                                 <h5 class="sub-title">Sách nổi bật</h5>
                                 <ul class="navbar-nav mt-2">
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Tiểu thuyết</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html"> Từ điển </a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html"> Sức khỏe</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Lịch sử</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Kinh dị</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="book-shop/product-listing.html">Hài hước</a></li>
+                                    @foreach($product_pay as $product)
+                                    <li class="nav-item" ><a class="nav-link" href="{{ route('product_detail').'/'.$product->product->id }}">{{ $product->product->ProductName }}</a></li>
+                                  @endforeach
                                 </ul>
                             </div>
                         </li>

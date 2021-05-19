@@ -6,12 +6,17 @@
     <form role="form" action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="right__inputWrapper">
-            <label for="title">Tiêu đề</label>
-            <input type="text" name="txtName" placeholder="Tiêu đề">
+            <label for="title">Tên sách</label>
+            <input type="text" name="txtName" class="form-control @error('txtName') is-invalid @enderror"  placeholder="Tên sách" value="{{ old('txtName') }}" required autocomplete="txtName" autofocus>
+            @error('txtName')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
         <div class="right__inputWrapper">
             <label for="p_category">Loại sách</label>
-            <select name="txtCate">
+            <select name="txtCate" class="form-control form-control-sm">
                 @foreach($db as $r)
                     <option value="{{ $r->id }}">{{ $r->CategoryName }}</option>
                 @endforeach
@@ -19,20 +24,29 @@
         </div>
         <div class="right__inputWrapper">
             <label for="desc">Mô tả</label>
-            <textarea name="txtDes" id="ckeditor2" cols="30" rows="10" placeholder="Mô tả"></textarea>
+            <textarea name="txtDes" id="ckeditor2" cols="30" rows="10" placeholder="Mô tả" class="form-control @error('txtDes') is-invalid @enderror" value="{{ old('txtDes') }}" required autocomplete="txtDes" autofocus></textarea>
+            @error('txtDes')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
         <div class="right__inputWrapper">
             <label for="image">Hình ảnh 1</label>
-            <input type="file" name="fileImg">
+            <input type="file" name="fileImg" class="form-control" required>
         </div>
         <div class="right__inputWrapper">
             <label for="price">Đơn giá</label>
-            <input type="text" name="txtprice" placeholder="Đơn giá">
+            <input type="number" name="txtprice" class="form-control @error('txtprice') is-invalid @enderror"  placeholder="Đơn giá" value="{{ old('txtprice') }}" required autocomplete="txtprice" autofocus>
+            @error('txtprice')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
         <div class="right__inputWrapper">
             <label for="p_category">Trạng thái</label>
-            <select name="sl_stt">
-                <!-- <option disabled selected>Chọn trạng thái</option> -->
+            <select name="sl_stt" class="form-control form-control-sm">
                 <option value="1">Hiển thị</option>
                 <option value="0">Ẩn</option>
             </select>

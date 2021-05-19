@@ -8,27 +8,42 @@
         @method("PUT")
         <div class="right__inputWrapper">
             <label for="title">Tiêu đề</label>
-            <input type="text" value="{{ $db->title }}" name="txtName" >
+            <input type="text" value="{{ $db->title }}" name="txtName" class="form-control @error('txtName') is-invalid @enderror"  placeholder="Tiêu đề" value="{{ old('txtName') }}" required autocomplete="txtName" autofocus>
+            @error('txtName')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
         <div class="right__inputWrapper">
             <label for="desc">Mô tả</label>
-            <textarea name="txtDes" cols="30" rows="5" placeholder="Mô tả">{{ $db->description}}</textarea>
+            <textarea name="txtDes" cols="30" rows="5" placeholder="Mô tả" class="form-control @error('txtDes') is-invalid @enderror" value="{{ old('txtDes') }}" required autocomplete="txtDes" autofocus>{{ $db->description}}</textarea>
+            @error('txtDes')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
         <div class="right__inputWrapper">
             <label for="desc">Nội dung</label>
-            <textarea name="txtContent" cols="30" rows="10"  id="ckeditor3" placeholder="Nội dung">{{ $db->content}}</textarea>
+            <textarea name="txtContent" cols="30" rows="10"  id="ckeditor3" placeholder="Nội dung" class="form-control @error('txtContent') is-invalid @enderror" value="{{ old('txtContent') }}" required autocomplete="txtContent" autofocus>{{ $db->content}}</textarea>
+            @error('txtContent')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
         <div class="right__inputWrapper">
             <label for="image">Hình ảnh</label>
-            <input type="file" value="{{ $db->picture }}" name="fileImg">
+            <input type="file" class="form-control" value="{{ $db->picture }}" name="fileImg" required>
         </div>
         <div class="right__inputWrapper">
             <label for="price">Ngày đăng</label>
-            <input type="date" value="{{ $db->date }}" name="txtdate" >
+            <input type="date" class="form-control" value="{{ $db->date }}" name="txtdate" autofocus>
         </div>
         <div class="right__inputWrapper">
             <label for="p_new">Trạng thái</label>
-            <select name="sl_stt">
+            <select name="sl_stt" class="form-control form-control-sm">
                 <option value="0" {{ $db->status==0?"":"selected"}}>Ẩn</option>
                 <option value="1" {{ $db->status==0?"":"selected"}}>Hiển thị</option>
             </select>
