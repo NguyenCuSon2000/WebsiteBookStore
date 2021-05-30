@@ -9,8 +9,8 @@ class Discount extends Model
     //
     protected $table = "discounts";
     protected $fillable = [
+        "Product_Id",
         "Percent",
-        "Promotion_price",
         "Status",
         "BeginDate",
         "EndDate",

@@ -35,7 +35,7 @@
                                     <div class="swiper-wrapper myimgs">
                                         <div class="swiper-slide"> <a href="{{asset('img'.'/'.$product->Picture)}}" data-fancybox="1" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$product->Picture)}}" alt="gallery"></a></div>
                                         @foreach($pictures as $value)
-                                           <div class="swiper-slide"> <a href="{{asset('img'.'/'.$value->picture)}}" data-fancybox="1" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$value->picture)}}" alt="gallery"></a></div>
+                                        <div class="swiper-slide"> <a href="{{asset('img'.'/'.$value->picture)}}" data-fancybox="1" title="Zoom In"><img class="myimage" src="{{asset('img'.'/'.$value->picture)}}" alt="gallery"></a></div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide"> <img src="{{asset('img'.'/'.$product->Picture)}}" alt="thumnails"></div>
                                         @foreach($pictures as $value)
-                                          <div class="swiper-slide"> <img src="{{asset('img'.'/'.$value->picture)}}" alt="thumnails"></div>
+                                        <div class="swiper-slide"> <img src="{{asset('img'.'/'.$value->picture)}}" alt="thumnails"></div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                         
                         <div class="col-12 col-lg-6 text-center text-lg-left">
                             <div class="product-single-price">
-                                <h4><span class="real-price">{{ number_format($product->Price) }} VND</span> <span><del>  </del></span></h4>
+                                <h4><span class="real-price">{{ number_format($product->Price) }} VND</span>  <span><del> </del></span> </h4>
                                 <p class="pro-description"> </p>
                             </div>
                             
@@ -63,21 +63,22 @@
                                     <li><i class="fas fa-check"></i> Giao hàng 14 ngày giao hàng</li>
                                 </ul>
                             </div>
-                            
-                            <div class="row product-quantity input_plus_mins no-gutters">
-                                <div class="qty col-12 col-lg-3 d-lg-flex align-items-lg-center d-inline-block">
-                                    <span class="minus bg-dark"><i class="lni-minus"></i></span>
-                                    <input type="number" class="count" name="qty" value="1">
-                                    <span class="plus bg-dark"><i class="lni-plus"></i></span>
+                            <form action="{{ route('addcart', ['id' => $product->id]) }}" method="get" enctype="multipart/form-data">
+                                @csrf
+                                <input type="number" class="form-control" name="txtQty" value="1" min="1" max="100" step="1">
+                                <div class="row product-quantity input_plus_mins no-gutters">
+                                    <!-- <div class="qty col-12 col-lg-3 d-lg-flex align-items-lg-center d-inline-block">
+                                        <span class="minus bg-dark"><i class="lni-minus"></i></span>
+                                        <input type="number" class="count" name="txtName" value="1">
+                                        <span class="plus bg-dark"><i class="lni-plus"></i></span>
+                                    </div> -->
+                                    <div class="col-12 col-lg-9">
+                                        <a href="">
+                                            <button type="submit" class="btn green-color-yellow-gradient-btn">THÊM GIỎ HÀNG</button>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="col-12 col-lg-9">
-                                    <a href="{{ route('addcart', ['id' => $product->id]) }}">
-                                        <button class="btn green-color-yellow-gradient-btn">THÊM GIỎ HÀNG</button>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            
+                            </form>
                             <div class="dropdown-divider"></div>
                             
                             <div class="product-tags-list">
@@ -164,38 +165,38 @@
                                     </div>
                                     
                                     <div class="tab-pane fade reviews" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                      @foreach($comments as $comment)
+                                        @foreach($comments as $comment)
                                         <div class="media">
-                                                <div class="row no-gutter">
-                                                    <div class="col-12 col-lg-2 p-0">
-                                                        
-                                                        <div class="row no-gutters">
-                                                            <div class="col-12 d-flex  justify-content-center">
-                                                                <img src="{{ asset('img\user.jpg') }}" alt="Generic placeholder image">
-                                                            </div>
-                                                            <div class="col-12 d-flex mt-2 justify-content-center">
-                                                                <ul class="user-rating">
-                                                                    <li><a href="#"><i class="lni-star-filled"></i></a></li>
-                                                                    <li><a href="#"><i class="lni-star-filled"></i></a></li>
-                                                                    <li><a href="#"><i class="lni-star-filled"></i></a></li>
-                                                                    <li><a href="#"><i class="lni-star-filled"></i></a></li>
-                                                                    <li><a href="#"><i class="lni-star"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                    </div>
+                                            <div class="row no-gutter">
+                                                <div class="col-12 col-lg-2 p-0">
                                                     
-                                                    <div class="col-12 col-lg-10 p-0">
-                                                        <div class="media-body ">
-                                                            <span class="text-center text-lg-left d-block">{{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y') }}</span>
-                                                            <h5 class="mb-2 text-center text-lg-left">{{ $comment->name }}</h5>
-                                                            <p class="text-center text-lg-left">{{ $comment->content }}</p>
+                                                    <div class="row no-gutters">
+                                                        <div class="col-12 d-flex  justify-content-center">
+                                                            <img src="{{ asset('img\user.jpg') }}" alt="Generic placeholder image">
+                                                        </div>
+                                                        <div class="col-12 d-flex mt-2 justify-content-center">
+                                                            <ul class="user-rating">
+                                                                <li><a href="#"><i class="lni-star-filled"></i></a></li>
+                                                                <li><a href="#"><i class="lni-star-filled"></i></a></li>
+                                                                <li><a href="#"><i class="lni-star-filled"></i></a></li>
+                                                                <li><a href="#"><i class="lni-star-filled"></i></a></li>
+                                                                <li><a href="#"><i class="lni-star"></i></a></li>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                     
                                                 </div>
+                                                
+                                                <div class="col-12 col-lg-10 p-0">
+                                                    <div class="media-body ">
+                                                        <span class="text-center text-lg-left d-block">{{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y') }}</span>
+                                                        <h5 class="mb-2 text-center text-lg-left">{{ $comment->name }}</h5>
+                                                        <p class="text-center text-lg-left">{{ $comment->content }}</p>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
+                                        </div>
                                         @endforeach
                                         <!-- <div class="media">
                                             <div class="row no-gutter">
@@ -235,12 +236,12 @@
                                                 <hr class="w-100 ml-5">
                                             </div>
                                             <div class="col-12">
-
+                                                
                                                 <form class="getin_form border-form" id="register" class="contact-form" id="contact-form-data" action="{{ route('comment',$product->id) }}" method="post"">
-                                                @csrf
-                                                <input type="hidden" name="ProductId" value="{{ $product->id }}">
+                                                    @csrf
+                                                    <input type="hidden" name="ProductId" value="{{ $product->id }}">
                                                     <div class="row">
-                                                      
+                                                        
                                                         <div class="col-md-6 col-sm-12">
                                                             <div class="form-group bottom35">
                                                                 <input type="text" class="form-control" name="name" placeholder="Name*" required="required" id="registerName">
@@ -277,7 +278,7 @@
                                                         </div>
                                                     </div>
                                                 </form>
-
+                                                
                                             </div>
                                         </div>
                                         
@@ -320,7 +321,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12 text-center">
-                                           <a href="{{ route('product_detail').'/'.$product->product->id }}"><h5 class="card-title">{{ $product->product->ProductName }}</h5></a> 
+                                            <a href="{{ route('product_detail').'/'.$product->product->id }}"><h5 class="card-title">{{ $product->product->ProductName }}</h5></a> 
                                         </div>
                                         <div class="col-12 text-center">
                                             <p class="card-text">{{ number_format($product->product->Price) }} VND</p>
@@ -330,7 +331,7 @@
                             </div>
                         </div>
                         @endforeach
-
+                        
                     </div>
                 </div>
             </div>

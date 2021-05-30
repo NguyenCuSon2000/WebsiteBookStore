@@ -31,6 +31,9 @@ class HomeController extends Controller
         $count_category= CategoryProducts::count();
         $count_product = Products::count();
         $count_customer = Customers::count();
+        // $count_customer = Customers::groupBy('Email')
+        //                           ->selectRaw('count(id) as amount, Email')
+        //                           ->get()->count();
         $count_order = Orders::count();
 
 

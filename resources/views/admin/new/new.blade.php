@@ -6,7 +6,7 @@
     <form role="form" action="/search_new" method="get">
         @csrf
         <input type="search" class="search" name="txtSearch" id="" placeholder="Tìm kiếm" >
-        <input type="submit" class="button" value="Search">
+        <input type="submit" class="button" value="Tìm kiếm">
     </form>
 </div>   
 <?php
@@ -44,14 +44,21 @@
                         <td data-label="Mô tả" style="text-align:left">{{$r->description}}</td>
                         <td data-label="Ngày đăng">{{ \Carbon\Carbon::parse($r->date)->format('d/m/Y') }}</td>
                         <td data-label="Hình ảnh"> <img src="{{asset('img'.'/'.$r->picture)}}" alt="" > </td>
-                        <td data-label="Hiển thị"><input type="checkbox" name="cbtt" value="{{ $r->status }}" {{ $r->status==0?'':'checked'}}  ></td>
+                        <td data-label="Hiển thị">
+                        <!-- <input type="checkbox" name="cbtt" value="{{ $r->status }}" {{ $r->status==0?'':'checked'}}  > -->
+                            @if( $r->status == 0)
+                                    <a href="#" class="label label-warning">Ẩn</a>
+                                @else
+                                    <a href="#" class="label-success label">Hiển Thị</a>
+                                @endif
+                        </td>
                         <td data-label="Sửa" class="right__iconTable"><a href="{{ route('news.edit', $r->id) }}"><img src="{{asset('assets/icon-edit.svg')}}" alt=""></a></td>
                         <td data-label="Xoá" class="right__iconTable">
                             <form role="form" action="{{ route('news.destroy', $r->id) }}" method="post">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button  type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><img src="{{ asset('assets/icon-trash-black.svg') }}" alt=""></button>   
+                                <button  type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><img src="{{ asset('assets/icon-trash.svg') }}" alt=""></button>   
                             </form>
                         </td>
                     </tr>

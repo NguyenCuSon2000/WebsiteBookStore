@@ -30,6 +30,8 @@ Route::get('/search_category', 'Admin\CategoryProductController@search')->name('
 // PRODUCT
 Route::resource('/product', 'Admin\ProductsController');
 Route::get('/search_product', 'Admin\ProductsController@search')->name('search_product');
+Route::get('export_products', 'Admin\ProductsController@export')->name('export_products');
+Route::post('import_products', 'Admin\ProductsController@import')->name('import_products');
 
 // CUSTOMER
 Route::resource('/customer', 'Admin\CustomersController');
@@ -50,7 +52,11 @@ Route::get('/search_picture', 'Admin\PictureController@search')->name('search_pi
 //ORDER
 Route::resource('order', "Admin\OrdersController");
 Route::get('/search_order', 'Admin\OrdersController@search');
+Route::get('/getOrderCurrent', 'Admin\OrdersController@getOrderCurrent')->name('getOrderCurrent');
+Route::get('/getOrderDone', 'Admin\OrdersController@getOrderDone')->name('getOrderDone');
+Route::get('/getOrderWait', 'Admin\OrdersController@getOrderWait')->name('getOrderWait');
 Route::get('/print_order/{checkout_code}', "Admin\OrdersController@print_order")->name("print_order");
+
 
 //CONTACT
 Route::resource('contact_admin', 'Admin\ContactController');
@@ -59,16 +65,26 @@ Route::get('/search_contact', 'Admin\ContactController@search')->name('search_co
 //STATISTICS
 Route::get('/statistic/index', 'Admin\StatisticsController@index')->name('/statistic/index');
 Route::get('/statistic/order_pay', 'Admin\StatisticsController@getOrder')->name("/statistic/order_pay");
+Route::get('/statistic/comment_count', 'Admin\StatisticsController@getComment')->name("/statistic/comment_count");
+Route::get('/statistic/order_highlight', 'Admin\StatisticsController@getOrderHighlight')->name("/statistic/order_highlight");
+Route::get('/statistic/order_time', 'Admin\StatisticsController@getOrderTime')->name("/statistic/order_time");
+Route::get('/statistic/order_count', 'Admin\StatisticsController@getOrderCount')->name("/statistic/order_count");
 
 // COMMENT
 Route::resource('comment', 'Admin\CommentsController');
 Route::get('/search_comment', 'Admin\CommentsController@search')->name('search_comment');
 
+// DISCOUNT
+Route::resource('discount', 'Admin\DiscountController');
+Route::get('/search_discount', 'Admin\DiscountController@search')->name('search_discount');
+
 //NEWS
 Route::resource('news', 'Admin\NewsController');
 
-
-
+//Excel
+Route::get('export', 'MyController@export')->name('export');
+Route::get('importExportView', 'MyController@importExportView');
+Route::post('import', 'MyController@import')->name('import');
 
 //----------------------------------------------     USER PAGE    ----------------------------------------------------//
 

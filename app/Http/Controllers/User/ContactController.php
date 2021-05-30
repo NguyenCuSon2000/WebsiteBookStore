@@ -27,8 +27,9 @@ class ContactController extends Controller
         else {
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
+        $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
 
-        return view("user.contact", compact("categories","cart","product_pay","search_product"));
+        return view("user.contact", compact("categories","cart","product_pay","search_product","category_footer"));
     }
 
     public function saveContact(Request $request)

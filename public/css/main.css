@@ -820,6 +820,13 @@ body {
    opacity: 1;
 }
 
+.right__cards.statistic {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 20px;
+  margin-bottom: 20px;
+}
+
 .right__cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -840,7 +847,7 @@ body {
 }
 
 @media screen and (max-width: 511px) {
-  .right__cards {
+  .right__cards,.right__cards.statistic {
     grid-template-columns: 1fr;
   }
 }

@@ -14,8 +14,8 @@
             <label for="p_role">Trạng thái</label>
             <select name="sl_stt"  class="form-control form-control-sm">
                 <!-- <option disabled selected>Chọn trạng thái</option> -->
-                <option value="0" {{ $db->status==0?"":"selected"}}>Ẩn</option>
-                <option value="1" {{ $db->status==0?"":"selected"}}>Hiển thị</option>
+                <option value="0" {{ $db->status==0?"":"selected"}}>Ngừng</option>
+                <option value="1" {{ $db->status==0?"":"selected"}}>Hoại Động</option>
             </select>
         </div>
         <button class="btn btn-info" type="submit">Cập nhật</button>

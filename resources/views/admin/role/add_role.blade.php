@@ -13,8 +13,8 @@
             <label for="p_category">Trạng thái</label>
             <select name="slstt"  class="form-control form-control-sm">
                 <option disabled selected>Chọn trạng thái</option>
-                <option value="0">Ẩn</option>
-                <option value="1">Hiển thị</option>
+                <option value="0">Ngừng</option>
+                <option value="1">Hoạt động</option>
             </select>
         </div>
         <button class="btn btn-info" type="submit">Thêm</button>

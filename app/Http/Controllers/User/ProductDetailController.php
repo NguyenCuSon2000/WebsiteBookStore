@@ -24,7 +24,7 @@ class ProductDetailController extends Controller
 
         $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
                         ->selectRaw('sum(Quantity) as amount, ProductId')
-                        ->orderBy('amount','desc')->limit(10)->get();
+                        ->latest('amount')->limit(10)->get();
                         
         $cart = Cart::content();
 
@@ -37,8 +37,16 @@ class ProductDetailController extends Controller
         }
 
         $comments = Products::find($id)->comments;
-
-        return view("user.product_detail", compact("categories", "product", "pictures", "product_pay", "cart", "search_product", "comments"));
+        $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
+        return view("user.product_detail", 
+                   compact("categories", 
+                           "product",
+                           "pictures", 
+                           "product_pay",
+                           "cart", 
+                           "search_product",
+                            "comments",
+                            "category_footer"));
     }
 
     public function saveComment(Request $request, $id)

@@ -31,12 +31,14 @@ class IntroduceController extends Controller
         $product_count = Products::groupBy('Cate_Id')                             // COUNT PRODUCT
                                 ->selectRaw('count(id) as count, Cate_Id')
                                 ->get();
+        $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
 
         return view("user.introduce", 
                     compact("categories",
                             "cart",
                             "product_pay",
                             "search_product",
-                            "product_count"));
+                            "product_count",
+                            "category_footer"));
     }
 }

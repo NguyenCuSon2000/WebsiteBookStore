@@ -93,8 +93,13 @@
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Tên khách hàng:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="text" name="txtName" class="form-control" value="" required />
+                                        <input type="text" name="txtName" class="form-control @error('txtName') is-invalid @enderror" value="{{ old('txtName') }}" required autocomplete="txtName" autofocus />
                                     </div>
+                                    @error('txtName')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Ngày sinh:</strong></div>
@@ -105,22 +110,42 @@
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Địa chỉ nhận:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="text" name="txtad" class="form-control" value="" required />
+                                        <input type="text" name="txtad" class="form-control @error('txtad') is-invalid @enderror"  value="{{ old('txtad') }}" required autocomplete="txtad" autofocus />
                                     </div>
+                                    @error('txtad')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Số điện thoại:</strong></div>
-                                    <div class="col-md-12"><input type="text" name="txtPhone" class="form-control" value="" required /></div>
+                                    <div class="col-md-12">
+                                        <input type="text" pattern="[0-9]{10}" name="txtPhone" class="form-control @error('txtPhone') is-invalid @enderror" value="{{ old('txtPhone') }}" required autocomplete="txtPhone" autofocus />
+                                    </div>
+                                    @error('txtPhone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
+                                
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Email:</strong></div>
-                                    <div class="col-md-12"><input type="email" name="txtEmail" class="form-control" value="{{ Auth::user()->username }}" required /></div>
+                                    <div class="col-md-12">
+                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  name="txtEmail" class="form-control @error('txtEmail') is-invalid @enderror"  autocomplete="txtEmail" autofocus value="{{ Auth::user()->username }}" required />
+                                    </div>
+                                    @error('txtEmail')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Ghi chú:</strong></div>
                                     <div class="col-md-12">
-                                        <textarea class="form-control" name="txtNote" id="" rows="3" required ></textarea>
+                                        <textarea class="form-control" name="txtNote" id="" rows="3" ></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="form-control btn btn-success" value="">Đặt hàng</button>

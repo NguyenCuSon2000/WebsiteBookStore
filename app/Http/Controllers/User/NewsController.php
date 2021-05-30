@@ -31,13 +31,15 @@ class NewsController extends Controller
                                 ->selectRaw('count(id) as count, Cate_Id')
                                 ->get();
         $news = News::paginate(3);
+        $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
         return view("user.new", 
                     compact("categories",
                             "cart",
                             "product_pay",
                             "search_product",
                             "product_count",
-                            "news"));
+                            "news",
+                            "category_footer"));
     }
     public function new_detail(Request $request, $id)
     {
@@ -58,13 +60,14 @@ class NewsController extends Controller
                                 ->get();
 
         $news = News::find($id);
-
+        $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
         return view("user.new_detail", 
                     compact("categories",
                             "cart",
                             "product_pay",
                             "search_product",
                             "product_count",
-                            "news"));
+                            "news",
+                            "category_footer"));
     }
 }

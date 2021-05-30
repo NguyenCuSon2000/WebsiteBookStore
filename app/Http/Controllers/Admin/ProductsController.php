@@ -8,6 +8,9 @@ use App\Models\CategoryProducts;
 use App\Models\Products;
 use App\Http\Requests\ProductRequest;
 use Auth;
+use App\Exports\ProductsExport;
+use App\Imports\ProductsImport;
+use Maatwebsite\Excel\Facades\Excel; 
 
 class ProductsController extends Controller
 {
@@ -36,15 +39,6 @@ class ProductsController extends Controller
         // $db = CategoryProducts::where("CategoryName");
         return view("admin.product.add_product", ['db'=>$db]);
     }
-
-    // public function doUpload(Request $request)
-    // {
-    //     $file = $request->filesTest;
-
-    //     $file->move('upload', $file->getClientOriginalName());
-    //     // hàm sẽ trả về đường dẫn mới của file trên server nếu thành công
-    //     // còn nếu không nó sẽ raise ra exception.
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -174,5 +168,24 @@ class ProductsController extends Controller
                            ->orWhere('Price','LIKE','%'.$text.'%')->paginate(1000);
         }
         return view('admin.product.product', compact('db'));
+    }
+
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function export() 
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function import() 
+    {
+        Excel::import(new ProductsImport,request()->file('file'));
+        return back();
     }
 }

@@ -22,9 +22,7 @@ class CheckLoginMiddleware
         if (Auth::check()) {
             return $next($request);
         }
-            return redirect()->route("login");
-        
-
+        return redirect()->route("login");
         
     }
 }

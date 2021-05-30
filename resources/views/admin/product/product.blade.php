@@ -6,7 +6,7 @@
     <form role="form" action="/search_product" method="get">
         @csrf
         <input type="search" class="search" name="txtSearch" id="" placeholder="Tìm kiếm" >
-        <input type="submit" class="button" value="Search">
+        <input type="submit" class="button" value="Tìm kiếm">
     </form>
 </div>  
 <?php
@@ -62,7 +62,7 @@
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button  type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><img src="{{ asset('assets/icon-trash-black.svg') }}" alt=""></button>   
+                                <button  type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><img src="{{ asset('assets/icon-trash.svg') }}" alt=""></button>   
                             </form>
                         </td>
                     </tr>
@@ -74,4 +74,21 @@
 <div>
     {{$db->links()}}
 </div>
+
+<div class="card bg-light mt-3">
+    <div class="card-header">
+        Laravel 6 Import Export Excel to database Example - ItSolutionStuff.com
+    </div>
+    <div class="card-body">
+        <form action="{{ route('import_products') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file" class="form-control">
+            <br>
+            <button class="btn btn-success">Import User Data</button>
+            <a class="btn btn-warning" href="{{ route('export_products') }}">Export User Data</a>
+        </form>
+    </div>
+</div>
+
 @endsection
+

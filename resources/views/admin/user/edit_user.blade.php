@@ -26,8 +26,8 @@
         <div class="right__inputWrapper">
             <label for="p_category">Trạng thái</label>
             <select name="slstt" class="form-control form-control-sm">
-                <option value="0" {{ $db->status==0?"":"selected"}}>Ẩn</option>
-                <option value="1" {{ $db->status==0?"":"selected"}}>Hiển thị</option>
+                <option value="0" {{ $db->status==0?"":"selected"}}>Ngừng</option>
+                <option value="1" {{ $db->status==0?"":"selected"}}>Hoạt Động</option>
             </select>
         </div>
         <button class="btn btn-info" type="submit">Cập nhật</button>

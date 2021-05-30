@@ -6,7 +6,7 @@
     <form role="form" action="/search_role" method="get">
        @csrf
         <input type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm kiếm" >
-        <input type="submit" class="button" value="Search">
+        <input type="submit" class="button" value="Tìm kiếm">
     </form>
 </div>   
 <?php
@@ -42,13 +42,19 @@
                         <td data-label="Mã">{{ $r->id }}</td>
                         <td data-label="name" style="text-align:left">{{ $r->name }}</td>
                         <td data-label="Ngày tạo">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y') }}</td>
-                        <td data-label="Trạng thái"><input type="checkbox" name="cbtt" value="{{ $r->status }}" {{ $r->status==0?'':'checked'}}  ></td>
+                        <td data-label="Trạng thái">
+                           @if( $r->status == 0)
+                                 <a href="#" class="label label-warning">Ngừng</a>
+                            @else
+                                <a href="#" class="label-success label">Hoạt Động</a>
+                            @endif
+                        </td>
                         <td data-label="Sửa" class="right__iconTable"><a href="{{ route('role.edit', $r->id) }}"><img src="{{asset('assets/icon-edit.svg')}}" alt=""></a></td>
                         <td data-label="Xoá" class="right__iconTable">
                             <form role="form" action="{{ route('role.destroy', $r->id) }}" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button  type="submit" onclick="return confirm('Are you sure to delete?')"><img src="{{ asset('assets/icon-trash-black.svg') }}" alt=""></button>   
+                                <button  type="submit" onclick="return confirm('Are you sure to delete?')"><img src="{{ asset('assets/icon-trash.svg') }}" alt=""></button>   
                             </form>
                         </td>
                     </tr>

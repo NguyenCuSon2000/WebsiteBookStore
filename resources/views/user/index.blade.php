@@ -110,9 +110,9 @@
                 <div class="clearfix d-flex justify-content-center">
                     <div id="js-filters-blog-posts" class="cbp-l-filters-button cbp-1-filters-alignCenter">
                         <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">Tất cả </div>
-                        <div data-filter=".Classic" class="cbp-filter-item">Kinh tế</div>
-                        <div data-filter=".Fantasy" class="cbp-filter-item">Kỹ năng mềm</div>
-                        <div data-filter=".motion" class="cbp-filter-item">Ngoại ngữ</div>
+                        <div data-filter=".Classic" class="cbp-filter-item">Văn học</div>
+                        <div data-filter=".Fantasy" class="cbp-filter-item">Tiểu thuyết</div>
+                        <div data-filter=".motion" class="cbp-filter-item">Ẩm thực</div>
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@
             <div class="col-12">
                 <div id="js-grid-blog-posts" class="cbp">
                  @foreach($products as $product)
-                    <div  style="{{ $product->Status==0?'display:none':'display:block' }}" class="cbp-item Classic Fantasy">
+                    <div  style="{{ $product->Status==0?'display:none':'display:block' }}" class="cbp-item Classic">
                         <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
@@ -140,7 +140,7 @@
                     </div>
                   @endforeach
                   @foreach($product_asc as $product)
-                    <div  style="{{ $product->Status==0?'display:none':'display:block' }}" class="cbp-item Classic">
+                    <div  style="{{ $product->Status==0?'display:none':'display:block' }}" class="cbp-item Fantasy">
                         <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
@@ -159,7 +159,7 @@
                   @endforeach
                   <div class="slide-img bg-img" style="background-image: {{asset('public\front-end\img\core-img\b1.png')}};"></div>
                   @foreach($product_bt as $product)
-                    <div  style="{{ $product->Status==0?'display:none':'display:block' }}" class="cbp-item Fantasy motion">
+                    <div  style="{{ $product->Status==0?'display:none':'display:block' }}" class="cbp-item motion">
                         <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
@@ -209,13 +209,12 @@
     <div class="container">
         <div class="row">
             <div class="col-12 mb-4">
-                <h1>SÁCH KHUYỄN MÃI</h1>
+                <h1>SÁCH KHUYỄN MẠI</h1>
             </div>
             <div class="col-12">
                 <div class="lastest_featured_products owl-carousel owl-theme">
-
                 @foreach($products_sale as $product)
-                    <div style="{{ $product->Status==0?'display:none':'display:block' }}" class="lastest_arrival_items item">
+                    <div  class="lastest_arrival_items item">
                         <a href="{{ route('addcart', ['id' => $product->id]) }}" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
                         <div class="product-sale">
                                 <span><label class="sale-lb">- </label> {{ $product->Percent }}%</span>
@@ -230,10 +229,10 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-12 text-center">
-                                     <a href="{{ route('product_detail').'/'.$product->id }}"><h5 class="card-title">{{ $product->product->ProductName }}</h5></a>   
+                                     <a href="{{ route('product_detail').'/'.$product->product->id }}"><h5 class="card-title">{{ $product->product->ProductName }}</h5></a>   
                                     </div>
                                     <div class="col-12 text-center">
-                                        <p class="card-text"> {{ number_format($product->Promotion_price) }} VND</p>
+                                        <p class="card-text"> {{ number_format($product->product->Price * (100 - $product->Percent)/100)  }} VND</p>
                                         <del class="card-text"> {{ number_format($product->product->Price) }} VND</del>
                                     </div>
                                     <div class="col-12 text-right">

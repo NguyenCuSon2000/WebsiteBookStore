@@ -28,8 +28,8 @@
         <div class="right__inputWrapper">
             <label for="p_category">Trạng thái</label>
             <select name="slstt" class="form-control form-control-sm">
-                <option value="1">Hiển thị</option>
-                <option value="0">Ẩn</option>
+                <option value="1">Hoạt động</option>
+                <option value="0">Ngừng</option>
             </select>
         </div>
         <button class="btn btn-info" type="submit">Thêm</button>

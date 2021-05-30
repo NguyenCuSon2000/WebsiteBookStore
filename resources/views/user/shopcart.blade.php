@@ -111,10 +111,11 @@
                     </div>
                     <div class="apply_coupon">
                         <div class="row">
+                            @if(Cart::count() > 0)
                             <div class="col-12 text-left">
                                 <a href="{{ route('checkout') }}" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
                             </div>
-                            
+                            @endif
                         </div>
                     </div>
                 </div>

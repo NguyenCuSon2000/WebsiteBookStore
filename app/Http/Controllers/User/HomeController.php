@@ -35,9 +35,9 @@ class HomeController extends Controller
         $categories = CategoryProducts::all(); //LIST CATEGORY
 
 
-        $products = Products::limit(3)->get();     //LIST PRODUCT
-        $product_asc = Products::orderby("ProductName", "asc")->limit(3)->get();
-        $product_bt= Products::whereBetween("Price", [25000, 100000])->limit(6)->get();
+        $products = Products::where('Cate_Id', 3)->orderBy('id', 'DESC')->limit(6)->get();     //LIST PRODUCT
+        $product_asc = Products::where('Cate_Id', 12)->orderBy('id', 'DESC')->orderby("ProductName", "asc")->limit(6)->get();
+        $product_bt= Products::where('Cate_Id', 11)->orderBy('id', 'DESC')->limit(6)->get();
 
         $products_sale = Discount::all(); // LIST DISCOUNT PRODUCT
 
@@ -56,6 +56,8 @@ class HomeController extends Controller
         else {
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
+
+        $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
   
         return view("user.index", compact(
             "categories", 
@@ -65,7 +67,8 @@ class HomeController extends Controller
             "products_sale", 
             "product_pay",
             "cart", 
-            "search_product"));
+            "search_product",
+            "category_footer"));
     }
 
     public function search(Request $request)

@@ -9,6 +9,7 @@ use App\Models\Orders;
 use App\Models\CategoryProducts;
 use App\Models\Products;
 use App\Models\Customers;
+use App\Http\Requests\CheckoutRequest;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 // use Section;
@@ -31,7 +32,8 @@ class CheckoutController extends Controller
         else {
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
-        return view("user.pay", compact("categories", "cart","product_pay","search_product"));
+        $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
+        return view("user.pay", compact("categories", "cart","product_pay","search_product","category_footer"));
 
     }
 
@@ -41,48 +43,81 @@ class CheckoutController extends Controller
         $c_id = $request->txtid;
         $totalMoney = str_replace(",","",Cart::subtotal(0,3));
 
-        $customer_id = Customers::insertGetId([
-            "UserId" => $c_id,
-            "CustomerName" => $request->txtName,
-            "DateOfBirth" => $request->txtDate,
-            "Address" => $request->txtad,
-            "Phone" => $request->txtPhone,
-            "Email" => $request->txtEmail,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
- 
-        if ($customer_id) {
-            $order_id = Orders::insertGetId([
-            'CustomerId' => $customer_id,
-            'total' => (int)$totalMoney,
-            'Note' => $request->txtNote,
-            'OrderDate' => now(),
-            'ShipPhone' => $request->txtPhone,
-            'ShipAddress' => $request->txtad,
-            'Status' => 0,
-            'created_at' => now(),
-            'updated_at' => now()
-
+        if (Customers::where('email', $request->txtEmail)->exists()) {
+            $customer_id = Customers::where("Email", $request->txtEmail)->value('id');
+            if ($customer_id) {
+                $order_id = Orders::insertGetId([
+                'CustomerId' => $customer_id,
+                'total' => (int)$totalMoney,
+                'Note' => $request->txtNote,
+                'OrderDate' => now(),
+                'ShipPhone' => $request->txtPhone,
+                'ShipAddress' => $request->txtad,
+                'Status' => 0,
+                'created_at' => now(),
+                'updated_at' => now()
+    
+                ]);
+            
+            }
+          
+            if ($order_id) {
+               $cart = Cart::content();
+               foreach ($cart as $key => $value) {
+                   OrderDetails::insert([
+                        'OrderId' => $order_id,
+                        'ProductId' => $value->id,
+                        'Quantity' => $value->qty,
+                        'UnitPrice' => $value->options->price_old,
+                        'AddDate' => now(),
+                        'created_at' => now(),
+                        'updated_at' => now()
+                   ]);
+               }
+            }
+        }
+        else {
+             $customer_id = Customers::insertGetId([
+                "UserId" => $c_id,
+                "CustomerName" => $request->txtName,
+                "DateOfBirth" => $request->txtDate,
+                "Address" => $request->txtad,
+                "Phone" => $request->txtPhone,
+                "Email" => $request->txtEmail,
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
-        
+            if ($customer_id) {
+                $order_id = Orders::insertGetId([
+                'CustomerId' => $customer_id,
+                'total' => (int)$totalMoney,
+                'Note' => $request->txtNote,
+                'OrderDate' => now(),
+                'ShipPhone' => $request->txtPhone,
+                'ShipAddress' => $request->txtad,
+                'Status' => 0,
+                'created_at' => now(),
+                'updated_at' => now()
+    
+                ]);
+            
+            }
+          
+            if ($order_id) {
+               $cart = Cart::content();
+               foreach ($cart as $key => $value) {
+                   OrderDetails::insert([
+                        'OrderId' => $order_id,
+                        'ProductId' => $value->id,
+                        'Quantity' => $value->qty,
+                        'UnitPrice' => $value->price,
+                        'AddDate' => now(),
+                        'created_at' => now(),
+                        'updated_at' => now()
+                   ]);
+               }
+            }
         }
-      
-        if ($order_id) {
-           $cart = Cart::content();
-           foreach ($cart as $key => $value) {
-               OrderDetails::insert([
-                    'OrderId' => $order_id,
-                    'ProductId' => $value->id,
-                    'Quantity' => $value->qty,
-                    'UnitPrice' => $value->price,
-                    'AddDate' => now(),
-                    'created_at' => now(),
-                    'updated_at' => now()
-               ]);
-           }
-        }
-       
         Cart::destroy();
         return redirect()->route("checkout_success")->with("success","Đặt hàng thành công");
 
@@ -103,7 +138,8 @@ class CheckoutController extends Controller
         else {
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
-       return view("user.checkout_success", compact("categories", "cart","product_pay","search_product"));
+        $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
+       return view("user.checkout_success", compact("categories", "cart","product_pay","search_product","category_footer"));
     }
    
 }

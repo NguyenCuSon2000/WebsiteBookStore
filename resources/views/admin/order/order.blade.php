@@ -3,12 +3,22 @@
 <div class="right__title">Bảng điều khiển</div>
 <p class="right__desc">Xem đơn hàng</p>
 <div class="right__cards">
-    <a class="right__card" href="">
+    <a class="right__card" href="{{ route('order.index') }}">
+        <div class="right__cardTitle">Tổng đơn hàng</div>
+        <div class="right__cardNumber">{{ number_format($count_order) }}</div>
+        <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
+    </a>
+    <a class="right__card" href="{{ route('getOrderCurrent') }}">
+        <div class="right__cardTitle">Đơn hàng hôm nay</div>
+        <div class="right__cardNumber">{{ number_format($order_count_today) }}</div>
+        <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
+    </a>
+    <a class="right__card" href="{{ route('getOrderDone') }}">
         <div class="right__cardTitle">Đơn hàng đã xử lý</div>
         <div class="right__cardNumber">{{ number_format($order_done) }}</div>
         <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
     </a>
-    <a class="right__card" href="">
+    <a class="right__card" href="{{ route('getOrderWait') }}">
         <div class="right__cardTitle">Đơn hàng chờ xử lý</div>
         <div class="right__cardNumber">{{ number_format($order_wait) }}</div>
         <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
@@ -16,11 +26,11 @@
 </div>
 <div class="right__search">
     <form role="form" action="/search_order" method="get">
-       @csrf
-        <input type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm kiếm" >
-        <input type="submit" class="button" value="Search">
+        @csrf
+        <input type="search" class="search" name="txtSearch" id="" placeholder="Tìm kiếm" >
+        <input type="submit" class="button" value="Tìm kiếm">
     </form>
-</div>   
+</div>  
 <?php
     use Illuminate\Support\Facades\Session;
     $message = Session::get('message');
@@ -46,7 +56,9 @@
                     <th>Tổng tiền (VNĐ)</th>
                     <th>Ghi chú</th>
                     <th>Trạng thái</th>
+                    <th>In hóa đơn</th>
                     <th>Xem</th>
+                    <th>Sửa</th>
                     <th>Xoá</th>
                 </tr>
             </thead>
@@ -69,15 +81,19 @@
                                 <a href="#" class="label-success label">Đã xử lý</a>
                             @endif
                         </td>
+                        <td>
+                             <a target="_blank" href="{{ route('print_order', $r->id) }}" class="label-info label">In hóa đơn</a>
+                        </td>
                         <td data-label="Xem" class="right__iconTable">
                               <a  data-id ="{{ $r->id }}" href="{{ route('order.show', $r->id) }}"><img src="{{ asset('assets/icon-eye.svg') }}" alt=""></a>
                         </td>
+                        <td data-label="Sửa" class="right__iconTable"><a href="{{ route('order.edit', $r->id) }}"><img src="{{asset('assets/icon-edit.svg')}}" alt=""></a></td>
                         <td data-label="Xoá" class="right__iconTable">
                             <form role="form" action="{{ route('order.destroy', $r->id) }}" method="post">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button  type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><img src="{{ asset('assets/icon-trash-black.svg') }}" alt=""></button>   
+                                <button  type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"><img src="{{ asset('assets/icon-trash.svg') }}" alt=""></button>   
                             </form>
                         </td>
                     </tr>
@@ -85,7 +101,6 @@
             </tbody>
         </table>
     </div>
-    <a target="_blank" href="{{ route('print_order', $r->id) }}">In đơn hàng</a>
 </div>
 <div>
     {{ $db->links() }}

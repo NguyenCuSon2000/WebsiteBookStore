@@ -6,7 +6,7 @@
     <form role="form" action="/search_user" method="get">
        @csrf
         <input type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm kiếm" >
-        <input type="submit" class="button" value="Search">
+        <input type="submit" class="button" value="Tìm kiếm">
     </form>
 </div>   
 <?php
@@ -63,7 +63,7 @@
                             <form role="form" action="{{ route('user.destroy', $r->id) }}" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button  type="submit" onclick="return confirm('Are you sure to delete?')"><img src="{{ asset('assets/icon-trash-black.svg') }}" alt=""></button>   
+                                <button  type="submit" onclick="return confirm('Are you sure to delete?')"><img src="{{ asset('assets/icon-trash.svg') }}" alt=""></button>   
                             </form>
                         </td>
                     </tr>

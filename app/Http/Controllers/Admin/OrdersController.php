@@ -8,6 +8,7 @@ use App\Models\Orders;
 use App\Models\OrderDetails;
 use App\Models\Customers;
 use PDF;
+use Carbon;
 
 class OrdersController extends Controller
 {
@@ -20,9 +21,11 @@ class OrdersController extends Controller
     {
         //
         $db = Orders::orderby("Status", "asc")->orderBy("id","desc")->paginate(5);
+        $count_order = Orders::count();
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
-        return view("admin.order.order", compact("db","order_done","order_wait"));
+        $order_count_today = Orders::whereDay("OrderDate", now())->count();
+        return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
     }
     
     public function show(Request $request, $id)
@@ -30,6 +33,48 @@ class OrdersController extends Controller
         $order_details = OrderDetails::where("OrderId", $id)->paginate(5);
         return view("admin.order.order_details", compact('order_details'));
         
+    }
+
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id=null)
+    {
+        //
+        if ($id==null) {
+            return redirect()->route("order.index");
+        }
+        else {
+            $db = Orders::find($id);
+            $customers = Customers::all();
+            return view("admin.order.edit_order",compact("db","customers"));
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+        $db = Orders::find($id);
+        $db->CustomerId = $request->input('cus_id');
+        $db->OrderDate = $request->input('txtDate');
+        $db->ShipPhone = $request->input('txtPhone');
+        $db->ShipAddress = $request->input('txtAd');
+        $db->total = $request->input('txtTotal');
+        $db->Note = $request->input('txtNote');
+        $db->Status = $request->input('sl_stt');
+        $db->save();
+        return redirect()->route("order.index", [$id])->with('message', 'Cập nhật hóa đon thành công');
+
     }
 
     
@@ -46,7 +91,8 @@ class OrdersController extends Controller
         //
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
-        
+        $count_order = Orders::count();
+        $order_count_today = Orders::where("OrderDate", now())->count();
         $text = $request->input("txtSearch");
         if ($text == "") {
             $db = Orders::orderby("Status", "asc")->orderBy("id","desc")->paginate(5);
@@ -58,9 +104,39 @@ class OrdersController extends Controller
                             ->orWhere('orders.ShipPhone','LIKE','%'.$text.'%')
                             ->orWhere('orders.ShipAddress','LIKE','%'.$text.'%')
                             ->orWhere('orders.Note','LIKE','%'.$text.'%')
-                            ->orWhere('customers.CustomerName','LIKE','%'.$text.'%')->get();
+                            ->orWhere('customers.CustomerName','LIKE','%'.$text.'%')->paginate(10000);
         }
-        return view('admin.order.order', compact("db","order_done","order_wait"));
+        return view('admin.order.order', compact("db","order_done","order_wait","count_order","order_count_today"));
+    }
+
+    public function getOrderCurrent()
+    {
+        $db = Orders::whereDay("OrderDate", now())->orderBy("Status","asc")->orderBy("id","desc")->paginate(5);
+        $count_order = Orders::count();
+        $order_done = Orders::where("Status",1)->count();
+        $order_wait = Orders::where("Status",0)->count();
+        $order_count_today = Orders::where("OrderDate", now())->count();
+        return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
+    }
+
+    public function getOrderDone()
+    {
+        $db = Orders::where("Status", 1)->orderBy("id","desc")->paginate(5);
+        $count_order = Orders::count();
+        $order_done = Orders::where("Status",1)->count();
+        $order_wait = Orders::where("Status",0)->count();
+        $order_count_today = Orders::where("OrderDate", now())->count();
+        return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
+    }
+
+    public function getOrderWait()
+    {
+        $db = Orders::where("Status", 0)->orderBy("id","desc")->paginate(5);
+        $count_order = Orders::count();
+        $order_done = Orders::where("Status",1)->count();
+        $order_wait = Orders::where("Status",0)->count();
+        $order_count_today = Orders::where("OrderDate", now())->count();
+        return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
     }
     
     public function print_order($checkout_code)
@@ -85,6 +161,9 @@ class OrdersController extends Controller
 
         $output.='
         <style>
+            h1 {
+                text-align: center;
+            }
             body { 
                 font-family: DejaVu Sans;
             }
@@ -103,12 +182,13 @@ class OrdersController extends Controller
             }
         </style>
         <h1>Cửa hàng bán sách Book Store</h1>
+        <p>Ngày đặt: '.\Carbon\Carbon::parse($ord->OrderDate)->format('d/m/Y') .'</p>
         <p>Người đặt hàng</p>
         <table class="table-styling customer" border=1 cellpadding=3 cellspacing=2>
                 <thead>
                     <tr>
                         <th>Tên khách hàng</th>
-                        <th>Số diện thoại</th>
+                        <th>Số điện thoại</th>
                         <th>Email</th>
                         <th>Địa chỉ</th>
                     </tr>
@@ -153,8 +233,11 @@ class OrdersController extends Controller
               }
         $output.= '
         <tr>
-              <td colspan=2>
-                <p>Thanh toán: '. number_format($total,0,',','.').' VND '.'</p>
+              <td>Thanh toán</td> 
+              <td></td> 
+              <td></td>
+              <td class="price">
+                <p>'. number_format($total,0,',','.').'</p>
               </td>
         </tr>';
         $output.='

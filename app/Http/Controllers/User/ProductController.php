@@ -115,6 +115,7 @@ class ProductController extends Controller
             }
         }
 
+        $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
         // dd($products);
         return view("user.product", 
                 compact("categories",
@@ -122,6 +123,7 @@ class ProductController extends Controller
                         "cart",
                         "product_count",
                         "product_pay",
-                        "search_product"));
+                        "search_product",
+                        "category_footer"));
     }
 }

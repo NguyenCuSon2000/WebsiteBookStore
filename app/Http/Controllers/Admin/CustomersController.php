@@ -112,7 +112,7 @@ class CustomersController extends Controller
         //
         $db = Customers::findOrFail($id);
         $db->delete();
-        return redirect()->route("customer.index")->with("Xóa thành công");
+        return redirect()->route("customer.index")->with("message","Xóa khác hàng thành công");
     }
     
     public function search(Request $request)

@@ -32,7 +32,9 @@
             <div class="bag-btn">
                 <h4 class="total"><span>Tổng cộng: </span> {{ Cart::subtotal(0,3)." "."VND" }} </h4>
                 <a href="{{ route('cart.index') }}" class="btn green-color-yellow-gradient-btn">Xem giỏ hàng </a>
+                @if(Cart::count() > 0)
                 <a href="{{ route('checkout') }}" class="btn yellow-color-green-gradient-btn">Đặt hàng </a>
+                @endif
             </div>
             
         </div>
