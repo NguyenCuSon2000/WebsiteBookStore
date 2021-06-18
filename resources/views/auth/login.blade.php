@@ -15,14 +15,12 @@
                 @csrf
                 <div class="field">
                     <span class="fa fa-user"></span>
-                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Email" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-                    @error('username')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    <input id="username" type="email" class="form-control @error('username') is-invalid @enderror" placeholder="Email" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                  
                 </div>
-                <span id="IDemail" style="color:#FF0000; font-size:18px"></span>
+                @error('username')
+                    <span style="color:#FF0000; font-size:18px">{{ $message }}</span>
+                 @enderror
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Mật khẩu" name="password" required autocomplete="current-password">

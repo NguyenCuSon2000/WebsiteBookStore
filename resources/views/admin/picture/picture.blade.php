@@ -2,7 +2,13 @@
 @section('admin_content')
 <div class="right__title">Bảng điều khiển</div>
 <p class="right__desc">Xem hình ảnh</p>
-
+<div class="right__search">
+    <form role="form" action="/search_picture" method="get">
+        @csrf
+        <input  style="width: 250px;" type="search" class="search" name="txtSearch" id="" placeholder="Tìm theo tên sách" title="Tìm theo tên sách">
+        <input type="submit" class="button" value="Tìm kiếm" title="Tìm theo tên sách">
+    </form>
+</div>   
  
 <div class="right__table">
     <div class="right__tableWrapper">
@@ -29,7 +35,13 @@
                         <td data-label="Mã ảnh">{{$r->id}}</td>
                         <td data-label="Tên sách">{{$r->product->ProductName}}</td>
                         <td data-label="Hình ảnh"> <img src="{{asset('img'.'/'.$r->picture)}}" alt="" > </td>
-                        <td data-label="Hiển thị"><input type="checkbox" name="cbtt" value="{{ $r->status }}" {{ $r->status==0?'':'checked'}}  ></td>
+                        <td data-label="Trạng thái">
+                            @if( $r->status == 0)
+                                 <a href="#" class="label label-warning">Ngừng</a>
+                            @else
+                                <a href="#" class="label-success label">Hoạt Động</a>
+                            @endif
+                        </td>
                         <td data-label="Sửa" class="right__iconTable"><a href="{{ route('picture.edit', $r->id) }}"><img src="{{asset('assets/icon-edit.svg')}}" alt=""></a></td>
                         <td data-label="Xoá" class="right__iconTable">
                             <form role="form" action="{{ route('picture.destroy', $r->id) }}" method="post">

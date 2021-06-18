@@ -232,7 +232,7 @@
                                         
                                         <div class="row pl-2 pr-2">
                                             <div class="col-12 d-flex mb-4 mt-3">
-                                                <h5 class="text-nowrap">Add Review</h5>
+                                                <h5 class="text-nowrap">Đánh giá</h5>
                                                 <hr class="w-100 ml-5">
                                             </div>
                                             <div class="col-12">
@@ -244,7 +244,7 @@
                                                         
                                                         <div class="col-md-6 col-sm-12">
                                                             <div class="form-group bottom35">
-                                                                <input type="text" class="form-control" name="name" placeholder="Name*" required="required" id="registerName">
+                                                                <input type="text" class="form-control" name="name" placeholder="Tên bạn*" required="required" id="registerName">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 col-sm-12">
@@ -253,7 +253,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-lg-2 text-center text-lg-left">
-                                                            <h5 class="text-nowrap">Your Rating</h5>
+                                                            <h5 class="text-nowrap">Đánh giá của bạn</h5>
                                                         </div>
                                                         <div class="col-12 col-lg-10 text-center text-lg-left">
                                                             <ul class="user-rating">
@@ -266,14 +266,14 @@
                                                         </div>
                                                         <div class="col-12">
                                                             <div class="form-group">
-                                                                <label for="comment">Your Rating:</label>
-                                                                <textarea class="form-control textareaclass" name="content" rows="5" id="comment" required="required" placeholder="Your Review"></textarea>
+                                                                <label for="comment">Đánh giá của bạn:</label>
+                                                                <textarea class="form-control textareaclass" name="content" rows="5" id="comment" required="required" placeholder="Đánh giá của bạn"></textarea>
                                                             </div>
                                                         </div>
                                                         
                                                         <div class="col-12 mt-3">
                                                             <div class="form-group d-flex justify-content-center d-lg-block">
-                                                                <button type="submit" class="text-center btn green-color-yellow-gradient-btn">Add Review</button>
+                                                                <button type="submit" class="text-center btn green-color-yellow-gradient-btn">Đánh giá</button>
                                                             </div>
                                                         </div>
                                                     </div>

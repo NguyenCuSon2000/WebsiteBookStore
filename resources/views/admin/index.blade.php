@@ -41,6 +41,7 @@
                         <th>Tổng tiên (VNĐ)</th>
                         <th>Ngày đặt</th>
                         <th>Trạng Thái</th>
+                        <th>In hóa đơn</th>
                         <th>Xem chi tiết</th>
                     </tr>
                 </thead>
@@ -60,6 +61,9 @@
                             @else
                                   <a href="#" class="label-success label">Đã xử lý</a>
                             @endif
+                        </td>
+                        <td>
+                             <a target="_blank" href="{{ route('print_order', $order->id) }}" class="label-info label">In hóa đơn</a>
                         </td>
                         <td data-label="Xem chi tiết" class="right__iconTable">
                               <a  data-id ="{{ $order->id }}" href="{{ route('order.show', $order->id) }}"><img src="{{ asset('assets/icon-eye.svg') }}" alt=""></a>

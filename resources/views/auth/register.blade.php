@@ -18,12 +18,12 @@
                 }
             ?>
             @if(count($errors)>0)
-               <div class="alert alert-danger" style="color: red">
+               <!-- <div class="alert alert-danger" style="color: red">
                    @foreach($errors->all() as $error)
                        {{$error}}
                    @endforeach
                </div>
-            @endif
+            @endif -->
             <header>Đăng Ký</header>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -31,28 +31,30 @@
                 <div class="field space">
                     <span class="fa fa-user"></span>
                     <input id="username" type="email" class="form-control @error('username') is-invalid @enderror" placeholder="Email" name="username" value="{{ old('username') }}" required autocomplete="username">
-                    @error('username')
+                    <!-- @error('username')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                    @enderror
+                    @enderror -->
                 </div>
-           
+                @error('username')
+                     <span style="color:#FF0000; font-size:18px">{{ $message }}</span>
+                 @enderror
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Mật khẩu" name="password" required autocomplete="new-password">
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    
                 </div>
-
+                @error('password')
+                     <span style="color:#FF0000; font-size:18px">{{ $message }}</span>
+                 @enderror
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Nhập lại mật khẩu" required autocomplete="new-password">
                 </div>
-                
+                @error('password')
+                     <span style="color:#FF0000; font-size:18px">{{ $message }}</span>
+                 @enderror
                 <div class="pass">
                     <a href="#">Quên mật khẩu?</a>
                 </div>

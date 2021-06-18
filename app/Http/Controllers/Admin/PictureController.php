@@ -140,4 +140,20 @@ class PictureController extends Controller
         return redirect()->route("picture.index")->with('message', 'Xóa hình ảnh thành công');
     }
 
+    public function search(Request $request)
+    {
+        //
+        $text = $request->input("txtSearch");
+        if ($text == "") {
+            $db = Picture::paginate(10);
+        }
+        else {
+            $db = Picture::join('products', 'pictures.ProductId','=','products.id')
+                            ->select('pictures.*')
+                            ->where('products.ProductName','LIKE','%'.$text.'%')
+                            ->paginate(1000);
+        }
+        return view('admin.picture.picture', ['db'=>$db]);
+    }
+
 }

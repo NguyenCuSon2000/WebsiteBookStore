@@ -16,7 +16,8 @@ class ProductController extends Controller
     {
         $categories = CategoryProducts::all();
         
-        $products = Products::where("Cate_Id", $id)->orderBy('id','DESC')->limit(6)->get();
+        // $products = Products::where("Cate_Id", $id)->orderBy('id','DESC')->limit(6)->get();
+        $products = Products::where("Cate_Id", $id)->orderBy('id','DESC')->paginate(6);
         
         $product_count = Products::groupBy('Cate_Id')                             // COUNT PRODUCT
                                     ->selectRaw('count(id) as count, Cate_Id')
@@ -43,25 +44,22 @@ class ProductController extends Controller
             $display = $request->display;
             switch ($display) {
                 case '3':
-                    $products = Products::where("Cate_Id", $id)->limit(3)->get();
+                    $products = Products::where("Cate_Id", $id)->paginate(3);
                     break;
                 case '6':
-                    $products = Products::where("Cate_Id", $id)->limit(6)->get();
+                    $products = Products::where("Cate_Id", $id)->paginate(6);
                     break;
                 case '9':
-                    $products = Products::where("Cate_Id", $id)->limit(9)->get();
+                    $products = Products::where("Cate_Id", $id)->paginate(9);
                     break;
                 case '12':
-                    $products = Products::where("Cate_Id", $id)->limit(12)->get();
+                    $products = Products::where("Cate_Id", $id)->paginate(12);
                     break;
                 case '15':
-                    $products = Products::where("Cate_Id", $id)->limit(15)->get();
-                    break;
-                case 'all':
-                    $products = Products::where("Cate_Id", $id)->get();
+                    $products = Products::where("Cate_Id", $id)->paginate(15);
                     break;
                 default:
-                     $products = Products::where("Cate_Id", $id)->limit(9)->get();
+                     $products = Products::where("Cate_Id", $id)->paginate(6);
             }
         } 
         
@@ -70,24 +68,24 @@ class ProductController extends Controller
             $price = $request->price;
             switch ($price) {
                 case '1':
-                    $products = Products::where("Cate_Id", $id)->where('Price','<',50000)->get();
+                    $products = Products::where("Cate_Id", $id)->where('Price','<',50000)->paginate(12);
                     break;
                 case '2':
-                    $products = Products::where("Cate_Id", $id)->whereBetween('Price', [50000, 100000])->get();
+                    $products = Products::where("Cate_Id", $id)->whereBetween('Price', [50000, 100000])->paginate(12);
                     break;
                 case '3':
-                    $products = Products::where("Cate_Id", $id)->whereBetween('Price', [100000, 200000])->get();
+                    $products = Products::where("Cate_Id", $id)->whereBetween('Price', [100000, 200000])->paginate(12);
                     break;
                 case '4':
-                    $products = Products::where("Cate_Id", $id)->whereBetween('Price',[200000, 300000])->get();
+                    $products = Products::where("Cate_Id", $id)->whereBetween('Price',[200000, 300000])->paginate(12);
                     break;
                 case '5':
-                    $products = Products::where("Cate_Id", $id)->whereBetween('Price',[300000, 400000])->get();
+                    $products = Products::where("Cate_Id", $id)->whereBetween('Price',[300000, 400000])->paginate(12);
                     break;
                 case '6':
-                    $products = Products::where("Cate_Id", $id)->whereBetween('Price',[400000, 500000])->get();
+                    $products = Products::where("Cate_Id", $id)->whereBetween('Price',[400000, 500000])->paginate(12);
                 case '7':
-                    $products = Products::where("Cate_Id", $id)->where('Price','>',500000)->get();
+                    $products = Products::where("Cate_Id", $id)->where('Price','>',500000)->paginate(12);
                     
             }
         } 
@@ -98,19 +96,19 @@ class ProductController extends Controller
             $orderby = $request->orderby;
             switch ($orderby) {
                 case 'desc': // NEW
-                    $products = Products::where("Cate_Id", $id)->orderBy('id','DESC')->get();
+                    $products = Products::where("Cate_Id", $id)->orderBy('id','DESC')->paginate(12);
                     break;
                 case 'asc':  //OLD
-                    $products = Products::where("Cate_Id", $id)->orderBy('id','ASC')->get();
+                    $products = Products::where("Cate_Id", $id)->orderBy('id','ASC')->paginate(12);
                     break;
                 case 'price_max': // ascending
-                      $products = Products::where("Cate_Id", $id)->orderBy('Price','ASC')->get();
+                      $products = Products::where("Cate_Id", $id)->orderBy('Price','ASC')->paginate(12);
                       break;
                 case 'price_min': //decrease
-                    $products = Products::where("Cate_Id", $id)->orderBy('Price','DESC')->get();
+                    $products = Products::where("Cate_Id", $id)->orderBy('Price','DESC')->paginate(12);
                     break;
                 default:
-                     $products = Products::where("Cate_Id", $id)->orderBy('id','DESC')->get();
+                     $products = Products::where("Cate_Id", $id)->orderBy('id','DESC')->paginate(12);
                     
             }
         }

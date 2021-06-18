@@ -1,12 +1,12 @@
 @extends("layouts.admin")
 @section('admin_content')
 <div class="right__title">Bảng điều khiển</div>
-<p class="right__desc">Xem sản phẩm</p>
+<p class="right__desc">Danh sách sản phẩm</p>
 <div class="right__search">
     <form role="form" action="/search_product" method="get">
         @csrf
-        <input type="search" class="search" name="txtSearch" id="" placeholder="Tìm kiếm" >
-        <input type="submit" class="button" value="Tìm kiếm">
+        <input style="width: 250px;" type="search" class="search" name="txtSearch" id="" placeholder="Tìm theo mã sách, tên sách, tên loại, giá" title="Tìm theo mã sách, tên sách, tên loại, giá">
+        <input type="submit" class="button" value="Tìm kiếm" title="Tìm theo mã sách, tên sách, tên loại, giá">
     </form>
 </div>  
 <?php
@@ -44,7 +44,7 @@
                         <td data-label="Mã sách">{{$r->id}}</td>
                         <td data-label="Tiêu đề" style="text-align:left">{{$r->ProductName}}</td>
                         <td data-label="Tên loại" style="text-align:left">{{ $r->category->CategoryName }}</td>
-                        <td data-label="Đơn giá" style="color:red; font-weight:bold; text-align:right"> {{ number_format($r->Price) }}</td>
+                        <td data-label="Đơn giá(đ)" style="color:red; font-weight:bold; text-align:right"> {{ number_format($r->Price) }}</td>
                         <td data-label="Xem hình ảnh" class="right__iconTable">
                               <a  data-id ="{{ $r->id }}" href="{{ route('product.show', $r->id) }}"><img src="{{ asset('assets/icon-eye.svg') }}" alt=""></a>
                         </td>
@@ -77,15 +77,15 @@
 
 <div class="card bg-light mt-3">
     <div class="card-header">
-        Laravel 6 Import Export Excel to database Example - ItSolutionStuff.com
+        Nhập và xuất ra Excel
     </div>
     <div class="card-body">
         <form action="{{ route('import_products') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="file" name="file" class="form-control">
             <br>
-            <button class="btn btn-success">Import User Data</button>
-            <a class="btn btn-warning" href="{{ route('export_products') }}">Export User Data</a>
+            <button class="btn btn-success">Nhập dữ liệu sản phẩm</button>
+            <a class="btn btn-warning" href="{{ route('export_products') }}">Xuất dữ liệu sản phẩm</a>
         </form>
     </div>
 </div>

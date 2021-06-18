@@ -44,7 +44,7 @@
 
 
 
-
+@import url("https://use.fontawesome.com/releases/v5.2.0/css/all.css");
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800|Open+Sans:300,400,600,700');
 body {
     font-size: 16px;
@@ -52,6 +52,7 @@ body {
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
 }
+
 
 .introduce_info.col-12 {
     z-index: 2;
@@ -746,7 +747,7 @@ h4.text-left.p-item-name a:hover {
 
 .homer-banner .banner-description a:after{
     content: "\f061";
-    font-family: "Font Awesome 5 Free Solid";
+    font-family: "Font Awesome 5 Free";
     display: inline-block;
     width:25px;
     color: #f7941d;

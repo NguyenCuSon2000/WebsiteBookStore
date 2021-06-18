@@ -13,7 +13,6 @@ class OrderDetails extends Model
         "ProductId",
         "Quantity",
         "UnitPrice",
-        "PercentSale",
         "AddDate"
     ];
     protected $primaryKey = "id";

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('admin_content')
 <div class="right__title">Bảng điều khiển</div>
-<p class="right__desc">Thêm sản phẩm khuyến mại</p>
+<p class="right__desc">Thêm sản phẩm khuyến mãi</p>
 <div class="right__formWrapper">
     <form role="form" action="{{ route('discount.store') }}" method="post" enctype="multipart/form-data">
         @csrf
@@ -14,7 +14,7 @@
             </select>
         </div>
         <div class="right__inputWrapper">
-            <label for="title">Phần trăm khuyến mại</label>
+            <label for="title">Phần trăm khuyến mãi</label>
             <input type="number" class="form-control @error('txtPer') is-invalid @enderror" value="{{ old('txtPer') }}" autocomplete="txtPer" autofocus min="1" max="100"  name="txtPer" placeholder="Phần trăm" required>
             @error('txtPer')
             <span class="invalid-feedback" role="alert">

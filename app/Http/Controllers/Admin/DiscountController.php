@@ -119,4 +119,26 @@ class DiscountController extends Controller
         $db->delete();
         return redirect()->route("discount.index")->with('message', 'Xóa sản phẩm thành công');
     }
+
+    public function search(Request $request)
+    {
+        //
+        $text = $request->input("txtSearch");
+        if ($text == "") {
+            $db = Discount::paginate(10);
+        }
+        else {
+            $db = Discount::join('products', 'discounts.Product_Id','=','products.id')
+                            ->select('discounts.*')
+                            ->where('discounts.id','LIKE','%'.$text.'%')
+                            ->orWhere('discounts.Percent','LIKE','%'.$text.'%')
+                            ->orWhere('discounts.BeginDate','LIKE','%'.$text.'%')
+                            ->orWhere('discounts.EndDate','LIKE','%'.$text.'%')
+                            ->orWhere('discounts.AddDate','LIKE','%'.$text.'%')
+                            ->orWhere('products.ProductName','LIKE','%'.$text.'%')
+                            ->orWhere('products.Price','LIKE','%'.$text.'%')
+                            ->paginate(1000);
+        }
+        return view('admin.discount.discount', ['db'=>$db]);
+    }
 }

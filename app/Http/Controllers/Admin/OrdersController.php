@@ -24,15 +24,15 @@ class OrdersController extends Controller
         $count_order = Orders::count();
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
-        $order_count_today = Orders::whereDay("OrderDate", now())->count();
+        $order_count_today = Orders::whereDate("OrderDate", now())->count();
         return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
     }
     
     public function show(Request $request, $id)
     {
+        $order_customer =  OrderDetails::where("OrderId", $id)->limit(1)->get();
         $order_details = OrderDetails::where("OrderId", $id)->paginate(5);
-        return view("admin.order.order_details", compact('order_details'));
-        
+        return view("admin.order.order_details", compact('order_customer','order_details'));
     }
 
      /**
@@ -92,13 +92,14 @@ class OrdersController extends Controller
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
         $count_order = Orders::count();
-        $order_count_today = Orders::where("OrderDate", now())->count();
+        $order_count_today = Orders::whereDate("OrderDate", now())->count();
         $text = $request->input("txtSearch");
         if ($text == "") {
             $db = Orders::orderby("Status", "asc")->orderBy("id","desc")->paginate(5);
         }
         else {
             $db = Orders::join('customers','orders.CustomerId','=','customers.id')
+                            ->select("orders.*")
                             ->where('orders.OrderDate','LIKE','%'.$text.'%')
                             ->orWhere('orders.id','LIKE','%'.$text.'%')
                             ->orWhere('orders.ShipPhone','LIKE','%'.$text.'%')
@@ -106,16 +107,17 @@ class OrdersController extends Controller
                             ->orWhere('orders.Note','LIKE','%'.$text.'%')
                             ->orWhere('customers.CustomerName','LIKE','%'.$text.'%')->paginate(10000);
         }
+        // dd($db);
         return view('admin.order.order', compact("db","order_done","order_wait","count_order","order_count_today"));
     }
 
     public function getOrderCurrent()
     {
-        $db = Orders::whereDay("OrderDate", now())->orderBy("Status","asc")->orderBy("id","desc")->paginate(5);
+        $db = Orders::whereDate("OrderDate", now())->orderBy("Status","asc")->orderBy("id","desc")->paginate(5);
         $count_order = Orders::count();
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
-        $order_count_today = Orders::where("OrderDate", now())->count();
+        $order_count_today = Orders::whereDate("OrderDate", now())->count();
         return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
     }
 
@@ -125,7 +127,7 @@ class OrdersController extends Controller
         $count_order = Orders::count();
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
-        $order_count_today = Orders::where("OrderDate", now())->count();
+        $order_count_today = Orders::whereDate("OrderDate", now())->count();
         return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
     }
 
@@ -135,7 +137,7 @@ class OrdersController extends Controller
         $count_order = Orders::count();
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
-        $order_count_today = Orders::where("OrderDate", now())->count();
+        $order_count_today = Orders::whereDate("OrderDate", now())->count();
         return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
     }
     

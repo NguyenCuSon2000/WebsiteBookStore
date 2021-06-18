@@ -163,11 +163,14 @@ class ProductsController extends Controller
             $db = Products::paginate(10);
         }
         else {
-            $db = Products::where('ProductName','LIKE','%'.$text.'%')
-                           ->orWhere('id','LIKE','%'.$text.'%')
-                           ->orWhere('Price','LIKE','%'.$text.'%')->paginate(1000);
+            $db = Products::join('category_products','products.Cate_id','=','category_products.id')
+                           ->select('products.*')
+                           ->where('products.ProductName','LIKE','%'.$text.'%')
+                           ->orWhere('products.id','LIKE','%'.$text.'%')
+                           ->orWhere('products.Price','LIKE','%'.$text.'%')
+                           ->orWhere('category_products.CategoryName','LIKE','%'.$text.'%')->paginate(1000);
         }
-        return view('admin.product.product', compact('db'));
+        return view('admin.product.product', ['db'=>$db]);
     }
 
 

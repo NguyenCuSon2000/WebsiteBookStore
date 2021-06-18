@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\Roles;
+use Illuminate\Support\Facades\Hash;
 use Auth;
 
 class UsersController extends Controller
@@ -18,7 +19,7 @@ class UsersController extends Controller
     public function index()
     {
         //
-        $db = User::paginate(10);
+        $db = User::orderBy('id','DESC')->paginate(10);
         return view("admin.user.users", compact("db"));
     }
 
@@ -86,7 +87,7 @@ class UsersController extends Controller
         //
         $db = User::find($id);
         $db->username = $request->input('txtName');
-        $db->password = $request->input('txtpw');
+        $db->password = Hash::make($request->input('txtpw')) ;
         $db->role_id = $request->input('sl_role');
         $db->status = $request->input('slstt');
         $db->save();
@@ -115,8 +116,13 @@ class UsersController extends Controller
             $db = User::paginate(10);
         }
         else {
-            $db = User::where('username','LIKE','%'.$text.'%')
-                            ->orWhere('id','LIKE','%'.$text.'%')->paginate(1000);
+            $db = User::join('roles', 'users.role_id','=','roles.id')
+                            ->select('users.*')
+                            ->where('users.username','LIKE','%'.$text.'%')
+                            ->orWhere('users.id','LIKE','%'.$text.'%')
+                            ->orWhere('users.created_at','LIKE','%'.$text.'%')
+                            ->orWhere('roles.name','LIKE','%'.$text.'%')
+                            ->paginate(1000);
         }
         return view('admin.user.users', ['db'=>$db]);
     }

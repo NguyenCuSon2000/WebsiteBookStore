@@ -1,7 +1,7 @@
 @extends("layouts.admin")
 @section('admin_content')
 <div class="right__title">Bảng điều khiển</div>
-<p class="right__desc">Xem đơn hàng</p>
+<p class="right__desc">Danh sách đơn hàng</p>
 <div class="right__cards">
     <a class="right__card" href="{{ route('order.index') }}">
         <div class="right__cardTitle">Tổng đơn hàng</div>
@@ -27,8 +27,8 @@
 <div class="right__search">
     <form role="form" action="/search_order" method="get">
         @csrf
-        <input type="search" class="search" name="txtSearch" id="" placeholder="Tìm kiếm" >
-        <input type="submit" class="button" value="Tìm kiếm">
+        <input style="width: 250px;"  type="search" class="search" name="txtSearch" id="" placeholder="Tìm theo mã hóa đơn, tên khách hàng, địa chỉ, sđt, ngày đặt, ghi chú" title="Tìm theo mã hóa đơn, tên khách hàng, địa chỉ, sđt, ngày đặt, ghi chú">
+        <input type="submit" class="button" value="Tìm kiếm" title="Tìm theo mã hóa đơn, tên khách hàng, địa chỉ, sđt, ngày đặt, ghi chú">
     </form>
 </div>  
 <?php
@@ -72,7 +72,7 @@
                         <td data-label="Ngày đặt">{{ \Carbon\Carbon::parse($r->OrderDate)->format('d/m/Y') }}</td>
                         <td data-label="Số điện thoại nhận">{{ $r->ShipPhone }}</td>
                         <td data-label="Địa chỉ nhận" style="text-align:left">{{ $r->ShipAddress }}</td>
-                        <td data-label="Tổng tiền" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->total ) }}</td>
+                        <td data-label="Tổng tiền(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->total ) }}</td>
                         <td data-label="Ghi chú" style="text-align:left">{{ $r->Note }}</td>
                         <td data-label="Trạng thái">
                             @if( $r->Status == 0)

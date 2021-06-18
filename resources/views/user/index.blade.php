@@ -21,7 +21,7 @@
                 <div class="banner-description">
                     <span class="small-heading animated fadeInRight delay-1s">BEST AVAILABLE</span>
                     <h1 class="w-sm-100 w-md-100 w-lg-25 animated fadeInLeft delay-1s">BOOKS <span>COLLECTION</span></h1>
-                    <a href="book-shop/product-listing.html" class="btn animated fadeInLeft delay-1s">MUA NGAY</a>
+                    <a href="{{ route('index') }}" class="btn animated fadeInLeft delay-1s">MUA NGAY</a>
                 </div>
             </div>
         </div>
@@ -209,16 +209,18 @@
     <div class="container">
         <div class="row">
             <div class="col-12 mb-4">
-                <h1>SÁCH KHUYỄN MẠI</h1>
+                <h1>SÁCH KHUYỄN MÃI</h1>
             </div>
             <div class="col-12">
                 <div class="lastest_featured_products owl-carousel owl-theme">
                 @foreach($products_sale as $product)
-                    <div  class="lastest_arrival_items item">
-                        <a href="{{ route('addcart', ['id' => $product->id]) }}" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
+                    <div class="lastest_arrival_items item">
+                        <a href="{{ route('addcart', ['id' => $product->product->id]) }}" class="lastest-addto-cart"><i class="fa fa-shopping-cart"></i></a>
+                        @if($product->Status == 1) 
                         <div class="product-sale">
                                 <span><label class="sale-lb">- </label> {{ $product->Percent }}%</span>
-                            </div>
+                        </div>
+                        @endif
                         <div class="card">
                             <span class="product-type">MỚI</span>
                             <div class="image-holder">

@@ -14,7 +14,8 @@ class Products extends Model
         'Picture',
         'Price',
         'Quantity',
-        'Status'
+        'Status',
+        'Cate_Id'
     ];
     protected $primaryKey = 'id';
     

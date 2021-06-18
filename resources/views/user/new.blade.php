@@ -84,14 +84,12 @@
             <!-- END PRODUCT COL 8 -->
             
         </div>
+       
     </div>
 </div>
 <!--Product Line Up End-->
 <div style="margin-left: 50%; margin-bottom: 50px;">
     {{$news->links()}}
 </div>
-
-
-
 @endsection
 

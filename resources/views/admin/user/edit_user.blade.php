@@ -12,7 +12,7 @@
         </div>
         <div class="right__inputWrapper">
             <label for="date">Password</label>
-            <input type="password" class="form-control" value="{{ $db->password }}" name="txtpw" id="" required>
+            <input type="text" class="form-control" value="{{ $db->password }}" name="txtpw" id="" required>
         </div>
         <div class="right__inputWrapper">
             <label for="p_category">Quyền</label>

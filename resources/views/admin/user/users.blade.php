@@ -5,8 +5,8 @@
 <div class="right__search">
     <form role="form" action="/search_user" method="get">
        @csrf
-        <input type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm kiếm" >
-        <input type="submit" class="button" value="Tìm kiếm">
+        <input  style="width: 250px;" type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm theo mã, tên người dùng, quyền, ngày tạo" title="Tìm theo mã, tên người dùng, quyền, ngày tạo" >
+        <input type="submit" class="button" value="Tìm kiếm" title="Tìm theo mã, tên người dùng, quyền, ngày tạo">
     </form>
 </div>   
 <?php

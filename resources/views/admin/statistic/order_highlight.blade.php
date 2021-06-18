@@ -3,16 +3,15 @@
 <div class="right__title">Bảng điều khiển</div>
 <p class="right__desc">Thống kê đơn hàng nổi bật</p>
 
-
-
-<?php
-use Illuminate\Support\Facades\Session;
-$message = Session::get('message');
-if($message){
-    echo '<span style="color: red">'.$message.'</span>';
-    Session::put('message',null);
-}
-?>   
+<form action="" id="form_hight" method="get">
+        <div class="form-group">
+            <label for="">Nổi bật về</label>
+            <select class="hight form-control form-control-sm" name="hight">
+              <option {{ Request::get('hight') == "qty" || !Request::get('hight') ? "selected='selected'" : "" }} value="qty" selected>Số lượng đơn hàng</option>
+              <option {{ Request::get('hight') == "total" ? "selected='selected'" : "" }} value="total">Tổng tiền đặt</option>
+            </select>
+          </div>
+    </form>
 <div class="right__table mt-5">
     <div class="right__tableWrapper">
         @php
@@ -26,7 +25,7 @@ if($message){
                     <th>Tên khách hàng</th>
                     <th>Địa chỉ</th>
                     <th>Số điện thoại</th>
-                    <th>Số lượng đơn hàng</th>
+                    <th>Tổng đơn đặt hàng</th>
                     <th>Tổng tiền đặt(VNĐ)</th>
                 </tr>
             </thead>
@@ -39,8 +38,8 @@ if($message){
                     <td data-label="Tên khách hàng" style="text-align:left">{{ $r->customer->CustomerName }}</td>
                     <td data-label="Địa chỉ"  style="text-align:left">{{ $r->customer->Address }}</td>
                     <td data-label="Số điện thoại">{{ $r->customer->Phone }}</td>
-                    <td data-label="Số lượng đơn">{{ $r->amount }}</td>
-                    <td data-label="Tổng tiền đặt" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->sum_total ) }}</td>
+                    <td data-label="Tổng đơn hàng">{{ $r->amount }}</td>
+                    <td data-label="Tổng tiền đặt(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->sum_total ) }}</td>
                 </tr>
                 @endforeach
             </tbody>

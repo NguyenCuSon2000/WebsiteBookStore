@@ -12,6 +12,8 @@ use App\Models\Customers;
 use App\Http\Requests\CheckoutRequest;
 use Cart;
 use Illuminate\Support\Facades\Auth;
+use Mail;
+
 // use Section;
 // session_start();
 
@@ -41,8 +43,11 @@ class CheckoutController extends Controller
     {
       
         $c_id = $request->txtid;
+        $c_email = $request->txtEmail;
+        $c_name = $request->txtName;
+        $total = Cart::subtotal(0,3);
         $totalMoney = str_replace(",","",Cart::subtotal(0,3));
-
+   
         if (Customers::where('email', $request->txtEmail)->exists()) {
             $customer_id = Customers::where("Email", $request->txtEmail)->value('id');
             if ($customer_id) {
@@ -68,7 +73,7 @@ class CheckoutController extends Controller
                         'OrderId' => $order_id,
                         'ProductId' => $value->id,
                         'Quantity' => $value->qty,
-                        'UnitPrice' => $value->options->price_old,
+                        'UnitPrice' => $value->price,
                         'AddDate' => now(),
                         'created_at' => now(),
                         'updated_at' => now()
@@ -118,6 +123,22 @@ class CheckoutController extends Controller
                }
             }
         }
+
+        $to_name = "NGUYEN CU SON";
+        $to_email = "son2kcntt@gmail.com";//
+        Mail::send('user.send_mail', [
+            'order_date' => now(),
+            'c_email' => $c_email,
+            'c_name' => $c_name,
+            'c_address' => $request->txtad,
+            'c_phone' => $request->txtPhone,
+            'cart' => $cart,
+            'total' => $total,
+        ], function ($message) use($c_email, $to_name, $to_email){
+            $message->from($to_email, $to_name);
+            $message->to($c_email);
+            $message->subject('THÔNG TIN ĐƠN ĐẶT HÀNG');
+        });
         Cart::destroy();
         return redirect()->route("checkout_success")->with("success","Đặt hàng thành công");
 

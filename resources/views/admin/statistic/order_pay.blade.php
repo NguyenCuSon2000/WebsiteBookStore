@@ -12,12 +12,12 @@
             </a>
             <a class="right__card" href="{{ route('getOrderDone') }}">
                 <div class="right__cardTitle">Tổng doanh thu (đã xử lý)</div>
-                <div class="right__cardNumber">{{ number_format($order_total_done) }}</div>
+                <div class="right__cardNumber">{{ number_format($order_total_done) }} đ</div>
                 <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
             </a>
             <a class="right__card" href="{{ route('getOrderWait') }}">
                 <div class="right__cardTitle">Tổng doanh thu (chờ xử lý)</div>
-                <div class="right__cardNumber">{{ number_format($order_total_wait) }}</div>
+                <div class="right__cardNumber">{{ number_format($order_total_wait) }} đ</div>
                 <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>
             </a>
             <a class="right__card" href="">
@@ -94,7 +94,7 @@ if($message){
                     <td data-label="Ngày đặt">{{ \Carbon\Carbon::parse($r->OrderDate)->format('d/m/Y') }}</td>
                     <td data-label="Số điện thoại nhận">{{ $r->ShipPhone }}</td>
                     <td data-label="Địa chỉ nhận" style="text-align:left">{{ $r->ShipAddress }}</td>
-                    <td data-label="Tổng tiền" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->total ) }}</td>
+                    <td data-label="Tổng tiền(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->total ) }}</td>
                     <td data-label="Ghi chú" style="text-align:left">{{ $r->Note }}</td>
                     <td data-label="Trạng thái">
                         @if( $r->Status == 0)
@@ -124,4 +124,5 @@ if($message){
     </div>
     <a href="{{ route('order.index') }}" class="right__tableMore"><p>Xem tất cả các đơn đặt hàng</p> <img src="{{asset('assets/arrow-right-black.svg')}}" alt=""></a>
 </div>
+
 @endsection

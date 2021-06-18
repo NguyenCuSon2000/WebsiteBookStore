@@ -50,7 +50,7 @@
                 <div class="c-box wow fadeInRight">
                     <h4 class="small-heading">Để lại tin nhắn</h4>
 
-                    <form class="contact-form" id="contact-form-data" action="" method="post">
+                    <form class="contact-form" id="contact-form-data" action="/contact" method="post"  enctype="multipart/form-data">
                         @csrf
                         <div class="row my-form">
                             <div class="col-md-12 col-sm-12">

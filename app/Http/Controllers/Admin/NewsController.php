@@ -17,7 +17,7 @@ class NewsController extends Controller
     public function index()
     {
         //
-        $db = News::paginate(5);
+        $db = News::orderBy('id','DESC')->paginate(5);
         return view("admin.new.new", compact('db'));
     }
 
@@ -139,5 +139,22 @@ class NewsController extends Controller
         $db = News::findOrFail($id);
         $db->delete();
         return redirect()->route("news.index")->with('message', 'Xóa tin thành công');
+    }
+
+    public function search(Request $request)
+    {
+        //
+        $text = $request->input("txtSearch");
+        if ($text == "") {
+            $db = News::paginate(10);
+        }
+        else {
+            $db = News::where('title','LIKE','%'.$text.'%')
+                            ->orWhere('id','LIKE','%'.$text.'%')
+                            ->orWhere('description','LIKE','%'.$text.'%')
+                            ->orWhere('content','LIKE','%'.$text.'%')
+                            ->orWhere('date','LIKE','%'.$text.'%')->paginate(1000);
+        }
+        return view('admin.new.new', ['db'=>$db]);
     }
 }

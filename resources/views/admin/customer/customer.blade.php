@@ -1,12 +1,12 @@
 @extends("layouts.admin")
 @section('admin_content')
 <div class="right__title">Bảng điều khiển</div>
-<p class="right__desc">Xem khách hàng</p>
+<p class="right__desc">Danh sách khách hàng</p>
 <div class="right__search">
     <form role="form" action="/search_customer" method="get">
         @csrf
-        <input type="search" class="search" name="txtSearch" id="" placeholder="Tìm kiếm" >
-        <input type="submit" class="button" value="Tìm kiếm">
+        <input style="width: 250px;"  type="search" class="search" name="txtSearch" id="" placeholder="Tìm theo mã, tên, ngày sinh, địa chỉ, số điện thoại, email" title="Tìm theo mã, tên, ngày sinh, địa chỉ, số điện thoại, email">
+        <input type="submit" class="button" value="Tìm kiếm" title="Tìm theo mã, tên, ngày sinh, địa chỉ, số điện thoại, email">
     </form>
 </div>   
 <?php

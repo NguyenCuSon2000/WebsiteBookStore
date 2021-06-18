@@ -20,11 +20,14 @@
             </select>
           </div>
     </form>
+    <p style="font-size: 18px;">Tổng doanh thu năm {{ $year }}: 
+        <span style="color: red; font-weight: bold;">{{ number_format($order_total_year).' '.'đ' }} </span> 
+    </p>
     <div class="row">
         @foreach($list_total as $value)
         <div class="col-sm-3">
             <div class="right__cards statistic">
-                <a class="right__card" href="">
+                <a class="right__card" href="/statistic/order_list/{{$value['month']}}/{{ $year }}">
                     <div class="right__cardTitle">Tháng {{$value['month']}}</div>
                     <div class="right__cardNumber">{{ number_format($value['order_time']).' '.'đ'}} </div>
                     <div class="right__cardDesc">Xem Chi Tiết <img src="{{asset('assets/arrow-right.svg')}}" alt=""></div>

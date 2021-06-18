@@ -5,7 +5,7 @@
 <div class="right__search">
     <form role="form" action="/search_role" method="get">
        @csrf
-        <input type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm kiếm" >
+        <input  style="width: 250px;" type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm theo tên quyền" >
         <input type="submit" class="button" value="Tìm kiếm">
     </form>
 </div>   

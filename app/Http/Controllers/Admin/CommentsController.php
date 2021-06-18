@@ -114,6 +114,7 @@ class CommentsController extends Controller
         }
         else {
             $db = Comments::join('products','comments.ProductId','=','products.id')
+                           ->select('comments.*')
                            ->where('comments.name','LIKE','%'.$text.'%')
                            ->orWhere('comments.email','LIKE','%'.$text.'%')
                            ->orWhere('comments.content','LIKE','%'.$text.'%')

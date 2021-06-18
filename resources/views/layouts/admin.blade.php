@@ -54,10 +54,24 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
+                                <div class="left__title"><img src="{{asset('assets/icon-pencil.svg')}}" alt="">Tin tức<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="{{ route('news.create') }}">Thêm tin </a>
+                                    <a class="left__link" href="{{ route('news.index') }}">Quản lý tin tức</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
                                 <div class="left__title"><img src="{{asset('assets/icon-edit.svg')}}" alt="">Đơn hàng<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
                                     <a class="left__link" href="">Thêm đơn hàng</a>
                                     <a class="left__link" href="{{ route('order.index') }}">Liệt kê đơn hàng</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="{{asset('assets/icon-picture.svg')}}" alt="">Hình ảnh<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="{{ route('picture.create') }}">Thêm hình ảnh</a>
+                                    <a class="left__link" href="{{ route('picture.index') }}">Xem hình ảnh</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">
@@ -81,21 +95,7 @@
                                     <a class="left__link" href="{{ route('user.index') }}">Xem người dùng</a>
                                 </div>
                             </li>
-                            <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/icon-pencil.svg')}}" alt="">Tin tức<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
-                                <div class="left__text">
-                                    <a class="left__link" href="{{ route('news.create') }}">Thêm tin </a>
-                                    <a class="left__link" href="{{ route('news.index') }}">Quản lý tin tức</a>
-                                </div>
-                            </li>
                            
-                            <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/icon-picture.svg')}}" alt="">Hình ảnh<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
-                                <div class="left__text">
-                                    <a class="left__link" href="{{ route('picture.create') }}">Thêm hình ảnh</a>
-                                    <a class="left__link" href="{{ route('picture.index') }}">Xem hình ảnh</a>
-                                </div>
-                            </li>
                             <li class="left__menuItem">
                                 <div class="left__title"><img src="{{asset('assets/line-chart.svg')}}" alt="">Thống kê sản phẩm<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
@@ -111,7 +111,7 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/chart.svg')}}" alt="">Thống kê hàng tháng<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__title"><img src="{{asset('assets/poll.svg')}}" alt="">Thống kê hàng tháng<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
                                     <a class="left__link" href="/statistic/order_time">Thống kê doanh thu</a>
                                     <a class="left__link" href="/statistic/order_count">Thống kê số lượng</a>
@@ -160,6 +160,9 @@
             });
             $('.count').change(function () { 
                 $('#form_count').submit();
+            });
+            $('.hight').change(function () { 
+                $('#form_hight').submit();
             });
         })
 

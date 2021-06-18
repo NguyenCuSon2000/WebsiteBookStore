@@ -41,8 +41,8 @@
                         <td data-label="id">{{$r->product->id}}</td>
                         <td data-label="Tiêu đề" style="text-align:left">{{$r->product->ProductName}}</td>
                         <td data-label="Tên loại" style="text-align:left">{{ $r->product->category->CategoryName }}</td>
-                        <td data-label="Số lượng" >{{ $r->amount }}</td>
-                        <td data-label="Đơn giá" style="color:red; font-weight:bold; text-align:right"> {{ number_format($r->product->Price) }}</td>
+                        <td data-label="Số lượng được đặt" >{{ $r->amount }}</td>
+                        <td data-label="Đơn giá(đ)" style="color:red; font-weight:bold; text-align:right"> {{ number_format($r->product->Price) }}</td>
                         <td data-label="Xem hình ảnh" class="right__iconTable">
                               <a  data-id ="{{ $r->product->id }}" href="{{ route('product.show', $r->product->id) }}"><img src="{{ asset('assets/icon-eye.svg') }}" alt=""></a>
                         </td>

@@ -37,7 +37,6 @@ class ContactController extends Controller
         $data = $request->except('_token');
         $data['created_at'] = $data['updated_at'] = now();
         Contact::insert($data);
-
         return redirect()->back();
     }
 }

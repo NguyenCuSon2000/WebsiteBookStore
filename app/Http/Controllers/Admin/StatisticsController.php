@@ -11,6 +11,7 @@ use App\Models\Orders;
 use App\Models\OrderDetails;
 use App\Models\Comments;
 use App\Http\Requests\StatisticRequest;
+use Carbon\Carbon;
 
 class StatisticsController extends Controller
 {
@@ -49,15 +50,12 @@ class StatisticsController extends Controller
         $date_from = $request->date_from;
         $date_to = $request->date_to;
         
-        
-        if ($date_from == "" || $date_to == "" || $date_from >= $date_to) {
+        if ($date_from >= $date_to) {
             $order_pay = Orders::orderby("Status", "asc")->orderBy("id","desc")->limit(5)->get();
         }
         else {
             $order_pay = Orders::orderby("Status", "asc")->orderBy("id","desc")->whereBetween("OrderDate", [$date_from, $date_to])->get();
         }
-        
-       
         
         $order_total_date = Orders::where("Status",1)->whereBetween("OrderDate", [$date_from, $date_to])->sum('total');
         
@@ -68,11 +66,26 @@ class StatisticsController extends Controller
     }
     
     // ĐƠN HÀNG NỔI NỔI BẬT
-    public function getOrderHighlight()
+    public function getOrderHighlight(Request $request)
     {
         $order_highlight = Orders::groupBy("CustomerId")
-                        ->selectRaw('count(id) as amount,sum(total) as sum_total, CustomerId')
+                        ->selectRaw('count(id) as amount, sum(total) as sum_total, CustomerId')
                         ->latest('amount')->latest('sum_total')->paginate(10);
+        if ($request->hight) {
+            $hight = $request->hight;
+            switch ($hight) {
+                case 'qty':
+                    $order_highlight = Orders::groupBy("CustomerId")
+                                        ->selectRaw('count(id) as amount, sum(total) as sum_total, CustomerId')
+                                        ->latest('amount')->latest('sum_total')->paginate(10);
+                    break;
+                case 'total':
+                    $order_highlight = Orders::groupBy("CustomerId")
+                                        ->selectRaw('count(id) as amount, sum(total) as sum_total, CustomerId')
+                                        ->latest('sum_total')->latest('amount')->paginate(10);
+                    break;
+            }
+        }
         return view("admin.statistic.order_highlight", compact('order_highlight'));
     }
 
@@ -85,6 +98,8 @@ class StatisticsController extends Controller
                            ->whereYear("OrderDate", now())->count("id");
             array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
         }
+        $order_quantity_year = Orders::whereYear("OrderDate", now())->count('id');
+        $year = Carbon::now()->year;
         if ($request->year) {
             $year = $request->year;
             switch ($year) {
@@ -95,6 +110,7 @@ class StatisticsController extends Controller
                                      ->whereYear("OrderDate", $year)->count("id");
                         array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
                     }
+                    $order_quantity_year = Orders::whereYear("OrderDate", $year)->count('id');
                     break;
                 case '2022':
                     $list_count = array();
@@ -103,6 +119,7 @@ class StatisticsController extends Controller
                                      ->whereYear("OrderDate", $year)->count("id");
                         array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
                     }
+                    $order_quantity_year = Orders::whereYear("OrderDate", $year)->count('id');
                     break;
                 case '2023':
                     $list_count = array();
@@ -111,6 +128,7 @@ class StatisticsController extends Controller
                                      ->whereYear("OrderDate", $year)->count("id");
                         array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
                     }
+                    $order_quantity_year = Orders::whereYear("OrderDate", $year)->count('id');
                     break;
                 case '2024':
                     $list_count = array();
@@ -119,6 +137,7 @@ class StatisticsController extends Controller
                                      ->whereYear("OrderDate", $year)->count("id");
                         array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
                     }
+                    $order_quantity_year = Orders::whereYear("OrderDate", $year)->count('id');
                     break;
                 case '2025':
                     $list_count = array();
@@ -127,6 +146,7 @@ class StatisticsController extends Controller
                                      ->whereYear("OrderDate", $year)->count("id");
                         array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
                     }
+                    $order_quantity_year = Orders::whereYear("OrderDate", $year)->count('id');
                     break;
                 case '2026':
                     $list_count = array();
@@ -134,7 +154,9 @@ class StatisticsController extends Controller
                         $order_count = Orders::whereMonth("OrderDate", $i)
                                      ->whereYear("OrderDate", $year)->count("id");
                         array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
+                    
                     }
+                    $order_quantity_year = Orders::whereYear("OrderDate", $year)->count('id');
                     break;
                 case '2027':
                     $list_count = array();
@@ -143,6 +165,7 @@ class StatisticsController extends Controller
                                      ->whereYear("OrderDate", $year)->count("id");
                         array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
                     }
+                    $order_quantity_year = Orders::whereYear("OrderDate", $year)->count('id');
                     break;
                 case '2028':
                     $list_count = array();
@@ -151,6 +174,7 @@ class StatisticsController extends Controller
                                      ->whereYear("OrderDate", $year)->count("id");
                         array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
                     }
+                    $order_quantity_year = Orders::whereYear("OrderDate", $year)->count('id');
                     break;
                 case '2029':
                     $list_count = array();
@@ -159,6 +183,7 @@ class StatisticsController extends Controller
                                      ->whereYear("OrderDate", $year)->count("id");
                         array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
                     }
+                    $order_quantity_year = Orders::whereYear("OrderDate", $year)->count('id');
                     break;
                 case '2030':
                     $list_count = array();
@@ -167,13 +192,14 @@ class StatisticsController extends Controller
                                      ->whereYear("OrderDate", $year)->count("id");
                         array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
                     }
+                    $order_quantity_year = Orders::whereYear("OrderDate", $year)->count('id');
                     break;
             }
         }
-        return view("admin.statistic.order_count", ["list_count"=>$list_count]);
+        return view("admin.statistic.order_count", ['order_quantity_year' => $order_quantity_year,'year' => $year, "list_count"=>$list_count]);
     }
     
-    // ĐƠN HÀNG THEO THÁNG
+    // DOANH THU THEO THÁNG
     public function getOrderTime(Request $request)
     {
         $list_total = array();
@@ -182,6 +208,10 @@ class StatisticsController extends Controller
                                 ->whereYear("OrderDate", now())->sum("total");
             array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
         }
+
+        $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", now())->sum("total");
+        $year = Carbon::now()->year;
+
         if ($request->year) {
             $year = $request->year;
             switch ($year) {
@@ -192,6 +222,7 @@ class StatisticsController extends Controller
                         ->whereYear("OrderDate", $year)->sum("total");
                         array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
                     }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
                     break;
                 case '2022':
                     $list_total = array();
@@ -200,6 +231,7 @@ class StatisticsController extends Controller
                         ->whereYear("OrderDate", $year)->sum("total");
                         array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
                     }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
                     break;
                 case '2023':
                     $list_total = array();
@@ -208,6 +240,7 @@ class StatisticsController extends Controller
                         ->whereYear("OrderDate", $year)->sum("total");
                         array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
                     }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
                     break;
                 case '2024':
                     $list_total = array();
@@ -216,6 +249,7 @@ class StatisticsController extends Controller
                         ->whereYear("OrderDate", $year)->sum("total");
                         array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
                     }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
                     break;
                 case '2025':
                     $list_total = array();
@@ -224,6 +258,7 @@ class StatisticsController extends Controller
                         ->whereYear("OrderDate", $year)->sum("total");
                         array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
                     }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
                     break;
                 case '2026':
                     $list_total = array();
@@ -232,6 +267,7 @@ class StatisticsController extends Controller
                         ->whereYear("OrderDate", $year)->sum("total");
                         array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
                     }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
                     break;
                 case '2027':
                      $list_total = array();
@@ -240,6 +276,7 @@ class StatisticsController extends Controller
                         ->whereYear("OrderDate", $year)->sum("total");
                         array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
                     }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
                     break;
                 case '2028':
                 $list_total = array();
@@ -248,6 +285,7 @@ class StatisticsController extends Controller
                         ->whereYear("OrderDate", $year)->sum("total");
                         array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
                     }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
                     break;
                 case '2029':
                     $list_total = array();
@@ -256,6 +294,7 @@ class StatisticsController extends Controller
                         ->whereYear("OrderDate", $year)->sum("total");
                         array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
                     }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
                     break;
                 case '2030':
                     $list_total = array();
@@ -264,12 +303,22 @@ class StatisticsController extends Controller
                         ->whereYear("OrderDate", $year)->sum("total");
                         array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
                     }
-                break;
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
+                    break;
             }
         }
         
-        return view("admin.statistic.order_time", ["list_total"=>$list_total]);
+        return view("admin.statistic.order_time", ['order_total_year' => $order_total_year,'year' => $year, "list_total"=>$list_total]);
     }
+
+
+    public function getListOrderTime(Request $request, $month, $year)
+    {
+        $order_list = Orders::whereMonth("OrderDate", $month)
+                        ->whereYear("OrderDate", $year)
+                        ->orderBy("Status",'asc')->orderBy("id",'desc')->paginate(5);
+        return view("admin.statistic.list_order_month", ['month' => $month,'year'=>$year,'order_list' => $order_list]);
+    } 
 
 
 }

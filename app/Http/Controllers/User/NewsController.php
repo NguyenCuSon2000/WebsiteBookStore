@@ -30,7 +30,7 @@ class NewsController extends Controller
         $product_count = Products::groupBy('Cate_Id')                             // COUNT PRODUCT
                                 ->selectRaw('count(id) as count, Cate_Id')
                                 ->get();
-        $news = News::paginate(3);
+        $news = News::orderBy("id","DESC")->paginate(3);
         $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
         return view("user.new", 
                     compact("categories",

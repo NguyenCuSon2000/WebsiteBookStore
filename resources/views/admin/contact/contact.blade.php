@@ -1,12 +1,12 @@
 @extends("layouts.admin")
 @section('admin_content')
 <div class="right__title">Bảng điều khiển</div>
-<p class="right__desc">Xem thông tin liên hệ</p>
+<p class="right__desc">Danh sách thông tin liên hệ</p>
 <div class="right__search">
     <form role="form" action="/search_contact" method="get">
        @csrf
-        <input type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm kiếm" >
-        <input type="submit" class="button" value="Tìm kiếm">
+        <input style="width: 250px;" type="search" class="search" class="form-control"  name="txtSearch" id="" placeholder="Tìm theo tên người liên hệ, email, địa chỉ, tiêu đề, nội dung" title="Tìm theo tên người liên hệ, email, địa chỉ, tiêu đề, nội dung">
+        <input type="submit" class="button" value="Tìm kiếm" title="Tìm theo tên người liên hệ, email, địa chỉ, tiêu đề, nội dung">
     </form>
 </div>   
 <?php
@@ -41,7 +41,7 @@
             <tbody>
                 @foreach($db as  $r)
                     <tr>
-                        <td>{{ $tt++ }}</td>
+                        <td data-label="STT">{{ $tt++ }}</td>
                         <td data-label="Tên người liên hệ" style="text-align:left">{{ $r->name }}</td>
                         <td data-label="Email" style="text-align:left">{{ $r->email }}</td>
                         <td data-label="Địa chỉ" style="text-align:left">{{ $r->address }}</td>

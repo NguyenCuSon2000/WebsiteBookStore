@@ -15,6 +15,7 @@
 //     return view('welcome');
 // });
 
+
 //----------------------------------------------     ADMIN PAGE    ----------------------------------------------------//
 
 Auth::routes();
@@ -69,6 +70,7 @@ Route::get('/statistic/comment_count', 'Admin\StatisticsController@getComment')-
 Route::get('/statistic/order_highlight', 'Admin\StatisticsController@getOrderHighlight')->name("/statistic/order_highlight");
 Route::get('/statistic/order_time', 'Admin\StatisticsController@getOrderTime')->name("/statistic/order_time");
 Route::get('/statistic/order_count', 'Admin\StatisticsController@getOrderCount')->name("/statistic/order_count");
+Route::get('/statistic/order_list/{month}/{year}', 'Admin\StatisticsController@getListOrderTime')->name("/statistic/order_list");
 
 // COMMENT
 Route::resource('comment', 'Admin\CommentsController');
@@ -80,6 +82,7 @@ Route::get('/search_discount', 'Admin\DiscountController@search')->name('search_
 
 //NEWS
 Route::resource('news', 'Admin\NewsController');
+Route::get('/search_new', 'Admin\NewsController@search')->name('search_new');
 
 //Excel
 Route::get('export', 'MyController@export')->name('export');

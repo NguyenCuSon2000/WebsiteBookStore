@@ -148,7 +148,7 @@
                         <li><a class="twitter-bg-hvr" href="javascript:void(0)"><i class="fab fa-twitter"></i> </a> </li>
                         <li><a class="instagram-bg-hvr" href="javascript:void(0)"><i class="fab fa-instagram"></i> </a> </li>
                     </ul>
-                    <p class="whitecolor">&copy; <span id="year"></span> </p>
+                    <p class="whitecolor">&copy; 2021 - Sản phẩm của Nguyễn Cư Sơn <span id="year"></span> </p>
                 </div>
             </div>
         </div>

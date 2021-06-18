@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <!-- Custom Css  -->
     <link rel="stylesheet" href="{{asset('css/custom.css')}}">
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 </head>
 <body>
     

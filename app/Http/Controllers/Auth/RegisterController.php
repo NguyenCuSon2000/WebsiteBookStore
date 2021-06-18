@@ -52,6 +52,12 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'username' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ],
+        [
+            'username.unique' => __('Email đã đã tồn tại.'),
+            'username.email' => __('Nhập tài khoản không hợp lệ.'),
+            'password.min' => __('Mật khẩu phải hơn 8 ký tự.'),
+            'password.confirmed' => __('Mật khẩu không trùng khớp.'),
         ]);
     }
 

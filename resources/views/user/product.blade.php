@@ -132,13 +132,15 @@
                         </div>
                         <!-- END DISPLAY PRODUCT -->
                         
-                        
+                        <div style="margin: 5%" >
+                            {{ $products->links() }}
+                        </div>
                     </div>
                     <!-- END PRODUCT LISTING SECTION -->
                 </div>
             </div>
             <!-- END PRODUCT COL 8 -->
-            
+          
         </div>
     </div>
 </div>
