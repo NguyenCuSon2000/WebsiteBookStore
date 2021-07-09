@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryProducts;
 use Illuminate\Database\Eloquent\Collection;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\Http\Requests\StoreCategoryRequest;
 
 class CategoryProductController extends Controller
 {
-    
+   
     /**
      * Display a listing of the resource.
      *

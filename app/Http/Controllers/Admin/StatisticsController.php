@@ -95,11 +95,11 @@ class StatisticsController extends Controller
         $list_count = array();
         for ($i = 1; $i < 13; $i++) { 
             $order_count = Orders::whereMonth("OrderDate", $i)
-                           ->whereYear("OrderDate", now())->count("id");
+                           ->whereYear("OrderDate", now('Asia/Ho_Chi_Minh'))->count("id");
             array_push($list_count, ['month'=> $i, "order_count" => $order_count]);
         }
-        $order_quantity_year = Orders::whereYear("OrderDate", now())->count('id');
-        $year = Carbon::now()->year;
+        $order_quantity_year = Orders::whereYear("OrderDate", now('Asia/Ho_Chi_Minh'))->count('id');
+        $year = Carbon::now('Asia/Ho_Chi_Minh')->year;
         if ($request->year) {
             $year = $request->year;
             switch ($year) {
@@ -205,12 +205,12 @@ class StatisticsController extends Controller
         $list_total = array();
         for ($i = 1; $i < 13; $i++) { 
             $order_time = Orders::where("Status",1)->whereMonth("OrderDate", $i)
-                                ->whereYear("OrderDate", now())->sum("total");
+                                ->whereYear("OrderDate", now('Asia/Ho_Chi_Minh'))->sum("total");
             array_push($list_total, ['month'=> $i, "order_time" => $order_time]);
         }
 
-        $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", now())->sum("total");
-        $year = Carbon::now()->year;
+        $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", now('Asia/Ho_Chi_Minh'))->sum("total");
+        $year = Carbon::now('Asia/Ho_Chi_Minh')->year;
 
         if ($request->year) {
             $year = $request->year;
@@ -314,10 +314,14 @@ class StatisticsController extends Controller
 
     public function getListOrderTime(Request $request, $month, $year)
     {
+        $order_total_year = Orders::where("Status",1)->whereMonth("OrderDate", $month)
+                             ->whereYear("OrderDate", $year)->sum("total");
+        $order_qty_year = Orders::whereMonth("OrderDate", $month)
+                             ->whereYear("OrderDate", $year)->count("id");
         $order_list = Orders::whereMonth("OrderDate", $month)
                         ->whereYear("OrderDate", $year)
                         ->orderBy("Status",'asc')->orderBy("id",'desc')->paginate(5);
-        return view("admin.statistic.list_order_month", ['month' => $month,'year'=>$year,'order_list' => $order_list]);
+        return view("admin.statistic.list_order_month", ['order_total_year' => $order_total_year,'order_qty_year' => $order_qty_year,'month' => $month,'year'=>$year,'order_list' => $order_list]);
     } 
 
 

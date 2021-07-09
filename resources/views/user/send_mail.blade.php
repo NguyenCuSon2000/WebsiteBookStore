@@ -12,7 +12,7 @@
   <body>
      
       <h4>Gửi đến: {{$c_email}}</h4>
-      <h4>Ngày đặt: {{$order_date}}</h4>
+      <h4>Ngày đặt: {{\Carbon\Carbon::parse($order_date)->format('d/m/Y')}}</h4>
       <h4>Người đặt: {{$c_name}}</h4>
       <h4>Số điện thoại: {{$c_phone}}</h4>
       <h4>Địa chỉ nhận: {{$c_address}}</h4>
@@ -50,6 +50,8 @@
                 </tr>
             </tbody>
         </table>
+        <h4 style="font-style: italic;">Xem lại lịch sử đặt hàng tại: <a target="_blank" href="{{ route('history') }}">lịch sử đơn hàng</a></h4>
+        <h4 style="font-style: italic;">Xin cảm ơn quý khách đã đặt hàng của cửa hàng sách Book Store chúng tôi.</h4>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

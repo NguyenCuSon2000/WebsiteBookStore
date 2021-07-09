@@ -16,8 +16,8 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb text-center text-lg-left">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Trang chủ</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Loại sách</a></li>
-                            <li class="breadcrumb-item" aria-current="page"><a href="javascript:void(0)">Sách</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Sách</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="javascript:void(0)">{{ $product->category->CategoryName }}</a></li>
                             <li class="breadcrumb-item"><a class="active" href="javascript:void(0)">{{ $product->ProductName }}</a></li>
                         </ol>
                     </nav>
@@ -85,8 +85,8 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><p class="d-inline">SKU: <span>00012</span></p></li>
-                                        <li class="breadcrumb-item"><span class="d-inline">Loại sách: <a href="javascript:void(0)">Classic</a><span class="comma-separtor">,</span><a href="javascript:void(0)">{{ $product->category->CategoryName }}</a></span></li>
-                                        <li class="breadcrumb-item" aria-current="page"><p class="d-inline">Tags: <a href="javascript:void(0)">{{ $product->category->CategoryName }}</a><span class="comma-separtor">,</span><a href="javascript:void(0)">Classic</a></p></li>
+                                        <li class="breadcrumb-item"><span class="d-inline">Loại sách: <a href="javascript:void(0)">Classic</a><span class="comma-separtor">,</span><a href="{{ route('listproduct').'/'.$product->category->id }}">{{ $product->category->CategoryName }}</a></span></li>
+                                        <li class="breadcrumb-item" aria-current="page"><p class="d-inline">Tags: <a href="{{ route('listproduct').'/'.$product->category->id }}">{{ $product->category->CategoryName }}</a><span class="comma-separtor">,</span><a href="javascript:void(0)">Classic</a></p></li>
                                     </ol>
                                 </nav>
                             </div>

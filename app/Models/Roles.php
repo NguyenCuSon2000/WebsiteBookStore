@@ -18,4 +18,6 @@ class Roles extends Model
     {
         return $this->hasMany("App\User", "role_id");
     }
+
+   
 }

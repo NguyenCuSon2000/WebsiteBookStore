@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Discount;
 use App\Models\Products;
 use App\Http\Requests\DiscountRequest;
+use Carbon\Carbon;
 
 class DiscountController extends Controller
 {
@@ -48,7 +49,7 @@ class DiscountController extends Controller
         $discount->Percent = $request->txtPer;
         $discount->BeginDate = $request->txtBegin;
         $discount->EndDate = $request->txtEnd;
-        $discount->AddDate = now();
+        $discount->AddDate = now('Asia/Ho_Chi_Minh');
         $discount->Status = $request->sl_stt;
         $discount->save();
 

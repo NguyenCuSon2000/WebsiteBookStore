@@ -22,6 +22,7 @@ if($message){
         <table >
             <thead>
                 <tr>
+                    <th>Mã đơn hàng</th>
                     <th>Khách hàng</th>
                     <th>Số diện thoại</th>
                     <th>Địa chỉ nhận</th>
@@ -32,6 +33,7 @@ if($message){
             <tbody>
                 @foreach($order_customer as $c)
                 <tr>
+                    <td data-label="Mã đơn hàng">{{$c->order->id}}</td>
                     <td data-label="Tên khách hàng">{{$c->order->customer->CustomerName}}</td>
                     <td data-label="Số diện thoại">{{$c->order->ShipPhone}}</td>
                     <td data-label="Địa chỉ nhận">{{$c->order->ShipAddress}}</td>

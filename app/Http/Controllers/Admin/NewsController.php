@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Http\Requests\NewRequest;
+use Carbon\Carbon;
 
 class NewsController extends Controller
 {
@@ -57,7 +58,7 @@ class NewsController extends Controller
             return $request;
             $new->picture = "";
         }
-        $new->date = now();
+        $new->date = Carbon::now('Asia/Ho_Chi_Minh');
         $new->status = $request->sl_stt;
         $new->save();
 

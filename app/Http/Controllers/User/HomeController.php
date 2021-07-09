@@ -11,9 +11,11 @@ use App\Models\Picture;
 use App\Models\OrderDetails;
 use Cart;
 use Mail;
+use Auth;
 
 class HomeController extends Controller
 {
+
     public function send_mail()
     {
          //send mail
@@ -31,7 +33,7 @@ class HomeController extends Controller
     }
     public function index(Request $request)
     {
-        
+       
         $categories = CategoryProducts::all(); //LIST CATEGORY
 
 

@@ -75,7 +75,7 @@
                         <td data-label="Tổng tiền(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->total ) }}</td>
                         <td data-label="Ghi chú" style="text-align:left">{{ $r->Note }}</td>
                         <td data-label="Trạng thái">
-                            @if( $r->Status == 0)
+                            @if($r->Status == 0)
                                  <a href="#" class="label label-warning">Chờ xử lý</a>
                             @else
                                 <a href="#" class="label-success label">Đã xử lý</a>

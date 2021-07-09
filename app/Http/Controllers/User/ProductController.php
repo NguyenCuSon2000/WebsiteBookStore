@@ -8,10 +8,12 @@ use App\Models\CategoryProducts;
 use App\Models\Products;
 use App\Models\OrderDetails;
 use Cart;
+use Auth;
 
 class ProductController extends Controller
 {
     //
+   
     public function index($id,Request $request)
     {
         $categories = CategoryProducts::all();

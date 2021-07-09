@@ -11,6 +11,12 @@
         Session::put('message',null);
     }
 ?>   
+  <p style="font-size: 18px;">Tổng doanh thu tháng {{ $month }}/{{ $year }}: 
+        <span style="color: red; font-weight: bold;">{{ number_format($order_total_year).' '.'đ' }} </span> 
+    </p>
+    <p style="font-size: 18px;">Tổng đơn hàng tháng {{ $month }}/{{ $year }}: 
+        <span style="color: red; font-weight: bold;">{{ number_format($order_qty_year) }} </span> 
+    </p>
 <div class="right__table">
     <div class="right__tableWrapper">
     @php

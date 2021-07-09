@@ -88,6 +88,7 @@
                                 <li><a href="{{ route('new') }}">Tin tức</a></li>
                                 <li><a href="{{ route('contact') }}">Liên hệ chúng tôi</a></li>
                                 <li><a href="{{ route('index') }}">Các sản phẩm</a></li>
+                                <li><a href="{{ route('history') }}">Lich sử mua hàng</a></li>
                             </ul>
                         </div>
                         <div class="col-12 col-md-6">

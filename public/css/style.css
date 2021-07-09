@@ -53,6 +53,10 @@ body {
     overflow-x: hidden;
 }
 
+.row.order-body table .title {
+    font-weight: 600;
+}
+
 
 .introduce_info.col-12 {
     z-index: 2;

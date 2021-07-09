@@ -93,7 +93,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Tên khách hàng:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="text" name="txtName" pattern="^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌÓỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ\s]+)$" class="form-control @error('txtName') is-invalid @enderror" value="{{ old('txtName') }}" required autocomplete="txtName" autofocus />
+                                        <input type="text" name="txtName" pattern="^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌÓỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ\s]+)$" class="form-control @error('txtName') is-invalid @enderror" value="{{ old('txtName') }}"  required autocomplete="txtName" autofocus />
                                     </div>
                                     @error('txtName')
                                     <span class="invalid-feedback" role="alert">

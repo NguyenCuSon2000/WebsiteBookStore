@@ -24,7 +24,7 @@ class OrdersController extends Controller
         $count_order = Orders::count();
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
-        $order_count_today = Orders::whereDate("OrderDate", now())->count();
+        $order_count_today = Orders::whereDate("OrderDate", now('Asia/Ho_Chi_Minh'))->count();
         return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
     }
     
@@ -92,7 +92,7 @@ class OrdersController extends Controller
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
         $count_order = Orders::count();
-        $order_count_today = Orders::whereDate("OrderDate", now())->count();
+        $order_count_today = Orders::whereDate("OrderDate", now('Asia/Ho_Chi_Minh'))->count();
         $text = $request->input("txtSearch");
         if ($text == "") {
             $db = Orders::orderby("Status", "asc")->orderBy("id","desc")->paginate(5);
@@ -113,11 +113,11 @@ class OrdersController extends Controller
 
     public function getOrderCurrent()
     {
-        $db = Orders::whereDate("OrderDate", now())->orderBy("Status","asc")->orderBy("id","desc")->paginate(5);
+        $db = Orders::whereDate("OrderDate", now('Asia/Ho_Chi_Minh'))->orderBy("Status","asc")->orderBy("id","desc")->paginate(5);
         $count_order = Orders::count();
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
-        $order_count_today = Orders::whereDate("OrderDate", now())->count();
+        $order_count_today = Orders::whereDate("OrderDate", now('Asia/Ho_Chi_Minh'))->count();
         return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
     }
 
@@ -127,7 +127,7 @@ class OrdersController extends Controller
         $count_order = Orders::count();
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
-        $order_count_today = Orders::whereDate("OrderDate", now())->count();
+        $order_count_today = Orders::whereDate("OrderDate", now('Asia/Ho_Chi_Minh'))->count();
         return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
     }
 
@@ -137,7 +137,7 @@ class OrdersController extends Controller
         $count_order = Orders::count();
         $order_done = Orders::where("Status",1)->count();
         $order_wait = Orders::where("Status",0)->count();
-        $order_count_today = Orders::whereDate("OrderDate", now())->count();
+        $order_count_today = Orders::whereDate("OrderDate", now('Asia/Ho_Chi_Minh'))->count();
         return view("admin.order.order", compact("db","count_order","order_done","order_wait","order_count_today"));
     }
     
@@ -184,6 +184,7 @@ class OrdersController extends Controller
             }
         </style>
         <h1>Cửa hàng bán sách Book Store</h1>
+        
         <p>Ngày đặt: '.\Carbon\Carbon::parse($ord->OrderDate)->format('d/m/Y') .'</p>
         <p>Người đặt hàng</p>
         <table class="table-styling customer" border=1 cellpadding=3 cellspacing=2>

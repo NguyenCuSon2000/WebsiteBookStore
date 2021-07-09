@@ -14,7 +14,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ProductsController extends Controller
 {
-    
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +22,7 @@ class ProductsController extends Controller
     public function index()
     {
         //
-        $db = Products::paginate(10);
+        $db = Products::orderBy("id","desc")->paginate(10);
         return view('admin.product.product', compact('db'));
     }
 

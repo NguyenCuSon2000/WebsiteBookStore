@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RoleMiddleware
+class LoginHistoryMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,9 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
-        if ( !Auth::user() || Auth::user()->role->name != $role) {
+        if (!Auth::check()) {
             return redirect()->route('login');
         }
         return $next($request);
-       
     }
 }

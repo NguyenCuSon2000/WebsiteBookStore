@@ -20,11 +20,21 @@
 
 Auth::routes();
 // LOGOUT
+// Route::middleware(['role'])->group(function () {
+     
+// });
 
-Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index')->middleware(['auth','role:admin']);
+// Route::group( ['middleware' => 'auth','role', 'role' => ['admin'] ], function () {
+//        Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index');
+
+     
+// });
+
+
+
+Route::get('/admin/index', 'Admin\HomeController@index')->middleware(['auth','role:admin'])->name('/admin/index');
 
 // CATEGORY
-// Route::resource('/category', 'Admin\CategoryProductController')->middleware(['auth','role:admin']);
 Route::resource('/category', 'Admin\CategoryProductController');
 Route::get('/search_category', 'Admin\CategoryProductController@search')->name('search_category');
 
@@ -98,12 +108,17 @@ Route::get('/product_detail/{id?}', 'User\ProductDetailController@index')->name(
 
 // SHOPPING CART
 Route::resource('cart', "User\CartController");
-Route::get('addcart/{id}', "User\CartController@addCart")->name("addcart");
+Route::get('addcart/{id?}', "User\CartController@addCart")->name("addcart");
 
 //CHECK OUT
-Route::get('checkout', "User\CheckoutController@getFormPay")->middleware('checklogin')->name("checkout");
+Route::get('history', "User\CheckoutController@history")->middleware(['auth','history:user'])->name("history");
+Route::get('history_order_detail/{id?}', "User\CheckoutController@history_order_detail")->name("history_order_detail");
+
+Route::get('checkout', "User\CheckoutController@getFormPay")
+       ->middleware('checklogin')->name("checkout");
 Route::get('checkout_success', "User\CheckoutController@success")->name("checkout_success");
 Route::post('checkout', "User\CheckoutController@postFormPay")->name("checkout");
+
 
 // CONTACT
 Route::get('/contact', "User\ContactController@index")->name("contact");

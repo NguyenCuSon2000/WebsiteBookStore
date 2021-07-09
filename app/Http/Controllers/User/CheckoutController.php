@@ -13,12 +13,16 @@ use App\Http\Requests\CheckoutRequest;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 use Mail;
+use Carbon\Carbon;
+
 
 // use Section;
 // session_start();
 
 class CheckoutController extends Controller
 {
+    
+
     public function getFormPay(Request $request)
     {
        
@@ -55,17 +59,14 @@ class CheckoutController extends Controller
                 'CustomerId' => $customer_id,
                 'total' => (int)$totalMoney,
                 'Note' => $request->txtNote,
-                'OrderDate' => now(),
+                'OrderDate' => now('Asia/Ho_Chi_Minh'),
                 'ShipPhone' => $request->txtPhone,
                 'ShipAddress' => $request->txtad,
                 'Status' => 0,
                 'created_at' => now(),
                 'updated_at' => now()
-    
                 ]);
-            
             }
-          
             if ($order_id) {
                $cart = Cart::content();
                foreach ($cart as $key => $value) {
@@ -74,7 +75,7 @@ class CheckoutController extends Controller
                         'ProductId' => $value->id,
                         'Quantity' => $value->qty,
                         'UnitPrice' => $value->price,
-                        'AddDate' => now(),
+                        'AddDate' => now('Asia/Ho_Chi_Minh'),
                         'created_at' => now(),
                         'updated_at' => now()
                    ]);
@@ -97,7 +98,7 @@ class CheckoutController extends Controller
                 'CustomerId' => $customer_id,
                 'total' => (int)$totalMoney,
                 'Note' => $request->txtNote,
-                'OrderDate' => now(),
+                'OrderDate' => now('Asia/Ho_Chi_Minh'),
                 'ShipPhone' => $request->txtPhone,
                 'ShipAddress' => $request->txtad,
                 'Status' => 0,
@@ -116,7 +117,7 @@ class CheckoutController extends Controller
                         'ProductId' => $value->id,
                         'Quantity' => $value->qty,
                         'UnitPrice' => $value->price,
-                        'AddDate' => now(),
+                        'AddDate' => now('Asia/Ho_Chi_Minh'),
                         'created_at' => now(),
                         'updated_at' => now()
                    ]);
@@ -127,7 +128,7 @@ class CheckoutController extends Controller
         $to_name = "NGUYEN CU SON";
         $to_email = "son2kcntt@gmail.com";//
         Mail::send('user.send_mail', [
-            'order_date' => now(),
+            'order_date' => now('Asia/Ho_Chi_Minh'),
             'c_email' => $c_email,
             'c_name' => $c_name,
             'c_address' => $request->txtad,
@@ -162,5 +163,45 @@ class CheckoutController extends Controller
         $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
        return view("user.checkout_success", compact("categories", "cart","product_pay","search_product","category_footer"));
     }
-   
+
+    public function history(Request $request)
+    {
+        $order_history = Orders::orderBy("OrderDate","DESC")->where('CustomerId', Auth::id())->get();
+        $categories = CategoryProducts::all();
+        $cart = Cart::content();
+        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
+                        ->selectRaw('sum(Quantity) as amount, ProductId')
+                        ->orderBy('amount','desc')->limit(10)->get();
+        $keywords = $request->txtSearch;
+        if ($keywords == "") {
+            $search_product = Products::limit(0)->get();
+        }
+        else {
+            $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
+        }
+        $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
+        return view('user.history', compact("order_history","categories", "cart","product_pay","search_product","category_footer"));
+    }
+
+    public function history_order_detail(Request $request, $order_id)
+    {
+        $order_customer =  OrderDetails::where("OrderId", $order_id)->limit(1)->get();
+        $order_detail = OrderDetails::where("OrderId", $order_id)->get();
+        $categories = CategoryProducts::all();
+        $cart = Cart::content();
+        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
+                        ->selectRaw('sum(Quantity) as amount, ProductId')
+                        ->orderBy('amount','desc')->limit(10)->get();
+        $keywords = $request->txtSearch;
+        if ($keywords == "") {
+            $search_product = Products::limit(0)->get();
+        }
+        else {
+            $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
+        }
+        $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
+        return view('user.history_order_detail', compact("order_customer","order_detail","categories", "cart","product_pay","search_product","category_footer"));
+    }
+
+
 }
