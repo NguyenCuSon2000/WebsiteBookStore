@@ -28,11 +28,11 @@ class ProductController extends Controller
         
         $cart = Cart::content();
         
-        $product_pay = OrderDetails::orderBy('amount','desc')
-                        ->select(DB::raw('sum(Quantity) as amount, ProductId'))
-                        ->groupBy('ProductId')
-                        ->limit(10)->get();
-        
+        // $product_pay = OrderDetails::orderBy('amount','desc')
+        //                 ->select(DB::raw('sum(Quantity) as amount, ProductId'))
+        //                 ->groupBy('ProductId')
+        //                 ->limit(10)->get();
+        $product_pay = OrderDetails::orderBy('id', 'DESC')->limit(10)->get();
         // SEARCH 
         $keywords = $request->txtSearch;
         if ($keywords == "") {

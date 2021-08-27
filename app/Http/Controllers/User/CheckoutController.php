@@ -60,10 +60,11 @@ class CheckoutController extends Controller
     {
         $categories = CategoryProducts::all();
         $cart = Cart::content();
-        $product_pay = OrderDetails::orderBy('amount','desc')
-                        ->select(DB::raw('sum(Quantity) as amount, ProductId'))
-                        ->groupBy('ProductId')
-                        ->limit(10)->get();
+        // $product_pay = OrderDetails::orderBy('amount','desc')
+        //                 ->select(DB::raw('sum(Quantity) as amount, ProductId'))
+        //                 ->groupBy('ProductId')
+        //                 ->limit(10)->get();
+        $product_pay = OrderDetails::orderBy('id', 'DESC')->limit(10)->get();
         $keywords = $request->txtSearch;
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();
@@ -182,10 +183,11 @@ class CheckoutController extends Controller
     {
         $categories = CategoryProducts::all();
         $cart = Cart::content();
-        $product_pay = OrderDetails::orderBy('amount','desc')
-                        ->select(DB::raw('sum(Quantity) as amount, ProductId'))
-                        ->groupBy('ProductId')
-                        ->limit(10)->get();
+        // $product_pay = OrderDetails::orderBy('amount','desc')
+        //                 ->select(DB::raw('sum(Quantity) as amount, ProductId'))
+        //                 ->groupBy('ProductId')
+        //                 ->limit(10)->get();
+        $product_pay = OrderDetails::orderBy('id', 'DESC')->limit(10)->get();
         $keywords = $request->txtSearch;
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();
@@ -203,10 +205,11 @@ class CheckoutController extends Controller
         $order_history = Orders::orderBy("OrderDate","DESC")->where('CustomerId', $cus_id)->get();
         $categories = CategoryProducts::all();
         $cart = Cart::content();
-        $product_pay = OrderDetails::orderBy('amount','desc')
-                        ->select(DB::raw('sum(Quantity) as amount, ProductId'))
-                        ->groupBy('ProductId')
-                        ->limit(10)->get();
+        // $product_pay = OrderDetails::orderBy('amount','desc')
+        //                 ->select(DB::raw('sum(Quantity) as amount, ProductId'))
+        //                 ->groupBy('ProductId')
+        //                 ->limit(10)->get();\
+        $product_pay = OrderDetails::orderBy('id', 'DESC')->limit(10)->get();
         $keywords = $request->txtSearch;
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();
@@ -224,10 +227,11 @@ class CheckoutController extends Controller
         $order_detail = OrderDetails::where("OrderId", $order_id)->get();
         $categories = CategoryProducts::all();
         $cart = Cart::content();
-        $product_pay = OrderDetails::orderBy('amount','desc')
-                        ->select(DB::raw('sum(Quantity) as amount, ProductId'))
-                        ->groupBy('ProductId')
-                        ->limit(10)->get();
+        // $product_pay = OrderDetails::orderBy('amount','desc')
+        //                 ->select(DB::raw('sum(Quantity) as amount, ProductId'))
+        //                 ->groupBy('ProductId')
+        //                 ->limit(10)->get();
+        $product_pay = OrderDetails::orderBy('id', 'DESC')->limit(10)->get();
         $keywords = $request->txtSearch;
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();
