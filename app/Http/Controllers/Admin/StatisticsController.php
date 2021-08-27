@@ -12,6 +12,7 @@ use App\Models\OrderDetails;
 use App\Models\Comments;
 use App\Http\Requests\StatisticRequest;
 use Carbon\Carbon;
+use DB;
 
 class StatisticsController extends Controller
 {
@@ -23,9 +24,13 @@ class StatisticsController extends Controller
     public function index()
     {
         //SẢN PHẨM BÁN CHẠY NHẤT
-        $product_pay = OrderDetails::groupBy('ProductId')
-                    ->selectRaw('sum(quantity) as amount, ProductId')
-                    ->orderBy('amount','desc')->paginate(10);
+        // $product_pay = OrderDetails::groupBy('ProductId')
+        //             ->selectRaw('sum(Quantity) as amount, ProductId')
+        //             ->orderBy('amount','desc')->paginate(10);
+        $product_pay = OrderDetails::orderBy('amount','desc')
+                       ->select(DB::raw('sum(Quantity) as amount, ProductId'))
+                       ->groupBy('ProductId')
+                       ->paginate(10);
         return view("admin.statistic.product_pay", compact('product_pay'));
         
     }
