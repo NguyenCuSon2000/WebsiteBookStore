@@ -19,7 +19,7 @@ class ContactController extends Controller
         $categories = CategoryProducts::all();
         $cart = Cart::content();
         $product_pay = OrderDetails::orderBy('amount','desc')
-                        ->select(DB::raw('sum(quantity) as amount, ProductId'))
+                        ->select(DB::raw('sum(Quantity) as amount, ProductId'))
                         ->groupBy('ProductId')
                         ->limit(10)->get();
         $keywords = $request->txtSearch;
