@@ -17,8 +17,8 @@ class CreatePicturesTable extends Migration
             $table->Increments('id');
             $table->string("picture");
             $table->tinyInteger("status")->default(1);
-            $table->Integer("ProductId")->unsigned();
-            $table->foreign("ProductId")->references("id")->on("Products")->onDelete('cascade');
+            $table->integer('ProductId')->unsigned();
+            $table->foreign('ProductId')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }

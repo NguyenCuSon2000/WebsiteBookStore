@@ -10,8 +10,8 @@ class Picture extends Model
     protected $table = "pictures";
 
     protected $fillable = [
-        "id",
         "picture",
+        "status",
         "ProductId"
     ];
 

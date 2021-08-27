@@ -24,7 +24,7 @@ class StatisticsController extends Controller
     {
         //SẢN PHẨM BÁN CHẠY NHẤT
         $product_pay = OrderDetails::groupBy('ProductId')
-                    ->selectRaw('sum(Quantity) as amount, ProductId')
+                    ->selectRaw('sum(quantity) as amount, ProductId')
                     ->orderBy('amount','desc')->paginate(10);
         return view("admin.statistic.product_pay", compact('product_pay'));
         
@@ -33,7 +33,6 @@ class StatisticsController extends Controller
     
     public function getComment()
     {
-        
         $comment_count =  Comments::groupBy("ProductId")
         ->selectRaw('count(id) as amount, ProductId')
         ->latest("amount")->paginate(10);
