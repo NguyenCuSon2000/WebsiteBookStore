@@ -6,14 +6,26 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryProducts;
 use App\Models\Products;
+use App\Models\Picture;
 use App\Http\Requests\ProductRequest;
-use Auth;
+// use Auth;
 use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel; 
+use Illuminate\Support\Facades\Auth;
+
 
 class ProductsController extends Controller
 {
+    public function AuthLogin()
+    {
+        $admin_id = Auth::id();
+        if ($admin_id) {
+            return redirect()->route('/admin/index');
+        }else {
+            return redirect()->route('login');
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,6 +34,7 @@ class ProductsController extends Controller
     public function index()
     {
         //
+        $this->AuthLogin();
         $db = Products::orderBy("id","desc")->paginate(10);
         return view('admin.product.product', compact('db'));
     }
@@ -48,27 +61,46 @@ class ProductsController extends Controller
     public function store(ProductRequest $request)
     {
         //
-        $product = new Products();
-        $product->ProductName = $request->txtName;
-        $product->Cate_Id = $request->txtCate;
-        $product->Description = $request->txtDes;
-        
         if($request->hasfile('fileImg')){
             $file = $request->file('fileImg');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $file->move('img', $filename);
-            $product->Picture = $filename;
         }
         else {
             return $request;
-            $product->Picture = "";
         }
 
-        $product->Price = $request->txtprice;
-        $product->Status = $request->sl_stt;
-        $product->save();
+        $product_id = Products::insertGetId([
+            'ProductName' => $request->txtName,
+            'Cate_Id' => $request->txtCate,
+            'Description' => $request->txtDes,
+            'Picture' => $filename,
+            'Price' => $request->txtprice,
+            'Status' => $request->sl_stt,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
+        $get_image = $request->file('images');
+        if($get_image){
+            foreach ($get_image as $image) {
+                $get_name_image = $image->getClientOriginalName();
+                $name_image = current(explode('.',$get_name_image));
+                $name_image = $name_image.rand(0,99).'.'.$image->getClientOriginalExtension();
+                $image->move('img', $name_image);
+                if ($product_id) {
+                    Picture::insert([
+                        'picture' => $name_image,
+                        'status' => 1,
+                        'ProductId' => $product_id,
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ]);
+                }
+              
+            }
+        }
         return redirect()->route('product.index')->with('message', 'Thêm sản phẩm thành công');
 
     }

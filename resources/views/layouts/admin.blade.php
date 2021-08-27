@@ -25,9 +25,11 @@
                         <div class="left__logo">BOOK STORE</div>
                         <div class="left__profile">
                             <div class="left__image"><img src="{{asset('assets/nguyencuson.jpg')}}" alt=""></div>
-                            <p class="left__name">
-                                
-                             </p>
+                            @if(Auth::check())
+                                <p class="left__name">
+                                  {{ Auth::user()->username  }}
+                                </p>
+                             @endif
                         </div>
                      
                         <ul class="left__menu">

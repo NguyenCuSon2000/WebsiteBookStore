@@ -14,9 +14,19 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     
-    public function __construct() {
-		$this->middleware('auth');
-	}
+    // public function __construct() {
+	// 	$this->middleware('auth');
+	// }
+
+    // public function AuthLogin()
+    // {
+    //     $admin_id = Auth::id();
+    //     if ($admin_id) {
+    //         return redirect()->route('/admin/index');
+    //     }else {
+    //         return redirect()->route('login');
+    //     }
+    // }
   
     /**
      * Display a listing of the resource.
@@ -28,6 +38,7 @@ class HomeController extends Controller
         //
         // var_dump(Auth::user());
         // $name = Auth::user()->username;
+        // $this->AuthLogin();
         $count_category= CategoryProducts::count();
         $count_product = Products::count();
         $count_customer = Customers::count();

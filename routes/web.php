@@ -24,18 +24,17 @@ Auth::routes();
      
 // });
 
-// Route::group( ['middleware' => 'auth','role', 'role' => ['admin'] ], function () {
-//        Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index');
+Route::get('login_auth', 'Auth\AuthController@getFormLogin')->name('login_auth');
+Route::post('login_auth', 'Auth\AuthController@submitLogin')->name('login_auth');
 
-     
-// });
+Route::group( ['middleware' => ['auth','role']], function () {
+    Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index');
+});
 
-
-
-Route::get('/admin/index', 'Admin\HomeController@index')->middleware(['auth','role:admin'])->name('/admin/index');
+// Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index')->middleware(['auth','role']);
 
 // CATEGORY
-Route::resource('/category', 'Admin\CategoryProductController');
+Route::resource('/category', 'Admin\CategoryProductController')->middleware(['auth','role']);
 Route::get('/search_category', 'Admin\CategoryProductController@search')->name('search_category');
 
 // PRODUCT
@@ -111,11 +110,17 @@ Route::resource('cart', "User\CartController");
 Route::get('addcart/{id?}', "User\CartController@addCart")->name("addcart");
 
 //CHECK OUT
-Route::get('history', "User\CheckoutController@history")->middleware(['auth','history:user'])->name("history");
+Route::get('get_login_order', "User\CheckoutController@get_login_order")->name("get_login_order");
+Route::post('login_order', "User\CheckoutController@login_order")->name("login_order");
+Route::get('logout_checkout', "User\CheckoutController@logout_checkout")->name("logout_checkout");
+
+// Route::get('history', "User\CheckoutController@history")->middleware(['auth','history:user'])->name("history");
+Route::get('history', "User\CheckoutController@history")->name("history");
+
 Route::get('history_order_detail/{id?}', "User\CheckoutController@history_order_detail")->name("history_order_detail");
 
-Route::get('checkout', "User\CheckoutController@getFormPay")
-       ->middleware('checklogin')->name("checkout");
+Route::get('checkout', "User\CheckoutController@getFormPay")->name("checkout");
+
 Route::get('checkout_success', "User\CheckoutController@success")->name("checkout_success");
 Route::post('checkout', "User\CheckoutController@postFormPay")->name("checkout");
 

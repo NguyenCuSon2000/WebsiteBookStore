@@ -13,7 +13,10 @@ use App\Http\Requests\StoreCategoryRequest;
 
 class CategoryProductController extends Controller
 {
-   
+    // public function __construct()
+    // {
+    //     $this->middleware(['auth','checklogin', 'role']);
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -50,6 +53,8 @@ class CategoryProductController extends Controller
         $category->Description = $request->txtdes;
         $category->Status = $request->sl_stt;
         $category->save();
+
+        // $category = CategoryProducts::create($request->all());
 
         return redirect()->route('category.index')->with('message','Thêm loại sách thành công');
     }

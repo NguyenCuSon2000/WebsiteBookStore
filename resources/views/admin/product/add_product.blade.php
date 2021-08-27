@@ -36,6 +36,10 @@
             <input type="file" name="fileImg" class="form-control" required>
         </div>
         <div class="right__inputWrapper">
+            <label for="images">Hình ảnh liên quan</label>
+            <input type="file" name="images[]" class="form-control" required multiple="multiple">
+        </div>
+        <div class="right__inputWrapper">
             <label for="price">Đơn giá</label>
             <input type="number" name="txtprice" class="form-control @error('txtprice') is-invalid @enderror"  placeholder="Đơn giá" value="{{ old('txtprice') }}" required autocomplete="txtprice" autofocus>
             @error('txtprice')

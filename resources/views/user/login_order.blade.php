@@ -11,7 +11,7 @@
     <div class="bg-img">
         <div class="content">
             <header>Đăng Nhập</header>
-            <form method="POST" action="{{ route('login_auth') }}">
+            <form method="POST" action="{{ route('login_order') }}">
                 @csrf
                 <div class="field">
                     <span class="fa fa-user"></span>

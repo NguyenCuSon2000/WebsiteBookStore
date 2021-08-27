@@ -9,23 +9,54 @@ use App\Models\Orders;
 use App\Models\CategoryProducts;
 use App\Models\Products;
 use App\Models\Customers;
+use App\User;
 use App\Http\Requests\CheckoutRequest;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 use Mail;
 use Carbon\Carbon;
+use Hash;
+use Illuminate\Support\Facades\Session;
 
 
-// use Section;
-// session_start();
+use Section;
+session_start();
 
 class CheckoutController extends Controller
 {
-    
 
+    public function  get_login_order()
+    {
+        return view('user.login_order');
+    }
+
+    public function login_order(Request $request)
+    {
+        $username = $request->username;
+        $ps = User::where("username", $request->username)->value('password');
+        $password = Hash::check($request->password, $ps);
+
+        $result = User::where('username', $username)->first();
+       
+        if(($result == true) && ($password == true)){
+            Session::put('user_id', $result->id);
+            Session::put('username', $result->username);
+            return redirect()->route('checkout');
+        }
+        else{
+            Session::put('message','Mật khẩu hoặc tài khoản bị sai.Làm ơn nhập lại');
+            return redirect()->route('get_login_order');
+        }
+    }
+
+    public function logout_checkout(Type $var = null)
+    {
+        Session::flush();
+        return redirect()->route('get_login_order');
+    }
+    
     public function getFormPay(Request $request)
     {
-       
         $categories = CategoryProducts::all();
         $cart = Cart::content();
         $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
@@ -45,7 +76,6 @@ class CheckoutController extends Controller
 
     public function postFormPay(Request $request)
     {
-      
         $c_id = $request->txtid;
         $c_email = $request->txtEmail;
         $c_name = $request->txtName;
@@ -166,7 +196,8 @@ class CheckoutController extends Controller
 
     public function history(Request $request)
     {
-        $order_history = Orders::orderBy("OrderDate","DESC")->where('CustomerId', Auth::id())->get();
+        $cus_id = Session::get('user_id');
+        $order_history = Orders::orderBy("OrderDate","DESC")->where('CustomerId', $cus_id)->get();
         $categories = CategoryProducts::all();
         $cart = Cart::content();
         $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
@@ -202,6 +233,4 @@ class CheckoutController extends Controller
         $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
         return view('user.history_order_detail', compact("order_customer","order_detail","categories", "cart","product_pay","search_product","category_footer"));
     }
-
-
 }

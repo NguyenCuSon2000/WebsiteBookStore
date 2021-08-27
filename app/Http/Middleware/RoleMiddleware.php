@@ -14,12 +14,15 @@ class RoleMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next)
     {
-        if ( !Auth::user() || Auth::user()->role->name != $role) {
-            return redirect()->route('login');
+        // if ( !Auth::user() || Auth::user()->role->name != $role) {
+        //     return redirect()->route('login');
+        // }
+        // return $next($request);
+        if ( Auth::user()->role->name == 'admin') {
+            return $next($request);
         }
-        return $next($request);
-       
+        return redirect()->route('login_auth');
     }
 }

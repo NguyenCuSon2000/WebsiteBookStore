@@ -44,7 +44,7 @@
         <div class="loader-spinner"></div>
     </div>
     <!--LOADER-->
-    
+   
     <!-- START HEADER NAVIGATION -->
     <div class="header-area">
         <div class="container">
@@ -94,16 +94,19 @@
                         <div class="col-12 col-md-6">
                             <h4 class="text-center text-md-left">Thông tin tài khoản</h4>
                             <ul class="text-center text-md-left">
-                                @if(Auth::check())
+                                <?php
+                                    $user_id = Session::get("user_id");
+                                    if ($user_id != null) { 
+                                ?>
                                     <li><a href="javascript:void(0)">Lịch sử đặt hàng</a></li>
                                     <li><a href="javascript:void(0)">Thông tin giao hàng</a></li>
                                     <li><a href="javascript:void(0)">Chính sách hoàn lại tiền</a></li>
                                     <li><a href="javascript:void(0)">Trang web đáp ứng</a></li>
-                                    <li><a href="<?php Auth::logout(); ?>">Đăng xuất</a></li>
-                                @else
-                                    <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                                    <li><a href="{{ route('logout_checkout') }}">Đăng xuất</a></li>
+                                <?php } else { ?>
+                                    <li><a href="{{ route('get_login_order') }}">Đăng nhập</a></li>
                                     <li><a href="{{ route('register') }}">Đăng ký</a></li>
-                                @endif
+                                    <?php } ?>
                             </ul>
                         </div>
                     </div>

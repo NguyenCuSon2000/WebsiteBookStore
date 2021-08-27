@@ -75,6 +75,7 @@
                     <!--SHIPPING METHOD-->
                     <div class="panel panel-info">
                         <div class="panel-heading">Thông tin thanh toán</div>
+                      
                         <div class="panel-body">
                             @if(count($errors)>0)
                             <div class="alert alert-danger" style="color: red">
@@ -87,7 +88,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="hidden" name="txtid" class="form-control" value="{{ Auth::id() }}" />
+                                        <input type="hidden" name="txtid" class="form-control" value="<?php echo Session::get('user_id') ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -134,7 +135,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Email:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  name="txtEmail" class="form-control @error('txtEmail') is-invalid @enderror"  autocomplete="txtEmail" autofocus value="{{ Auth::user()->username }}" required />
+                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  name="txtEmail" class="form-control @error('txtEmail') is-invalid @enderror"  autocomplete="txtEmail" value="<?php echo Session::get('username') ?>" autofocus required />
                                     </div>
                                     @error('txtEmail')
                                     <span class="invalid-feedback" role="alert">

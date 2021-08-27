@@ -113,7 +113,14 @@
                         <div class="row">
                             @if(Cart::count() > 0)
                             <div class="col-12 text-left">
-                                <a href="{{ route('checkout') }}" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
+                                <?php
+                                    $user_id = Session::get("user_id");
+                                    if ($user_id != null) { 
+                                ?>
+                                       <a href="{{ route('checkout') }}" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
+                                <?php } else { ?>
+                                       <a href="{{ route('get_login_order') }}" class="btn green-color-yellow-gradient-btn " >ĐẶT HÀNG</a>
+                                    <?php } ?>
                             </div>
                             @endif
                         </div>
