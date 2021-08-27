@@ -35,9 +35,11 @@ class IntroduceController extends Controller
         // $product_count = Products::groupBy('Cate_Id')                             // COUNT PRODUCT
         //                         ->selectRaw('count(id) as count, Cate_Id')
         //                         ->get();
-        $product_count = DB::table("products")
-                        ->select("Cate_Id", DB::raw("count(id) as count"))
-                        ->groupBy("Cate_Id")->g‌​et();
+        $product_count = Products::select("Cate_Id", DB::raw("count(id) as count"))
+                                  ->groupBy("Cate_Id")->get();
+        // $product_count = DB::table("products")
+        //                 ->select("Cate_Id", DB::raw("count(id) as count"))
+        //                 ->groupBy("Cate_Id")->g‌​et();
         $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
 
         return view("user.introduce", 
