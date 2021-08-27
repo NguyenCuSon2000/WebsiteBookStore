@@ -11,6 +11,7 @@ use App\Models\OrderDetails;
 use App\Models\Orders;
 use App\Models\Discount;
 use Cart;
+use DB;
 use Section;
 session_start();
 
@@ -26,9 +27,13 @@ class CartController extends Controller
         //
         $categories = CategoryProducts::all();
         $cart = Cart::content();
-        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
-        ->selectRaw('sum(Quantity) as amount, ProductId')
-        ->orderBy('amount','desc')->limit(10)->get();
+        // $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
+        //             ->selectRaw('sum(Quantity) as amount, ProductId')
+        //             ->orderBy('amount','desc')->limit(10)->get();
+        $product_pay = OrderDetails::orderBy('amount','desc')
+                    ->select(DB::raw('sum(quantity) as amount, ProductId'))
+                    ->groupBy('ProductId')
+                    ->limit(10)->get();
         $keywords = $request->txtSearch;
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();

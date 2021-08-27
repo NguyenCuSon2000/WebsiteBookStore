@@ -10,6 +10,7 @@ use App\Models\Discount;
 use App\Models\OrderDetails;
 use App\Models\Comments;
 use Cart;
+use DB;
 
 class ProductDetailController extends Controller
 {
@@ -22,9 +23,10 @@ class ProductDetailController extends Controller
 
         $pictures = Products::find($id)->pictures;
 
-        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
-                        ->selectRaw('sum(Quantity) as amount, ProductId')
-                        ->latest('amount')->limit(10)->get();
+        $product_pay = OrderDetails::orderBy('amount','desc')
+                        ->select(DB::raw('sum(quantity) as amount, ProductId'))
+                        ->groupBy('ProductId')
+                        ->limit(10)->get();
                         
         $cart = Cart::content();
 

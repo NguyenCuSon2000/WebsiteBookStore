@@ -9,6 +9,7 @@ use App\Models\Products;
 use App\Models\OrderDetails;
 use Cart;
 use Auth;
+use DB;
 
 class ProductController extends Controller
 {
@@ -27,9 +28,10 @@ class ProductController extends Controller
         
         $cart = Cart::content();
         
-        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
-        ->selectRaw('sum(Quantity) as amount, ProductId')
-        ->orderBy('amount','desc')->limit(10)->get();
+        $product_pay = OrderDetails::orderBy('amount','desc')
+                        ->select(DB::raw('sum(quantity) as amount, ProductId'))
+                        ->groupBy('ProductId')
+                        ->limit(10)->get();
         
         // SEARCH 
         $keywords = $request->txtSearch;

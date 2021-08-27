@@ -12,6 +12,7 @@ use App\Models\OrderDetails;
 use Cart;
 use Mail;
 use Auth;
+use DB;
 
 class HomeController extends Controller
 {
@@ -44,9 +45,13 @@ class HomeController extends Controller
         $products_sale = Discount::all(); // LIST DISCOUNT PRODUCT
 
 
-        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
-                        ->selectRaw('sum(Quantity) as amount, ProductId')
-                        ->orderBy('amount','desc')->limit(10)->get();
+        // $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
+        //                 ->selectRaw('sum(Quantity) as amount, ProductId')
+        //                 ->orderBy('amount','desc')->limit(10)->get();
+        $product_pay = OrderDetails::orderBy('amount','desc')
+                        ->select(DB::raw('sum(quantity) as amount, ProductId'))
+                        ->groupBy('ProductId')
+                        ->limit(10)->get();
 
         $cart = Cart::content();   // CART
 

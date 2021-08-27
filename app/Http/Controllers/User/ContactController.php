@@ -9,6 +9,7 @@ use App\Models\Products;
 use App\Models\Contact;
 use App\Models\OrderDetails;
 use Cart;
+use DB;
 
 class ContactController extends Controller
 {
@@ -17,9 +18,10 @@ class ContactController extends Controller
     {
         $categories = CategoryProducts::all();
         $cart = Cart::content();
-        $product_pay = OrderDetails::groupBy('ProductId')       // PRODUCT PAY
-                        ->selectRaw('sum(Quantity) as amount, ProductId')
-                        ->orderBy('amount','desc')->limit(10)->get();
+        $product_pay = OrderDetails::orderBy('amount','desc')
+                        ->select(DB::raw('sum(quantity) as amount, ProductId'))
+                        ->groupBy('ProductId')
+                        ->limit(10)->get();
         $keywords = $request->txtSearch;
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();
