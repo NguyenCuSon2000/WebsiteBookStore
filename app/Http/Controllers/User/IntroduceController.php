@@ -36,7 +36,7 @@ class IntroduceController extends Controller
         //                         ->selectRaw('count(id) as count, Cate_Id')
         //                         ->get();
         $product_count = DB::table("products")
-                        ->select("Cate_Id", DB:raw("count(id) as count"))
+                        ->select("Cate_Id", DB::raw("count(id) as count"))
                         ->groupBy("Cate_Id")->g‌​et();
         $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
 
