@@ -52,10 +52,8 @@ class HomeController extends Controller
         //                 ->select(DB::raw('sum(Quantity) as amount, ProductId'))
         //                 ->groupBy('ProductId')
         //                 ->limit(10)->get();
-        $product_pay = OrderDetails::select("ProductId", DB::raw("sum(Quantity) as amount"))
-                                      ->orderBy('amount','desc')
-                                      ->groupBy("ProductId")->limit(10)->get();
-        // $product_pay = OrderDetails::orderBy('id', 'DESC')->limit(10)->get();
+      
+        $product_pay = OrderDetails::orderBy('id', 'DESC')->limit(10)->get();
         // $product_pay = OrderDetails::select("ProductId", DB::raw("sum(Quantity) as amount"))
         //                 ->orderBy('amount','desc')
         //                 ->groupBy("ProductId")->limit(10)->get();
