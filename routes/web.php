@@ -148,3 +148,7 @@ Route::get("/introduce","User\IntroduceController@index")->name("introduce");
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
