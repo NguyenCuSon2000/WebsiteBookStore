@@ -34,7 +34,7 @@ Route::group( ['middleware' => ['auth','role']], function () {
 // Route::get('/admin/index', 'Admin\HomeController@index')->name('/admin/index')->middleware(['auth','role']);
 
 // CATEGORY
-Route::resource('/category', 'Admin\CategoryProductController')->middleware(['auth','role']);
+Route::resource('/category', 'Admin\CategoryProductController');
 Route::get('/search_category', 'Admin\CategoryProductController@search')->name('search_category');
 
 // PRODUCT

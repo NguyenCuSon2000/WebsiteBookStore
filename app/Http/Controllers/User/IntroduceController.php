@@ -24,6 +24,7 @@ class IntroduceController extends Controller
         //                 ->groupBy('ProductId')
         //                 ->limit(10)->get();
         $product_pay = OrderDetails::orderBy('id', 'DESC')->limit(10)->get();
+      
         $keywords = $request->txtSearch;
         if ($keywords == "") {
             $search_product = Products::limit(0)->get();
@@ -31,9 +32,12 @@ class IntroduceController extends Controller
         else {
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
-        $product_count = Products::groupBy('Cate_Id')                             // COUNT PRODUCT
-                                ->selectRaw('count(id) as count, Cate_Id')
-                                ->get();
+        // $product_count = Products::groupBy('Cate_Id')                             // COUNT PRODUCT
+        //                         ->selectRaw('count(id) as count, Cate_Id')
+        //                         ->get();
+        $product_count = DB::table("products")
+                        ->select("Cate_Id", DB:raw("count(id) as count"))
+                        ->groupBy("Cate_Id")->g‌​et();
         $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
 
         return view("user.introduce", 

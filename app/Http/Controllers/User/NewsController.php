@@ -30,9 +30,12 @@ class NewsController extends Controller
         else {
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
-        $product_count = Products::groupBy('Cate_Id')                             // COUNT PRODUCT
-                                ->selectRaw('count(id) as count, Cate_Id')
-                                ->get();
+        // $product_count = Products::groupBy('Cate_Id')                             // COUNT PRODUCT
+        //                         ->selectRaw('count(id) as count, Cate_Id')
+        //                         ->get();
+        $product_count = DB::table("products")
+                        ->select("Cate_Id", DB:raw("count(id) as count"))
+                        ->groupBy("Cate_Id")->g‌​et();
         $news = News::orderBy("id","DESC")->paginate(3);
         $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
         return view("user.new", 
@@ -59,9 +62,12 @@ class NewsController extends Controller
         else {
             $search_product = Products::where("ProductName","LIKE","%".$keywords."%")->get();
         }
-        $product_count = Products::groupBy('Cate_Id')                             // COUNT PRODUCT
-                                ->selectRaw('count(id) as count, Cate_Id')
-                                ->get();
+        // $product_count = Products::groupBy('Cate_Id')                             // COUNT PRODUCT
+        //                         ->selectRaw('count(id) as count, Cate_Id')
+        //                         ->get();
+        $product_count = DB::table("products")
+                        ->select("Cate_Id", DB:raw("count(id) as count"))
+                        ->groupBy("Cate_Id")->g‌​et();
 
         $news = News::find($id);
         $category_footer = CategoryProducts::orderBy("id","DESC")->limit(9)->get();
