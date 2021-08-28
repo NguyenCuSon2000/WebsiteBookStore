@@ -85,7 +85,7 @@ class CheckoutController extends Controller
         $total = Cart::subtotal(0,3);
         $totalMoney = str_replace(",","",Cart::subtotal(0,3));
    
-        if (Customers::where('email', $request->txtEmail)->exists()) {
+        if (Customers::where('Email', $request->txtEmail)->exists()) {
             $customer_id = Customers::where("Email", $request->txtEmail)->value('id');
             if ($customer_id) {
                 $order_id = Orders::insertGetId([
