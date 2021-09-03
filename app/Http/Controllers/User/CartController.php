@@ -13,7 +13,7 @@ use App\Models\Discount;
 use Cart;
 use DB;
 use Section;
-session_start();
+// session_start();
 
 class CartController extends Controller
 {

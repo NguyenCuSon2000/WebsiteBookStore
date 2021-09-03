@@ -38,7 +38,7 @@ class RegisterController extends Controller
         $user->username = $req->username;
         $user->address = $req->txtad;
         $user->phone = $req->txtsdt;
-        $user->password = $req->password;
+        $user->password = bcrypt($req->password);
         $user->save();
         return redirect()->back()->with("message","Đã tạo tài khoản thành công");
     }

@@ -75,7 +75,7 @@
             </div>
             <div class="signup">
                 Đã có tài khoản?
-                <a href="{{ route('login') }}">Đăng nhập ngay</a>
+                <a href="{{ route('get_login_order') }}">Đăng nhập ngay</a>
             </div>
         </div>
     </div> 

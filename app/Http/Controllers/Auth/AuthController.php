@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Http\Requests\AuthLogin;
+use Session;
 
 
 class AuthController extends Controller
@@ -16,7 +18,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function submitLogin(Request $request)
+    public function submitLogin(AuthLogin $request)
     {
         $username = $request->username;
         $password = $request->password;
@@ -28,5 +30,14 @@ class AuthController extends Controller
             Auth::login($user);
             return redirect()->route('/admin/index');
         }
+        else {
+            return redirect()->route('login_auth')->with('msg', 'Đăng nhập thất bại');
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login_auth');
     }
 }

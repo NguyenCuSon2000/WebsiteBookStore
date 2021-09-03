@@ -88,7 +88,16 @@
                                 <li><a href="{{ route('new') }}">Tin tức</a></li>
                                 <li><a href="{{ route('contact') }}">Liên hệ chúng tôi</a></li>
                                 <li><a href="{{ route('index') }}">Các sản phẩm</a></li>
-                                <li><a href="{{ route('history') }}">Lich sử mua hàng</a></li>
+                                <li>
+                                    <?php
+                                        $user_id = Session::get("user_id");
+                                        if ($user_id != null) { 
+                                    ?>
+                                      <a href="{{ route('history') }}">Lịch sử mua hàng</a>
+                                    <?php } else { ?>
+                                        <a href="{{ route('get_login_order') }} ">Lịch sử mua hàng</a>
+                                    <?php } ?>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-12 col-md-6">

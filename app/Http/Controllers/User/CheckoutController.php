@@ -19,9 +19,9 @@ use DB;
 use Hash;
 use Illuminate\Support\Facades\Session;
 
-
+use App\Http\Requests\AuthLogin;
 use Section;
-session_start();
+// session_start();
 
 class CheckoutController extends Controller
 {
@@ -31,7 +31,7 @@ class CheckoutController extends Controller
         return view('user.login_order');
     }
 
-    public function login_order(Request $request)
+    public function login_order(AuthLogin $request)
     {
         $username = $request->username;
         $ps = User::where("username", $request->username)->value('password');
@@ -50,7 +50,7 @@ class CheckoutController extends Controller
         }
     }
 
-    public function logout_checkout(Type $var = null)
+    public function logout_checkout()
     {
         Session::flush();
         return redirect()->route('get_login_order');

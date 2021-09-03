@@ -34,7 +34,7 @@
                      
                         <ul class="left__menu">
                             <li class="left__menuItem">
-                                <a href="{{ route('/admin/index') }}" class="left__title"><img src="{{asset('assets/icon-dashboard.svg')}}" alt="">Trang chủ</a>
+                                <a href="{{ route('/admin/index') }}" class="left__title"><img src="{{asset('assets/icon-dashboard.svg')}}" alt="">{{ __('message.Home') }}</a>
                             </li>
                             <li class="left__menuItem">
                                 <div class="left__title"><img src="{{asset('assets/grid.svg')}}" alt="">Thể Loại<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
@@ -72,7 +72,7 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/icon-picture.svg')}}" alt="">Hình ảnh<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__title"><img src="{{asset('assets/icon-picture.svg')}}" alt="">{{ __('message.Images') }}<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
                                     <a class="left__link" href="{{ route('picture.create') }}">Thêm hình ảnh</a>
                                     <a class="left__link" href="{{ route('picture.index') }}">Xem hình ảnh</a>
@@ -127,12 +127,17 @@
                             <li class="left__menuItem">
                                 <a href="{{ route('comment.index') }}" class="left__title"><img src="{{asset('assets/chat.svg')}}" alt="">Quản lý bình luận</a>
                             </li>
-                          
                             <li class="left__menuItem">
-                            <form action="{{ route('login') }}" method="post">
-                                @csrf
-                                <a href="{{ Auth::logout() }}" class="left__title"><img src="{{asset('assets/icon-logout.svg')}}" alt="">Đăng Xuất</a>
-                            </form>
+                                <div class="left__title"><img src="{{asset('assets/poll.svg')}}" alt="">Ngôn ngữ<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="{{ route('language.index', ['vi']) }}">Tiếng Việt</a>
+                                    <a class="left__link" href="{{ route('language.index', ['en']) }}">Tiếng Anh</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                               
+                                    <a href="{{ route('logout') }}" class="left__title"><img src="{{asset('assets/icon-logout.svg')}}" alt="">Đăng Xuất</a>
+                        
                                
                             </li>
                         </ul>

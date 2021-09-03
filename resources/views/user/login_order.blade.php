@@ -10,13 +10,19 @@
 <body>
     <div class="bg-img">
         <div class="content">
+            <?php
+                $message = Session::get('message');
+                if($message){
+                    echo '<span class="text-alert" style="color: red">'.$message.'</span>';
+                    Session::put('message',null);
+                }
+            ?>
             <header>Đăng Nhập</header>
             <form method="POST" action="{{ route('login_order') }}">
                 @csrf
                 <div class="field">
                     <span class="fa fa-user"></span>
                     <input id="username" type="email" class="form-control @error('username') is-invalid @enderror" placeholder="Email" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-                  
                 </div>
                 @error('username')
                     <span style="color:#FF0000; font-size:18px">{{ $message }}</span>
@@ -24,12 +30,12 @@
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Mật khẩu" name="password" required autocomplete="current-password">
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                         <span style="color:#FF0000; font-size:18px">{{ $message }}</span>
+                    </span>
+                @enderror
                 <div class="rememberpass">
                     
                 </div>
