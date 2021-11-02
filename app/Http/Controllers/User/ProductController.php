@@ -11,6 +11,7 @@ use Cart;
 use Auth;
 use DB;
 
+
 class ProductController extends Controller
 {
     //
@@ -93,8 +94,10 @@ class ProductController extends Controller
                     break;
                 case '6':
                     $products = Products::where("Cate_Id", $id)->whereBetween('Price',[400000, 500000])->paginate(12);
+                    break;
                 case '7':
                     $products = Products::where("Cate_Id", $id)->where('Price','>',500000)->paginate(12);
+                    break;
                     
             }
         } 

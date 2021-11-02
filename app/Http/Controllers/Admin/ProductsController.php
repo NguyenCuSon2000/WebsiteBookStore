@@ -90,6 +90,13 @@ class ProductsController extends Controller
                 $name_image = $name_image.rand(0,99).'.'.$image->getClientOriginalExtension();
                 $image->move('img', $name_image);
                 if ($product_id) {
+                    // $imageid = Image::insertGetId([
+                    //     'image' => $name_image
+                    // ]);
+                    // Movie_Image::insert([
+                    //     'movie_id' => $movie_id,
+                    //     'imageid' => $imageid
+                    // ]);
                     Picture::insert([
                         'picture' => $name_image,
                         'status' => 1,

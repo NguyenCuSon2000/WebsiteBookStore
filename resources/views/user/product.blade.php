@@ -32,13 +32,13 @@
                     <div class="product-price mt-1">
                         <h5 class="filter-heading text-center text-lg-left">Khoảng giá</h5>
                          <ul>
-                             <li><a class="{{ Request::get('price') == 1 ? 'active' : ''}}" href="?price=1">Dưới 50.000 đ</a></li>
-                             <li><a class="{{ Request::get('price') == 2 ? 'active' : ''}}" href="?price=2">50.000 - 100.000 đ</a></li>
-                             <li><a class="{{ Request::get('price') == 3 ? 'active' : ''}}" href="?price=3">100.000 - 200.000 đ</a></li>
-                             <li><a class="{{ Request::get('price') == 4 ? 'active' : ''}}" href="?price=4">200.000 - 300.000 đ</a></li>
-                             <li><a class="{{ Request::get('price') == 5 ? 'active' : ''}}" href="?price=5">300.000 - 400.000 đ</a></li>
-                             <li><a class="{{ Request::get('price') == 6 ? 'active' : ''}}" href="?price=6">400.000 - 500.000</a></li>
-                             <li><a class="{{ Request::get('price') == 7 ? 'active' : ''}}" href="?price=7">Trên 500.000 đ</a></li>
+                             <li><a class="{{ Request::get('price') == 1 ? 'active' : ''}}" href="{{ request()->fullUrlWithQuery(['price' => 1]) }}">Dưới 50.000 đ</a></li>
+                             <li><a class="{{ Request::get('price') == 2 ? 'active' : ''}}" href="{{ request()->fullUrlWithQuery(['price' => 2]) }}">50.000 - 100.000 đ</a></li>
+                             <li><a class="{{ Request::get('price') == 3 ? 'active' : ''}}" href="{{ request()->fullUrlWithQuery(['price' => 3]) }}">100.000 - 200.000 đ</a></li>
+                             <li><a class="{{ Request::get('price') == 4 ? 'active' : ''}}" href="{{ request()->fullUrlWithQuery(['price' => 4]) }}">200.000 - 300.000 đ</a></li>
+                             <li><a class="{{ Request::get('price') == 5 ? 'active' : ''}}" href="{{ request()->fullUrlWithQuery(['price' => 5]) }}">300.000 - 400.000 đ</a></li>
+                             <li><a class="{{ Request::get('price') == 6 ? 'active' : ''}}" href="{{ request()->fullUrlWithQuery(['price' => 6]) }}">400.000 - 500.000</a></li>
+                             <li><a class="{{ Request::get('price') == 7 ? 'active' : ''}}" href="{{ request()->fullUrlWithQuery(['price' => 7]) }}">Trên 500.000 đ</a></li>
                          </ul>
                     </div>
                     
