@@ -76,6 +76,7 @@
             Route::get('/statistic/comment_count', 'Admin\StatisticsController@getComment')->name("/statistic/comment_count");
             Route::get('/statistic/order_highlight', 'Admin\StatisticsController@getOrderHighlight')->name("/statistic/order_highlight");
             Route::get('/statistic/order_time', 'Admin\StatisticsController@getOrderTime')->name("/statistic/order_time");
+            Route::get('/statistic/order_quarter', 'Admin\StatisticsController@getOrderQuarter')->name("/statistic/order_quarter");
             Route::get('/statistic/order_count', 'Admin\StatisticsController@getOrderCount')->name("/statistic/order_count");
             Route::get('/statistic/order_list/{month}/{year}', 'Admin\StatisticsController@getListOrderTime')->name("/statistic/order_list");
             

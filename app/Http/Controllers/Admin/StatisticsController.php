@@ -329,4 +329,104 @@ class StatisticsController extends Controller
     } 
 
 
+    
+    public function getOrderQuarter(Request $request)
+    {
+        $list_total = array();
+        for ($i = 1; $i < 5; $i++) { 
+            $order_time = DB::table('orders')->where(DB::raw('QUARTER(OrderDate)'), $i)->where("Status", 1)->whereYear("OrderDate", now('Asia/Ho_Chi_Minh'))->sum('total');
+            array_push($list_total, ['quarter'=> $i, "order_time" => $order_time]);
+        }
+        $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", now('Asia/Ho_Chi_Minh'))->sum("total");
+        $year = Carbon::now('Asia/Ho_Chi_Minh')->year;
+        if ($request->year) {
+            $year = $request->year;
+            switch ($year) {
+                case '2021':
+                    $list_total = array();
+                    for ($i = 1; $i < 5; $i++) { 
+                        $order_time = DB::table('orders')->where(DB::raw('QUARTER(OrderDate)'), $i)->where("Status", 1)->whereYear("OrderDate", $year)->sum('total');
+                        array_push($list_total, ['quarter'=> $i, "order_time" => $order_time]);
+                    }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
+                    break;
+                case '2022':
+                    $list_total = array();
+                    for ($i = 1; $i < 5; $i++) { 
+                        $order_time = DB::table('orders')->where(DB::raw('QUARTER(OrderDate)'), $i)->where("Status", 1)->whereYear("OrderDate", $year)->sum('total');
+                        array_push($list_total, ['quarter'=> $i, "order_time" => $order_time]);
+                    }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
+                    break;
+                case '2023':
+                    $list_total = array();
+                    for ($i = 1; $i < 5; $i++) { 
+                        $order_time = DB::table('orders')->where(DB::raw('QUARTER(OrderDate)'), $i)->where("Status", 1)->whereYear("OrderDate", $year)->sum('total');
+                        array_push($list_total, ['quarter'=> $i, "order_time" => $order_time]);
+                    }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
+                    break;
+                case '2024':
+                    $list_total = array();
+                    for ($i = 1; $i < 5; $i++) { 
+                        $order_time = DB::table('orders')->where(DB::raw('QUARTER(OrderDate)'), $i)->where("Status", 1)->whereYear("OrderDate", $year)->sum('total');
+                        array_push($list_total, ['quarter'=> $i, "order_time" => $order_time]);
+                    }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
+                    break;
+                case '2025':
+                    $list_total = array();
+                    for ($i = 1; $i < 5; $i++) { 
+                        $order_time = DB::table('orders')->where(DB::raw('QUARTER(OrderDate)'), $i)->where("Status", 1)->whereYear("OrderDate", $year)->sum('total');
+                        array_push($list_total, ['quarter'=> $i, "order_time" => $order_time]);
+                    }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
+                    break;
+                case '2026':
+                    $list_total = array();
+                    for ($i = 1; $i < 5; $i++) { 
+                        $order_time = DB::table('orders')->where(DB::raw('QUARTER(OrderDate)'), $i)->where("Status", 1)->whereYear("OrderDate", $year)->sum('total');
+                        array_push($list_total, ['quarter'=> $i, "order_time" => $order_time]);
+                    }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
+                    break;
+                case '2027':
+                     $list_total = array();
+                     for ($i = 1; $i < 5; $i++) { 
+                        $order_time = DB::table('orders')->where(DB::raw('QUARTER(OrderDate)'), $i)->where("Status", 1)->whereYear("OrderDate", $year)->sum('total');
+                        array_push($list_total, ['quarter'=> $i, "order_time" => $order_time]);
+                    }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
+                    break;
+                case '2028':
+                $list_total = array();
+                    for ($i = 1; $i < 5; $i++) { 
+                        $order_time = DB::table('orders')->where(DB::raw('QUARTER(OrderDate)'), $i)->where("Status", 1)->whereYear("OrderDate", $year)->sum('total');
+                        array_push($list_total, ['quarter'=> $i, "order_time" => $order_time]);
+                    }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
+                    break;
+                case '2029':
+                    $list_total = array();
+                    for ($i = 1; $i < 5; $i++) { 
+                        $order_time = DB::table('orders')->where(DB::raw('QUARTER(OrderDate)'), $i)->where("Status", 1)->whereYear("OrderDate", $year)->sum('total');
+                        array_push($list_total, ['quarter'=> $i, "order_time" => $order_time]);
+                    }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
+                    break;
+                case '2030':
+                    $list_total = array();
+                    for ($i = 1; $i < 5; $i++) { 
+                        $order_time = DB::table('orders')->where(DB::raw('QUARTER(OrderDate)'), $i)->where("Status", 1)->whereYear("OrderDate", $year)->sum('total');
+                        array_push($list_total, ['quarter'=> $i, "order_time" => $order_time]);
+                    }
+                    $order_total_year = Orders::where("Status",1)->whereYear("OrderDate", $year)->sum("total");
+                    break;
+            }
+        }
+        
+        return view("admin.statistic.order_quarter ", ['order_total_year' => $order_total_year,'year' => $year, "list_total"=>$list_total]);
+    }
+
+
 }

@@ -139,6 +139,24 @@
                         </div>
                     </div>
                   @endforeach
+                  @foreach($products_desc as $product)
+                    <div  style="{{ $product->Status==0?'display:none':'display:block' }}" class="cbp-item Fantasy">
+                        <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                        <div class="cbp-caption-defaultWrap  owl-theme sync-portfolio-carousel owl-carousel">
+                               <div class="item"> <a href="{{asset('img'.'/'.$product->Picture)}}" class="cbp-caption" data-fancybox="gallery1" data-title="Book 1"><img src="{{asset('img'.'/'.$product->Picture)}}" alt="Book 1"></a></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <div class="cbp-l-grid-blog-title"><a href="{{ route('product_detail').'/'.$product->id }}" target="_blank" class="portfolio-title">{{$product->ProductName}}</a></div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <div class="cbp-l-grid-blog-desc portfolio-des"> {{ number_format($product->Price) }} VNĐ</div>
+                            </div>
+                        </div>
+                    </div>
+                  @endforeach
                   @foreach($product_asc as $product)
                     <div  style="{{ $product->Status==0?'display:none':'display:block' }}" class="cbp-item Fantasy">
                         <a class="portfolio-circle-cart"  href="{{ route('addcart', ['id' => $product->id]) }}">

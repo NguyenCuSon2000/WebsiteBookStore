@@ -121,6 +121,7 @@
                                     <a class="left__link" href="/statistic/order_count">Thống kê số lượng</a>
                                 </div>
                             </li>
+
                             <li class="left__menuItem">
                                 <a href="{{ route('contact_admin.index') }}" class="left__title"><img src="{{asset('assets/envelope-alt.svg')}}" alt="">Quản lý liên hệ</a>
                             </li>
@@ -128,10 +129,9 @@
                                 <a href="{{ route('comment.index') }}" class="left__title"><img src="{{asset('assets/chat.svg')}}" alt="">Quản lý bình luận</a>
                             </li>
                             <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/poll.svg')}}" alt="">Ngôn ngữ<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__title"><img src="{{asset('assets/poll.svg')}}" alt="">Thống kê theo quý<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
-                                    <a class="left__link" href="{{ route('language.index', ['vi']) }}">Tiếng Việt</a>
-                                    <a class="left__link" href="{{ route('language.index', ['en']) }}">Tiếng Anh</a>
+                                    <a class="left__link" href="/statistic/order_quarter">Thống kê doanh thu theo quý</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">

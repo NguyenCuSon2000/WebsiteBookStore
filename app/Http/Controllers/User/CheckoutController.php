@@ -31,6 +31,11 @@ class CheckoutController extends Controller
         return view('user.login_order');
     }
 
+  /**
+   * If the username and password are correct, then the user is redirected to the checkout page
+   * 
+   * @param AuthLogin request The request object.
+   */
     public function login_order(AuthLogin $request)
     {
         $username = $request->username;
@@ -77,6 +82,13 @@ class CheckoutController extends Controller
 
     }
 
+    /**
+     * I want to send an email to the customer when they have successfully placed an order
+     * 
+     * @param Request request The request object.
+     * 
+     * @return The return value of the last statement executed in the function.
+     */
     public function postFormPay(Request $request)
     {
         $c_id = $request->txtid;
@@ -201,7 +213,8 @@ class CheckoutController extends Controller
 
     public function history(Request $request)
     {
-        $cus_id = Session::get('user_id');
+        $user_id = Session::get('user_id');
+        $cus_id = Customers::where("UserId", $user_id)->first()->id;
         $order_history = Orders::orderBy("OrderDate","DESC")->where('CustomerId', $cus_id)->get();
         $categories = CategoryProducts::all();
         $cart = Cart::content();

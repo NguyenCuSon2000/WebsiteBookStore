@@ -17,6 +17,12 @@ use DB;
 class HomeController extends Controller
 {
 
+    /**
+     * Mail::send('user.send_mail',,function() use (,){
+     *              ->to()->subject('Test thử mail nhé');//send this mail with subject
+     *              ->from(,);//send from this mail
+     *          });
+     */
     public function send_mail()
     {
          //send mail
@@ -38,7 +44,8 @@ class HomeController extends Controller
         $categories = CategoryProducts::all(); //LIST CATEGORY
 
 
-        $products = Products::where('Cate_Id', 3)->orderBy('id', 'DESC')->limit(6)->get();     //LIST PRODUCT
+        $products = Products::orderBy('id', 'DESC')->get();     //LIST PRODUCT
+        $products_desc = Products::where('Cate_Id', 3)->orderBy('id', 'DESC')->limit(6)->get();     //LIST PRODUCT
         $product_asc = Products::where('Cate_Id', 12)->orderBy('id', 'DESC')->orderby("ProductName", "asc")->limit(6)->get();
         $product_bt= Products::where('Cate_Id', 11)->orderBy('id', 'DESC')->limit(6)->get();
 
@@ -73,6 +80,7 @@ class HomeController extends Controller
         return view("user.index", compact(
             "categories", 
             "products", 
+            "products_desc",
             "product_asc", 
             "product_bt", 
             "products_sale", 
