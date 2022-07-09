@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-// use URL;
 use \Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Blade::withoutDoubleEncoding();
-        URL::forceScheme('https');
+        // URL::forceScheme('https');
     }
 }
