@@ -39,8 +39,8 @@
                 @foreach($db as  $r)
                     <tr>
                         <td>{{ $tt++ }}</td>
-                        <td data-label="Mã">{{ $r->id }}</td>
-                        <td data-label="name" style="text-align:left">{{ $r->name }}</td>
+                        <td data-label="Mã quyền">{{ $r->id }}</td>
+                        <td data-label="Tên quyền" style="text-align:left">{{ $r->name }}</td>
                         <td data-label="Ngày tạo">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y') }}</td>
                         <td data-label="Trạng thái">
                            @if( $r->status == 0)

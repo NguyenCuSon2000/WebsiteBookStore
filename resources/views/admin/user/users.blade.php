@@ -41,7 +41,7 @@
                     <tr>
                         <td>{{ $tt++ }}</td>
                         <td data-label="Mã">{{ $r->id }}</td>
-                        <td data-label="Username" style="text-align:left">{{ $r->username }}</td>
+                        <td data-label="Tên người dùng" style="text-align:left">{{ $r->username }}</td>
                         <td data-label="Quyền"> 
                             @if( $r->role->name == 'user')
                                  <a href="#" class="label label-warning">User</a>

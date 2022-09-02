@@ -26,10 +26,10 @@
         <div class="row order-body">
             @php
             $tt = 1;
-            @endphp
-            <table class="table table-bordered text-center">
-                <thead>
-                    <tr>
+            @endphp  
+            <table class="table table-striped table-inverse table-bordered table-responsive">
+                <thead class="thead-inverse">
+                     <tr>
                         <th class="title">STT</th>
                         <th class="title">Mã đơn hàng</th>
                         <th class="title">Tên khách hàng</th>
@@ -42,30 +42,35 @@
                         <th class="title">Xem</th>
                     </tr>
                 </thead>
-                
                 <tbody>
-                    @foreach($order_history as  $r)
+                    @if($order_history)
+                        @foreach($order_history as  $r)
+                        <tr>
+                            <td>{{ $tt++ }}</td>
+                            <td data-label="Mã đơn hàng">{{$r->id}}</td>
+                            <td data-label="Tên khách hàng" style="text-align:left">{{ $r->customer->CustomerName }}</td>
+                            <td data-label="Ngày đặt">{{ \Carbon\Carbon::parse($r->OrderDate)->format('d/m/Y') }}</td>
+                            <td data-label="Số điện thoại nhận">{{ $r->ShipPhone }}</td>
+                            <td data-label="Địa chỉ nhận" style="text-align:left">{{ $r->ShipAddress }}</td>
+                            <td data-label="Tổng tiền(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->total ) }}</td>
+                            <td data-label="Ghi chú" style="text-align:left">{{ $r->Note }}</td>
+                            <td data-label="Trạng thái">
+                                @if($r->Status == 0)
+                                <a href="#" class="label label-warning">Chờ xử lý</a>
+                                @else
+                                <a href="#" class="label-success label">Đã xử lý</a>
+                                @endif
+                            </td>
+                            <td data-label="Xem" class="right__iconTable">
+                                <a  data-id ="{{ $r->id }}" href="{{ route('history_order_detail', $r->id) }}"><img src="{{ asset('assets/icon-eye.svg') }}" alt=""></a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    @else
                     <tr>
-                        <td>{{ $tt++ }}</td>
-                        <td data-label="Mã đơn hàng">{{$r->id}}</td>
-                        <td data-label="Tên khách hàng" style="text-align:left">{{ $r->customer->CustomerName }}</td>
-                        <td data-label="Ngày đặt">{{ \Carbon\Carbon::parse($r->OrderDate)->format('d/m/Y') }}</td>
-                        <td data-label="Số điện thoại nhận">{{ $r->ShipPhone }}</td>
-                        <td data-label="Địa chỉ nhận" style="text-align:left">{{ $r->ShipAddress }}</td>
-                        <td data-label="Tổng tiền(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->total ) }}</td>
-                        <td data-label="Ghi chú" style="text-align:left">{{ $r->Note }}</td>
-                        <td data-label="Trạng thái">
-                            @if($r->Status == 0)
-                            <a href="#" class="label label-warning">Chờ xử lý</a>
-                            @else
-                            <a href="#" class="label-success label">Đã xử lý</a>
-                            @endif
-                        </td>
-                        <td data-label="Xem" class="right__iconTable">
-                            <a  data-id ="{{ $r->id }}" href="{{ route('history_order_detail', $r->id) }}"><img src="{{ asset('assets/icon-eye.svg') }}" alt=""></a>
-                        </td>
+                        <td>Bạn chưa có đơn hàng nào</td> 
                     </tr>
-                    @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

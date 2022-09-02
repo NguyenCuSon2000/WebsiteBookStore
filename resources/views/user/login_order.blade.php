@@ -22,7 +22,7 @@
                 @csrf
                 <div class="field">
                     <span class="fa fa-user"></span>
-                    <input id="username" type="email" class="form-control @error('username') is-invalid @enderror" placeholder="Email" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Email" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
                 </div>
                 @error('username')
                     <span style="color:#FF0000; font-size:18px">{{ $message }}</span>
@@ -54,10 +54,14 @@
             </div>
             <div class="links">
                 <div class="facebook">
-                    <i class="fab fa-facebook-f"><span>Facebook</span></i>
+                    <a href="/login-facebook">
+                        <i class="fab fa-facebook-f"><span>Facebook</span></i>
+                    </a>
                 </div>
                 <div class="google">
-                    <i class="fab fa-google"><span>Google</span></i>
+                    <a href="/login-google">
+                        <i class="fab fa-google"><span>Google</span></i>
+                    </a>        
                 </div>
             </div>
             <div class="signup">

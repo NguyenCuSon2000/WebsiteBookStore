@@ -34,7 +34,7 @@
                         <td data-label="STT">{{ $tt++ }}</td>
                         <td data-label="Mã ảnh">{{$r->id}}</td>
                         <td data-label="Tên sách">{{$r->product->ProductName}}</td>
-                        <td data-label="Hình ảnh"> <img src="{{asset('img'.'/'.$r->picture)}}" alt="" > </td>
+                        <td data-label="Hình ảnh"> <img src="{{asset('/storage/img'.'/'.$r->picture)}}" alt="" > </td>
                         <td data-label="Trạng thái">
                             @if( $r->status == 0)
                                  <a href="#" class="label label-warning">Ngừng</a>

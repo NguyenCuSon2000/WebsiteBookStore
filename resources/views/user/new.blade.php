@@ -59,7 +59,7 @@
                                 <div class="col-12 col-md-6 col-lg-4 manage-color-hover wow slideInUp" data-wow-delay=".2s">
                                     <div class="product-item owl-theme product-listing-carousel owl-carousel">
                                         <div class="item p-item-img">
-                                            <img src="{{asset('img'.'/'.$new->picture)}}" alt="images">
+                                            <img src="{{asset('/storage/img'.'/'.$new->picture)}}" alt="images">
                                         </div>
                                     </div>
                                 </div>

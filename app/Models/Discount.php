@@ -11,6 +11,7 @@ class Discount extends Model
     protected $fillable = [
         "Product_Id",
         "Percent",
+        "Promotion_price",
         "Status",
         "BeginDate",
         "EndDate",

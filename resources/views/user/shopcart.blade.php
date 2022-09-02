@@ -50,7 +50,7 @@
                                                 <div class="row no-gutters">
                                                     
                                                     <div class="col-12 col-lg-2 product-detail-cart-image">
-                                                        <a class="shopping-product" href="javascript:void(0)"><img src="{{ asset('img'.'/'.$key->options->img) }}" alt="{{ $key->name}} "></a>
+                                                        <a class="shopping-product" href="javascript:void(0)"><img src="{{ asset('/storage/img'.'/'.$key->options->img) }}" alt="{{ $key->name}} "></a>
                                                     </div>
                                                     
                                                     <div class="col-12 col-lg-10 mt-auto product-detail-cart-data">
@@ -104,7 +104,8 @@
                                     <td>
                                         <h4 class="amount">{{ Cart::subtotal(0,3) }}</h4>
                                     </td>
-                                    <td class="text-center"></td>
+                                    <td class="text-center">
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -112,16 +113,29 @@
                     <div class="apply_coupon">
                         <div class="row">
                             @if(Cart::count() > 0)
-                            <div class="col-12 text-left">
-                                <?php
-                                    $user_id = Session::get("user_id");
-                                    if ($user_id != null) { 
-                                ?>
-                                       <a href="{{ route('checkout') }}" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
-                                <?php } else { ?>
-                                       <a href="{{ route('get_login_order') }}" class="btn green-color-yellow-gradient-btn " >ĐẶT HÀNG</a>
-                                    <?php } ?>
-                            </div>
+                                <div class="col-12 text-left">
+                                    <!-- <?php
+                                        $user_id = Session::get("user_id");
+                                        if ($user_id != null) { 
+                                    ?>
+                                        <a href="{{ route('checkout') }}" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
+                                    <?php } else { ?>
+                                        <a href="{{ route('get_login_order') }}" class="btn green-color-yellow-gradient-btn " >ĐẶT HÀNG</a>
+                                        <?php } ?> -->
+                                    @if(Auth::check())
+                                        <a href="{{ route('checkout') }}" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
+                                        <form action="{{ route('vnpay_payment') }}" method="post">
+                                            @csrf
+                                            <button type="submit" name="redirect" class="btn btn-secondary green-color-blue-gradient-btn">THANH TOÁN VNPAY</button>
+                                        </form>
+                                    @else
+                                        <a href="{{ route('get_login_order') }}" class="btn green-color-yellow-gradient-btn" >ĐẶT HÀNG</a>
+                                        <form action="{{ route('vnpay_payment') }}" method="post">
+                                            @csrf
+                                            <button type="submit" name="redirect" class="btn btn-secondary green-color-blue-gradient-btn">THANH TOÁN VNPAY</button>
+                                        </form>
+                                    @endif
+                                </div>
                             @endif
                         </div>
                     </div>

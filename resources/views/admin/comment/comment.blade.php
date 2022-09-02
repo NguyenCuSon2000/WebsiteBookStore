@@ -41,7 +41,7 @@
                     <tr>
                         <td>{{ $tt++ }}</td>
                         <td data-label="Tên sách" style="text-align:left">{{ $r->product->ProductName }}</td>
-                        <td data-label="name" style="text-align:left">{{ $r->name }}</td>
+                        <td data-label="Người bình luận" style="text-align:left">{{ $r->name }}</td>
                         <td data-label="Email" style="text-align:left">{{ $r->email}}</td>
                         <td data-label="Nội dung" style="text-align:left">{{ $r->content}}</td>
                         <td data-label="Ngày bình luận">{{ \Carbon\Carbon::parse($r->created_at)->format('d/m/Y') }}</td>

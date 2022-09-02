@@ -109,6 +109,16 @@ class CartController extends Controller
             Cart::remove($rowId);
             return redirect()->route("cart.index")->with("message","Đã xóa sản phẩm trong giỏ hàng thành công");
         }
+
+
+        public function updateAll(Request $request)
+        {
+            dd(Cart::content());
+            // foreach(Cart::content() as $row) {
+            //     Cart::update($row->rowId, $request->qty);
+            // }
+            // return redirect()->route("cart.index");
+        }
         
         
     }

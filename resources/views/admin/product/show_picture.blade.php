@@ -33,7 +33,7 @@
                         <td data-label="STT">{{ $tt++ }}</td>
                         <td data-label="Mã ảnh">{{$r->id}}</td>
                         <td data-label="Tên sách">{{$r->product->ProductName}}</td>
-                        <td data-label="Hình ảnh"> <img src="{{asset('img'.'/'.$r->picture)}}" alt="" > </td>
+                        <td data-label="Hình ảnh"> <img src="{{asset('/storage/img'.'/'.$r->picture)}}" alt="" > </td>
                         <td data-label="Sửa" class="right__iconTable"><a href="{{ route('picture.edit', $r->id) }}"><img src="{{asset('assets/icon-edit.svg')}}" alt=""></a></td>
                         <td data-label="Xoá" class="right__iconTable">
                             <form role="form" action="{{ route('picture.destroy', $r->id) }}" method="post">

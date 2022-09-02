@@ -96,7 +96,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact') }}">LIÊN HỆ</a>
                         </li>
-                      
                     </ul>
                 </div>
             </div>

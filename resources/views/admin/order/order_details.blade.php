@@ -54,7 +54,7 @@ if($message){
                     <th>Giá mới (đ)</th>
                     <th>Số lượng</th>
                     <th>Thành tiền (đ)</th>
-                    <th>Xoá</th>
+                    <!-- <th>Xoá</th> -->
                 </tr>
             </thead>
             
@@ -64,19 +64,19 @@ if($message){
                 <tr>
                     <td>{{ $tt++ }}</td>
                     <td data-label="Tên sản phẩm"  style="text-align:left">{{$r->product->ProductName}}</td>
-                    <td data-label="Hình ảnh"> <img src="{{asset('img'.'/'.$r->product->Picture)}}" alt="" > </td>
+                    <td data-label="Hình ảnh"> <img src="{{asset('/storage/img'.'/'.$r->product->Picture)}}" alt="" > </td>
                     <td data-label="Đơn giá(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->product->Price) }}</td>
                     <td data-label="Phần trăm" style="color:red; font-weight:bold">{{ 100 - ((($r->UnitPrice*$r->Quantity)*100)/($r->product->Price*$r->Quantity)) }} %</td>
                     <td data-label="Giá mới(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->UnitPrice)  }}</td>
                     <td data-label="Số lượng">{{ $r->Quantity }}</td>
                     <td data-label="Thành tiền(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->UnitPrice*$r->Quantity) }}</td>
-                    <td data-label="Xoá" class="right__iconTable">
+                    <!-- <td data-label="Xoá" class="right__iconTable">
                         <form role="form" action="" method="post">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <button  type="submit" onclick="return confirm('Are you sure to delete?')"><img src="{{ asset('assets/icon-trash.svg') }}" alt=""></button>   
                         </form>
-                    </td>
+                    </td> -->
                 </tr>
                 @endforeach
             </tbody>

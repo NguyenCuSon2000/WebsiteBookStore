@@ -41,7 +41,7 @@
                 @foreach($db as  $r)
                     <tr>
                         <td>{{ $tt++ }}</td>
-                        <td data-label="id">{{$r->id}}</td>
+                        <td data-label="Mã khách hàng">{{$r->id}}</td>
                         <td data-label="Tên khách hàng" style="text-align:left">{{$r->CustomerName}}</td>
                         <td data-label="Ngày sinh">{{ \Carbon\Carbon::parse($r->DateOfBirth)->format('d/m/Y') }}</td>
                         <td data-label="Địa chỉ" style="text-align:left">{{$r->Address}}</td>

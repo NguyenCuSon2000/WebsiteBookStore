@@ -49,7 +49,7 @@ class PictureController extends Controller
             $file = $request->file('fileImg');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            $file->move('img', $filename);
+            $file->move('storage/img', $filename);
             $pictures->picture = $filename;
         }
         else {
@@ -108,19 +108,24 @@ class PictureController extends Controller
         //
         $db = Picture::find($id);
         $db->ProductId = $request->input('txtName');
-        
-        if($request->hasfile('fileImg')){
-            $file = $request->file('fileImg');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('img', $filename);
-            $db->picture =  $filename;
 
+        if (!$request->hasfile('fileImg')) {
+            $db->picture =  $request->input("image");
         }
         else {
-            // return $request;
-            $db->picture = "";
+            if($request->hasfile('fileImg')){
+                $file = $request->file('fileImg');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extension;
+                $file->move('storage/img', $filename);
+                $db->picture =  $filename;
+    
+            }
+            else {
+                $db->picture = "";
+            }
         }
+    
         $db->status = $request->input('sl_stt');
         $db->save();
         return redirect()->route("picture.index", [$id])->with('message', 'Cập nhật hình ảnh thành công');

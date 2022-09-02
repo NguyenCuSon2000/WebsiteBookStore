@@ -27,8 +27,8 @@
             @php
             $tt = 1;
             @endphp
-            <table class="table table-bordered text-center">
-                <thead>
+            <table class="table table-striped table-inverse table-bordered table-responsive">
+                <thead class="thead-inverse">
                     <tr>
                         <th class="title">Mã đơn hàng</th>
                         <th class="title">Khách hàng</th>
@@ -51,8 +51,8 @@
                     @endforeach   
                 </tbody>
             </table>
-            <table class="table table-bordered text-center mt-5">
-                <thead>
+            <table class="table table-striped table-inverse table-bordered table-responsive mt-5">
+                <thead class="thead-inverse">
                     <tr>
                         <th class="title">STT</th>
                         <th class="title">Tên sản phẩm</th>
@@ -71,7 +71,7 @@
                     <tr>
                         <td>{{ $tt++ }}</td>
                         <td data-label="Tên sản phẩm"  style="text-align:left">{{$r->product->ProductName}}</td>
-                        <td data-label="Hình ảnh"> <img src="{{asset('img'.'/'.$r->product->Picture)}}" width="80px" alt="" > </td>
+                        <td data-label="Hình ảnh"> <img src="{{asset('/storage/img'.'/'.$r->product->Picture)}}" width="80px" alt="" > </td>
                         <td data-label="Đơn giá(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->product->Price) }}</td>
                         <td data-label="Phần trăm" style="color:red; font-weight:bold">{{ 100 - ((($r->UnitPrice*$r->Quantity)*100)/($r->product->Price*$r->Quantity)) }} %</td>
                         <td data-label="Giá mới(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->UnitPrice)  }}</td>

@@ -13,7 +13,7 @@
                             @foreach($cart as $key)
                                 <div class="media row">
                                     <div class="img-holder ml-1 mr-2 col-4">
-                                        <a href="javascript:void(0)"><img src="{{ asset('img'.'/'.$key->options->img) }}" class="align-self-center" alt="{{ $key->name}}"></a>
+                                        <a href="javascript:void(0)"><img src="{{ asset('/storage/img'.'/'.$key->options->img) }}" class="align-self-center" alt="{{ $key->name}}"></a>
                                     </div>
                                     <div class="media-body mt-auto mb-auto col-8">
                                         <h5 class="name"><a href="javascript:void(0)">{{ $key->name}}</a></h5>
@@ -30,19 +30,23 @@
                 </div>
             </div>
             <div class="bag-btn">
-                <h4 class="total"><span>Tổng cộng: </span> {{ Cart::subtotal(0,3)." "."VND" }} </h4>
+                <h6 class="total"><span>Tổng cộng: </span> {{ Cart::subtotal(0,3)." "."VND" }} </h6>
                 <a href="{{ route('cart.index') }}" class="btn green-color-yellow-gradient-btn">Xem giỏ hàng </a>
                 @if(Cart::count() > 0)
-                <?php
-                    $user_id = Session::get("user_id");
-                    if ($user_id != null) { 
-                ?>
-                        <a href="{{ route('checkout') }}" class="btn yellow-color-green-gradient-btn">Đặt hàng </a>
-                <?php } else { ?>
-                    <a href="{{ route('get_login_order') }}" class="btn yellow-color-green-gradient-btn">Đặt hàng</a>
-                    <?php } ?>
-                <!-- <a href="{{ route('checkout') }}" class="btn yellow-color-green-gradient-btn">Đặt hàng </a> -->
-                @endif
+                    <!-- <?php
+                        $user_id = Session::get("user_id");
+                        if ($user_id != null) { 
+                    ?>
+                            <a href="{{ route('checkout') }}" class="btn yellow-color-green-gradient-btn">Đặt hàng </a>
+                    <?php } else { ?>
+                        <a href="{{ route('get_login_order') }}" class="btn yellow-color-green-gradient-btn">Đặt hàng</a>
+                        <?php } ?> -->
+                    @if(Auth::check())
+                        <a href="{{ route('checkout') }}" class="btn green-color-yellow-gradient-btn ">ĐẶT HÀNG</a>
+                    @else
+                        <a href="{{ route('get_login_order') }}" class="btn green-color-yellow-gradient-btn " >ĐẶT HÀNG</a>
+                    @endif
+                  @endif
             </div>
             
         </div>

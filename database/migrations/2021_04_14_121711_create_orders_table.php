@@ -20,7 +20,8 @@ class CreateOrdersTable extends Migration
             $table->string("ShipAddress")->nullable();
             $table->Integer("Status")->default(0);
             $table->double("total")->defaul(0);
-            $table->string("Note")->nullable();
+            $table->double("TotalQuantity")->defaul(0);
+            $table->text("Note")->nullable();
             $table->integer('CustomerId')->unsigned();
             $table->foreign('CustomerId')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();

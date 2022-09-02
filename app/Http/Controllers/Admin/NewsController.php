@@ -51,7 +51,7 @@ class NewsController extends Controller
             $file = $request->file('fileImg');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            $file->move('img', $filename);
+            $file->move('storage/img', $filename);
             $new->picture = $filename;
         }
         else {
@@ -108,18 +108,23 @@ class NewsController extends Controller
         $db->title = $request->input('txtName');
         $db->description = $request->input('txtDes');
         $db->content = $request->input('txtContent');
-        
-        if($request->hasfile('fileImg')){
-            $file = $request->file('fileImg');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('img', $filename);
-            $db->picture =  $filename;
 
+        if(!$request->hasfile('fileImg')){
+            $db->Picture = $request->input("image");
         }
-        else {
-            // return $request;
-            $db->picture = "";
+        else{
+            if($request->hasfile('fileImg')){
+                $file = $request->file('fileImg');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extension;
+                $file->move('storage/img', $filename);
+                $db->picture =  $filename;
+    
+            }
+            else {
+                // return $request;
+                $db->picture = "";
+            }
         }
         
         $db->date = $request->input('txtdate');

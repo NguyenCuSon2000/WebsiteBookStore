@@ -15,7 +15,8 @@ class Orders extends Model
         "ShipPhone",
         "ShipAddress",
         "Status",
-        "TotalMoney"
+        "total",
+        "TotalQuantity"
     ];
     protected $primaryKey = "id";
 
