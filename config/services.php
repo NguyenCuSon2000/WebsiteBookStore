@@ -29,5 +29,15 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'facebook' => [
+        'client_id' => '450718926593898',
+        'client_secret' => '971a5f8a8b37a91f3c055e54c6255df6',
+        'redirect' => 'https://book-app-ncs.herokuapp.com/facebook/callback'
+    ],
+    'google' => [
+        'client_id' => '1074885947979-66eq57ndq1b0fcamvbcqmm6hk6l2u890.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'https://book-app-ncs.herokuapp.com/google/callback'
+    ],
 
 ];

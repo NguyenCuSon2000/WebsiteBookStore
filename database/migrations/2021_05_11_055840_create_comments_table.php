@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->Increments('id');
             $table->string("name");
             $table->string("email");
-            $table->string("content");
+            $table->text("content");
             $table->integer('ProductId')->unsigned();
             $table->foreign('ProductId')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();

@@ -53,6 +53,7 @@
                     <th>Ngày đặt</th>
                     <th>Số điện thoại nhận</th>
                     <th>Địa chỉ nhận</th>
+                    <th>Số lượng sản phẩm</th>
                     <th>Tổng tiền (VNĐ)</th>
                     <th>Ghi chú</th>
                     <th>Trạng thái</th>
@@ -72,6 +73,7 @@
                         <td data-label="Ngày đặt">{{ \Carbon\Carbon::parse($r->OrderDate)->format('d/m/Y') }}</td>
                         <td data-label="Số điện thoại nhận">{{ $r->ShipPhone }}</td>
                         <td data-label="Địa chỉ nhận" style="text-align:left">{{ $r->ShipAddress }}</td>
+                        <td data-label="Số lượng sản phẩm">{{ $r->TotalQuantity }}</td>
                         <td data-label="Tổng tiền(đ)" style="color:red; font-weight:bold; text-align:right">{{ number_format($r->total ) }}</td>
                         <td data-label="Ghi chú" style="text-align:left">{{ $r->Note }}</td>
                         <td data-label="Trạng thái">

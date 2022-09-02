@@ -24,7 +24,7 @@
                             @foreach($search_product as $product)
                                 <div class="media row">
                                     <div class="img-holder ml-1 mr-2 col-4">
-                                        <a href="javascript:void(0)"><img src="{{asset('img'.'/'.$product->Picture)}}" class="align-self-center" alt="cartitem"></a>
+                                        <a href="javascript:void(0)"><img src="{{asset('/storage/img'.'/'.$product->Picture)}}" class="align-self-center" alt="cartitem"></a>
                                     </div>
                                     <div class="media-body mt-auto mb-auto col-8">
                                         <h5 class="name"><a href="javascript:void(0)">{{ $product->ProductName }}</a></h5>

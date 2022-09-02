@@ -38,11 +38,21 @@
         <div class="right__inputWrapper">
             <label for="images">Hình ảnh liên quan</label>
             <input type="file" name="images[]" class="form-control" required multiple="multiple">
+            
         </div>
         <div class="right__inputWrapper">
             <label for="price">Đơn giá</label>
-            <input type="number" name="txtprice" class="form-control @error('txtprice') is-invalid @enderror"  placeholder="Đơn giá" value="{{ old('txtprice') }}" required autocomplete="txtprice" autofocus>
+            <input type="number" name="txtprice" class="form-control @error('txtprice') is-invalid @enderror"  placeholder="Đơn giá" value="{{ old('txtprice') }}" required min=0 autocomplete="txtprice" autofocus>
             @error('txtprice')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+        <div class="right__inputWrapper">
+            <label for="quantity">Số lượng tồn</label>
+            <input type="number" name="nQuantity" class="form-control @error('nQuantity') is-invalid @enderror"  placeholder="Số lượng" value="{{ old('nQuantity') }}" min=1 required autocomplete="nQuantity" autofocus>
+            @error('nQuantity')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

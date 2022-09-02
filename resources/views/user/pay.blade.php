@@ -37,7 +37,7 @@
                             @foreach($cart as $key)
                             <div class="form-group">
                                 <div class="col-sm-3 col-xs-3">
-                                    <img class="img-responsive" src="{{ asset('img'.'/'.$key->options->img) }}" />
+                                    <img class="img-responsive" src="{{ asset('/storage/img'.'/'.$key->options->img) }}" />
                                 </div>
                                 <div class="col-sm-6 col-xs-6">
                                     <div class="col-xs-12">{{ $key->name }}</div>
@@ -88,60 +88,76 @@
                                 @csrf
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="hidden" name="txtid" class="form-control" value="<?php echo Session::get('user_id') ?>" />
+                                        <!-- <input type="text" name="txtid" class="form-control" value="<?php echo Session::get('user_id') ?>" /> -->
+                                        <input type="hidden" name="txtid" class="form-control" value="{{Auth::id()}}" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-12"><strong>Tên khách hàng:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="text" name="txtName" pattern="^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌÓỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ\s]+)$" class="form-control @error('txtName') is-invalid @enderror" value="{{ old('txtName') }}"  required autocomplete="txtName" autofocus />
+                                        <strong>Tên khách hàng:</strong><span style="color: red">*</span>
+                                        <input type="text" name="txtName" pattern="^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌÓỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳýỵỷỹ\s]+)$" class="form-control form-control-sm @error('txtName') is-invalid @enderror" value="{{Auth::user()->username }}"  required autocomplete="txtName" autofocus />
+                                        @error('txtName')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
-                                    @error('txtName')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                 
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-12"><strong>Ngày sinh:</strong></div>
-                                    <div class="col-md-12">
-                                        <input type="date" name="txtDate" class="form-control" value="" required />
+                                    <div class="col-md-6">
+                                        <strong>Ngày sinh:</strong><span style="color: red">*</span>
+                                        <input type="date" name="txtDate" class="form-control form-control-sm" value="" required />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <strong>Tỉnh/Thành phố:</strong><span style="color: red">*</span>
+                                        <select class="form-control form-control-sm" name="province" id="province" required>
+                                            <option value="">--- Chọn tỉnh/thành phố ---</option>
+                                        </select>
+                                        <input type="hidden" name="province" >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-12"><strong>Địa chỉ nhận:</strong></div>
-                                    <div class="col-md-12">
-                                        <input type="text" name="txtad" class="form-control @error('txtad') is-invalid @enderror"  value="{{ old('txtad') }}" required autocomplete="txtad" autofocus />
+                                    <div class="col-md-6">
+                                        <strong>Huyện/Thị trấn:</strong><span style="color: red">*</span>
+                                        <select class="form-control form-control-sm" name="district" id="district" required>
+                                            <option value="">--- Chọn quận huyện ---</option>
+                                        </select>
+                                        <input type="hidden" name="district" >
                                     </div>
-                                    @error('txtad')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                    <div class="col-md-6">
+                                        <strong>Xã/Quận:</strong><span style="color: red">*</span>
+                                        <select class="form-control form-control-sm" name="ward" id="ward" required>
+                                             <option value="">--- Chọn xã, thị trấn ---</option>
+                                        </select>
+                                        <input type="hidden" name="ward" >
+                                    </div>
                                 </div>
-                                
                                 <div class="form-group">
-                                    <div class="col-md-12"><strong>Số điện thoại:</strong></div>
+                                    <div class="col-md-12"><strong>Địa chỉ nhận chi tiết:</strong><span style="color: red">*</span></div>
                                     <div class="col-md-12">
-                                        <input type="text" pattern="[0-9]{10}" name="txtPhone" class="form-control @error('txtPhone') is-invalid @enderror" value="{{ old('txtPhone') }}" required autocomplete="txtPhone" autofocus />
+                                        <input type="text" required name="txtad" class="form-control form-control-sm @error('txtad') is-invalid @enderror"  value="{{ old('txtad') }}" required autocomplete="txtad" autofocus />
                                     </div>
-                                    @error('txtPhone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
-                                
                                 <div class="form-group">
-                                    <div class="col-md-12"><strong>Email:</strong></div>
-                                    <div class="col-md-12">
-                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  name="txtEmail" class="form-control @error('txtEmail') is-invalid @enderror"  autocomplete="txtEmail" value="<?php echo Session::get('username') ?>" autofocus required />
+                                    <div class="col-md-6">
+                                        <strong>Số điện thoại:</strong><span style="color: red">*</span>
+                                        <input type="text" pattern="[0-9]{10}" name="txtPhone" class="form-control form-control-sm @error('txtPhone') is-invalid @enderror" value="{{ old('txtPhone') }}" required autocomplete="txtPhone" autofocus />
+                                        @error('txtPhone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
-                                    @error('txtEmail')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                    <div class="col-md-6">
+                                        <strong>Email:</strong><span style="color: red">*</span>
+                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  name="txtEmail" class="form-control form-control-sm @error('txtEmail') is-invalid @enderror"  autocomplete="txtEmail" value="{{ Auth::user()->email }}" autofocus required />
+                                        @error('txtEmail')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Ghi chú:</strong></div>
@@ -164,3 +180,5 @@
 </div>
 
 @endsection
+
+

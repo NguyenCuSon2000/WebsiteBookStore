@@ -38,6 +38,7 @@
                         <th>Tên khách hàng</th>
                         <th>Số điện thoại</th>
                         <th>Địa chỉ</th>
+                        <th>Số lượng sản phẩm</th>
                         <th>Tổng tiên (VNĐ)</th>
                         <th>Ngày đặt</th>
                         <th>Trạng Thái</th>
@@ -53,6 +54,7 @@
                         <td data-label="Tên khách hàng" style="text-align:left">{{ $order->customer->CustomerName}}</td>
                         <td data-label="Số điện thoại">{{ $order->ShipPhone }}</td>
                         <td data-label="Địa chỉ" style="text-align:left">{{ $order->ShipAddress }}</td>
+                        <td data-label="Số lượng sản phẩm">{{ $order->TotalQuantity }}</td>
                         <td data-label="Tổng tiền" style="color:red; font-weight:bold; text-align:right">{{ number_format($order->total) }}</td>
                         <td data-label="Ngày đặt">{{ \Carbon\Carbon::parse($order->OrderDate)->format('d/m/Y') }}</td>
                         <td data-label="Trạng Thái">
@@ -62,7 +64,7 @@
                                   <a href="#" class="label-success label">Đã xử lý</a>
                             @endif
                         </td>
-                        <td>
+                        <td  data-label="In hóa đơn">
                              <a target="_blank" href="{{ route('print_order', $order->id) }}" class="label-info label">In hóa đơn</a>
                         </td>
                         <td data-label="Xem chi tiết" class="right__iconTable">

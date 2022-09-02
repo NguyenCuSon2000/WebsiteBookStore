@@ -20,9 +20,8 @@
         <div class="right__inputWrapper">
             <label for="p_picture">Trạng thái</label>
             <select name="sl_stt" class="form-control form-control-sm">
-                <option disabled selected>Chọn trạng thái</option>
+               <option value="1">Hiển thị</option>
                 <option value="0">Ẩn</option>
-                <option value="1">Hiển thị</option>
             </select>
         </div>
         <button class="btn btn-info" type="submit">Thêm</button>

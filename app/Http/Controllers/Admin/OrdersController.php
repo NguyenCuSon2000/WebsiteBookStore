@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Orders;
+use App\Models\Products;
 use App\Models\OrderDetails;
 use App\Models\Customers;
 use PDF;
@@ -44,6 +45,7 @@ class OrdersController extends Controller
     public function edit($id=null)
     {
         //
+      
         if ($id==null) {
             return redirect()->route("order.index");
         }
@@ -72,6 +74,7 @@ class OrdersController extends Controller
         $db->total = $request->input('txtTotal');
         $db->Note = $request->input('txtNote');
         $db->Status = $request->input('sl_stt');
+       
         $db->save();
         return redirect()->route("order.index", [$id])->with('message', 'Cập nhật hóa đon thành công');
 
@@ -82,6 +85,14 @@ class OrdersController extends Controller
     {
         //
         $db = Orders::findOrFail($id);
+        if($db->Status == 0){
+            $order_details = OrderDetails::where("OrderId", $id)->get();
+            foreach ($order_details as $a) {
+                $product = Products::find($a->ProductId);
+                $product->Quantity = $product->Quantity + $a->Quantity;
+                $product->save();
+            }   
+        }
         $db->delete();
         return redirect()->route("order.index")->with('message', 'Xóa đơn hàng thành công');
     }

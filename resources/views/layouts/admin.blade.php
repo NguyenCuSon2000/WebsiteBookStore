@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 <body>
                  
@@ -99,7 +101,13 @@
                                     <a class="left__link" href="{{ route('user.index') }}">Xem người dùng</a>
                                 </div>
                             </li>
-                           
+                            <li class="left__menuItem">
+                                <a href="{{ route('contact_admin.index') }}" class="left__title"><img src="{{asset('assets/envelope-alt.svg')}}" alt="">Quản lý liên hệ</a>
+                            </li>
+                            <li class="left__menuItem">
+                                <a href="{{ route('comment.index') }}" class="left__title"><img src="{{asset('assets/chat.svg')}}" alt="">Quản lý bình luận</a>
+                            </li>
+                          
                             <li class="left__menuItem">
                                 <div class="left__title"><img src="{{asset('assets/line-chart.svg')}}" alt="">Thống kê sản phẩm<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
@@ -122,23 +130,19 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <a href="{{ route('contact_admin.index') }}" class="left__title"><img src="{{asset('assets/envelope-alt.svg')}}" alt="">Quản lý liên hệ</a>
-                            </li>
-                            <li class="left__menuItem">
-                                <a href="{{ route('comment.index') }}" class="left__title"><img src="{{asset('assets/chat.svg')}}" alt="">Quản lý bình luận</a>
-                            </li>
-                            <li class="left__menuItem">
-                                <div class="left__title"><img src="{{asset('assets/poll.svg')}}" alt="">Ngôn ngữ<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__title"><img src="{{asset('assets/poll.svg')}}" alt="">Thống kê theo quý<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
-                                    <a class="left__link" href="{{ route('language.index', ['vi']) }}">Tiếng Việt</a>
-                                    <a class="left__link" href="{{ route('language.index', ['en']) }}">Tiếng Anh</a>
+                                    <a class="left__link" href="/statistic/order_quarter">Thống kê doanh thu theo quý</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                               
+                                <div class="left__title"><img src="{{asset('assets/poll.svg')}}" alt="">Thống kê dạng biểu đồ<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="/statistic/chart/revenue">Thống kê doanh thu</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
                                     <a href="{{ route('logout') }}" class="left__title"><img src="{{asset('assets/icon-logout.svg')}}" alt="">Đăng Xuất</a>
-                        
-                               
                             </li>
                         </ul>
                     </div>
@@ -155,7 +159,12 @@
     <script src="{{asset('js/main.js')}}"></script>
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
     <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
- 
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" rel="stylesheet" />
+
    <script>
         CKEDITOR.replace("ckeditor");
         CKEDITOR.replace("ckeditor1");
@@ -164,6 +173,7 @@
     </script>
     <script>
         $(function () { 
+            getRevenueToday();
             $('.year').change(function () { 
                 $('#form_year').submit();
             });
@@ -174,12 +184,114 @@
                 $('#form_hight').submit();
             });
 
+            var chart = new Morris.Bar({
+                element: 'myfirstchart',
+                lineColors: [
+                    '#819C79', '#fc8710','#FF6541', '#A4ADD3', '#766D56'
+                ],
+                xkey: 'period',
+                ykeys: ['order', 'quantity'],
+                labels: ['Doanh thu','Số lượng'],
+                fillOpacity: 0.6,
+                hideHover: 'auto',
+                behaveLikeLine: true,
+                resize: true,
+                parseTime: false,
+                pointFillColors:['#ffffff'],
+                pointStrokeColors: ['black'],
+            });
 
-        
+            // filter from date to date
+            $('#btn-revenue-filter-by-date').click(function() { 
+                var _token = $('input[name="_token"]').val();
+                var from_date = $('#datepicker').val();
+                var to_date = $('#datepicker2').val();
+                $.ajax({
+                    url: "{{ url('/statistic/chart/filter_by_date') }}",
+                    method: "POST",
+                    dataType: "JSON",
+                    data: {from_date: from_date, to_date: to_date, _token: _token},
+                    success: function(data){
+                        chart.setData(data);
+                    }
+                });
+            });
 
+            // filter by month
+            $('#btn-revenue-filter-by-month').click(function() { 
+                var _token = $('input[name="_token"]').val();
+                var month = $('.revenue-filter-month').val();
+                var year = $('.revenue-filter-year').val();
+                $.ajax({
+                    url: "{{ url('/statistic/chart/filter_by_month_year') }}",
+                    method: "POST",
+                    dataType: "JSON",
+                    data: {month: month, year: year, _token: _token},
+                    success: function(data){
+                        chart.setData(data);
+                    }
+                });         
+            });
 
+            // filter by year
+            $('#btn-revenue-filter-by-year').click(function() { 
+                var _token = $('input[name="_token"]').val();
+                var year = $('.revenue-filter-year').val();
+                $.ajax({
+                    url: "{{ url('/statistic/chart/filter_by_year') }}",
+                    method: "POST",
+                    dataType: "JSON",
+                    data: {year: year, _token: _token},
+                    success: function(data){
+                        chart.setData(data);
+                    }
+                });         
+            });
+
+            // filter by choose option
+            $('.revenue-filter-choose').change(function () { 
+                var filter_value = $(this).val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{ url('/statistic/chart/get_revenue_filter_date') }}",
+                    method: "POST",
+                    data: {filter_value: filter_value, _token: _token},
+                    dataType: "JSON",
+                    success: function (data) {                    
+                        chart.setData(data);
+                    }
+                });
+            });
+
+            // get today
+            function getRevenueToday() { 
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{ url('/statistic/chart/get_revenue_today') }}",
+                    method: "POST",
+                    data: { _token: _token},
+                    dataType: "JSON",
+                    success: function(data){
+                        chart.setData(data);
+                    }
+                });
+             }
+
+             //filter by quater
+             $('#btn-revenue-filter-by-quater').click(function() { 
+                var _token = $('input[name="_token"]').val();
+                var year = $('.revenue-filter-quater').val();
+                $.ajax({
+                    url: "{{ url('/statistic/chart/filter_by_quater') }}",
+                    method: "POST",
+                    dataType: "JSON",
+                    data: {year: year, _token: _token},
+                    success: function(data){
+                        chart.setData(data);
+                    }
+                });         
+            });
         })
-
     </script>
 </body>
 </html>

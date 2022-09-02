@@ -38,7 +38,7 @@
                 @foreach($product_pay as $r)
                     <tr>
                         <td data-label="STT">{{ $tt++}}</td>
-                        <td data-label="id">{{$r->product->id}}</td>
+                        <td data-label="Mã sản phẩm">{{$r->product->id}}</td>
                         <td data-label="Tiêu đề" style="text-align:left">{{$r->product->ProductName}}</td>
                         <td data-label="Tên loại" style="text-align:left">{{ $r->product->category->CategoryName }}</td>
                         <td data-label="Số lượng được đặt" >{{ $r->amount }}</td>

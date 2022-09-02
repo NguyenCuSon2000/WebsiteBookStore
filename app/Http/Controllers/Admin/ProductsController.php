@@ -13,6 +13,7 @@ use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel; 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProductsController extends Controller
@@ -65,7 +66,7 @@ class ProductsController extends Controller
             $file = $request->file('fileImg');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            $file->move('img', $filename);
+            $file->move('storage/img', $filename);
         }
         else {
             return $request;
@@ -77,6 +78,7 @@ class ProductsController extends Controller
             'Description' => $request->txtDes,
             'Picture' => $filename,
             'Price' => $request->txtprice,
+            'Quantity' => $request->nQuantity,
             'Status' => $request->sl_stt,
             'created_at' => now(),
             'updated_at' => now()
@@ -88,7 +90,7 @@ class ProductsController extends Controller
                 $get_name_image = $image->getClientOriginalName();
                 $name_image = current(explode('.',$get_name_image));
                 $name_image = $name_image.rand(0,99).'.'.$image->getClientOriginalExtension();
-                $image->move('img', $name_image);
+                $image->move('storage/img', $name_image);
                 if ($product_id) {
                     // $imageid = Image::insertGetId([
                     //     'image' => $name_image
@@ -140,8 +142,8 @@ class ProductsController extends Controller
         else {
             $db = Products::find($id);
             $categories = CategoryProducts::all();
-            // dd($db, $categories);
-            return view("admin.product.edit_product",compact("db","categories"));
+            $pictures = Products::find($id)->pictures;
+            return view("admin.product.edit_product",compact("db","categories","pictures"));
         }
     }
 
@@ -159,19 +161,43 @@ class ProductsController extends Controller
         $db->ProductName = $request->input('txtName');
         $db->Cate_Id = $request->input('txtCate');
         $db->Description = $request->input('txtDes');
-        
-        if($request->hasfile('fileImg')){
-            $file = $request->file('fileImg');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('img', $filename);
-            $db->Picture =  $filename;
+
+       if(!$request->hasfile('fileImg')){
+          $db->Picture = $request->input("image");
+       }
+       else {          
+            if($request->hasfile('fileImg')){
+                $file = $request->file('fileImg');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extension;
+                $file->move('storage/img', $filename);
+                $db->Picture = $filename;
+            }
+            else {
+                $db->Picture = "";
+            }
+       } 
+       $get_image = $request->file('images');
+       if($get_image){
+            $picture = Picture::where("ProductId", $id)->delete();
+            foreach ($get_image as $image) {
+               $get_name_image = $image->getClientOriginalName();
+               $name_image = current(explode('.',$get_name_image));
+               $name_image = $name_image.rand(0,99).'.'.$image->getClientOriginalExtension();
+               $image->move('storage/img', $name_image);
+               if ($id) {
+                    Picture::insert([
+                       'picture' => $name_image,
+                       'status' => 1,
+                       'ProductId' => $id,
+                       'created_at' => now(),
+                       'updated_at' => now()
+                   ]);
+               }
+           }
         }
-        else {
-            $db->Picture = "";
-        }
-      
         $db->Price = $request->input('txtprice');
+        $db->Quantity = $request->input('nQuantity');
         $db->Status = $request->input('sl_stt');
         $db->save();
         return redirect()->route("product.index", [$id])->with('message', 'Cập nhật sản phẩm thành công');

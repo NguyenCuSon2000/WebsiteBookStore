@@ -19,7 +19,7 @@
                     <div class="product-add mt-4">
                         <div class="row no-gutters">
                             <div class="col-12">
-                                <img class="new_img" src="{{ asset('img'.'/'.$news->picture) }}" alt="thumnails">
+                                <img class="new_img" src="{{ asset('/storage/img'.'/'.$news->picture) }}" alt="thumnails">
                                 <p>{!! $news->content !!}</p>
                             </div>
                         </div>

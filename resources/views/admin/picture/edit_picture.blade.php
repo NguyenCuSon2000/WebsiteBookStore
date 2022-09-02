@@ -17,7 +17,17 @@
         </div>
         <div class="right__inputWrapper">
             <label for="image">Hình ảnh</label>
-            <input type="file" class="form-control" value="{{ $db->picture }}" name="fileImg" required>
+            <input type="file" class="form-control" value="{{ $db->picture }}" name="fileImg">
+            @if($db->picture)
+                 <input type="text" class="form-control" value="{{ $db->picture }}" name="image" hidden>
+            @endif
+        </div>
+        <div class="form-group">
+            @if($db->Picture)
+                <img src="{{ asset('img'.'/'.$db->picture) }}" height="200" width="200" alt="" />
+            @else
+                <img src="{{ asset('img'.'/'.$db->picture) }}" height="200" width="200" alt="" />
+            @endif
         </div>
         <div class="right__inputWrapper">
             <label for="p_picture">Trạng thái</label>

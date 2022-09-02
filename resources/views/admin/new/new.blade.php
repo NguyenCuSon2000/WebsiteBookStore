@@ -43,7 +43,7 @@
                         <td data-label="Tiêu đề" style="text-align:left">{{$r->title}}</td>
                         <td data-label="Mô tả" style="text-align:left">{{$r->description}}</td>
                         <td data-label="Ngày đăng">{{ \Carbon\Carbon::parse($r->date)->format('d/m/Y') }}</td>
-                        <td data-label="Hình ảnh"> <img src="{{asset('img'.'/'.$r->picture)}}" alt="" > </td>
+                        <td data-label="Hình ảnh"> <img src="{{asset('/storage/img'.'/'.$r->picture)}}" alt="" > </td>
                         <td data-label="Hiển thị">
                         <!-- <input type="checkbox" name="cbtt" value="{{ $r->status }}" {{ $r->status==0?'':'checked'}}  > -->
                             @if( $r->status == 0)

@@ -27,7 +27,8 @@ class ProductRequest extends FormRequest
             //
             'txtName' => 'required|min:5',
             'txtDes' => 'required|min:10',
-            'txtprice' => 'required|integer'
+            'txtprice' => 'required|integer',
+            'nQuantity' => 'required|integer'
         ];
     }
 

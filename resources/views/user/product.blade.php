@@ -107,7 +107,7 @@
                             <div style="{{ $product->Status==0?'display:none':'display:block' }}" class="col-12 col-md-6 col-lg-4 manage-color-hover wow slideInUp" data-wow-delay=".2s">
                                 <div class="product-item owl-theme product-listing-carousel owl-carousel">
                                     <div class="item p-item-img">
-                                        <img src="{{asset('img'.'/'.$product->Picture)}}" alt="images">
+                                        <img src="{{asset('/storage/img'.'/'.$product->Picture)}}" alt="images">
                                         <div class="text-center d-flex justify-content-center align-items-center">
                                             <a class="listing-cart-icon" href="{{ route('addcart', ['id' => $product->id]) }}">
                                                 <i class="fa fa-shopping-cart"></i>
@@ -115,7 +115,7 @@
                                         </div>
                                     </div>
                                     <div class="item p-item-img">
-                                        <img src="{{asset('img'.'/'.$product->Picture)}}" alt="images">
+                                        <img src="{{asset('/storage/img'.'/'.$product->Picture)}}" alt="images">
                                         <div class="text-center d-flex justify-content-center align-items-center">
                                             <a class="listing-cart-icon" href="{{ route('addcart', ['id' => $product->id]) }}">
                                                 <i class="fa fa-shopping-cart"></i>

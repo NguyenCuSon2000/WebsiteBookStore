@@ -67,10 +67,14 @@
             </div>
             <div class="links">
                 <div class="facebook">
-                    <i class="fab fa-facebook-f"><span>Facebook</span></i>
+                    <a href="/login-facebook">
+                        <i class="fab fa-facebook-f"><span>Facebook</span></i>
+                    </a>
                 </div>
                 <div class="google">
-                    <i class="fab fa-google"><span>Google</span></i>
+                    <a href="/login-google">
+                        <i class="fab fa-google"><span>Google</span></i>
+                    </a>        
                 </div>
             </div>
             <div class="signup">

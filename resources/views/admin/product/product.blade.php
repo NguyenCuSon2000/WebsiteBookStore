@@ -30,6 +30,7 @@
                     <th>Mã sách</th>
                     <th>Tên sách</th>
                     <th>Tên loại</th>
+                    <th>Số lượng tồn</th>
                     <th>Đơn giá (VNĐ)</th>
                     <th>Hình ảnh</th>
                     <th>Hiển thị</th>
@@ -44,6 +45,7 @@
                         <td data-label="Mã sách">{{$r->id}}</td>
                         <td data-label="Tiêu đề" style="text-align:left">{{$r->ProductName}}</td>
                         <td data-label="Tên loại" style="text-align:left">{{ $r->category->CategoryName }}</td>
+                        <td data-label="Số lượng tồn">{{ $r->Quantity }}</td>
                         <td data-label="Đơn giá(đ)" style="color:red; font-weight:bold; text-align:right"> {{ number_format($r->Price) }}</td>
                         <td data-label="Xem hình ảnh" class="right__iconTable">
                               <a  data-id ="{{ $r->id }}" href="{{ route('product.show', $r->id) }}"><img src="{{ asset('assets/icon-eye.svg') }}" alt=""></a>

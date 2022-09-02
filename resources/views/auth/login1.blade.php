@@ -11,7 +11,16 @@
     <div class="bg-img">
         <div class="content">
             <header>Đăng Nhập</header>
-            <form method="POST" action="{{ route('login') }}">
+          
+            <?php
+                 use Illuminate\Support\Facades\Session;
+                 $msg = Session::get('msg');
+                 if($msg){
+                     echo '<span style="color: red">'.$msg.'</span>';
+                     Session::put('msg',null);
+                 }
+            ?>
+            <form method="POST" action="{{ route('login_auth') }}">
                 @csrf
                 <div class="field">
                     <span class="fa fa-user"></span>
@@ -24,12 +33,13 @@
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Mật khẩu" name="password" required autocomplete="current-password">
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+            
                 </div>
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                         <span style="color:#FF0000; font-size:18px">{{ $message }}</span>
+                    </span>
+                @enderror
                 <div class="rememberpass">
                     
                 </div>

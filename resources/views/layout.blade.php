@@ -89,33 +89,30 @@
                                 <li><a href="{{ route('contact') }}">Liên hệ chúng tôi</a></li>
                                 <li><a href="{{ route('index') }}">Các sản phẩm</a></li>
                                 <li>
-                                    <?php
-                                        $user_id = Session::get("user_id");
-                                        if ($user_id != null) { 
-                                    ?>
-                                      <a href="{{ route('history') }}">Lịch sử mua hàng</a>
-                                    <?php } else { ?>
+                                    @if (Auth::check()) 
+                                        <a href="{{ route('history') }}">Lịch sử mua hàng</a>
+                                    @else
                                         <a href="{{ route('get_login_order') }} ">Lịch sử mua hàng</a>
-                                    <?php } ?>
+                                    @endif
                                 </li>
                             </ul>
                         </div>
                         <div class="col-12 col-md-6">
                             <h4 class="text-center text-md-left">Thông tin tài khoản</h4>
                             <ul class="text-center text-md-left">
-                                <?php
-                                    $user_id = Session::get("user_id");
-                                    if ($user_id != null) { 
-                                ?>
+                                @if (Auth::check()) 
+
+                                    <li><a href="javascript:void(0)">Hello: {{Auth::user()->username}} !!!</a></li>
                                     <li><a href="javascript:void(0)">Lịch sử đặt hàng</a></li>
                                     <li><a href="javascript:void(0)">Thông tin giao hàng</a></li>
                                     <li><a href="javascript:void(0)">Chính sách hoàn lại tiền</a></li>
                                     <li><a href="javascript:void(0)">Trang web đáp ứng</a></li>
                                     <li><a href="{{ route('logout_checkout') }}">Đăng xuất</a></li>
-                                <?php } else { ?>
+                                @else
+                                    <li><a href="/admin/index">Trang quản trị</a></li>
                                     <li><a href="{{ route('get_login_order') }}">Đăng nhập</a></li>
                                     <li><a href="{{ route('register') }}">Đăng ký</a></li>
-                                    <?php } ?>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -159,6 +156,7 @@
     <script src="{{asset('vendor/js/parallaxie.min.js')}}"></script>
     <script src="{{asset('vendor/js/stickyfill.min.js')}}"></script>
     <script src="{{asset('js/nouislider.min.js')}}"></script>
+
     
     <script src="{{asset('vendor/js/jquery.themepunch.tools.min.js')}}"></script>
     <script src="{{asset('vendor/js/jquery.themepunch.revolution.min.js')}}"></script>
@@ -185,6 +183,65 @@
                 $('#form_display').submit();
             });
         })
+        $(document).ready(function() {
+            $.ajax({
+                type: "get",
+                url: "https://provinces.open-api.vn/api/p/",
+                data: "data",
+                dataType: "json",
+                success: function (response) {
+                    response.forEach(item => {
+                        $('select[name="province"]').append('<option value="'+ item.code +'">'+ item.name +'</option>');
+                    });
+                }
+            });
+
+            $('select[name="province"]').on('change', function() {
+                var provinceID = $(this).val();
+                $('input[name="province"]').val($('#province option:selected').text());
+                if(provinceID) {
+                    $.ajax({
+                        url: 'https://provinces.open-api.vn/api/p/'+ provinceID +'?depth=2',
+                        type: "GET",
+                        dataType: "json",
+                        success:function(response) {
+                            $('select[name="district"]').empty();
+                            $('select[name="ward"]').empty();
+                            response.districts.forEach(item => {
+                                $('select[name="district"]').append('<option value="'+ item.code +'">'+ item.name +'</option>');
+                            });
+                        }
+                    });
+                }else{
+                    $('select[name="district"]').empty();
+                }
+            });
+
+            $('select[name="district"]').on('change', function() {
+                var districtID = $(this).val();
+                $('input[name="district"]').val($('#district option:selected').text());
+                if(districtID) {
+                    $.ajax({
+                        url: 'https://provinces.open-api.vn/api/d/'+districtID+'?depth=2',
+                        type: "GET",
+                        dataType: "json",
+                        success:function(response) {
+                            $('select[name="ward"]').empty();
+                            response.wards.forEach(item => {
+                                $('select[name="ward"]').append('<option value="'+ item.code +'">'+ item.name +'</option>');
+                            });
+                        }
+                    });
+                }else{
+                    $('select[name="ward"]').empty();
+                }
+            });
+
+            $('select[name="ward"]').on('change', function() {
+                $('input[name="ward"]').val($('#ward option:selected').text());
+            });
+
+        });
     </script>
 </body>
 </html>
