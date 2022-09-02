@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "b8672c4091eef2183e280b0748c0d115",
+=======
+    "content-hash": "507a39b803ba7aade2bc1570eaad440e",
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -621,6 +625,7 @@
             "time": "2020-10-22T13:48:01+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "guzzlehttp/guzzle",
             "version": "7.4.5",
             "source": {
@@ -953,6 +958,17 @@
             },
             "dist": {
                 "type": "zip",
+=======
+            "name": "laravel/framework",
+            "version": "v6.20.44",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "505ebcdeaa9ca56d6d7dbf38ed4f53998c973ed0"
+            },
+            "dist": {
+                "type": "zip",
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
                 "url": "https://api.github.com/repos/laravel/framework/zipball/505ebcdeaa9ca56d6d7dbf38ed4f53998c973ed0",
                 "reference": "505ebcdeaa9ca56d6d7dbf38ed4f53998c973ed0",
                 "shasum": ""
@@ -1097,6 +1113,7 @@
             "time": "2022-01-12T16:12:12+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "laravel/socialite",
             "version": "v5.5.2",
             "source": {
@@ -1180,6 +1197,22 @@
                 "shasum": ""
             },
             "require": {
+=======
+            "name": "laravel/tinker",
+            "version": "v2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/tinker.git",
+                "reference": "dff39b661e827dae6e092412f976658df82dbac5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/tinker/zipball/dff39b661e827dae6e092412f976658df82dbac5",
+                "reference": "dff39b661e827dae6e092412f976658df82dbac5",
+                "shasum": ""
+            },
+            "require": {
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
                 "illuminate/console": "^6.0|^7.0|^8.0|^9.0",
                 "illuminate/contracts": "^6.0|^7.0|^8.0|^9.0",
                 "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
@@ -1477,6 +1510,7 @@
             "time": "2022-04-17T13:12:02+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "league/oauth1-client",
             "version": "v1.10.1",
             "source": {
@@ -1488,10 +1522,24 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/oauth1-client/zipball/d6365b901b5c287dd41f143033315e2f777e1167",
                 "reference": "d6365b901b5c287dd41f143033315e2f777e1167",
+=======
+            "name": "maatwebsite/excel",
+            "version": "3.1.40",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SpartnerNL/Laravel-Excel.git",
+                "reference": "8a54972e3d616c74687c3cbff15765555761885c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SpartnerNL/Laravel-Excel/zipball/8a54972e3d616c74687c3cbff15765555761885c",
+                "reference": "8a54972e3d616c74687c3cbff15765555761885c",
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
+<<<<<<< HEAD
                 "ext-openssl": "*",
                 "guzzlehttp/guzzle": "^6.0|^7.0",
                 "guzzlehttp/psr7": "^1.7|^2.0",
@@ -1568,6 +1616,8 @@
             },
             "require": {
                 "ext-json": "*",
+=======
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
                 "illuminate/support": "5.8.*|^6.0|^7.0|^8.0|^9.0",
                 "php": "^7.0|^8.0",
                 "phpoffice/phpspreadsheet": "^1.18"
@@ -2898,6 +2948,7 @@
             "time": "2022-07-07T13:49:11+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {
@@ -2951,6 +3002,17 @@
             },
             "dist": {
                 "type": "zip",
+=======
+            "name": "ramsey/uuid",
+            "version": "3.9.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ramsey/uuid.git",
+                "reference": "ffa80ab953edd85d5b6c004f96181a538aad35a3"
+            },
+            "dist": {
+                "type": "zip",
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
                 "url": "https://api.github.com/repos/ramsey/uuid/zipball/ffa80ab953edd85d5b6c004f96181a538aad35a3",
                 "reference": "ffa80ab953edd85d5b6c004f96181a538aad35a3",
                 "shasum": ""

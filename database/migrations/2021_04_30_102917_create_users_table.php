@@ -17,7 +17,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('password');
+<<<<<<< HEAD
             $table->string('email');
+=======
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
             $table->integer('role_id')->unsigned()->default(2);
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->integer('status')->default(1);

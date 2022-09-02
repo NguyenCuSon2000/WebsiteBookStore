@@ -12,6 +12,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
         \DB::table('roles')->truncate();
         Roles::insert([
             [
@@ -27,5 +28,13 @@ class RolesTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
         ]);
+=======
+        //
+        $roles = new Roles;
+        $roles->id = 1;
+        $roles->name = 'admin';
+        $roles->status = 1;
+        $roles->save();
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
     }
 }

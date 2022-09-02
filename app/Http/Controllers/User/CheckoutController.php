@@ -99,6 +99,7 @@ class CheckoutController extends Controller
 
     }
 
+<<<<<<< HEAD
 
     public function getDistrictByProvince($province_id)
     {
@@ -112,6 +113,8 @@ class CheckoutController extends Controller
         return response()->json($wards);
     }
 
+=======
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
     /**
      * I want to send an email to the customer when they have successfully placed an order
      * 
@@ -328,6 +331,7 @@ class CheckoutController extends Controller
 
     public function history(Request $request)
     {
+<<<<<<< HEAD
         $user_id = Auth::id();
         $customer = Customers::where("UserId", $user_id)->first();
         if ($customer) {
@@ -337,6 +341,11 @@ class CheckoutController extends Controller
         else {
             $order_history = Orders::orderBy("OrderDate","DESC")->where('CustomerId', null)->get();
         }
+=======
+        $user_id = Session::get('user_id');
+        $cus_id = Customers::where("UserId", $user_id)->first()->id;
+        $order_history = Orders::orderBy("OrderDate","DESC")->where('CustomerId', $cus_id)->get();
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
         $categories = CategoryProducts::all();
         $cart = Cart::content();
         $product_pay = OrderDetails::orderBy('id', 'DESC')->limit(10)->get();

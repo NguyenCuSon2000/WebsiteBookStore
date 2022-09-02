@@ -129,7 +129,9 @@
                                     <a class="left__link" href="/statistic/order_count">Thống kê số lượng</a>
                                 </div>
                             </li>
+
                             <li class="left__menuItem">
+<<<<<<< HEAD
                                 <div class="left__title"><img src="{{asset('assets/poll.svg')}}" alt="">Thống kê theo quý<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
                                     <a class="left__link" href="/statistic/order_quarter">Thống kê doanh thu theo quý</a>
@@ -139,6 +141,17 @@
                                 <div class="left__title"><img src="{{asset('assets/poll.svg')}}" alt="">Thống kê dạng biểu đồ<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
                                 <div class="left__text">
                                     <a class="left__link" href="/statistic/chart/revenue">Thống kê doanh thu</a>
+=======
+                                <a href="{{ route('contact_admin.index') }}" class="left__title"><img src="{{asset('assets/envelope-alt.svg')}}" alt="">Quản lý liên hệ</a>
+                            </li>
+                            <li class="left__menuItem">
+                                <a href="{{ route('comment.index') }}" class="left__title"><img src="{{asset('assets/chat.svg')}}" alt="">Quản lý bình luận</a>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="{{asset('assets/poll.svg')}}" alt="">Thống kê theo quý<img class="left__iconDown" src="{{asset('assets/arrow-down.svg')}}" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="/statistic/order_quarter">Thống kê doanh thu theo quý</a>
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
                                 </div>
                             </li>
                             <li class="left__menuItem">

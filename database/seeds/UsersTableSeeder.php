@@ -13,6 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         //
+<<<<<<< HEAD
         \DB::table('users')->truncate();
         User::insert([
             [
@@ -25,5 +26,14 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
         ]);
+=======
+        $users = new User;
+        $users->id = 1;
+        $users->username = 'admin@gmail.com';
+        $users->password = '$2y$10$lPk0vEaunPwbNFZlbKPPS.lmc/5vHyw67ztarngwzeBCN2egQ/xne';
+        $users->status = 1;
+        $users->role_id = 1;
+        $users->save();
+>>>>>>> 22e96a38382caf5c8e9bfd0543d910f6065af5d5
     }
 }
